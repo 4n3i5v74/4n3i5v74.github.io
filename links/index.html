@@ -1,0 +1,31 @@
+---
+layout: post
+toc: true
+title: Links
+author: 4n3i5v74
+date: 2020-10-30 00:00:00 +0530
+pin: false
+sitemap: false
+---
+
+    {% assign links_grouped = site.data.links.links | sort: 'order' | group_by: 'category' %}
+    {% for category in links_grouped %}
+    <br>
+    <br>
+    <h2 id="{{ category.name | slugify }}">{{ category.name }}</h2>
+
+    <div class="flex-container">
+
+      <br>
+      {% for link in category.items | sort: 'suborder' %}
+      <div>
+        <p>{{ link.title | markdownify }}</p>
+        <hr class="flex-hr">
+        <a href="{{ link.url }}" target="_blank">{{ link.description | markdownify }}</a>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% endfor %}
+

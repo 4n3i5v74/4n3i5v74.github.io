@@ -1,0 +1,51 @@
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: baseline;
+  height: auto;
+  width: auto;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.flex-container > div {
+  background-color: #262626;
+  text-align: center;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  max-width: 200px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.flex-container > div > a {
+  color: #cccccc;
+  &:hover {
+    color: #ff6666;
+    text-decoration: none;
+  }
+}
+
+.flex-container > div > p {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.flex-container > div > a > p {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.flex-hr {
+  height: 2px;
+  border-width: 0;
+  color: #cccccc;
+  background-color: #cccccc;
+  margin: 5px;
+}
+

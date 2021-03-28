@@ -1,0 +1,860 @@
+---
+
+# Intro - 100
+# More Intro - 200
+# Tools - 300
+# Hard Intro - 400
+# Programming - 500
+# Crypto and Hashing - 600
+# Web - 700
+# Reverse Engineering - 800
+# Privilege Escalation - 900
+# CTF - 1000
+# Windows - 1100
+
+- category: Intro
+  order: 100
+  suborder: 10
+  title: Tutorial
+  description: Intro to TryHackMe
+  url: https://tryhackme.com/room/tutorial
+
+- category: Intro
+  order: 100
+  suborder: 20
+  title: Welcome
+  description: Welcome
+  url: https://tryhackme.com/room/welcome
+
+- category: Intro
+  order: 100
+  suborder: 30
+  title: OpenVPN
+  description: Setup OpenVPN
+  url: https://tryhackme.com/room/openvpn
+
+- category: Intro
+  order: 100
+  suborder: 40
+  title: Network Basics
+  description: Network Basics
+  url: https://tryhackme.com/room/introtonetworking
+
+- category: Intro
+  order: 100
+  suborder: 50
+  title: Linux (Private)
+  description: Learn Linux (Private)
+  url: https://tryhackme.com/room/zthlinux
+
+- category: Intro
+  order: 100
+  suborder: 60
+  title: Linux 1
+  description: Learn Linux - 2
+  url: https://tryhackme.com/room/linux1
+
+- category: Intro
+  order: 100
+  suborder: 70
+  title: Linux 2
+  description: Learn Linux - 2
+  url: https://tryhackme.com/room/linux2
+
+- category: Intro
+  order: 100
+  suborder: 80
+  title: Linux 3
+  description: Learn Linux - 3
+  url: https://tryhackme.com/room/linux3
+
+- category: Intro
+  order: 100
+  suborder: 85
+  title: Windows
+  description: Intro to Windows
+  url: https://tryhackme.com/room/intro2windows
+
+- category: Intro
+  order: 100
+  suborder: 90
+  title: Reaearching
+  description: Intro to Researching
+  url: https://tryhackme.com/room/introtoresearch
+
+- category: Intro
+  order: 100
+  suborder: 100
+  title: Crash Course Pentesting
+  description: Intro to Pentest Tools
+  url: https://tryhackme.com/room/ccpentesting
+
+- category: Intro
+  order: 100
+  suborder: 110
+  title: Web Fundamentals
+  description: HTTP/S, API, Cookies
+  url: https://tryhackme.com/room/webfundamentals
+
+- category: Intro
+  order: 100
+  suborder: 120
+  title: Social Media
+  description: Social Media Backdoor Basics
+  url: https://tryhackme.com/room/gettingstarted
+
+- category: Intro
+  order: 100
+  suborder: 130
+  title: LFI Basics
+  description: Local File Inclusion Basics
+  url: https://tryhackme.com/room/lfibasics
+
+- category: Intro
+  order: 100
+  suborder: 140
+  title: Network Services
+  description: Samba, Telnet, FTP
+  url: https://tryhackme.com/room/networkservices
+
+- category: Intro
+  order: 100
+  suborder: 150
+  title: Network Services 2
+  description: NFS, SMTP, MySQL
+  url: https://tryhackme.com/room/networkservices2
+
+- category: Intro
+  order: 100
+  suborder: 160
+  title: Advent of Cybersecurity
+  description: Intro to all CyberSecurity modules
+  url: https://tryhackme.com/room/25daysofchristmas
+
+- category: Intro
+  order: 100
+  suborder: 165
+  title: Advent of Cybersecurity 2
+  description: Intro to all CyberSecurity modules
+  url: https://tryhackme.com/room/adventofcyber2
+
+- category: Intro
+  order: 100
+  suborder: 180
+  title: Cyber Scotland 2021
+  description: Intro to all CyberSecurity modules
+  url: https://tryhackme.com/room/cyberweek2021
+
+- category: Intro
+  order: 100
+  suborder: 190
+  title: Hacker of the Hill
+  description: Intro to all CyberSecurity modules
+  url: https://tryhackme.com/room/hackerofthehill
+
+- category: Intro
+  order: 100
+  suborder: 200
+  title: Wreath
+  description: Intro to all CyberSecurity modules
+  url: https://tryhackme.com/room/wreath
+
+- category: More Intro
+  order: 200
+  suborder: 10
+  title: Google Dorking
+  description: Google Dorking
+  url: https://tryhackme.com/room/googledorking
+
+- category: More Intro
+  order: 200
+  suborder: 20
+  title: OHSINT
+  description: Open Source Intelligence
+  url: https://tryhackme.com/room/ohsint
+
+- category: More Intro
+  order: 200
+  suborder: 30
+  title: Shodan (Private)
+  description: Shodan (Private)
+  url: https://tryhackme.com/room/shodan
+
+- category: More Intro
+  order: 200
+  suborder: 40
+  title: MITRE
+  description: MITRE Introduction
+  url: https://tryhackme.com/room/mitre
+
+- category: More Intro
+  order: 200
+  suborder: 50
+  title: Hacker Methodology
+  description: Hacker Methodology
+  url: https://tryhackme.com/room/hackermethodology
+
+- category: More Intro
+  order: 200
+  suborder: 70
+  title: Linux Modules
+  description: Linux Modules
+  url: https://tryhackme.com/room/linuxmodules
+
+- category: More Intro
+  order: 200
+  suborder: 75
+  title: Linux Agency
+  description: Linux Agency
+  url: https://tryhackme.com/room/linuxagency
+
+- category: Tools
+  order: 300
+  suborder: 10
+  title: VIM
+  description: VIM Basics
+  url: https://tryhackme.com/room/toolboxvim
+
+- category: Tools
+  order: 300
+  suborder: 40
+  title: TMUX
+  description: TMUX Basics
+  url: https://tryhackme.com/room/rptmux
+
+- category: Tools
+  order: 300
+  suborder: 45
+  title: TMUX 2
+  description: TMUX Basics 2
+  url: https://tryhackme.com/room/tmuxremux
+
+- category: Tools
+  order: 300
+  suborder: 70
+  title: NMAP
+  description: NMAP
+  url: https://tryhackme.com/room/rpnmap
+
+- category: Tools
+  order: 300
+  suborder: 80
+  title: RustScan
+  description: RustScan
+  url: https://tryhackme.com/room/rustscan
+
+- category: Tools
+  order: 300
+  suborder: 100
+  title: Wireshark
+  description: Wireshark
+  url: https://tryhackme.com/room/wireshark
+
+- category: Tools
+  order: 300
+  suborder: 130
+  title: John
+  description: John the Ripper
+  url: https://tryhackme.com/room/johntheripper0
+
+- category: Tools
+  order: 300
+  suborder: 160
+  title: Sublist3r
+  description: Sublist3r
+  url: https://tryhackme.com/room/rpsublist3r
+
+- category: Tools
+  order: 300
+  suborder: 180
+  title: Hydra
+  description: Hydra
+  url: https://tryhackme.com/room/hydra
+
+- category: Tools
+  order: 300
+  suborder: 200
+  title: Metasploit
+  description: Metasploit
+  url: https://tryhackme.com/room/rpmetasploit
+
+- category: Tools
+  order: 300
+  suborder: 230
+  title: BurpSuite
+  description: BurpSuite
+  url: https://tryhackme.com/room/rpburpsuite
+
+- category: Tools
+  order: 300
+  suborder: 240
+  title: OWASP ZAP
+  description: OWASP ZAP
+  url: https://tryhackme.com/room/learnowaspzap
+
+- category: Tools
+  order: 300
+  suborder: 170
+  title: Web Scanning
+  description: Web Scanning Basics
+  url: https://tryhackme.com/room/rpwebscanning
+
+- category: Tools
+  order: 300
+  suborder: 300
+  title: TOR
+  description: TOR Basics
+  url: https://tryhackme.com/room/torforbeginners
+
+- category: Tools
+  order: 300
+  suborder: 340
+  title: Nessus
+  description: Nessus Basics
+  url: https://tryhackme.com/room/rpnessusredux
+
+- category: Tools
+  order: 300
+  suborder: 350
+  title: Nessus
+  description: Nessus
+  url: https://tryhackme.com/room/rpnessus
+
+- category: Tools
+  order: 300
+  suborder: 360
+  title: OpenVAS
+  description: OpenVAS
+  url: https://tryhackme.com/room/openvas
+
+- category: Tools
+  order: 300
+  suborder: 380
+  title: Volatility
+  description: Memory Forensics Basics
+  url: https://tryhackme.com/room/bpvolatility
+
+- category: Tools
+  order: 300
+  suborder: 400
+  title: DNS Manipulation
+  description: DNS Manipulation
+  url: https://tryhackme.com/room/dnsmanipulation
+
+- category: Hard Intro
+  order: 400
+  suborder: 5
+  title: Basic Pentesting
+  description: Basic Pentesting
+  url: https://tryhackme.com/room/basicpentestingjt
+
+- category: Hard Intro
+  order: 400
+  suborder: 6
+  title: Vulnversity
+  description: Active recon, Web app attacks, Privilege Escalation
+  url: https://tryhackme.com/room/vulnversity
+
+- category: Hard Intro
+  order: 400
+  suborder: 10
+  title: Malware Analysis
+  description: Malware Analysis Introduction
+  url: https://tryhackme.com/room/malmalintroductory
+
+- category: Hard Intro
+  order: 400
+  suborder: 20
+  title: Malware History
+  description: Malware History
+  url: https://tryhackme.com/room/historyofmalware
+
+- category: Hard Intro
+  order: 400
+  suborder: 30
+  title: Post-Exploitation
+  description: Post-Exploitation and Maintaining access
+  url: https://tryhackme.com/room/postexploit
+
+- category: Hard Intro
+  order: 400
+  suborder: 50
+  title: The Cod Caper
+  description: Linux Infiltration and Exploitation
+  url: https://tryhackme.com/room/thecodcaper
+
+- category: Hard Intro
+  order: 400
+  suborder: 80
+  title: Intro to Shells
+  description: Shell, Reverse Shell
+  url: https://tryhackme.com/room/introtoshells
+
+- category: Programming
+  order: 500
+  suborder: 10
+  title: Intro x86_64
+  description: Intro to x86_64
+  url: https://tryhackme.com/room/introtox8664
+
+- category: Programming
+  order: 500
+  suborder: 20
+  title: Python Django
+  description: Intro to Django web
+  url: https://tryhackme.com/room/django
+
+- category: Programming
+  order: 500
+  suborder: 21
+  title: Python Flask
+  description: Intro to Flask web
+  url: https://tryhackme.com/room/flask
+
+- category: Programming
+  order: 500
+  suborder: 30
+  title: JavaScript
+  description: JavaScript Basics
+  url: https://tryhackme.com/room/javascriptbasics
+
+- category: Programming
+  order: 500
+  suborder: 40
+  title: Rust
+  description: Rust Basics
+  url: https://tryhackme.com/room/rust
+
+- category: Programming
+  order: 500
+  suborder: 50
+  title: Jupyter101
+  description: Data analysis using Jupyter
+  url: https://tryhackme.com/room/jupyter101
+
+- category: Programming
+  order: 500
+  suborder: 60
+  title: Powershell
+  description: Powershell
+  url: https://tryhackme.com/room/powershell
+
+- category: Programming
+  order: 500
+  suborder: 70
+  title: Yara
+  description: Yara
+  url: https://tryhackme.com/room/yara
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 10
+  title: Crypto
+  description: Crypto - Encryption
+  url: https://tryhackme.com/room/encryptioncrypto101
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 15
+  title: Crypto for Dummies
+  description: Cryptography for Dummies
+  url: https://tryhackme.com/room/cryptographyfordummies
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 16
+  title: Password Security
+  description: Password Security
+  url: https://tryhackme.com/room/passwordsecurity
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 20
+  title: Crack The Hash
+  description: Hash Cracking 1
+  url: https://tryhackme.com/room/crackthehash
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 25
+  title: Crack The Hash 2
+  description: Hash Cracking 2
+  url: https://tryhackme.com/room/crackthehashlevel2
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 50
+  title: BruteIt
+  description: Hash Cracking, Brute Force, Privilege Escalation
+  url: https://tryhackme.com/room/bruteit
+
+- category: Crypto/Hashing
+  order: 600
+  suborder: 60
+  title: Agent Sudo
+  description: Hash Cracking, Brute Force, Privilege Escalation
+  url: https://tryhackme.com/room/agentsudoctf
+
+- category: Web
+  order: 700
+  suborder: 10
+  title: OWASP Top 10
+  description: OWASP Top 10
+  url: https://tryhackme.com/room/owasptop10
+
+- category: Web
+  order: 700
+  suborder: 30
+  title: Inclusion
+  description: Inclusion
+  url: https://tryhackme.com/room/inclusion
+
+- category: Web
+  order: 700
+  suborder: 40
+  title: Injection
+  description: Injection
+  url: https://tryhackme.com/room/injection
+
+- category: Web
+  order: 700
+  suborder: 45
+  title: SQL Injection
+  description: SQL Injection
+  url: https://tryhackme.com/room/sqlilab
+
+- category: Web
+  order: 700
+  suborder: 60
+  title: XSS
+  description: Cross-Side Scripting
+  url: https://tryhackme.com/room/xss
+
+- category: Web
+  order: 700
+  suborder: 70
+  title: Upload
+  description: Upload Vulnerabilities
+  url: https://tryhackme.com/room/uploadvulns
+
+- category: Web
+  order: 700
+  suborder: 80
+  title: Bolt
+  description: Bolt CMS
+  url: https://tryhackme.com/room/bolt
+
+- category: Web
+  order: 700
+  suborder: 100
+  title: OWASP Juice Shop
+  description: OWASP Juice Shop
+  url: https://tryhackme.com/room/owaspjuiceshop
+
+- category: Web
+  order: 700
+  suborder: 120
+  title: Web OSINT
+  description: Web OSINT
+  url: https://tryhackme.com/room/webosint
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 10
+  title: Crash Course Ghidra
+  description: Crash Course Ghidra
+  url: https://tryhackme.com/room/ccghidra
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 20
+  title: Crash Course Radare2
+  description: Crash Course Radare2
+  url: https://tryhackme.com/room/ccradare2
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 30
+  title: Crash Course Stenography
+  description: Crash Course Stenographyy
+  url: https://tryhackme.com/room/ccstego
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 60
+  title: Reverse Engineering
+  description: Reverse Engineering
+  url: https://tryhackme.com/room/reverseengineering
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 80
+  title: Reverse ELF
+  description: Reversing ELF Files
+  url: https://tryhackme.com/room/reverselfiles
+
+- category: Reverse Engineering
+  order: 800
+  suborder: 100
+  title: Firmware
+  description: Dumping Router Firmware
+  url: https://tryhackme.com/room/rfirmware
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 10
+  title: Linux Privilege Escalation
+  description: Linux Privilege Escalation
+  url: https://tryhackme.com/room/linuxprivesc
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 30
+  title: Buffer Overflow
+  description: Buffer Overflow Basics
+  url: https://tryhackme.com/room/bof1
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 60
+  title: SUDO Security Bypass
+  description: SUDO Security Bypass
+  url: https://tryhackme.com/room/sudovulnsbypass
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 70
+  title: SUDO Buffer Overflow
+  description: SUDO Buffer Overflow
+  url: https://tryhackme.com/room/sudovulnsbof
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 90
+  title: Linux Privilege Escalation Arena
+  description: Linux Privilege Escalation Arena
+  url: https://tryhackme.com/room/linuxprivescarena
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 110
+  title: Blaster
+  description: Exploit without Metasploit, nmap or dirbuster
+  url: https://tryhackme.com/room/blaster
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 120
+  title: Kenobi
+  description: Samba, FTP, Privilege Escalation
+  url: https://tryhackme.com/room/kenobi
+
+- category: CTF
+  order: 1000
+  suborder: 10
+  title: Simple CTF
+  description: Beginner CTF
+  url: https://tryhackme.com/room/easyctf
+
+- category: CTF
+  order: 1000
+  suborder: 20
+  title: Linux CTF
+  description: Linux CTF
+  url: https://tryhackme.com/room/linuxctf
+
+- category: CTF
+  order: 1000
+  suborder: 30
+  title: c4ptur3th3fl4g
+  description: Beginner CTF
+  url: https://tryhackme.com/room/c4ptur3th3fl4g
+
+- category: CTF
+  order: 1000
+  suborder: 40
+  title: Lazy Admin
+  description: Easy Linux
+  url: https://tryhackme.com/room/lazyadmin
+
+- category: CTF
+  order: 1000
+  suborder: 60
+  title: Smag Grotto
+  description: Packet Analysis
+  url: https://tryhackme.com/room/smaggrotto
+
+- category: CTF
+  order: 1000
+  suborder: 70
+  title: DogCat
+  description: PHP, LFI, Docker
+  url: https://tryhackme.com/room/dogcat
+
+- category: CTF
+  order: 1000
+  suborder: 80
+  title: Buffer Overflow Preparation
+  description: Stack based Buffer Overflow
+  url: https://tryhackme.com/room/bufferoverflowprep
+
+- category: CTF
+  order: 1000
+  suborder: 90
+  title: Break Out The Cage
+  description: Break Out The Cage
+  url: https://tryhackme.com/room/breakoutthecage1
+
+- category: CTF
+  order: 1000
+  suborder: 100
+  title: Lian Yu
+  description: Beginner Security Challenge
+  url: https://tryhackme.com/room/lianyu
+
+- category: CTF
+  order: 1000
+  suborder: 110
+  title: Bounty Hacker
+  description: Bounty Hacker
+  url: https://tryhackme.com/room/cowboyhacker
+
+- category: CTF
+  order: 1000
+  suborder: 130
+  title: Ignite
+  description: Web CTF
+  url: https://tryhackme.com/room/ignite
+
+- category: CTF
+  order: 1000
+  suborder: 140
+  title: Overpass
+  description: Forensics, Analysis
+  url: https://tryhackme.com/room/overpass
+
+- category: CTF
+  order: 1000
+  suborder: 150
+  title: Overpass 2
+  description: Forensics, Analysis
+  url: https://tryhackme.com/room/overpass2hacked
+
+- category: CTF
+  order: 1000
+  suborder: 170
+  title: Year of the Rabbit
+  description: Year of the Rabbit
+  url: https://tryhackme.com/room/yearoftherabbit
+
+- category: CTF
+  order: 1000
+  suborder: 180
+  title: Develpy
+  description: FIT, bsides
+  url: https://tryhackme.com/room/bsidesgtdevelpy
+
+- category: CTF
+  order: 1000
+  suborder: 200
+  title: Jack-of-all-Trades
+  description: Boot-to-root
+  url: https://tryhackme.com/room/jackofalltrades
+
+- category: CTF
+  order: 1000
+  suborder: 220
+  title: Pickle Rick
+  description: Pickle Rick
+  url: https://tryhackme.com/room/picklerick
+
+- category: Windows
+  order: 1100
+  suborder: 5
+  title: Processes
+  description: Windows Core Processes
+  url: https://tryhackme.com/room/btwindowsinternals
+
+- category: Windows
+  order: 1100
+  suborder: 10
+  title: Windows PrivEsc Arena
+  description: Privilege Escalation
+  url: https://tryhackme.com/room/windowsprivescarena
+
+- category: Windows
+  order: 1100
+  suborder: 20
+  title: Windows PrivEsc
+  description: Privilege Escalation
+  url: https://tryhackme.com/room/windows10privesc
+
+- category: Windows
+  order: 1100
+  suborder: 30
+  title: Event Logs
+  description: Windows Event Logs
+  url: https://tryhackme.com/room/windowseventlogs
+
+- category: Windows
+  order: 1100
+  suborder: 35
+  title: Sysmon
+  description: Log monitoring
+  url: https://tryhackme.com/room/sysmon
+
+- category: Windows
+  order: 1100
+  suborder: 40
+  title: Sysinternals
+  description: Sysinternals
+  url: https://tryhackme.com/room/btsysinternalssg
+
+- category: Windows
+  order: 1100
+  suborder: 50
+  title: Attacktive Directory
+  description: Active Directory
+  url: https://tryhackme.com/room/attacktivedirectory
+
+- category: Windows
+  order: 1100
+  suborder: 80
+  title: Retro
+  description: Retro
+  url: https://tryhackme.com/room/retro
+
+- category: Windows
+  order: 1100
+  suborder: 100
+  title: Blueprint
+  description: Privilege Escalation
+  url: https://tryhackme.com/room/blueprint
+
+- category: Windows
+  order: 1100
+  suborder: 110
+  title: Anthem
+  description: Beginner Windows CTF
+  url: https://tryhackme.com/room/anthem
+
+- category: Windows
+  order: 1100
+  suborder: 120
+  title: Relevant
+  description: Relevant
+  url: https://tryhackme.com/room/relevant
+
+- category: Windows
+  order: 1100
+  suborder: 130
+  title: Ice
+  description: Media server
+  url: https://tryhackme.com/room/ice
+
+- category: Windows
+  order: 1100
+  suborder: 140
+  title: Blue
+  description: Blue
+  url: https://tryhackme.com/room/blue

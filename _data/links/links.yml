@@ -1,0 +1,951 @@
+---
+
+# Learning / Lab - 100
+# General - 300
+# Tech / Blogs - 600
+# Youtube Channels - 700
+# Network - 900
+# Linux - 1000
+# Windows - 1100
+# Tools - 1200
+# Protocols - 1300
+# Crypto / Hash - 1500
+# Exploits - 2000
+# Programming - 3000
+# Web - 4000
+# Web Hacking - 5000
+# Shell - 6000
+# CTF - 7000
+# Android - 8000
+
+- category: Learning / Lab
+  order: 100
+  suborder: 10
+  title: TryHackMe
+  description: TryHackMe
+  url: https://tryhackme.com/dashboard
+
+- category: Learning / Lab
+  order: 100
+  suborder: 20
+  title: TryHackMe Machine
+  description: TryHackMe Machine
+  url: https://tryhackme.com/my-machine
+
+- category: Learning / Lab
+  order: 100
+  suborder: 50
+  title: Pentester Academy
+  description: Pentester Academy
+  url: https://www.pentesteracademy.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 60
+  title: Pentester Academy Lab
+  description: Pentester Academy Lab
+  url: https://www.attackdefense.com/members
+
+- category: Learning / Lab
+  order: 100
+  suborder: 100
+  title: HackTheBox
+  description: HackTheBox
+  url: https://www.hackthebox.eu/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 110
+  title: HackTheBox Academy
+  description: HackTheBox Academy
+  url: https://academy.hackthebox.eu/#courses
+
+- category: Learning / Lab
+  order: 100
+  suborder: 140
+  title: Hacker101
+  description: Web security CTF and videos
+  url: https://www.hacker101.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 150
+  title: Defendtheweb
+  description: Previously Hackthis
+  url: https://defendtheweb.net/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 200
+  title: Vulnhub
+  description: Vulnhub
+  url: https://www.vulnhub.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 250
+  title: Vulnmachines
+  description: Vulnmahines
+  url: https://www.vulnmachines.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 260
+  title: VirtualHackingLabs
+  description: VirtualHackingLabs
+  url: https://www.virtualhackinglabs.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 290
+  title: OvertheWire
+  description: OvertheWire Wargames
+  url: https://overthewire.org/wargames/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 291
+  title: KnightSquad
+  description: KnightSquad
+  url: https://hack.knightsquad.org/login.php
+
+- category: Learning / Lab
+  order: 100
+  suborder: 292
+  title: CyberWarrior
+  description: CyberWarrior CTF
+  url: https://ctf.cyberwarrior.com
+
+- category: Learning / Lab
+  order: 100
+  suborder: 293
+  title: Hacking The Cloud
+  description: Hacking The Cloud
+  url: https://hackingthe.cloud
+
+- category: Learning / Lab
+  order: 100
+  suborder: 310
+  title: Exploit Education
+  description: Exploit Education
+  url: https://exploit.education
+
+- category: Learning / Lab
+  order: 100
+  suborder: 340
+  title: Pawnable 1
+  description: Pawnable 1
+  url: https://pwnable.kr/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 350
+  title: Pawnable 2
+  description: Pawnable 2
+  url: https://pwnable.tw/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 360
+  title: LiveOverflow
+  description: CTF and exploits
+  url: https://liveoverflow.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 400
+  title: Cryptopals
+  description: Cryptography Learning
+  url: https://cryptopals.com/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 450
+  title: Web App
+  description: Web App docker
+  url: https://github.com/MoisesTapia/TWAPT
+
+- category: General
+  order: 300
+  suborder: 10
+  title: dnsleaktest
+  description: Check for dns leak
+  url: https://www.dnsleaktest.com
+
+- category: General
+  order: 300
+  suborder: 50
+  title: WebRTC
+  description: Secure WebRTC
+  url: https://browserleaks.com/webrtc#webrtc-disable
+
+- category: General
+  order: 300
+  suborder: 100
+  title: OSINT
+  description: OSINT Brasil
+  url: https://osintbrasil.blogspot.com/2019/12/how-to-investigate-targets-through.html?m=1
+
+- category: General
+  order: 300
+  suborder: 200
+  title: IP Lookup
+  description: URL IP Lookup
+  url: https://www.brightcloud.com/tools/url-ip-lookup.php
+
+- category: General
+  order: 300
+  suborder: 400
+  title: Uncoder
+  description: Convert between multiple languages
+  url: https://uncoder.io/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 10
+  title: OSCP Review 1
+  description: Towardsnetwork - OSCP Review
+  url: https://medium.com/@towardsnetwork/tryhackme-oscp-path-review-65f7c9cd4688
+
+- category: Tech / Blog
+  order: 600
+  suborder: 20
+  title: OSCP Prep 1
+  description: Preparing for OSCP
+  url: https://pentest.tonyng.net/a-detailed-guide-on-oscp-preparation-from-newbie-to-oscp/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 21
+  title: OSCP Prep 2
+  description: Preparing for OSCP
+  url: https://rana-khalil.gitbook.io/hack-the-box-oscp-preparation/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 22
+  title: OSCP Prep 3
+  description: Preparing for OSCP
+  url: https://ivanglinkin.com/my-way-to-the-oscp-certification/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 23
+  title: OSCP Prep 4
+  description: Preparing for OSCP
+  url: https://anontuttuvenus.medium.com/my-oscp-review-c46d2510643b
+
+- category: Tech / Blog
+  order: 600
+  suborder: 50
+  title: Security Certifications
+  description: Daniel Meissler - Security Certification
+  url: https://danielmiessler.com/blog/infoseccerts/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 70
+  title: Bug Bounty Resources
+  description: Nahamsec - Bug Bounty Resources
+  url: https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters
+
+- category: Tech / Blog
+  order: 600
+  suborder: 90
+  title: Home Lab 1
+  description: Virtual Pentest Home Lab
+  url: https://www.ehacking.net/2020/07/how-to-create-a-virtual-penetration-testing-lab-at-home.html
+
+- category: Tech / Blog
+  order: 600
+  suborder: 100
+  title: Home Lab 2
+  description: TJNull Home Lab
+  url: https://www.netsecfocus.com/home/lab/2020/09/21/Tjnulls_guide_to_building_a_Home_Lab.html
+
+- category: Tech / Blog
+  order: 600
+  suborder: 120
+  title: Sektor7
+  description: Offensive Research and Trainings
+  url: https://www.sektor7.net/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 125
+  title: TroyHunt
+  description: Security Wiki and Training
+  url: https://www.troyhunt.com/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 150
+  title: Websites 1
+  description: Websites to hack legally
+  url: https://www.makeuseof.com/tag/websites-legally-hack/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 160
+  title: Websites 2
+  description: Vulnerable Websites
+  url: https://hackingpassion.com/vulnerable-websites-improve-hacking-skills/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 200
+  title: HaveIBeenPwned
+  description: Check data/pwd leak
+  url: https://haveibeenpwned.com
+
+- category: Tech / Blog
+  order: 600
+  suborder: 250
+  title: Reconnaissance
+  description: https://github.com/cisagov/CHIRP
+  url: https://github.com/Viralmaniar/BigBountyRecon
+
+- category: Tech / Blog
+  order: 600
+  suborder: 255
+  title: PHP Ransomware
+  description: PHP Ransomware
+  url: https://github.com/ivan-sincek/php-ransomware
+
+- category: Tech / Blog
+  order: 600
+  suborder: 260
+  title: CHIRP
+  description: CISA Hunt and IRT
+  url: https://github.com/cisagov/CHIRP
+
+- category: Tech / Blog
+  order: 600
+  suborder: 300
+  title: CISO Workshop
+  description: CISO Workshop
+  url: https://docs.microsoft.com/en-us/security/ciso-workshop/ciso-workshop
+
+- category: Tech / Blog
+  order: 600
+  suborder: 350
+  title: 0xPat Blog
+  description: 0xPat Blog
+  url: https://0xpat.github.io/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 400
+  title: Wireshark
+  description: Decrypting SSL/TLS with wireshark
+  url: https://en.iguru.gr/2021/03/22/decrypting-ssl-tls-traffic-wireshark/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 500
+  title: Tmux in practice
+  description: Tmux in practice
+  url: https://medium.com/free-code-camp/tmux-in-practice-series-of-posts-ae34f16cfab0
+
+- category: Youtube Channels
+  order: 700
+  suborder: 10
+  title: ZSecurity
+  description: ZSecurity
+  url: https://www.youtube.com/channel/UCVPjtOVcnKaSRI8IO3KSetA
+
+- category: Youtube Channels
+  order: 700
+  suborder: 20
+  title: IppSec
+  description: IppSec
+  url: https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA
+
+- category: Youtube Channels
+  order: 700
+  suborder: 30
+  title: Loi Liang Yang
+  description: Loi Liang Yang
+  url: https://www.youtube.com/channel/UC1szFCBUWXY3ESff8dJjjzw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 40
+  title: JSON SEC
+  description: JSON SEC
+  url: https://www.youtube.com/channel/UC6r2CYsKIDjG0Z-VBn4ahVA
+
+- category: Youtube Channels
+  order: 700
+  suborder: 50
+  title: HaxBaba Sec
+  description: HaxBaba Sec
+  url: https://www.youtube.com/channel/UC9X2IGIHNAvZTrLWxedL0xw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 60
+  title: Null Byte
+  description: Null Byte
+  url: https://www.youtube.com/channel/UCgTNupxATBfWmfehv21ym-g
+
+- category: Youtube Channels
+  order: 700
+  suborder: 70
+  title: David Bombal
+  description: David Bombal
+  url: https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w
+
+- category: Youtube Channels
+  order: 700
+  suborder: 80
+  title: HackerSploit
+  description: HackerSploit
+  url: https://www.youtube.com/channel/UC0ZTPkdxlAKf-V33tqXwi3Q
+
+- category: Youtube Channels
+  order: 700
+  suborder: 90
+  title: I.T Security Labs
+  description: I.T Security Labs
+  url: https://www.youtube.com/channel/UCXPdZsu8g1nKerd-o5A75vA
+
+- category: Youtube Channels
+  order: 700
+  suborder: 100
+  title: The Cyber Mentor
+  description: The Cyber Mentor
+  url: https://www.youtube.com/channel/UC0ArlFuFYMpEewyRBzdLHiw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 110
+  title: Black Hills
+  description: Black Hills
+  url: https://www.youtube.com/channel/UCJ2U9Dq9NckqHMbcUupgF0A
+
+- category: Youtube Channels
+  order: 700
+  suborder: 120
+  title: STOK
+  description: STOK
+  url: https://www.youtube.com/channel/UCQN2DsjnYH60SFBIA6IkNwg
+
+- category: Youtube Channels
+  order: 700
+  suborder: 130
+  title: Def Con - 9221
+  description: Def Con - 9221
+  url: https://www.youtube.com/channel/UCK4lNh0lm-N_2BQn66Uk1Xw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 140
+  title: Uday Datrak
+  description: Uday Datrak
+  url: https://www.youtube.com/channel/UCTeJ9M-akmad6CZ8jzvF-Xw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 150
+  title: Hack eXPlorer
+  description: Hack eXPlorer
+  url: https://www.youtube.com/channel/UCAoLhcLjjYAiiu1itqL3pIw
+
+- category: Network
+  order: 900
+  suborder: 10
+  title: IP Calc
+  description: IP Calc
+  url: http://jodies.de/ipcalc
+
+- category: Network
+  order: 900
+  suborder: 30
+  title: Subnet Calculator
+  description: MXToolbox Subnet Calculator
+  url: https://mxtoolbox.com/SubnetCalculator.aspx
+
+- category: Linux
+  order: 1000
+  suborder: 10
+  title: Gtfobins
+  description: Unix binaries to bypass local security
+  url: https://gtfobins.github.io/
+
+- category: Linux
+  order: 1000
+  suborder: 50
+  title: Linux Security
+  description: Clearing tracks on linux
+  url: https://hackingpassion.com/clear-your-tracks-on-linux/
+
+- category: Windows
+  order: 1100
+  suborder: 10
+  title: Windows AD
+  description: Windows AD Pentest
+  url: https://i.ibb.co/TKYNCNP/Pentest-ad.png
+
+- category: Tools
+  order: 1200
+  suborder: 10
+  title: Kali Packages
+  description: Kali Packages
+  url: http://pkg.kali.org
+
+- category: Tools
+  order: 1200
+  suborder: 20
+  title: Kali Gitlab
+  description: Kali Gitlab Packages
+  url: https://gitlab.com/kalilinux/packages
+
+- category: Tools
+  order: 1200
+  suborder: 50
+  title: SANS Cheat Sheets
+  description: SANS Cheat Sheets
+  url: https://www.sans.org/blog/the-ultimate-list-of-sans-cheat-sheets/
+
+- category: Tools
+  order: 1200
+  suborder: 60
+  title: SANS Community Cheat Sheets
+  description: SANS Community Cheat Sheets
+  url: https://digital-forensics.sans.org/community/cheat-sheets
+
+- category: Tools
+  order: 1200
+  suborder: 100
+  title: CURL
+  description: CURL
+  url: https://catonmat.net/cookbooks/curl
+
+- category: Tools
+  order: 1200
+  suborder: 120
+  title: NMAP Reference 1
+  description: NMAP Beginner to Advanced
+  url: https://hackonology.com/blogs/nmap-from-beginner-to-advanced-updated-2020/
+
+- category: Tools
+  order: 1200
+  suborder: 130
+  title: NMAP Reference 2
+  description: NMAP for Vulnerability Discovery
+  url: https://secur1tyadvisory.wordpress.com/2015/08/29/nmap-for-vulnerability-discovery/
+
+- category: Tools
+  order: 1200
+  suborder: 150
+  title: NMAP Cheat Sheet
+  description: Jasonniebauer NMAP Cheat Sheet
+  url: https://github.com/jasonniebauer/nmap-cheatsheet
+
+- category: Tools
+  order: 1200
+  suborder: 160
+  title: NMAP Bypass Firewall
+  description: NMAP Bypass Firewall
+  url: https://nmap.org/book/man-bypass-firewalls-ids.html
+
+- category: Tools
+  order: 1200
+  suborder: 170
+  title: NMAP NSE USage
+  description: NMAP Scripting Engine Usage
+  url: https://nmap.org/book/nse-usage.html
+
+- category: Tools
+  order: 1200
+  suborder: 200
+  title: Manual Packet Analysis
+  description: Manual Packet Analysis
+  url: https://medium.com/@amgedwageh/network-packet-manual-analysis-63e25f32ea54
+
+- category: Tools
+  order: 1200
+  suborder: 220
+  title: TCPDump 1
+  description: TCPDump 1
+  url: https://danielmiessler.com/study/tcpdump/
+
+- category: Tools
+  order: 1200
+  suborder: 221
+  title: TCPDump 2
+  description: TCPDump 2
+  url: https://cyberbruharmy.medium.com/how-to-monitor-packet-flow-using-the-tcpdump-18c37a52852f
+
+- category: Tools
+  order: 1200
+  suborder: 250
+  title: SQLMap Cheat Sheet
+  description: SQLMap Cheat Sheet
+  url: https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet
+
+- category: Tools
+  order: 1200
+  suborder: 260
+  title: NoSQLMap
+  description: NoSQLMap
+  url: https://medium.com/rangeforce/nosqlmap-a67d76b88c48
+
+- category: Tools
+  order: 1200
+  suborder: 280
+  title: Dirbuster
+  description: Installing Dirbuster
+  url: https://saulenas.com/How-to-install-DirBuster-on-Linux/
+
+- category: Tools
+  order: 1200
+  suborder: 285
+  title: Dirsearch
+  description: Dirsearch repo
+  url: https://github.com/maurosoria/dirsearch
+
+- category: Tools
+  order: 1200
+  suborder: 300
+  title: Metasploit
+  description: Meterpreter Basics
+  url: https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/
+
+- category: Tools
+  order: 1200
+  suborder: 330
+  title: Burp
+  description: Setting up Burp
+  url: https://blog.tryhackme.com/setting-up-burp/
+
+- category: Tools
+  order: 1200
+  suborder: 400
+  title: Tools 1
+  description: Wrapper scripts and tools
+  url: https://github.com/maldevel/PenTestKit
+
+- category: Tools
+  order: 1200
+  suborder: 410
+  title: Tools 2
+  description: Wrapper scripts and tools
+  url: https://github.com/rewardone/OSCPRepo
+
+- category: Tools
+  order: 1200
+  suborder: 450
+  title: CyberChef
+  description: Encoding, Compression, Forensics, HTTP
+  url: https://gchq.github.io/CyberChef/
+
+- category: Tools
+  order: 1200
+  suborder: 480
+  title: HOC IG
+  description: HOC Information Gathering Tool
+  url: https://github.com/hackersonlineclub/HOCig/
+
+- category: Tools
+  order: 1200
+  suborder: 500
+  title: Payloads
+  description: PayloadsAllTheThings
+  url: https://github.com/swisskyrepo/PayloadsAllTheThings
+
+- category: Tools
+  order: 1200
+  suborder: 530
+  title: FuzzDB
+  description: Dynamic App Security Testing
+  url: https://github.com/fuzzdb-project/fuzzdb
+
+- category: Tools
+  order: 1200
+  suborder: 540
+  title: wfuzz
+  description: Web Fuzzer
+  url: https://github.com/xmendez/wfuzz
+
+- category: Tools
+  order: 1200
+  suborder: 570
+  title: fcrackzip
+  description: fcrackzip password cracker
+  url: http://oldhome.schmorp.de/marc/data/fcrackzip-1.0.tar.gz
+
+- category: Protocols
+  order: 1300
+  suborder: 10
+  title: NFS 1
+  description: How NFS works
+  url: https://docs.oracle.com/cd/E19683-01/816-4882/6mb2ipq7l/index.html
+
+- category: Protocols
+  order: 1300
+  suborder: 20
+  title: NFS 2
+  description: What is NFS
+  url: https://www.datto.com/library/what-is-nfs-file-share
+
+- category: Protocols
+  order: 1300
+  suborder: 50
+  title: SMTP
+  description: SMTP Protocol Explained
+  url: https://www.afternerd.com/blog/smtp/
+
+- category: Protocols
+  order: 1300
+  suborder: 80
+  title: MySQL 1
+  description: MySQL Source Code Explained
+  url: https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_SQL_EXECUTION.html
+
+- category: Protocols
+  order: 1300
+  suborder: 90
+  title: MySQL 2
+  description: PHP MySQL Intro
+  url: https://www.w3schools.com/php/php_mysql_intro.asp
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 10
+  title: Example Hashes
+  description: Example Hashes
+  url: https://hashcat.net/wiki/doku.php?id=example_hashes
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 30
+  title: Password Hashing
+  description: Password Hashing
+  url: https://www.wired.com/2016/06/hacker-lexicon-password-hashing/
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 100
+  title: Base64 Decode
+  description: Base64 Decode
+  url: https://www.base64decode.org/
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 120
+  title: ROT13 Decode
+  description: ROT13 Decode
+  url: https://cryptii.com/pipes/rot13-decoder
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 200
+  title: Online decoder 1
+  description: DCODE.FR Online Decoder
+  url: https://www.dcode.fr/hash-function
+
+- category: Crypto / Hash
+  order: 1500
+  suborder: 210
+  title: Online decoder 2
+  description: Crackstation Online Decoder
+  url: https://crackstation.net/
+
+- category: Exploits
+  order: 2000
+  suborder: 10
+  title: ExploitDB
+  description: ExploitDB
+  url: https://www.exploit-db.com/
+
+- category: Exploits
+  order: 2000
+  suborder: 20
+  title: CVE Details
+  description: CVE Details
+  url: https://www.cvedetails.com/index.php
+
+- category: Programming
+  order: 3000
+  suborder: 10
+  title: 30-days-of-python
+  description: 30-days-of-python
+  url: https://blog.tecladocode.com/30-days-of-python/
+
+- category: Programming
+  order: 3000
+  suborder: 30
+  title: Python3-in-one-pic
+  description: Python3-in-one-pic
+  url: https://github.com/coodict/python3-in-one-pic
+
+- category: Programming
+  order: 3000
+  suborder: 50
+  title: Leetcode
+  description: Leetcode
+  url: https://leetcode.com
+
+- category: Web
+  order: 4000
+  suborder: 10
+  title: HTTP Status
+  description: HTTP Status
+  url: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+- category: Web
+  order: 4000
+  suborder: 50
+  title: Web Dev
+  description: Measure Web Performance and SEO
+  url: https://web.dev/measure/
+
+- category: Web
+  order: 4000
+  suborder: 100
+  title: Web Security
+  description: Web Security Series
+  url: https://medium.com/@houwei.shen/web-security-01-prepare-aeebc9536bf7
+
+- category: Web
+  order: 4000
+  suborder: 100
+  title: VPN Config
+  description: VPN Config Collection
+  url: https://github.com/haugene/docker-transmission-openvpn
+
+- category: Web Hacking
+  order: 5000
+  suborder: 10
+  title: Mitre Overview
+  description: Mitre Overview
+  url: https://www.mitre.org/about/corporate-overview
+
+- category: Web Hacking
+  order: 5000
+  suborder: 20
+  title: Mitre Att&ck
+  description: Mitre Att&ck
+  url: https://attack.mitre.org/
+
+- category: Web Hacking
+  order: 5000
+  suborder: 30
+  title: Mitre Att&ck Builder
+  description: Mitre Att&ck Builder
+  url: https://mitre-attack.github.io/attack-navigator/
+
+- category: Web Hacking
+  order: 5000
+  suborder: 50
+  title: APT groups
+  description: Advanced Persistent Threat Database
+  url: https://www.fireeye.com/current-threats/apt-groups.html
+
+- category: Web Hacking
+  order: 5000
+  suborder: 100
+  title: SQL Injection
+  description: SQL Injection
+  url: https://www.owasp.org/index.php/SQL_Injection
+
+- category: Web Hacking
+  order: 5000
+  suborder: 130
+  title: LFI Injection
+  description: LFI Injection
+  url: https://dzone.com/articles/what-is-local-file-inclusion-lfi
+
+- category: Web Hacking
+  order: 5000
+  suborder: 150
+  title: Path Traversal
+  description: Path Traversal
+  url: https://owasp.org/www-community/attacks/Path_Traversal
+
+- category: Web Hacking
+  order: 5000
+  suborder: 180
+  title: Log Injection
+  description: Log Injection
+  url: https://owasp.org/www-community/attacks/Log_Injection
+
+- category: Web Hacking
+  order: 5000
+  suborder: 250
+  title: Wigle
+  description: Check SSID from map
+  url: https://wigle.net/
+
+- category: Shell
+  order: 6000
+  suborder: 10
+  title: TMUX Cheatsheet
+  description: TMUX cheatsheet
+  url: https://imgur.com/bL9Dn3U
+
+- category: Shell
+  order: 6000
+  suborder: 11
+  title: TMUX Video
+  description: TMUX video IppSec
+  url: https://www.youtube.com/watch?v=Lqehvpe_djs
+
+- category: Shell
+  order: 6000
+  suborder: 20
+  title: TMUX config 1
+  description: TMUX sample config file
+  url: https://github.com/chaosma/tmuxconfig.git
+
+- category: Shell
+  order: 6000
+  suborder: 21
+  title: TMUX config 2
+  description: TMUX sample config file
+  url: https://github.com/OreoByte/another_omt.git
+
+- category: Shell
+  order: 6000
+  suborder: 30
+  title: TMUX plugin 1
+  description: TMUX plugin - Resurrect
+  url: https://github.com/tmux-plugins/tmux-resurrect.git
+
+- category: Shell
+  order: 6000
+  suborder: 31
+  title: TMUX plugin 2
+  description: TMUX plugin - Logging
+  url: https://github.com/tmux-plugins/tmux-logging.git
+
+- category: Shell
+  order: 6000
+  suborder: 32
+  title: TMUX plugin 3
+  description: TMUX plugin - Yank
+  url: https://github.com/tmux-plugins/tmux-yank.git
+
+- category: Shell
+  order: 6000
+  suborder: 200
+  title: Reverse Shell
+  description: Reverse Shell Cheat Sheet
+  url: http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+- category: Shell
+  order: 6000
+  suborder: 230
+  title: ICMP Reverse Shell
+  description: ICMP Reverse Shell
+  url: https://resources.infosecinstitute.com/icmp-reverse-shell/#gref
+
+- category: Android
+  order: 8000
+  suborder: 10
+  title: Vulnerable Bank App
+  description: Vulnerable Bank App
+  url: https://github.com/rewanth1997/Damn-Vulnerable-Bank
+
