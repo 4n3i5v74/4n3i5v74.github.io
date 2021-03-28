@@ -56,7 +56,7 @@ In order to install latest 5.X kernel, backports channel should be enabled in th
 Perform an `apt update` to refresh the sources and download available updates.
 
 Install the latest kernel.
-{% capture code %}apt install -t buster-backports linux-image-5.9.0-0.bpo.2-amd64 linux-headers-5.9.0-0.bpo.2-amd64{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}apt -t buster-backports install linux-image-amd64 linux-headers-amd64{% endcapture %} {% include code.html code=code lang="bash"%}
 
 Perform a full OS update.
 {% capture code %}apt clean ; apt autoclean ; apt update ; apt upgrade -y ; apt dist-upgrade -y ; apt full-upgrade -y ; apt autoremove ; apt autoclean ; apt clean ; apt-file update{% endcapture %} {% include code.html code=code lang="bash"%}
