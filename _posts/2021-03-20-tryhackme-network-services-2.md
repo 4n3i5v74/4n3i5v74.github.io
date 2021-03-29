@@ -427,10 +427,10 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed.{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use `ssh` to login to the machine with cracked password and obtain the flag.
-{% capture code %}{% raw %}ssh carl@<ip>{% capture code %}{% raw %}
+{% capture code %}{% raw %}ssh carl@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}carl@<ip>'s password: doggie
 carl@polomysql:~$ cat MySQL.txt
-    <flag>{% capture code %}{% raw %}
+    <flag>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
