@@ -5,8 +5,8 @@
 # MIT Licensed
 
 panel:
-  lastmod: Recent Update
-  trending_tags: Trending Tags
+  #  lastmod: Recent Update
+  #  trending_tags: Trending Tags
   toc: Contents
 
 post:
