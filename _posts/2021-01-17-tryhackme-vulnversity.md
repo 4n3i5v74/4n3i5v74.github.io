@@ -14,11 +14,20 @@ This room is about performing recon and web attacks.
 
 ## Task 2 - Reconnaisance
 
+Use these links as references.
+- [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
+
+
 Using `nmap` as below, all info can be gathered for the task.
 {% capture code %}nmap -Pn -T4 -sV --reason --open <ip>{% endcapture %} {% include code.html code=code lang="bash"%}
 
 
 ## Task 3 - Locating directories using Gobuster
+
+Use these links as references.
+- [Gobuster Reference](https://4n3i5v74.github.io/posts/cheatsheet-gobuster/){:target="_blank"}
+- [Wordlist Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#wordlists---rockyou){:target="_blank"}
+
 
 Using `gobuster` and `dirb` wordlists, find the child directories under web root.
 {% capture code %}gobuster dir -u http://<ip>:3333 -w /usr/share/wordlists/dirb/common.txt -q{% endcapture %} {% include code.html code=code lang="bash"%}
@@ -29,13 +38,17 @@ Use either `curl` or browser to load the pages from `gobuster` result and see if
 
 ## Task 4 - Compromise the webserver
 
+Use these links as references.
+- [Burpsuite Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-burpsuite){:target="_blank"}
+
+
 This task can be done using `burpsuite`.
 - Open `firefox` and set proxy `127.0.0.1:8080`
 - Open `burpsuite` and turn `intercept on`
 - Using the url previously found for uploading files, load the url `http://<ip>:3333/<dir>/` in `firefox` and upload a file
 - In `burpsuite`, in `proxy` tab, select the content and `send to intruder`
 - In `burpsuite`, in `intruder` tab, and in `positions` tab, select `sniper` attack type, `clear §`, and `add §` to filename extension
-- In `burpsuite`, in `intruder` tab, and in `payloads` tab, load `/usr/share/wordlists/SecLists/Fuzzing/extensions-most-common.fuzz.txt` and `start attack`
+- In `burpsuite`, in `intruder` tab, and in `payloads` tab, load `/usr/share/wordlists/SecLists/Fuzzing/extensions-m1ost-common.fuzz.txt` and `start attack`
 - Check the results for different response size to find which extensions are not blocked
 - Quit `burpsuite` and reverse proxy setting in `firefox`
 

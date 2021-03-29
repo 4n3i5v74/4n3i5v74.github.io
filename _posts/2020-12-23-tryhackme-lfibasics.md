@@ -195,6 +195,10 @@ Local file to be used: /var/log/apache2/access.log<br><br>
 
 ### Log poison using BurpSuite
 
+Use these links as references.
+- [Burpsuite Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-burpsuite){:target="_blank"}
+
+
 Instructions on setting up BurpSuite can be found [here](https://blog.tryhackme.com/setting-up-burp/){:target="_blank"}
 
 - Open the url `http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log` once in browser.
