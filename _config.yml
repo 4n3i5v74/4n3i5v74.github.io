@@ -92,11 +92,11 @@ kramdown:
   syntax_highlighter_opts:   # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
     default_lang: console
-  span:
-    line_numbers: false
-  block:
-    line_numbers: true
-    start_line: 1
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # or you think you're smart enough to change other relevant URLs within this template.
