@@ -31,7 +31,7 @@ Use these links as references.
 Using `nmap`, perform basic recon and get listening ports.
 {% capture code %}nmap -Pn --top 1000 -T4 -sS --reason <ip>{% endcapture %} {% include code.html code=code lang="bash"%}
 An output similar to below will be obtained.
-{% capture code %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-02 19:41 IST
+{% capture code %} {% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-02 19:41 IST
 Nmap scan report for <ip>
 Host is up, received user-set (0.17s latency).
 Not shown: 997 closed ports
@@ -41,7 +41,7 @@ PORT    STATE SERVICE      REASON
 139/tcp open  netbios-ssn  syn-ack ttl 63
 445/tcp open  microsoft-ds syn-ack ttl 63
 
-Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endcapture %} {% include code.html code=code lang="bash"%}
+Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endraw %} {% endcapture %} {% include code.html code=code lang="bash"%}
 
 If ports `139` and `445` are open, it can be checked for `smb enumeration`.
 {% capture code %}enum4linux.pl -A <ip>{% endcapture %} {% include code.html code=code lang="bash"%}
