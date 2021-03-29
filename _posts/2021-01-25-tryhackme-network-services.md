@@ -41,7 +41,7 @@ PORT    STATE SERVICE      REASON
 139/tcp open  netbios-ssn  syn-ack ttl 63
 445/tcp open  microsoft-ds syn-ack ttl 63
 
-Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endraw %} {% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
 
 If ports `139` and `445` are open, it can be checked for `smb enumeration`.
 {% capture code %}{% raw %}enum4linux.pl -A <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
