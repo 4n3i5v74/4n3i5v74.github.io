@@ -44,11 +44,11 @@ DNS mode options
 ## Gobuster examples
 
 Scan url for certain file extensions using **dir** mode
-{% capture code %}gobuster dir -u http://scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -x php,php3,html,htm,xhtml{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}gobuster dir -u http://scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -x php,php3,html,htm,xhtml{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Scan sub-domains using **vhost** mode
-{% capture code %}gobuster vhost -u http://scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -o output.txt{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}gobuster vhost -u http://scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -o output.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Scan sub-domains using **dns** mode
-{% capture code %}gobuster dns -d scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -k -i{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}gobuster dns -d scanme.nmap.org -w /usr/share/wordlists/rockyou.txt -k -i{% endraw %}{% endcapture %} {% include code.html code=code%}
 

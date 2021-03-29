@@ -11,9 +11,9 @@ pin: true
 ## [OHSINT](https://tryhackme.com/room/ohsint){:target="_blank"}
 
 Download the image and read the embedded information in it.
-{% capture code %}exiftool /data/WindowsXP.jpg{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}exiftool /data/WindowsXP.jpg{% endraw %}{% endcapture %} {% include code.html code=code %}
 We see GPS coordinates, and user information from copyright.
-{% capture code %}ExifTool Version Number         : 11.16
+{% capture code %}{% raw %}ExifTool Version Number         : 11.16
 File Name                       : WindowsXP.jpg
 Directory                       : /data
 File Size                       : 229 kB
@@ -38,7 +38,7 @@ GPS Latitude Ref                : North
 GPS Longitude Ref               : West
 Image Size                      : 1920x1080
 Megapixels                      : 2.1
-GPS Position                    : 54 deg 17' 41.27" N, 2 deg 15' 1.33" W{% endcapture %} {% include code.html code=code lang="bash"%}
+GPS Position                    : 54 deg 17' 41.27" N, 2 deg 15' 1.33" W{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 A google search on owoodflint gives twitter, github and wordpress results in the top 3 search results.
 - [Twitter](https://twitter.com/owoodflint?lang=en){:target="_blank"}

