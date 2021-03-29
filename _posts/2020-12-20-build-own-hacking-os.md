@@ -229,19 +229,22 @@ endif{% endraw %}{% endcapture %} {% include code.html code=code %}
 git config --global user.name <name>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Wordlists - RockYou
+## Wordlists
+
+
+### Wordlists - RockYou
 
 Download RockYou wordlist which is most widely used.
 {% capture code %}{% raw %}curl -# -o /tmp/rockyou.txt.gz https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz ; mkdir /data/wordlists/ ; gunzip -c /tmp/rockyou.txt.gz > /data/wordlists/rockyou.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Wordlists - SecLists
+### Wordlists - SecLists
 
 Download SecLists wordlist which is available by default in Kali, and also widely used.
 {% capture code %}{% raw %}git clone --depth 1 https://github.com/danielmiessler/SecLists.git /data/wordlists/SecLists{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Wordlists - Dirb
+### Wordlists - Dirb
 
 We could copy wordlists from dirb, so all dictionaries will be available at a single location.
 {% capture code %}{% raw %}mkdir /data/wordlists/dirb ; cp -ar /usr/share/dirb/wordlists/* /data/wordlists/dirb/{% endraw %}{% endcapture %} {% include code.html code=code %}
@@ -254,22 +257,24 @@ The tools mentioned below need not be installed altogether. Whenever needed, ins
 Create directory for manually installing/configuring tools `mkdir -p /data/tools/wireshark`.
 
 
-## Install Burpsuite
+### Install Burpsuite
+
 {% capture code %}{% raw %}curl -# -o /tmp/burpsuite-community.sh "https://portswigger.net/burp/releases/download?product=community&version=2020.12.1&type=Linux" ; chmod 777 /tmp/burpsuite-community.sh ; /tmp/burpsuite-community.sh
 chown root:root /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox && chmod u+s /data/tools/BurpSuiteCommunity/burpbrowser/87.0.4280.88/chrome-sandbox{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Configure Burpsuite
+### Configure Burpsuite
 
 Download jython, a requirement for extensions.
 {% capture code %}{% raw %}curl -# -o /data/tools/jython-standalone-2.7.2.jar https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install Metasploit
+### Install Metasploit
+
 {% capture code %}{% raw %}curl -# -o /tmp/msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb ; chmod 755 /tmp/msfinstall ; /tmp/msfinstall{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Configure Metasploit
+### Configure Metasploit
 
 Metasploit is intended to be run as regular user. Hence perform the following steps as regular user.
 Initialize metasploit db using `msfdb init`. Note down the metasploit web service username, password and API token.
@@ -277,59 +282,71 @@ There will also be a manual database connect command. This will not be necessary
 Check the status of database connection from `msfconsole` using `db_status`.
 
 
-## Install Gobuster
+### Install Gobuster
+
 {% capture code %}{% raw %}cd ~ ; go get -u github.com/OJ/gobuster ; cp go/bin/gobuster /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install Bettercap
+### Install Bettercap
+
 {% capture code %}{% raw %}cd ~ ; go get -u github.com/bettercap/bettercap ; cp go/bin/bettercap /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install theHarvester
+### Install theHarvester
+
 {% capture code %}{% raw %}git clone https://github.com/laramies/theHarvester.git /data/tools/theHarvester ; pip3 install -r /data/tools/theHarvester/requirements/base.txt ; mkdir /etc/theHarvester ; cp /data/tools/theHarvester/proxies.yaml /etc/theHarvester{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install Nikto
+### Install Nikto
+
 {% capture code %}{% raw %}git clone https://github.com/sullo/nikto /data/tools/nikto{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install Hashcat
+### Install Hashcat
+
 {% capture code %}{% raw %}git clone https://github.com/hashcat/hashcat.git /data/tools/hashcat ; cd /data/tools/hashcat ; make ; make install ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Check compatability for running hashcat
+### Check compatability for running hashcat
+
 {% capture code %}{% raw %}clinfo
 /data/tools/hashcat/hashcat --benchmark --force{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install John the Ripper
+### Install John the Ripper
+
 {% capture code %}{% raw %}git clone https://github.com/openwall/john -b bleeding-jumbo /data/tools/john ; cd /data/tools/john/src/ ; ./configure && make -s clean && make -sj4 ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install smbmap
+### Install smbmap
+
 {% capture code %}{% raw %}git clone https://salsa.debian.org/pkg-security-team/smbmap.git /data/tools/smbmap ; pip3 install -r /data/tools/smbmap/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install hydra
+### Install hydra
 
 {% capture code %}{% raw %}git clone https://github.com/vanhauser-thc/thc-hydra.git /data/tools/hydra ; cd /data/tools/hydra ; ./configure ; make ; make install ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install impacket
+### Install impacket
+
 {% capture code %}{% raw %}git clone https://github.com/SecureAuthCorp/impacket.git /data/tools/impacket ; pip3 install -r /data/tools/impacket/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## Install enum4linux
+### Install enum4linux
+
 {% capture code %}{% raw %}git clone https://github.com/portcullislabs/enum4linux /data/tools/enum4linux{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## OpenVPN - TryHackMe
+## OpenVPN
+
+### OpenVPN - TryHackMe
 
 If using openvpn, the easiest way to configure is to put the openvpn config file to `/etc/openvpn`, as `tryhackme.conf`, and to configure the service.
 {% capture code %}{% raw %}systemctl start openvpn@tryhackme{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
-## OpenVPN - VPNBook
+### OpenVPN - VPNBook
 
 Similar setup for VPNBook openvpn.
 {% capture code %}{% raw %}mkdir /data/vpnbook
