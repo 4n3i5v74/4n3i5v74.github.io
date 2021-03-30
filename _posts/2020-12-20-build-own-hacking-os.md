@@ -287,6 +287,11 @@ Check the status of database connection from `msfconsole` using `db_status`.
 {% capture code %}{% raw %}cd ~ ; go get -u github.com/OJ/gobuster ; cp go/bin/gobuster /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
+### Install dirsearch
+
+{% capture code %}{% raw %}cd ~ ; git clone https://github.com/maurosoria/dirsearch.git /data/tools/dirsearch ; pip3 install -r /data/tools/dirsearch/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+
 ### Install Bettercap
 
 {% capture code %}{% raw %}cd ~ ; go get -u github.com/bettercap/bettercap ; cp go/bin/bettercap /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}

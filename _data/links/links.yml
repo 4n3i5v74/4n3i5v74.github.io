@@ -237,6 +237,13 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 24
+  title: OSCP Prep 5
+  description: Preparing for OSCP
+  url: https://adithyanak.medium.com/how-i-cracked-secarmys-oscp-challenge-5a96e429e105
+
+- category: Tech / Blog
+  order: 600
   suborder: 50
   title: Security Certifications
   description: Daniel Meissler - Security Certification
@@ -342,10 +349,24 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 410
+  title: Extract info firefox
+  description: Extract info from firefox
+  url: https://secoceans.com/blog/extract-information-from-firefox-browser/
+
+- category: Tech / Blog
+  order: 600
   suborder: 500
   title: Tmux in practice
   description: Tmux in practice
   url: https://medium.com/free-code-camp/tmux-in-practice-series-of-posts-ae34f16cfab0
+
+- category: Tech / Blog
+  order: 600
+  suborder: 600
+  title: ATP Encounters
+  description: ATP encounters of third kind
+  url: https://igor-blue.github.io/2021/03/24/apt1.html
 
 - category: Youtube Channels
   order: 700
@@ -496,10 +517,17 @@
 
 - category: Tools
   order: 1200
-  suborder: 20
+  suborder: 15
   title: Kali Gitlab
   description: Kali Gitlab Packages
   url: https://gitlab.com/kalilinux/packages
+
+- category: Tools
+  order: 1200
+  suborder: 20
+  title: Kali on docker
+  description: Kali on docker
+  url: https://github.com/thirdbyte/ssj
 
 - category: Tools
   order: 1200
@@ -510,10 +538,17 @@
 
 - category: Tools
   order: 1200
-  suborder: 60
+  suborder: 55
   title: SANS Community Cheat Sheets
   description: SANS Community Cheat Sheets
   url: https://digital-forensics.sans.org/community/cheat-sheets
+
+- category: Tools
+  order: 1200
+  suborder: 60
+  title: OWASP Cheat Sheets
+  description: OWASP Cheat Sheets
+  url: https://cheatsheetseries.owasp.org/
 
 - category: Tools
   order: 1200
