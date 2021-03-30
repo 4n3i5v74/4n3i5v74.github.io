@@ -1,10 +1,4 @@
-
-<section class="accordion">
-
-    <h2 class="handle">
-      <label>Click to expand/collapse</label>
-
-    <input type="checkbox" name="collapse">
+<div class="code-header">
 
     {% if include.file %}
 
@@ -25,14 +19,9 @@
     </div>
 
     {% endunless %}
-    </h2>
 
+</div>
 
-<div class="content">
 ```{{ include.lang }}
 {{ include.code }}
 ```
-</div>
-
-</section>
-
