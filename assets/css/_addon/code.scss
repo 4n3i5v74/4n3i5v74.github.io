@@ -3,42 +3,42 @@
 .copy-code-container {
   display: flex;
   justify-content: flex-end;
-  padding: 1em;
+  padding: 2px;
   background: #3b3b3b;
 }
 
 .copy-code-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-    background-color: #616161;
-    color: #e7e7e7;
-    padding: 0.3em 0.3em;
-    border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background-color: #616161;
+  color: #e7e7e7;
+  padding: 0.3em;
+  border-radius: 2px;
 
+  &::before {
+    content: "Copy";
+  }
+
+  &::after {
+    margin-left: 2px;
+    content: "📋";
+    width: 1em;
+  }
+
+  // This class will be toggled via JavaScript
+  &.copied {
     &::before {
-        content: "Copy";
+      content: "Copied!";
     }
 
     &::after {
-        margin-left: 3px;
-        content: "📋";
-        width: 1em;
+      content: "✔️";
     }
-
-    // This class will be toggled via JavaScript
-    &.copied {
-        &::before {
-            content: "Copied!";
-        }
-
-        &::after {
-            content: "✔️";
-        }
-    }
+  }
 }
 
 
