@@ -48,7 +48,7 @@ Use `dirsearch` to get available directories, their redirection, response code a
 {% capture code %}{% raw %}./dirsearch.py -u http://<ip>:3000 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e html{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
 
 An output similar to below will be obtained.
-{% capture code %}{% raw %}_|. _ _  _  _  _ _|_    v0.4.1
+{% capture code %}{% raw %} _|. _ _  _  _  _ _|_    v0.4.1
 (_||| _) (/_(_|| (_| )
 
 Extensions: html | HTTP method: GET | Threads: 30 | Wordlist size: 220520
