@@ -1,7 +1,7 @@
 ---
 title: CheatSheet - TMUX
 author: 4n3i5v74
-date: 2021-01-05 00:00:00 +0530
+date: 2020-12-01 00:20:00 +0530
 categories: [CheatSheet, TMUX]
 tags: [cheatsheet, tmux, pentest]
 pin: true
