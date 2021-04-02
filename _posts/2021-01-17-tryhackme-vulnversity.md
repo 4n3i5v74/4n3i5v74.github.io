@@ -4,7 +4,7 @@ author: 4n3i5v74
 date: 2021-01-17 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, web]
-pin: true
+pin: false
 ---
 
 ## [Vulnversity](https://tryhackme.com/room/vulnversity){:target="_blank"}
@@ -25,6 +25,7 @@ Using `nmap` as below, all info can be gathered for the task.
 ## Task 3 - Locating directories using Gobuster
 
 Use these links as references.
+- [Gobuster Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/cheatsheet-gobuster/){:target="_blank"}
 - [Wordlist Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#wordlists---rockyou){:target="_blank"}
 

@@ -14,6 +14,9 @@ This room contains info and methods to recon and enumerate network captures, pro
 
 ## Task 6 - Day 1 - Inventory Managemement
 
+This task is about cookie manipulation using hex codes.
+
+
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/1PHs7uRS1whLY9tgxH1lj-bnEVWtXPXpo45zWUlbknpU/edit?usp=sharing){:target="_blank"}
 - [Curl POST authentication](https://reqbin.com/req/c-2cd3jxee/curl-post-with-basic-authentication){:target="_blank"}
@@ -37,6 +40,9 @@ mcinventory's inventory list (requested item - <item>){% endraw %}{% endcapture 
 
 ## Task 7 - Day 2 - Arctic Forum
 
+This task is about using `dirsearch` to brute-force hidden directories in web site and logging in using default credentials.
+
+
 Use these links as references.
 - [Dirbuster Reference](https://sourceforge.net/projects/dirbuster/){:target="_blank"}
 - [Dirsearch Reference](https://github.com/maurosoria/dirsearch){:target="_blank"}
@@ -55,9 +61,9 @@ Extensions: html | HTTP method: GET | Threads: 30 | Wordlist size: 220520
 
 Error Log: /opt/dirsearch/logs/errors-21-01-15_14-56-10.log
 
-Target: http://10.10.114.90:3000/
+Target: http://<ip>:3000/
 
-Output File: /opt/dirsearch/reports/10.10.114.90/_21-01-15_14-56-10.txt
+Output File: /opt/dirsearch/reports/<ip>/_21-01-15_14-56-10.txt
 
 [14:56:11] Starting:
 [14:56:11] 302 -   28B  - /home  ->  /login
@@ -138,9 +144,13 @@ From the page source, check github repo for [Arctic Digital Design](https://gith
 
 ## Task 8 - Day 3 - Evil Elf
 
+This task is about using `wireshark` to analyse `telnet` packets and decrypting password hash using `hashcat` to get login credentials.
+
+
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/1ZVsOtW7mM-4neZZ4QtYCEp__exiMrvlUCXTxhB-zyxk/edit){:target="_blank"}
 - [Hashcat Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-hashcat){:target="_blank"}
+
 
 Using `wireshark` to analyse the packet trace.
 {% capture code %}{% raw %}Statistics
@@ -206,6 +216,9 @@ Stopped: Sat Jan 16 14:42:18 2021{% endraw %}{% endcapture %} {% include code.ht
 
 ## Task 9 - Day 4 - Training
 
+This task is about linux command line utilities.
+
+
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/1CpwM_MdHgRqlPSe4eCC_-rVgi8F1xh88PKOySTRSkxU/edit){:target="_blank"}
 
@@ -240,6 +253,9 @@ mcsysadmin:<hash>:18234:0:99999:7:::{% endraw %}{% endcapture %} {% include code
 
 
 ## Task 10 - Day 5 - Ho-Ho-Hosint
+
+This task is about using `exiftool` to get information about image and using `osint` to gather information from social websites.
+
 
 Use these links as references.
 - [TryHackMe supporting material](https://blog.tryhackme.com/ho-ho/){:target="_blank"}
@@ -292,6 +308,9 @@ Upon searching for `wordpress` site on `wayback machine`, the very first archive
 
 
 ## Task 11 - Day 6 - Data Elf-iltration
+
+This task is about using `wireshark` to gather `dns` and `http` data and get the contents hidden in dns requests and http objects, and using `fcrackzip` to brute-force password for compressed file.
+
 
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/17vU134ZfKiiE-DgiynrO0MySo4_VCGCpw2YJV_Kp3Pk/edit?usp=sharing){:target="_blank"}
@@ -352,6 +371,9 @@ wrote extracted data to "christmasmonster.txt".{% endraw %}{% endcapture %} {% i
 
 ## Task 11 - Day 7 - Skilling up
 
+This task is about using `nmap` to get hidden `http` web site port.
+
+
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/1q0FziVZM3zCWhcgtPpljVPzkBX0fMAh6ebrXVM5rg08/edit?usp=sharing){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
@@ -407,6 +429,9 @@ Using `firefox` to open the http site on port `999`, we can see a <file> accessi
 
 
 ## Task 12 - Day 8 - SUID Shenanigans
+
+This task is about using `nmap` to get hidden `ssh` port and using `SUID` to get user and root file contents.
+
 
 Use these links as references.
 - [Privilege Escalation Reference](https://blog.tryhackme.com/linux-privilege-escalation-suid/){:target="_blank"}
@@ -469,6 +494,9 @@ There is a binary set with `SUID` for root. Trying to execute will allow users t
 
 ## Task 14 - Day 9 - Requests
 
+This task is about getting `web` page contents programatically and stitching together the message from each web page.
+
+
 Use these links as references.
 - [TryHackMe supporting material](https://docs.google.com/document/d/1FyAnxlQpzh0Cy17cKLsUZYCYqUA3eHu2hm0snilaPL0/edit?usp=sharing){:target="_blank"}
 
@@ -495,6 +523,9 @@ print(message){% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Task 15 - Day 10 - Metasploit-a-ho-ho-ho
+
+This task is about using `nmap` to get web service information and using `metasploit` to exploit `apache struts 2` vulnerability.
+
 
 Use these links as references.
 - [TryHackMe supporting material](https://blog.tryhackme.com/metasploit/){:target="_blank"}

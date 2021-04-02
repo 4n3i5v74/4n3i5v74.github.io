@@ -4,7 +4,7 @@ author: 4n3i5v74
 date: 2020-12-22 20:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, web]
-pin: true
+pin: false
 ---
 
 
