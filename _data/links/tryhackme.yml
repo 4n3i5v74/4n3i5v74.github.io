@@ -43,55 +43,62 @@
 - category: Intro
   order: 100
   suborder: 50
+  title: How websites work
+  description: How websites work
+  url: https://tryhackme.com/room/howwebsiteswork
+
+- category: Intro
+  order: 100
+  suborder: 70
   title: Linux (Private)
   description: Learn Linux (Private)
   url: https://tryhackme.com/room/zthlinux
 
 - category: Intro
   order: 100
-  suborder: 60
+  suborder: 80
   title: Linux 1
   description: Learn Linux - 2
   url: https://tryhackme.com/room/linux1
 
 - category: Intro
   order: 100
-  suborder: 70
+  suborder: 85
   title: Linux 2
   description: Learn Linux - 2
   url: https://tryhackme.com/room/linux2
 
 - category: Intro
   order: 100
-  suborder: 80
+  suborder: 90
   title: Linux 3
   description: Learn Linux - 3
   url: https://tryhackme.com/room/linux3
 
 - category: Intro
   order: 100
-  suborder: 85
+  suborder: 120
   title: Windows
   description: Intro to Windows
   url: https://tryhackme.com/room/intro2windows
 
 - category: Intro
   order: 100
-  suborder: 90
+  suborder: 140
   title: Reaearching
   description: Intro to Researching
   url: https://tryhackme.com/room/introtoresearch
 
 - category: Intro
   order: 100
-  suborder: 100
+  suborder: 170
   title: Crash Course Pentesting
   description: Intro to Pentest Tools
   url: https://tryhackme.com/room/ccpentesting
 
 - category: Intro
   order: 100
-  suborder: 110
+  suborder: 1
   title: Web Fundamentals
   description: HTTP/S, API, Cookies
   url: https://tryhackme.com/room/webfundamentals
@@ -207,6 +214,13 @@
   title: Linux Agency
   description: Linux Agency
   url: https://tryhackme.com/room/linuxagency
+
+- category: More Intro
+  order: 200
+  suborder: 90
+  title: Badbyte
+  description: Badbyte
+  url: https://tryhackme.com/room/badbyte
 
 - category: Tools
   order: 300
@@ -371,21 +385,28 @@
 
 - category: Hard Intro
   order: 400
-  suborder: 30
+  suborder: 40
+  title: Linux Backdoors
+  description: Linux Backdoors
+  url: https://tryhackme.com/room/linuxbackdoors
+
+- category: Hard Intro
+  order: 400
+  suborder: 60
   title: Post-Exploitation
   description: Post-Exploitation and Maintaining access
   url: https://tryhackme.com/room/postexploit
 
 - category: Hard Intro
   order: 400
-  suborder: 50
+  suborder: 90
   title: The Cod Caper
   description: Linux Infiltration and Exploitation
   url: https://tryhackme.com/room/thecodcaper
 
 - category: Hard Intro
   order: 400
-  suborder: 80
+  suborder: 120
   title: Intro to Shells
   description: Shell, Reverse Shell
   url: https://tryhackme.com/room/introtoshells
@@ -672,7 +693,7 @@
 
 - category: CTF
   order: 1000
-  suborder: 40
+  suborder: 60
   title: Lazy Admin
   description: Easy Linux
   url: https://tryhackme.com/room/lazyadmin
@@ -680,90 +701,97 @@
 - category: CTF
   order: 1000
   suborder: 60
+  title: h4cked
+  description: H4cked - wireshark
+  url: https://tryhackme.com/room/h4cked
+
+- category: CTF
+  order: 1000
+  suborder: 70
   title: Smag Grotto
   description: Packet Analysis
   url: https://tryhackme.com/room/smaggrotto
 
 - category: CTF
   order: 1000
-  suborder: 70
+  suborder: 100
   title: DogCat
   description: PHP, LFI, Docker
   url: https://tryhackme.com/room/dogcat
 
 - category: CTF
   order: 1000
-  suborder: 80
+  suborder: 130
   title: Buffer Overflow Preparation
   description: Stack based Buffer Overflow
   url: https://tryhackme.com/room/bufferoverflowprep
 
 - category: CTF
   order: 1000
-  suborder: 90
+  suborder: 160
   title: Break Out The Cage
   description: Break Out The Cage
   url: https://tryhackme.com/room/breakoutthecage1
 
 - category: CTF
   order: 1000
-  suborder: 100
+  suborder: 190
   title: Lian Yu
   description: Beginner Security Challenge
   url: https://tryhackme.com/room/lianyu
 
 - category: CTF
   order: 1000
-  suborder: 110
+  suborder: 210
   title: Bounty Hacker
   description: Bounty Hacker
   url: https://tryhackme.com/room/cowboyhacker
 
 - category: CTF
   order: 1000
-  suborder: 130
+  suborder: 230
   title: Ignite
   description: Web CTF
   url: https://tryhackme.com/room/ignite
 
 - category: CTF
   order: 1000
-  suborder: 140
+  suborder: 250
   title: Overpass
   description: Forensics, Analysis
   url: https://tryhackme.com/room/overpass
 
 - category: CTF
   order: 1000
-  suborder: 150
+  suborder: 255
   title: Overpass 2
   description: Forensics, Analysis
   url: https://tryhackme.com/room/overpass2hacked
 
 - category: CTF
   order: 1000
-  suborder: 170
+  suborder: 280
   title: Year of the Rabbit
   description: Year of the Rabbit
   url: https://tryhackme.com/room/yearoftherabbit
 
 - category: CTF
   order: 1000
-  suborder: 180
+  suborder: 300
   title: Develpy
   description: FIT, bsides
   url: https://tryhackme.com/room/bsidesgtdevelpy
 
 - category: CTF
   order: 1000
-  suborder: 200
+  suborder: 320
   title: Jack-of-all-Trades
   description: Boot-to-root
   url: https://tryhackme.com/room/jackofalltrades
 
 - category: CTF
   order: 1000
-  suborder: 220
+  suborder: 340
   title: Pickle Rick
   description: Pickle Rick
   url: https://tryhackme.com/room/picklerick

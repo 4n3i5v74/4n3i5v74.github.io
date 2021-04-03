@@ -251,6 +251,13 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 60
+  title: Pentester Walkthrough
+  description: Pentester Walkthrough
+  url: https://pentestit.medium.com/test-lab-15-writeup-254eaee6b4b8
+
+- category: Tech / Blog
+  order: 600
   suborder: 70
   title: Bug Bounty Resources
   description: Nahamsec - Bug Bounty Resources
@@ -508,6 +515,13 @@
   description: Windows AD Pentest
   url: https://i.ibb.co/TKYNCNP/Pentest-ad.png
 
+- category: Windows
+  order: 1100
+  suborder: 30
+  title: BITS
+  description: Persistence using BITS
+  url: https://thehackernews.com/2021/04/hackers-using-windows-os-feature-to-html
+
 - category: Tools
   order: 1200
   suborder: 10
@@ -626,6 +640,13 @@
   title: NoSQLMap
   description: NoSQLMap
   url: https://medium.com/rangeforce/nosqlmap-a67d76b88c48
+
+- category: Tools
+  order: 1200
+  suborder: 270
+  title: SQL Injection Cheat sheet
+  description: SQL Injection Cheat sheet
+  url: https://hackersonlineclub.com/sql-injection-cheatsheet/
 
 - category: Tools
   order: 1200
