@@ -36,6 +36,13 @@
 - category: Intro
   order: 100
   suborder: 40
+  title: Networking
+  description: Networking
+  url: https://tryhackme.com/room/bpnetworking
+
+- category: Intro
+  order: 100
+  suborder: 42
   title: Network Basics
   description: Network Basics
   url: https://tryhackme.com/room/introtonetworking
@@ -837,6 +844,13 @@
   title: Sysinternals
   description: Sysinternals
   url: https://tryhackme.com/room/btsysinternalssg
+
+- category: Windows
+  order: 1100
+  suborder: 50
+  title: Active Directory
+  description: Active Directory
+  url: https://tryhackme.com/room/activedirectorybasics
 
 - category: Windows
   order: 1100
