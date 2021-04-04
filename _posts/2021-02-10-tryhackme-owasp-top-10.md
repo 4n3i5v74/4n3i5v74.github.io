@@ -85,7 +85,7 @@ Use these links as references.
 
 
 Using `nmap` as below, all info can be gathered for the task.
-{% capture code %}{% raw %}nmap -Pn -T4 -sS --top-ports 1000 <ip>{% endraw %}{% endcapture %} {% include code.html code=code % %}
+{% capture code %}{% raw %}nmap -Pn -T4 -sS --top-ports 1000 <ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.60 ( https://nmap.org ) at 2021-04-03 19:03 BST
@@ -96,7 +96,7 @@ PORT   STATE SERVICE
 80/tcp open  http
 MAC Address: 02:69:34:35:C4:E7 (Unknown)
 
-Nmap done: 1 IP address (1 host up) scanned in 1.69 seconds{% endraw %}{% endcapture %} {% include code.html code=code % %}
+Nmap done: 1 IP address (1 host up) scanned in 1.69 seconds{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use `firefox` to `view page source` of machine url `http://<ip>`. There will be lots of resources loaded from a <directory>.
 
@@ -123,7 +123,7 @@ sqlite> PRAGMA table_info(users);
 sqlite> select * from users;
 4413096d9c933359b898b6202288a650|admin|<hash>|1
 23023b67a32488588db1e28579ced7ec|Bob|ad0234829205b9033196ba818f7a872b|1
-4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|0{% endraw %}{% endcapture %} {% include code.html code=code % %}
+4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|0{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use `firefox` and the online tool `https://crackstation.net` to crack the `MD5` hash we got previously. Use the username `admin` and cracked `password` to get the `flag`.
 
@@ -156,7 +156,7 @@ XML (eXtensible Markup Language) is a markup language that defines set of rules 
 DTD defines the structure and the legal elements and attributes of an XML document.
 
 Example DTD file `note.dtd`.
-{% capture code %}{% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}{% endcapture %} {% include code.html code=code % %}
+{% capture code %}{% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The type of elements in `note.dtd` file is as below.
 {% capture code %}{% raw %}!DOCTYPE note -  Defines a root element of the document named note
@@ -166,7 +166,7 @@ The type of elements in `note.dtd` file is as below.
 !ELEMENT heading  - Defines the heading element to be of type "#PCDATA"
 !ELEMENT body - Defines the body element to be of type "#PCDATA"
 !ENTITY - Defines new entity to be used as shortcut in XML file
-#PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code % %}
+#PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Example `note.xml` file referring to `note.dtd`.
 {% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
@@ -176,6 +176,6 @@ Example `note.xml` file referring to `note.dtd`.
     <from>feast</from>
     <heading>hacking</heading>
     <body>XXE attack</body>
-</note>{% endraw %}{% endcapture %} {% include code.html code=code % %}
+</note>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 

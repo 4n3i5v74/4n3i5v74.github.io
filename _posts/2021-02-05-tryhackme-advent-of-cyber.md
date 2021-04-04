@@ -25,7 +25,7 @@ Use these links as references.
 Use `firefox` to login `http://<ip>:3000` to get and simulate cookies for login to bypass auth.
 {% capture code %}{% raw %}redirect to /login
 inspect page
-register and login{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+register and login{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Before login, there will not be a cookie set. After registering and login, inspect for cookies in `firefox`.
 {% capture code %}{% raw %}inspect page (cookie - authid)
@@ -35,7 +35,7 @@ encode (to base64 - mcinventory<append auth cookie piece> - <hash>)
 Get cookie value and append to user to generate `mcinventory` user cookie and to get item the user requested for.
 {% capture code %}{% raw %}cookie value - replace with mcinventory's cookie value
 reload page
-mcinventory's inventory list (requested item - <item>){% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+mcinventory's inventory list (requested item - <item>){% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Task 7 - Day 2 - Arctic Forum
@@ -51,7 +51,7 @@ Use these links as references.
 
 
 Use `dirsearch` to get available directories, their redirection, response code and size for web site.
-{% capture code %}{% raw %}./dirsearch.py -u http://<ip>:3000 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e html{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}./dirsearch.py -u http://<ip>:3000 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e html{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %} _|. _ _  _  _  _ _|_    v0.4.1
@@ -83,10 +83,10 @@ Output File: /opt/dirsearch/reports/<ip>/_21-01-15_14-56-10.txt
 [15:00:51] 200 -    2KB - /LogIn
 [15:05:36] 200 -    2KB - /LOGIN
 
-Task Completed{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+Task Completed{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Once the hidden page is found, inspect its source using `firefox` or `curl`.
-{% capture code %}{% raw %}curl <ip>:3000/<hidden-page>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}curl <ip>:3000/<hidden-page>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}<!DOCTYPE html>
@@ -137,7 +137,7 @@ a {
     <!--
     Admin portal created by arctic digital design - check out our github repo
     -->
-</html>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+</html>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 From the page source, check github repo for [Arctic Digital Design](https://github.com/ashu-savani/arctic-digital-design){:target="_blank"}. There will be a default credential available. Try that in `firefox` to see if login is working and get the flag.
 
@@ -158,14 +158,14 @@ Using `wireshark` to analyse the packet trace.
 
 Telnet
   - Apply as filter
-      - Selected{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+      - Selected{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Check the filtered data, under packet number `2255`. Since the telnet communication is un-encrypted, the application data can be captured as plain-text by `wireshark`.
 
 The packet number `2906` shows someone executed command `cat /etc/shadow` over telnet, and its reply packet should contain the file contents. The password hash for user `buddy` can be found in packet `2908`.
 
 Use `hashcat` crack the hash obtained from `wireshark`.
-{% capture code %}{% raw %}hashcat -m 1800 '<hash>' /usr/share/wordlists/rockyou.txt{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}hashcat -m 1800 '<hash>' /usr/share/wordlists/rockyou.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}hashcat (v6.1.1-66-g6a419d06) starting...
@@ -211,7 +211,7 @@ Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:4864-5000
 Candidates.#1....: carolina -> freedom
 
 Started: Sat Jan 16 14:41:39 2021
-Stopped: Sat Jan 16 14:42:18 2021{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+Stopped: Sat Jan 16 14:42:18 2021{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Task 9 - Day 4 - Training
@@ -224,7 +224,7 @@ Use these links as references.
 
 
 Use `ssh` to login to the machine using password `bestelf1234`.
-{% capture code %}{% raw %}ssh mcsysadmin@<ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}ssh mcsysadmin@<ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 All the info can be found as below.
 {% capture code %}{% raw %}[mcsysadmin@ip-10-10-26-239 ~]$ ls
@@ -249,7 +249,7 @@ All the info can be found as below.
 /var/shadow.bak
 
 [mcsysadmin@ip-10-10-26-239 ~]$ grep mcsysadmin /var/shadow.bak
-mcsysadmin:<hash>:18234:0:99999:7:::{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+mcsysadmin:<hash>:18234:0:99999:7:::{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Task 10 - Day 5 - Ho-Ho-Hosint
@@ -265,7 +265,7 @@ Use these links as references.
 
 
 Use `exiftool` to check if there is any hidden information from the downloaded image.
-{% capture code %}{% raw %}exiftool thegrinch.jpg{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}exiftool thegrinch.jpg{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}ExifTool Version Number         : 10.80
@@ -292,7 +292,7 @@ Bits Per Sample                 : 8
 Color Components                : 3
 Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
 Image Size                      : 642x429
-Megapixels                      : 0.275{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+Megapixels                      : 0.275{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `firefox` to search about `user`. A `twitter` and `wordpress` page will appear in result.
 
@@ -300,7 +300,7 @@ The following information will be available from `twitter` user profile page.
 {% capture code %}{% raw %}Born <birthday>
 I am one of <profession>, but am a professional photographer after December!
 Us Elves can now make iPhone's! Who'da thought it!
-  ~ Sent from <iphone-model>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+  ~ Sent from <iphone-model>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 There will be an image in the `wordpress` site. Searching about it on `google image search` will provide more information.
 
@@ -321,35 +321,35 @@ Using `wireshark` to analyse the packet trace.
 
 DNS
   - Apply as filter
-      - Selected{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+      - Selected{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Check the filtered data, under packet number `9`. The hex encoded query can be decoded using `cyberchef`.
 {% capture code %}{% raw %}Input
     <query-hash>
 From hex
-    <stolen-info>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+    <stolen-info>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 The same information can also be obtained from `xxd`.
-{% capture code %}{% raw %}echo '<query-hash>' | xxd -r -p{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}echo '<query-hash>' | xxd -r -p{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `wireshark` to export objects and analyse it.
 {% capture code %}{% raw %}File
     - Export Objects
         - HTTP
-            - Save all{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+            - Save all{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 There is a `zip` file which seems to be encrypted. Use `fcrackzip` to try an unlock the password.
-{% capture code %}{% raw %}fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v holidaythief/christmaslists.zip{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v holidaythief/christmaslists.zip{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}found file 'christmaslistdan.tx', (size cp/uc     91/    79, flags 9, chk 9a34)
 found file 'christmaslistdark.txt', (size cp/uc     91/    82, flags 9, chk 9a4d)
 found file 'christmaslistskidyandashu.txt', (size cp/uc    108/   116, flags 9, chk 9a74)
 found file 'christmaslisttimmy.txt', (size cp/uc    105/   101, flags 9, chk 9a11)
-possible pw found: december (){% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+possible pw found: december (){% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Extract the file with cracked credential.
-{% capture code %}{% raw %}cd holidaythief ; unzip christmaslists.zip{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}cd holidaythief ; unzip christmaslists.zip{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Archive:  christmaslists.zip
@@ -357,16 +357,16 @@ An output similar to below will be obtained.
 extracting: christmaslistdan.tx
 inflating: christmaslistdark.txt
 inflating: christmaslistskidyandashu.txt
-inflating: christmaslisttimmy.txt{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+inflating: christmaslisttimmy.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Open the text file one by one to find the <item>.
 
 Check if there is any encoded content in `TryHackMe.jpg` file using `steghide` and empty passphrase.
-{% capture code %}{% raw %}steghide extract -sf ./TryHackMe.jpg{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}steghide extract -sf ./TryHackMe.jpg{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained. The file content will have <id>.
 {% capture code %}{% raw %}Enter passphrase:
-wrote extracted data to "christmasmonster.txt".{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+wrote extracted data to "christmasmonster.txt".{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 
 ## Task 11 - Day 7 - Skilling up

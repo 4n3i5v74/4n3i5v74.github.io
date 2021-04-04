@@ -427,7 +427,7 @@ Use `wireshark` to analyse `pcap2.pcap` file.
       - Selected
 File
   - Export objects
-    - HTTP{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+    - HTTP{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Unzip the file `unzip christmas.zip` to get the item mcskidy wished for.
 
@@ -449,7 +449,7 @@ Use these links as references.
 
 Create a host entry for the <ip> as below.
 {% capture code %}{% raw %}vim /etc/hosts
-  <ip>  tbfc.blog{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+  <ip>  tbfc.blog{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `nmap` to scan for open ports with automatic service detection and nse script run.
 {% capture code %}{% raw %}nmap -Pn -T4 -sS --reason --open --top-ports 1000 -A <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
@@ -623,7 +623,7 @@ Use these links as references.
 
 
 Use `enum4linux` to enumerate the user information from `samba` server.
-{% capture code %}{% raw %}enum4linux -U <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}enum4linux -U <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Fri Jan 22 13:44:13 2021
@@ -664,10 +664,10 @@ user:[elfmcskidy] rid:[0x3e8]
 user:[elfmceager] rid:[0x3ea]
 user:[elfmcelferson] rid:[0x3e9]
 
-enum4linux complete on Fri Jan 22 13:44:15 2021{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+enum4linux complete on Fri Jan 22 13:44:15 2021{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `enum4linux` to enumerate the share information from `samba` server.
-{% capture code %}{% raw %}enum4linux -S <ip>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}enum4linux -S <ip>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Fri Jan 22 13:48:31 2021
@@ -722,10 +722,10 @@ Reconnecting with SMB1 for workgroup listing.
 //<ip>/tbfc-it	Mapping: DENIED, Listing: N/A
 //<ip>/<share>	Mapping: OK, Listing: OK
 
-enum4linux complete on Fri Jan 22 13:48:31 2021{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+enum4linux complete on Fri Jan 22 13:48:31 2021{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 Use `smbclient` to access the public share which was discovered previously.
-{% capture code %}{% raw %}smbclient //<ip>/<share>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}smbclient //<ip>/<share>{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Enter WORKGROUP\root's password:
@@ -743,5 +743,5 @@ smb: \> mget note_from_mcskidy.txt
 Get file note_from_mcskidy.txt? y
 getting file \note_from_mcskidy.txt of size 143 as note_from_mcskidy.txt (46.5 KiloBytes/sec) (average 46.5 KiloBytes/sec)
 
-smb: \> exit{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+smb: \> exit{% endraw %}{% endcapture %} {% include code.html code=code%}
 
