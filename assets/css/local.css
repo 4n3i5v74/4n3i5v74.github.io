@@ -1,8 +1,8 @@
 pre {
 
   display: block;
-  white-space: pre;           /* CSS 2.0 */
-  white-space: pre-wrap;      /* CSS 2.1 */
+  /* white-space: pre;           /* CSS 2.0 */
+  /* white-space: pre-wrap;      /* CSS 2.1 */
   white-space: pre-line;      /* CSS 3.0 */
   white-space: -pre-wrap;     /* Opera 4-6 */
   white-space: -o-pre-wrap;   /* Opera 7 */
@@ -15,8 +15,8 @@ pre {
 .highlight pre {
 
   display: block;
-  white-space: pre;           /* CSS 2.0 */
-  white-space: pre-wrap;      /* CSS 2.1 */
+  /* white-space: pre;           /* CSS 2.0 */
+  /* white-space: pre-wrap;      /* CSS 2.1 */
   white-space: pre-line;      /* CSS 3.0 */
   white-space: -pre-wrap;     /* Opera 4-6 */
   white-space: -o-pre-wrap;   /* Opera 7 */
