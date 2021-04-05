@@ -167,6 +167,20 @@
 
 - category: General
   order: 300
+  suborder: 1
+  title: Jekyll CheatSheet
+  description: Jekyll CheatSheet
+  url: https://learn.cloudcannon.com/jekyll-cheat-sheet/
+
+- category: General
+  order: 300
+  suborder: 2
+  title: Jekyll CheatSheet
+  description: Jekyll CheatSheet
+  url: https://gist.github.com/magicznyleszek/9803727
+
+- category: General
+  order: 300
   suborder: 10
   title: dnsleaktest
   description: Check for dns leak
