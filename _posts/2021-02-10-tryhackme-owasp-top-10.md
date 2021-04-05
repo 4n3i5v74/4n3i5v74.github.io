@@ -130,6 +130,10 @@ Use `firefox` and the online tool `https://crackstation.net` to crack the `MD5` 
 
 ## Task 12 - [Severity 4] XML External Entity
 
+Use these links as references.
+- [Convert XML to HTML encoded data](https://www.convertstring.com/EncodeDecode/HtmlEncode){:target="_blank"}
+
+
 XML External Entity (XXE) attack is a vulnerability that abuses features of XML parsers/data.
 - It allows to interact with any backend or external systems that the application can access and allow to read the file on that system.
 - They can cause Denial of Service (DoS) attack or could use XXE to perform Server-Side Request Forgery (SSRF) inducing the web application tomake requests to other applications.
@@ -202,7 +206,7 @@ Use `firefox` to load url `http://<ip>` and try the below payloads.
   </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&amp;read;</root>{% endcapture %} {% include code.html code=code lang="xml"%}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
