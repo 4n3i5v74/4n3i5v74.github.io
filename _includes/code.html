@@ -1,11 +1,4 @@
-<div>
-<details>
-
-  <summary>
-    {{ include.summary }}
-  </summary>
-
-  <div class="code-header">
+<div class="code-header">
 
     {% if include.file %}
 
@@ -29,9 +22,6 @@
 
   </div>
 
-  ```{{ include.lang}}
-  {{ include.code }}
-  ```
-
-</details>
-</div>
+```{{ include.lang}}
+{{ include.code }}
+```
