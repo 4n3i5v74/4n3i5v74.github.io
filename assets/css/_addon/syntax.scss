@@ -92,14 +92,14 @@ details > pre {
     margin-bottom: 0;
     font-size: $code-font-size;
     line-height: 1.4rem;
-    word-wrap: normal; /* Fixed Safari overflow-x */
+    word-wrap: break-word; /* Fixed Safari overflow-x */
   }
   table {
     padding: 0;
     border: 0;
     td pre {
       overflow: visible;  /* Fixed iOS safari overflow-x */
-      word-break: normal; /* Fixed iOS safari linenos code break */
+      word-break: break-word; /* Fixed iOS safari linenos code break */
     }
   }
   td {
