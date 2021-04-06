@@ -273,8 +273,8 @@ XSS is a type of injection which can allow an attacker to execute malicious scri
 - DOM-Based XSS - DOM stands for Document Object Model and is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style and content. A web page is a document and this document can be either displayed in the browser window or as the HTML source.
 
 Common payloads types used:
-- Popup's (<script>alert("Hello World")</script>) - Creates a Hello World message popup on a users browser.
-- Writing HTML (document.write) - Override the website's HTML to add your own (essentially defacing the entire page).
+- Popup's `(<script>alert("Hello World")</script>)` - Creates a Hello World message popup on a users browser.
+- Writing HTML `(document.write)` - Override the website's HTML to add your own (essentially defacing the entire page).
 - [XSS Keylogger](http://www.xss-payloads.com/payloads/scripts/simplekeylogger.js.html){:target="_blank"} - You can log all keystrokes of a user, capturing their password and other sensitive information they type into the webpage.
 - [Port scanning](http://www.xss-payloads.com/payloads/scripts/portscanapi.js.html){:target="_blank"} - A mini local port scanner.
 
