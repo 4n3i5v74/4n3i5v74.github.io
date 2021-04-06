@@ -51,6 +51,12 @@ div > pre {
   @extend %code-snippet-padding;
 }
 
+details > pre {
+  @extend %code-snippet-bg;
+  @extend %code-snippet-radius;
+  @extend %code-snippet-padding;
+}
+
 .highlighter-rouge {
   @extend %code-snippet-bg;
   @extend %code-snippet-radius;

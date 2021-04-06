@@ -1,4 +1,10 @@
-<div class="code-header">
+<details>
+
+  <summary>
+    {{ include.summary }}
+  </summary>
+
+  <div class="code-header">
 
     {% if include.file %}
 
@@ -20,8 +26,10 @@
 
     {% endunless %}
 
-</div>
+  </div>
 
-```{{ include.lang}}
-{{ include.code }}
-```
+  ```{{ include.lang}}
+  {{ include.code }}
+  ```
+
+</details>
