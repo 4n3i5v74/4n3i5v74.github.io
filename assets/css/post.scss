@@ -36,6 +36,18 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
   padding-right: $pr;
 }
 
+.post h1 {
+  color: #007bff;
+}
+
+.post h2 {
+  color: #66d9ef;
+}
+
+.post h3 {
+  color: #009999;
+}
+
 .post .post-meta {
   > div:nth-child(2) {
     > span:not(:first-child)::before {
