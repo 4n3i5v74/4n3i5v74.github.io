@@ -248,10 +248,49 @@ Insecure Direct Object Reference, is the act of exploiting a misconfiguration in
 Use `firefox` to load the url `http://<ip>` using username `noot` and password `test1234`. The url will be redirected to a php page with where clause, similar to `http://<ip>/note.php?note=1`. Manipulae the `id` to retrieve the flag.
 
 
-* Task 19 - [Severity 6] Security Misconfiguration
+## Task 19 - [Severity 6] Security Misconfiguration
 
 Use these links as references.
 - [OWASP Secure Headers](https://owasp.org/www-project-secure-headers/){:target="_blank"}
 - [OWASP Security Misconfiguration Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration){:target="_blank"}
+
+
+Security misconfigurations include:
+- Poorly configured permissions on cloud services, like S3 buckets
+- Having unnecessary features enabled, like services, pages, accounts or privileges
+- Default accounts with unchanged passwords
+- Error messages that are overly detailed and allow an attacker to find out more about the system
+- Not using HTTP security headers, or revealing too much detail in the Server: HTTP header
+
+Use `firefox` to load the url `http://<ip>` and check the type of website. Upon searching for `Pensive Notes default credentials`, there will be a reference to [PensiveNotes GitHub](https://github.com/NinjaJc01/PensiveNotes){:target="_blank"}, which will contain default credentials as `pensive/PensiveNotes`. Login using default credentials will give the flag.
+
+
+## Task 20 - [Severity 7] Cross-side Scripting
+
+XSS is a type of injection which can allow an attacker to execute malicious scripts and have it execute on a machine. A web application is vulnerable to XSS if it uses unsanitized user input. XSS is possible in Javascript, VBScript, Flash and CSS.
+- Stored XSS - The most dangerous type of XSS. This is where a malicious string originates from the website’s database. This often happens when a website allows user input that is not sanitised (remove the "bad parts" of a users input) when inserted into the database.
+- Reflected XSS - the malicious payload is part of the victims request to the website. The website includes this payload in response back to the user. To summarise, an attacker needs to trick a victim into clicking a URL to execute their malicious payload.
+- DOM-Based XSS - DOM stands for Document Object Model and is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style and content. A web page is a document and this document can be either displayed in the browser window or as the HTML source.
+
+Common payloads types used:
+- Popup's (<script>alert("Hello World")</script>) - Creates a Hello World message popup on a users browser.
+- Writing HTML (document.write) - Override the website's HTML to add your own (essentially defacing the entire page).
+- [XSS Keylogger](http://www.xss-payloads.com/payloads/scripts/simplekeylogger.js.html){:target="_blank"} - You can log all keystrokes of a user, capturing their password and other sensitive information they type into the webpage.
+- [Port scanning](http://www.xss-payloads.com/payloads/scripts/portscanapi.js.html){:target="_blank"} - A mini local port scanner.
+
+Use `firefox` to change default browser's XSS protection mode. Change the setting `browser.urlbar.filter.javascript` to `false` in `about:config` settings page.
+
+Use `firefox` to load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert("Hello")</script>)` to get the popup `Hello` and the flag.
+
+Use `firefox` to load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert(window.location.hostname)</script>)` to get the popup `<ip>` and the flag.
+
+Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Register for a dummy account. Use the payload `<h3>Testing</h3>` in comments section to get the comment appended and the flag.
+
+Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>alert(document.cookies)</script>` in comments section to get the popup `cookie` and the flag.
+
+Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>document.querySelector('#thm-title').textContent = 'I am a hacker'</script>` in comments section to change the value of header tag id `thm-title` to `I am a hacker` and get the flag.
+
+
+## Task 21 - [Severity 8] Insecure Deserialization
 
 

@@ -628,6 +628,13 @@
   description: Dumping Router Firmware
   url: https://tryhackme.com/room/rfirmware
 
+- category: Reverse Engineering
+  order: 800
+  suborder: 140
+  title: Memory Forensics
+  description: Memory Forensics
+  url: https://tryhackme.com/room/memoryforensics
+
 - category: Privilege Escalation
   order: 900
   suborder: 10
