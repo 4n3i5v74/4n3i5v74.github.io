@@ -340,7 +340,10 @@ cat <flag.txt>
   <flag>{% endcapture %} {% include code.html code=code %}
 
 
-* Task 27 - [Severity 9] Components With Known Vulnerabilities - Intro
+## Task 29 - [Severity 9] Components With Known Vulnerabilities - Lab
 
+Use `firefox` to search for keywords `cse bookstore exploit` and `projectworlds exploit` in google. There will be `RCE` vulnerability in `projectworlds` under the name `online book store` in [exploit-db](https://www.exploit-db.com){:target="_blank"}. Download the python script in the url [RCE Exploit - Online Book Store](https://www.exploit-db.com/exploits/41962){:target="_blank"}.
 
+Use `terminal` to run the python script with the url `http://<ip>`. Use `wc -c /etc/passwd` to get number of words in the `RCE` shell from the payload script.
+{% capture code %}python 47887.py "http://10.10.17.184/"{% endcapture %} {% include code.html code=code %}
 
