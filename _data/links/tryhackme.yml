@@ -350,6 +350,13 @@
 
 - category: Tools
   order: 300
+  suborder: 370
+  title: Splunk
+  description: Splunk
+  url: https://tryhackme.com/room/bpsplunk
+
+- category: Tools
+  order: 300
   suborder: 380
   title: Volatility
   description: Memory Forensics Basics
