@@ -306,7 +306,7 @@ Loaded 1 password hash (RAR5 [PBKDF2-SHA256 256/256 AVX2 8x])
 Cost 1 (iteration count) is 32768 for all loaded hashes
 Will run 8 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
-password         (secure.rar)
+<password>         (secure.rar)
 1g 0:00:00:00 DONE (2021-04-10 22:46) 1.262g/s 323.2p/s 323.2c/s 323.2C/s 123456..freedom
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
