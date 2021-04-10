@@ -239,6 +239,7 @@ Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
 Use these links as references.
 - [John Custom Rules](https://www.openwall.com/john/doc/RULES.shtml){:target="_blank"}
 
+The following are the rules definitions to be used.
 - Az - Takes the word and appends it with the characters you define
 - A0 - Takes the word and prepends it with the characters you define
 - c - Capitalises the character positionally
