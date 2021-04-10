@@ -9,7 +9,7 @@
 # Windows - 1100
 # Tools - 1200
 # Protocols - 1300
-# Crypto / Hash - 1500
+# Crypto / Hash / Decoders - 1500
 # Exploits - 2000
 # Programming - 3000
 # Web - 4000
@@ -122,6 +122,20 @@
   title: Hacking The Cloud
   description: Hacking The Cloud
   url: https://hackingthe.cloud
+
+- category: Learning / Lab
+  order: 100
+  suborder: 294
+  title: CTFtime
+  description: CTFtime
+  url: https://ctftime.org/
+
+- category: Learning / Lab
+  order: 100
+  suborder: 294
+  title: PicoCTF
+  description: PicoCTF
+  url: https://www.picoctf.org/
 
 - category: Learning / Lab
   order: 100
@@ -522,6 +536,13 @@
   description: Clearing tracks on linux
   url: https://hackingpassion.com/clear-your-tracks-on-linux/
 
+- category: Linux
+  order: 1000
+  suborder: 100
+  title: Kali Tools
+  description: Kali Tools
+  url: https://github.com/aingram702/Kali-Linux-Full-/blob/master/kaliScript.bash
+
 - category: Windows
   order: 1100
   suborder: 10
@@ -746,6 +767,34 @@
   description: fcrackzip password cracker
   url: http://oldhome.schmorp.de/marc/data/fcrackzip-1.0.tar.gz
 
+- category: Tools
+  order: 1200
+  suborder: 700
+  title: DNS Tools 1
+  description: CentralOPS
+  url: https://centralops.net/co/
+
+- category: Tools
+  order: 1200
+  suborder: 710
+  title: DNS Tools 2
+  description: ViewDNS
+  url: https://viewdns.info/
+
+- category: Tools
+  order: 1200
+  suborder: 800
+  title: Steno 1
+  description: Fotoforensics
+  url: https://www.fotoforensics.com/
+
+- category: Tools
+  order: 1200
+  suborder: 810
+  title: Steno 2
+  description: Forensically
+  url: https://29a.ch/photo-forensics/
+
 - category: Protocols
   order: 1300
   suborder: 10
@@ -781,47 +830,68 @@
   description: PHP MySQL Intro
   url: https://www.w3schools.com/php/php_mysql_intro.asp
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 10
   title: Example Hashes
   description: Example Hashes
   url: https://hashcat.net/wiki/doku.php?id=example_hashes
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 30
   title: Password Hashing
   description: Password Hashing
   url: https://www.wired.com/2016/06/hacker-lexicon-password-hashing/
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 100
   title: Base64 Decode
   description: Base64 Decode
   url: https://www.base64decode.org/
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
+  order: 1500
+  suborder: 110
+  title: Leet Code
+  description: Leet Encode Decode
+  url: https://www.albinoblacksheep.com/text/leet
+
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 120
   title: ROT13 Decode
   description: ROT13 Decode
   url: https://cryptii.com/pipes/rot13-decoder
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 200
-  title: Online decoder 1
+  title: Dcode - Online
   description: DCODE.FR Online Decoder
-  url: https://www.dcode.fr/hash-function
+  url: https://www.dcode.fr/cipher-identifier
 
-- category: Crypto / Hash
+- category: Crypto / Hash / Decoder
+  order: 1500
+  suborder: 205
+  title: Hashes - Online
+  description: Hashes Online Decoder
+  url: https://hashes.com/en/tools/hash_identifier
+
+- category: Crypto / Hash / Decoder
   order: 1500
   suborder: 210
-  title: Online decoder 2
+  title: Crackstation - Online
   description: Crackstation Online Decoder
   url: https://crackstation.net/
+
+- category: Crypto / Hash / Decoder
+  order: 1500
+  suborder: 220
+  title: JS Decode - Online
+  description: JavaScript Deobfuscator Online
+  url: https://lelinhtinh.github.io/de4js/
 
 - category: Exploits
   order: 2000
@@ -857,6 +927,13 @@
   title: Leetcode
   description: Leetcode
   url: https://leetcode.com
+
+- category: Programming
+  order: 3000
+  suborder: 100
+  title: PY compiler
+  description: Online Python Compiler
+  url: https://www.onlinegdb.com/online_python_compiler
 
 - category: Web
   order: 4000

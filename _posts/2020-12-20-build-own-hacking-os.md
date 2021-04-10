@@ -307,9 +307,18 @@ Check the status of database connection from `msfconsole` using `db_status`.
 {% capture code %}{% raw %}git clone https://github.com/sullo/nikto /data/tools/nikto{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
+### Identifying Hashes
+
+Online tools like [Dcode](https://www.dcode.fr/cipher-identifier){:target="_blank"} or [Hashes](https://hashes.com/en/tools/hash_identifier){:target="_blank"} can be used for identifying hashes.
+
+Offline tools like [hash-id.py](https://gitlab.com/kalilinux/packages/hash-identifier){:target="_blank"} or `hashid` can also be used.
+
+
 ### Install Hashcat
 
 {% capture code %}{% raw %}git clone https://github.com/hashcat/hashcat.git /data/tools/hashcat ; cd /data/tools/hashcat ; make ; make install ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+To install in windows, download the binary [here](https://github.com/openwall/john-packages/releases/tag/jumbo-dev){:target="_blank"}
 
 
 ### Check compatability for running hashcat
@@ -321,6 +330,8 @@ Check the status of database connection from `msfconsole` using `db_status`.
 ### Install John the Ripper
 
 {% capture code %}{% raw %}git clone https://github.com/openwall/john -b bleeding-jumbo /data/tools/john ; cd /data/tools/john/src/ ; ./configure && make -s clean && make -sj4 ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+To install in windows, download the binary from [here](https://github.com/openwall/john-packages/releases/tag/jumbo-dev){:target="_blank"} or [here](https://download.openwall.net/pub/projects/john/contrib/windows/){:target="_blank"}
 
 
 ### Install smbmap
