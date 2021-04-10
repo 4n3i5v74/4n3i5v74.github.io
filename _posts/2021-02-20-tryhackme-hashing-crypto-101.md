@@ -55,7 +55,7 @@ An output similar to below will be obtained.
 {% capture code %}{% raw %}Using default input encoding: UTF-8
 Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
 Press 'q' or Ctrl-C to abort, almost any other key for status
-<input>          (?)
+<password>          (?)
 1g 0:00:00:00 DONE (2021-04-10 11:42) 8.130g/s 21853p/s 21853c/s 21853C/s skyblue..nugget
 Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
 
@@ -114,7 +114,7 @@ Dictionary cache built:
 * Keyspace..: 14344385
 * Runtime...: 2 secs
 
-$2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG:<input>
+$2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG:<password>
 
 Session..........: hashcat
 Status...........: Cracked
@@ -194,7 +194,7 @@ Dictionary cache hit:
 * Bytes.....: 139921507
 * Keyspace..: 14344385
 
-9eb7ee7f551d2f0ac684981bd1f1e2fa4a37590199636753efe614d4db30e8e1:<input>
+9eb7ee7f551d2f0ac684981bd1f1e2fa4a37590199636753efe614d4db30e8e1:<password>
 
 Session..........: hashcat
 Status...........: Cracked
@@ -256,7 +256,7 @@ Dictionary cache hit:
 * Bytes.....: 139921507
 * Keyspace..: 14344385
 
-$6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0:<input>
+$6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0:<password>
 
 Session..........: hashcat
 Status...........: Cracked
