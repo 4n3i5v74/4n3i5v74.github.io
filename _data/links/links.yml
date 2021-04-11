@@ -559,6 +559,13 @@
 
 - category: Tools
   order: 1200
+  suborder: 1
+  title: Rawsec
+  description: Rawsec Cybersecurity Inventory
+  url: https://inventory.rawsec.ml/tools.html
+
+- category: Tools
+  order: 1200
   suborder: 10
   title: Kali Packages
   description: Kali Packages

@@ -3,7 +3,7 @@ title: Writeup for TryHackMe room - Hashing - Crypto 101
 author: 4n3i5v74
 date: 2021-02-20 00:00:00 +0530
 categories: [CTF, TryHackMe]
-tags: [tryhackme, writeup, ctf, crypto]
+tags: [tryhackme, writeup, ctf, crypto, hash]
 pin: false
 ---
 
@@ -14,11 +14,18 @@ This room contains info about hashing and methods to crack them.
 
 ## Task 1 - Key Terms
 
+- Ciphertext - The result of encrypting a plaintext, encrypted data.
+- Cipher - A method of encrypting or decrypting data. Modern ciphers are cryptographic, but there are many non cryptographic ciphers like Caesar.
 - Plaintext - Data before encryption or hashing, often text but it could be a photograph or other file instead.
+- Encryption - Transforming data into ciphertext, using a cipher.
 - Encoding - This is NOT a form of encryption, just a form of data representation like base64 or hexadecimal. Immediately reversible.
 - Hash - A hash is the output of a hash function. Hashing can also be used as a verb, "to hash", meaning to produce the hash value of some data.
+- Key - Some information that is needed to correctly decrypt the ciphertext and obtain the plaintext.
+- Passphrase - Separate to the key, a passphrase is similar to a password and used to protect a key.
+- Asymmetric encryption - Uses different keys to encrypt and decrypt.
+- Symmetric encryption - Uses the same key to encrypt and decrypt.
 - Brute force - Attacking cryptography by trying every different password or every different key.
-- Cryptanalysis - Attacking cryptography by finding a weakness in the underlying maths.
+- Cryptoanalysis - Attacking cryptography by finding a weakness in the underlying maths.
 
 
 ## Task 2 - What is hash function?
