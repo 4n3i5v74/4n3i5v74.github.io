@@ -1,7 +1,7 @@
 ---
 title: CheatSheet - Gobuster
 author: 4n3i5v74
-date: 2020-12-01 00:10:00 +0530
+date: 2020-12-01 08:00:00 +0530
 categories: [CheatSheet, Gobuster]
 tags: [cheatsheet, gobuster, pentest]
 pin: true
