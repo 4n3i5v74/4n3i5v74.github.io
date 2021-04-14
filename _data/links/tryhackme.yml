@@ -422,7 +422,7 @@
   order: 400
   suborder: 120
   title: Intro to Shells
-  description: Shell, Reverse Shell
+  description: Reverse Shell, Bind Shell, Web Shell
   url: https://tryhackme.com/room/introtoshells
 
 - category: Programming
@@ -575,20 +575,27 @@
 - category: Web
   order: 700
   suborder: 80
+  title: SSTI
+  description: Server Side Template Injection
+  url: https://tryhackme.com/room/learnssti
+
+- category: Web
+  order: 700
+  suborder: 150
   title: Bolt
   description: Bolt CMS
   url: https://tryhackme.com/room/bolt
 
 - category: Web
   order: 700
-  suborder: 100
+  suborder: 160
   title: OWASP Juice Shop
   description: OWASP Juice Shop
   url: https://tryhackme.com/room/owaspjuiceshop
 
 - category: Web
   order: 700
-  suborder: 120
+  suborder: 180
   title: Web OSINT
   description: Web OSINT
   url: https://tryhackme.com/room/webosint

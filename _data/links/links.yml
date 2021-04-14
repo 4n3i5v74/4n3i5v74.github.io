@@ -272,6 +272,27 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 25
+  title: OSCP Prep 6
+  description: Total OSCP Guide
+  url: https://sushant747.gitbooks.io/total-oscp-guide/content/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 26
+  title: OSCP Prep 7
+  description: NetSec addicts - OSCP Prep and more
+  url: https://netsec.ws/?p=398
+
+- category: Tech / Blog
+  order: 600
+  suborder: 27
+  title: OSCP Prep 8
+  description: OSCP Notes
+  url: https://0xss0rz.gitbook.io/0xss0rz/
+
+- category: Tech / Blog
+  order: 600
   suborder: 50
   title: Security Certifications
   description: Daniel Meissler - Security Certification
@@ -752,6 +773,13 @@
   title: Payloads
   description: PayloadsAllTheThings
   url: https://github.com/swisskyrepo/PayloadsAllTheThings
+
+- category: Tools
+  order: 1200
+  suborder: 520
+  title: Pwntools
+  description: Pwntools
+  url: https://github.com/Gallopsled/pwntools
 
 - category: Tools
   order: 1200
