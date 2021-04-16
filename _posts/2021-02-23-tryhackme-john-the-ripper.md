@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, crypto, john]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [John The Ripper](https://tryhackme.com/room/johntheripper0){:target="_blank"}
 
 This room contains info about hashing and methods to crack them using `John The Ripper`.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 4 - Cracking Basic Hashes

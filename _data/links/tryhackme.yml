@@ -224,7 +224,14 @@
 
 - category: More Intro
   order: 200
-  suborder: 90
+  suborder: 100
+  title: Web Enumeration
+  description: Web Enumeration
+  url: https://tryhackme.com/room/webenumerationv2
+
+- category: More Intro
+  order: 200
+  suborder: 130
   title: Badbyte
   description: Badbyte
   url: https://tryhackme.com/room/badbyte

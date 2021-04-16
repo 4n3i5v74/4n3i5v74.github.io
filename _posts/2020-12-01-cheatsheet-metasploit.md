@@ -7,6 +7,7 @@ tags: [cheatsheet, metasploit, pentest]
 pin: true
 ---
 
+
 ## Initializing
 
 - `msfdb init` - initialize database. `Msfconsole` supports only postgresql databases.

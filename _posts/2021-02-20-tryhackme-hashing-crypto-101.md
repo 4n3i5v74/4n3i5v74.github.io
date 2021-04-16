@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, crypto, hash]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [Hashing - Crypto 101](https://tryhackme.com/room/hashingcrypto101){:target="_blank"}
 
 This room contains info about hashing and methods to crack them.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 1 - Key Terms

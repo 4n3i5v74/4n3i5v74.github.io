@@ -183,22 +183,15 @@
   order: 300
   suborder: 1
   title: Jekyll CheatSheet
-  description: Jekyll CheatSheet
+  description: Jekyll CheatSheet 1
   url: https://learn.cloudcannon.com/jekyll-cheat-sheet/
 
 - category: General
   order: 300
   suborder: 2
   title: Jekyll CheatSheet
-  description: Jekyll CheatSheet
+  description: Jekyll CheatSheet 2
   url: https://gist.github.com/magicznyleszek/9803727
-
-- category: General
-  order: 300
-  suborder: 10
-  title: dnsleaktest
-  description: Check for dns leak
-  url: https://www.dnsleaktest.com
 
 - category: General
   order: 300
@@ -217,16 +210,9 @@
 - category: General
   order: 300
   suborder: 200
-  title: IP Lookup
-  description: URL IP Lookup
-  url: https://www.brightcloud.com/tools/url-ip-lookup.php
-
-- category: General
-  order: 300
-  suborder: 400
-  title: Uncoder
-  description: Convert between multiple languages
-  url: https://uncoder.io/
+  title: CyberBattleSim
+  description: Microsoft CyberBattleSim
+  url: https://www.microsoft.com/security/blog/2021/04/08/gamifying-machine-learning-for-stronger-security-and-ai-models/
 
 - category: Tech / Blog
   order: 600
@@ -290,6 +276,20 @@
   title: OSCP Prep 8
   description: OSCP Notes
   url: https://0xss0rz.gitbook.io/0xss0rz/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 28
+  title: OSCP Prep 9
+  description: OSCP Notes
+  url: https://h0mbre.github.io/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 29
+  title: OSCP Prep 10
+  description: TJNull OSCP Prep
+  url: https://www.netsecfocus.com/oscp/2019/03/29/The_Journey_to_Try_Harder-_TJNulls_Preparation_Guide_for_PWK_OSCP.html
 
 - category: Tech / Blog
   order: 600
@@ -395,6 +395,20 @@
   title: 0xPat Blog
   description: 0xPat Blog
   url: https://0xpat.github.io/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 351
+  title: 0xdf Blog
+  description: 0xdf Blog
+  url: https://0xdf.gitlab.io/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 352
+  title: Snowscan Blog
+  description: Snowscan Blog
+  url: https://snowscan.io/#
 
 - category: Tech / Blog
   order: 600
@@ -623,9 +637,16 @@
 - category: Tools
   order: 1200
   suborder: 60
-  title: OWASP Cheat Sheets
-  description: OWASP Cheat Sheets
+  title: OWASP Cheat Sheet 1
+  description: OWASP Cheat Sheet
   url: https://cheatsheetseries.owasp.org/
+
+- category: Tools
+  order: 1200
+  suborder: 61
+  title: OWASP Cheat Sheet 2
+  description: OWASP Cheat Sheet
+  url: https://casvancooten.com/posts/2020/05/oscp-cheat-sheet-and-command-reference/
 
 - category: Tools
   order: 1200
@@ -741,6 +762,13 @@
 
 - category: Tools
   order: 1200
+  suborder: 335
+  title: Burp
+  description: BurpSuite reference
+  url: https://github.com/Ignitetechnologies/BurpSuite-For-Pentester
+
+- category: Tools
+  order: 1200
   suborder: 400
   title: Tools 1
   description: Wrapper scripts and tools
@@ -818,17 +846,38 @@
 
 - category: Tools
   order: 1200
-  suborder: 800
+  suborder: 720
+  title: dnsleaktest
+  description: Check for dns leak
+  url: https://www.dnsleaktest.com
+
+- category: Tools
+  order: 1200
+  suborder: 900
   title: Steno 1
   description: Fotoforensics
   url: https://www.fotoforensics.com/
 
 - category: Tools
   order: 1200
-  suborder: 810
+  suborder: 910
   title: Steno 2
   description: Forensically
   url: https://29a.ch/photo-forensics/
+
+- category: Tools
+  order: 1200
+  suborder: 1200
+  title: IP Lookup
+  description: URL IP Lookup
+  url: https://www.brightcloud.com/tools/url-ip-lookup.php
+
+- category: Tools
+  order: 1200
+  suborder: 1300
+  title: Uncoder
+  description: Convert between multiple languages
+  url: https://uncoder.io/
 
 - category: Protocols
   order: 1300
@@ -1116,6 +1165,13 @@
   title: Reverse Shell
   description: Reverse Shell Cheat Sheet
   url: http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+- category: Shell
+  order: 6000
+  suborder: 210
+  title: Reverse Shell
+  description: Reverse Shell Generator
+  url: https://www.revshells.com/
 
 - category: Shell
   order: 6000

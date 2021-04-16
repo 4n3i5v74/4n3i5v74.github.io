@@ -8,6 +8,11 @@ pin: true
 ---
 
 
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## Introduction
 
 If you ask security professionals, on what is the best platform to be used for hacking, they would suggest to build own OS and add the tools manually.

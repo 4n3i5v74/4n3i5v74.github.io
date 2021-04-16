@@ -8,7 +8,14 @@ pin: false
 ---
 
 
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [Web Fundamentals](https://tryhackme.com/room/webfundamentals){:target="_blank"}
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 5 - CTF

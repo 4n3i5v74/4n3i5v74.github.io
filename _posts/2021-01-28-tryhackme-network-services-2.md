@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, network, protocols]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [Network Services](https://tryhackme.com/room/networkservices2){:target="_blank"}
 
 This room contains info and methods to recon and enumerate `SMB`, `Telnet` and `FTP`
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## NFS

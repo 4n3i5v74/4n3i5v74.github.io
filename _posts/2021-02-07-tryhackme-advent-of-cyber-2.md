@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, network, protocols, web, database, binary, prive
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [Advent of Cyber 2](https://tryhackme.com/room/adventofcyber2){:target="_blank"}
 
 This room contains info and methods to recon and enumerate network captures, protocols, web servers, databases, binaries and SUID, privilege escalations, osint, cloud and encryption.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 6 - Day 1 - Web Exploitation - A Christmas Crisis

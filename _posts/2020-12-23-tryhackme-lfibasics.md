@@ -8,10 +8,18 @@ pin: false
 ---
 
 
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [LFI Basics](https://tryhackme.com/room/lfibasics){:target="_blank"}
 
 The tasks mentioned in this room can be done either via GUI (Browser + Burpsuite), or via CMD alone.
 I prefer command line and have included following solution/hints to be done in command line.
+
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 1 - Local File Inclusion

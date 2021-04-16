@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, web]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [Vulnversity](https://tryhackme.com/room/vulnversity){:target="_blank"}
 
 This room is about performing recon and web attacks.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 2 - Reconnaisance

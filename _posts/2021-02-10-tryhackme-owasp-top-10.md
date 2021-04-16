@@ -7,9 +7,17 @@ tags: [tryhackme, writeup, ctf, owasp]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [OWASP Top 10](https://tryhackme.com/room/owasptop10){:target="_blank"}
 
 This room contains info and exploits of Top 10 OWASP most critical vulnerabilities.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
 ## Task 3 - [Severity 1] Injection
@@ -156,7 +164,7 @@ XML (eXtensible Markup Language) is a markup language that defines set of rules 
 
 ## Task 14 - [Severity 4] XML External Entity - DTD
 
-DTD defines the structure and the legal elements and attributes of an XML document.
+DTD (Document Type Definition) defines the structure and the legal elements and attributes of an XML document.
 
 Example DTD file `note.dtd`.
 {% raw %}<!DOCTYPE note [ <!ELEMENT note (to,from,heading,body)> <!ELEMENT to (#PCDATA)> <!ELEMENT from (#PCDATA)> <!ELEMENT heading (#PCDATA)> <!ELEMENT body (#PCDATA)> ]>{% endraw %}

@@ -7,9 +7,19 @@ tags: [tryhackme, writeup, ctf, linux, shell]
 pin: false
 ---
 
+
+<div class="flex-container">
+  <script src="https://tryhackme.com/badge/34685"></script>
+</div>
+
+
 ## [What the Shell?](https://tryhackme.com/room/introtoshells){:target="_blank"}
 
 This room contains info about linux shells and methods to use them.
+
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
+
+An online reverse shell generator can be found at this [link](https://www.revshells.com/){:target="_blank"}
 
 
 ## Task 2 - Tools
