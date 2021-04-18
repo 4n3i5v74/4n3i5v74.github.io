@@ -659,6 +659,13 @@
 - category: Privilege Escalation
   order: 900
   suborder: 10
+  title: Common Linux PrivEsc
+  description: Common Linux Privilege Escalation
+  url: https://tryhackme.com/room/commonlinuxprivesc
+
+- category: Privilege Escalation
+  order: 900
+  suborder: 10
   title: Linux Privilege Escalation
   description: Linux Privilege Escalation
   url: https://tryhackme.com/room/linuxprivesc
