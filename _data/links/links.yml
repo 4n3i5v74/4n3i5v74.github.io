@@ -566,6 +566,13 @@
 
 - category: Linux
   order: 1000
+  suborder: 11
+  title: LOLBAS
+  description: Windows binaries, scripts and libraries
+  url: https://lolbas-project.github.io/#
+
+- category: Linux
+  order: 1000
   suborder: 50
   title: Linux Security
   description: Clearing tracks on linux

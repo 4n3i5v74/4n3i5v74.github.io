@@ -69,6 +69,7 @@ pin: true
 
 The following commands are used in `meterpreter` shell across a `windows` target.
 
+- `sessions -u 1` - upgrade session 1 to meterpreter shell
 - `ps` - list running processes
 - `migrate <pid>` - migrate from exploited process to another running process
 - `getuid` - get current username

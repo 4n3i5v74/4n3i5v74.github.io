@@ -376,6 +376,13 @@
   description: DNS Manipulation
   url: https://tryhackme.com/room/dnsmanipulation
 
+- category: Tools
+  order: 300
+  suborder: 450
+  title: OSquery
+  description: OSquery
+  url: https://tryhackme.com/room/osqueryf8
+
 - category: Hard Intro
   order: 400
   suborder: 5

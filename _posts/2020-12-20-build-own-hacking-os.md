@@ -87,6 +87,7 @@ Add the following lines in `/etc/bash.bashrc` file for nice looking prompt, bett
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export HISTCONTROL=ignoredups
+export HISTIGNORE="&:ls:[bf]g:exit:history"
 shopt -s histappend
 
 export PS1="\[\033[01;34m\]\t \[\033[01;32m\]\u@\h \[\033[01;91m\]\w \[\033[01;32m\]\! $ \[\033[0m\]"
@@ -289,7 +290,11 @@ Check the status of database connection from `msfconsole` using `db_status`.
 
 ### Install Gobuster
 
+#### Installing using GO
 {% capture code %}{% raw %}cd ~ ; go get -u github.com/OJ/gobuster ; cp go/bin/gobuster /usr/bin{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+#### Installing using github source
+{% capture code %}{% raw %}wget https://github.com/OJ/gobuster/releases/download/v3.1.0/gobuster-linux-amd64.7z ; 7z x gobuster-linux-amd64.7z ; cd gobuster-linux-amd64/ ; chmod +x gobuster ; mv gobuster /usr/bin/ ; cd -{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
 ### Install dirsearch
