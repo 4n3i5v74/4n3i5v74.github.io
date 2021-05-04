@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - OWASP Top 10
 author: 4n3i5v74
-date: 2021-02-10 00:00:00 +0530
+date: 2021-02-11 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, owasp]
 pin: false

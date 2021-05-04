@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - Active Directory Basics
 author: 4n3i5v74
-date: 2021-03-01 00:00:00 +0530
+date: 2021-03-21 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, AD]
 pin: false

@@ -179,6 +179,13 @@
   description: Web App docker
   url: https://github.com/MoisesTapia/TWAPT
 
+- category: Learning / Lab
+  order: 100
+  suborder: 500
+  title: ASM Tutor
+  description: Assembly Language Tutorial
+  url: https://asmtutor.com/
+
 - category: General
   order: 300
   suborder: 1
@@ -871,6 +878,13 @@
   title: Steno 2
   description: Forensically
   url: https://29a.ch/photo-forensics/
+
+- category: Tools
+  order: 1200
+  suborder: 1000
+  title: Radare 2
+  description: Radare 2
+  url: https://www.megabeets.net/a-journey-into-radare-2-part-1/
 
 - category: Tools
   order: 1200

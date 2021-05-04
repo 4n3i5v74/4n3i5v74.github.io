@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - John The Ripper
 author: 4n3i5v74
-date: 2021-02-23 00:00:00 +0530
+date: 2021-01-04 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, crypto, john]
 pin: false
@@ -17,7 +17,7 @@ pin: false
 
 This room contains info about hashing and methods to crack them using `John The Ripper`.
 
-For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
+For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}. Refer the [link](https://4n3i5v74.github.io/posts/cheatsheet-john-the-ripper/){:target="_blank"} for more information on `john`.
 
 
 ## Task 4 - Cracking Basic Hashes

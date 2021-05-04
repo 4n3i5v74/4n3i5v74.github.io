@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - Network Services 2
 author: 4n3i5v74
-date: 2021-01-28 00:00:00 +0530
+date: 2020-12-13 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, network, protocols]
 pin: false

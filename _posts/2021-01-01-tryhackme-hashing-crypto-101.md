@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - Hashing - Crypto 101
 author: 4n3i5v74
-date: 2021-02-20 00:00:00 +0530
+date: 2021-01-01 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, crypto, hash]
 pin: false

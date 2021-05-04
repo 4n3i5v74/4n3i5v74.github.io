@@ -280,6 +280,13 @@
 
 - category: Tools
   order: 300
+  suborder: 110
+  title: TShark
+  description: TShark
+  url: https://tryhackme.com/room/tshark
+
+- category: Tools
+  order: 300
   suborder: 130
   title: John
   description: John the Ripper
@@ -361,6 +368,13 @@
   title: Splunk
   description: Splunk
   url: https://tryhackme.com/room/bpsplunk
+
+- category: Tools
+  order: 300
+  suborder: 371
+  title: Splunk
+  description: Splunk
+  url: https://tryhackme.com/room/splunk101
 
 - category: Tools
   order: 300
@@ -844,6 +858,20 @@
   title: Pickle Rick
   description: Pickle Rick
   url: https://tryhackme.com/room/picklerick
+
+- category: CTF
+  order: 1000
+  suborder: 350
+  title: Alfred
+  description: Alfred (Jenkins)
+  url: https://tryhackme.com/room/alfred
+
+- category: CTF
+  order: 1000
+  suborder: 360
+  title: HackPark
+  description: HackPark
+  url: https://tryhackme.com/room/hackpark
 
 - category: Windows
   order: 1100

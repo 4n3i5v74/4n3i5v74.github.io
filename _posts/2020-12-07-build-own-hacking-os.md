@@ -1,7 +1,7 @@
 ---
 title: Building own Hacking OS
 author: 4n3i5v74
-date: 2020-12-20 00:00:00 +0530
+date: 2020-12-07 00:00:00 +0530
 categories: [HackingOS, Debian, CyberSecurity]
 tags: [hackingos, debian, build, cybersecurity]
 pin: true

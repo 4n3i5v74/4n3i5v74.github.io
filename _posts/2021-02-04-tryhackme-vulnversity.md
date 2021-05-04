@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - Vulnversity
 author: 4n3i5v74
-date: 2021-01-17 00:00:00 +0530
+date: 2021-02-04 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, web]
 pin: false

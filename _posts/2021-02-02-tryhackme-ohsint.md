@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - OHSINT
 author: 4n3i5v74
-date: 2020-12-24 23:00:00 +0530
+date: 2021-02-02 23:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, osint]
 pin: false

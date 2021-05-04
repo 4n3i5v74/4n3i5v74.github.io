@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Cybersecurity with TryHackMe
 author: 4n3i5v74
-date: 2020-12-18 00:00:00 +0530
+date: 2020-12-05 00:00:00 +0530
 toc: true
 categories: [TryHackMe, CyberSecurity]
 tags: [tryhackme, ctf, cybersecurity, beginning]

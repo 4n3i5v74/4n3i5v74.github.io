@@ -1,7 +1,7 @@
 ---
 title: Writeup for TryHackMe room - What the Shell?
 author: 4n3i5v74
-date: 2021-03-16 00:00:00 +0530
+date: 2021-04-01 00:00:00 +0530
 categories: [CTF, TryHackMe]
 tags: [tryhackme, writeup, ctf, linux, shell]
 pin: false
