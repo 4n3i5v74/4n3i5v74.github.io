@@ -163,11 +163,11 @@ Major categories of NSE,
 More information and categories can be found in the [NSE Usage](https://nmap.org/book/nse-usage.html){:target="_blank"} and [NSE Documentation](https://nmap.org/nsedoc/){:target="_blank"}
 
 To search for available ftp scripts,
-{% capture code %}{% raw %}grep ftp /usr/share/nmap/scripts/script.db{% endcapture %} {% include code.html code=code lang="bash" %}
-{% capture code %}{% raw %}ls -l /usr/share/nmap/scripts/*ftp*{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}grep ftp /usr/share/nmap/scripts/script.db{% endraw %}{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}ls -l /usr/share/nmap/scripts/*ftp*{% endraw %}{% endcapture %} {% include code.html code=code lang="bash" %}
 
 To check dependencies for the script,
-{% capture code %}{% raw %}grep dependencies /usr/share/nmap/scripts/<script>{% endcapture %} {% include code.html code=code lang="bash" %}
+{% capture code %}{% raw %}grep dependencies /usr/share/nmap/scripts/<script>{% endraw %}{% endcapture %} {% include code.html code=code lang="bash" %}
 
 
 ## NMAP Examples
