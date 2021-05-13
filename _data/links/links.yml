@@ -349,15 +349,22 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 126
+  title: Eric Zimmerman
+  description: Tools
+  url: https://ericzimmerman.github.io/
+
+- category: Tech / Blog
+  order: 600
   suborder: 150
-  title: Websites 1
+  title: Hacking Websites 1
   description: Websites to hack legally
   url: https://www.makeuseof.com/tag/websites-legally-hack/
 
 - category: Tech / Blog
   order: 600
   suborder: 160
-  title: Websites 2
+  title: Hacking Websites 2
   description: Vulnerable Websites
   url: https://hackingpassion.com/vulnerable-websites-improve-hacking-skills/
 
@@ -609,6 +616,13 @@
 - category: Tools
   order: 1200
   suborder: 1
+  title: CyberScape
+  description: CyberSpace Tools
+  url: https://momentumcyber.com/docs/CYBERscape.pdf
+
+- category: Tools
+  order: 1200
+  suborder: 2
   title: Rawsec
   description: Rawsec Cybersecurity Inventory
   url: https://inventory.rawsec.ml/tools.html

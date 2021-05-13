@@ -105,70 +105,84 @@
 
 - category: Intro
   order: 100
-  suborder: 1
+  suborder: 190
   title: Web Fundamentals
   description: HTTP/S, API, Cookies
   url: https://tryhackme.com/room/webfundamentals
 
 - category: Intro
   order: 100
-  suborder: 120
+  suborder: 200
+  title: HTTP in detail
+  description: HTTP/S, API, Cookies
+  url: https://tryhackme.com/room/httpindetail
+
+- category: Intro
+  order: 100
+  suborder: 220
   title: Social Media
   description: Social Media Backdoor Basics
   url: https://tryhackme.com/room/gettingstarted
 
 - category: Intro
   order: 100
-  suborder: 130
+  suborder: 230
   title: LFI Basics
   description: Local File Inclusion Basics
   url: https://tryhackme.com/room/lfibasics
 
 - category: Intro
   order: 100
-  suborder: 140
+  suborder: 240
   title: Network Services
   description: Samba, Telnet, FTP
   url: https://tryhackme.com/room/networkservices
 
 - category: Intro
   order: 100
-  suborder: 150
+  suborder: 250
   title: Network Services 2
   description: NFS, SMTP, MySQL
   url: https://tryhackme.com/room/networkservices2
 
 - category: Intro
   order: 100
-  suborder: 160
+  suborder: 260
+  title: DNS in detail
+  description: DNS methods and information
+  url: https://tryhackme.com/room/dnsindetail
+
+- category: Intro
+  order: 100
+  suborder: 400
   title: Advent of Cybersecurity
   description: Intro to all CyberSecurity modules
   url: https://tryhackme.com/room/25daysofchristmas
 
 - category: Intro
   order: 100
-  suborder: 165
+  suborder: 405
   title: Advent of Cybersecurity 2
   description: Intro to all CyberSecurity modules
   url: https://tryhackme.com/room/adventofcyber2
 
 - category: Intro
   order: 100
-  suborder: 180
+  suborder: 420
   title: Cyber Scotland 2021
   description: Intro to all CyberSecurity modules
   url: https://tryhackme.com/room/cyberweek2021
 
 - category: Intro
   order: 100
-  suborder: 190
+  suborder: 440
   title: Hacker of the Hill
   description: Intro to all CyberSecurity modules
   url: https://tryhackme.com/room/hackerofthehill
 
 - category: Intro
   order: 100
-  suborder: 200
+  suborder: 460
   title: Wreath
   description: Intro to all CyberSecurity modules
   url: https://tryhackme.com/room/wreath
@@ -413,42 +427,49 @@
 
 - category: Hard Intro
   order: 400
-  suborder: 10
+  suborder: 20
+  title: Putting it all together
+  description: DNS, Web servers, Other components
+  url: https://tryhackme.com/room/puttingitalltogether
+
+- category: Hard Intro
+  order: 400
+  suborder: 40
   title: Malware Analysis
   description: Malware Analysis Introduction
   url: https://tryhackme.com/room/malmalintroductory
 
 - category: Hard Intro
   order: 400
-  suborder: 20
+  suborder: 50
   title: Malware History
   description: Malware History
   url: https://tryhackme.com/room/historyofmalware
 
 - category: Hard Intro
   order: 400
-  suborder: 40
+  suborder: 80
   title: Linux Backdoors
   description: Linux Backdoors
   url: https://tryhackme.com/room/linuxbackdoors
 
 - category: Hard Intro
   order: 400
-  suborder: 60
+  suborder: 100
   title: Post-Exploitation
   description: Post-Exploitation and Maintaining access
   url: https://tryhackme.com/room/postexploit
 
 - category: Hard Intro
   order: 400
-  suborder: 90
+  suborder: 120
   title: The Cod Caper
   description: Linux Infiltration and Exploitation
   url: https://tryhackme.com/room/thecodcaper
 
 - category: Hard Intro
   order: 400
-  suborder: 120
+  suborder: 140
   title: Intro to Shells
   description: Reverse Shell, Bind Shell, Web Shell
   url: https://tryhackme.com/room/introtoshells
