@@ -22,7 +22,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 4 - Enumeration
 
-Use these links as references.
+### References
 - [LinEnum Reference](https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/cheatsheet-gobuster/){:target="_blank"}
 - [Enum4linux Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-enum4linux){:target="_blank"}
@@ -121,7 +121,7 @@ root@polobox:~# {% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 7 - Escaping Vi Editor
 
-Use these links as references.
+### References
 - [Gtfobins Reference](https://gtfobins.github.io/){:target="_blank"}
 
 Login to the target using credentials `user8:password`.
@@ -226,7 +226,7 @@ To reset the `$PATH` variable, use the following command.
 
 ## Task 10 - Expanding Your Knowledge
 
-Use these links as references.
+### References
 - [Linux Privilege Escalation Reference 1](https://github.com/netbiosX/Checklists/blob/master/Linux-Privilege-Escalation.md){:target="_blank"}
 - [Linux Privilege Escalation Reference 2](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md){:target="_blank"}
 - [Linux Privilege Escalation Reference 3](https://sushant747.gitbooks.io/total-oscp-guide/privilege_escalation_-_linux.html){:target="_blank"}

@@ -25,13 +25,13 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ### Task 2 - Understanding SMB
 
-Use these links as references.
+### References
 - [SMB definition](https://searchnetworking.techtarget.com/definition/Server-Message-Block-Protocol){:target="_blank"}
 
 
 ### Task 3 - Enumerating SMB
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [Enum4Linux Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-enum4linux){:target="_blank"}
 
@@ -197,7 +197,7 @@ SMB port `445` is used to access SMB over internet.
 
 ### Task 4 - Exploiting SMB
 
-Use these links as references.
+### References
 - [SMBclient Reference](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html){:target="_blank"}
 - [SMBclient Reference](https://bigb0ss.medium.com/tip-smbclient-c5e1f40909d9){:target="_blank"}
 
@@ -233,7 +233,7 @@ cat smb.txt
 
 ### Task 6 - Enumerating Telnet
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
 
@@ -357,7 +357,7 @@ Capture the flag.
 
 ### Task 7 - Understanding FTP
 
-Use these links as references.
+### References
 - [FTP Reference](https://www.ietf.org/rfc/rfc959.txt){:target="_blank"}
 
 
@@ -366,7 +366,7 @@ An active FTP connection is where the client opens a port and listens, and serve
 
 ### Task 8 - Enumerating FTP
 
-Use these links as references.
+### References
 - [FTP Exploit](https://www.exploit-db.com/exploits/20745){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
@@ -457,7 +457,7 @@ ftp> !cat PUBLIC_NOTICE.txt{% endraw %}{% endcapture %} {% include code.html cod
 
 ### Task 10 - Exploiting FTP
 
-Use these links as references.
+### References
 - [Securing FTP](https://www.jscape.com/blog/bid/91906/Countering-Packet-Sniffers-Using-Encrypted-FTP){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [Install Hydra](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-hydra){:target="_blank"}
@@ -514,7 +514,7 @@ ftp> !cat ftp.txt{% endraw %}{% endcapture %} {% include code.html code=code%}
 
 ### Task 10 - Expanding knowledge
 
-Use these links as references for further study on Network services.
+### References
 - [Exploiting simple network services in ctfs](https://medium.com/@gregIT/exploiting-simple-network-services-in-ctfs-ec8735be5eef){:target="_blank"}
 - [Mitre - Exploitation of Remote Services](https://attack.mitre.org/techniques/T1210/){:target="_blank"}
 

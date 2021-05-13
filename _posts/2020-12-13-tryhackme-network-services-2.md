@@ -25,7 +25,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ### Task 2 - Understanding NFS
 
-Use these links as references.
+### References
 - [NFS reference](https://docs.oracle.com/cd/E19683-01/816-4882/6mb2ipq7l/index.html){:target="_blank"}
 - [NFS reference](https://www.datto.com/library/what-is-nfs-file-share){:target="_blank"}
 - [NFS reference](http://nfs.sourceforge.net/){:target="_blank"}
@@ -34,7 +34,7 @@ Use these links as references.
 
 ### Task 3 - Enumerating NFS
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
 
@@ -83,7 +83,7 @@ awk '{print $NF}' /tmp/mount/cappucino/.ssh/authorized_keys{% endraw %}{% endcap
 
 ### Task 4 - Exploiting NFS
 
-Use these links as references.
+### References
 - [Bash binary](https://github.com/polo-sec/writing/blob/master/Security%20Challenge%20Walkthroughs/Networks%202/bash){:target="_blank"}
 
 
@@ -106,14 +106,14 @@ cat /root/root.txt
 
 ### Task 5 - Understanding SMTP
 
-Use these links as references.
+### References
 - [SMTP Reference](https://computer.howstuffworks.com/e-mail-messaging/email3.htm){:target="_blank"}
 - [SMTP Reference](https://www.afternerd.com/blog/smtp/){:target="_blank"}
 
 
 ### Task 6 - Enumerating SMTP
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
 
@@ -214,7 +214,7 @@ Use `msfconsole` to perform auxiliary scans and get information on `smtp`.
 
 ### Task 7 - Exploiting SMTP
 
-Use these links as references.
+### References
 - [Install hydra](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-hydra){:target="_blank"}
 
 
@@ -250,14 +250,14 @@ cat smtp.txt
 
 ### Task 8 - Understanding MySQL
 
-Use these links as references.
+### References
 - [MySQL Reference](https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_SQL_EXECUTION.html){:target="_blank"}
 - [MySQL Reference](https://www.w3schools.com/php/php_mysql_intro.asp){:target="_blank"}
 
 
 ### Task 9 - Enumerating MySQL
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [NMAP Script for MySQL](https://nmap.org/nsedoc/scripts/mysql-enum.html){:target="_blank"}
 - [MySQL Exploit](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}

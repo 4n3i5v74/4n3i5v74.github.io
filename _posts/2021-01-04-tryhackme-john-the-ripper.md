@@ -244,7 +244,7 @@ Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 8 - Custom Rules
 
-Use these links as references.
+### References
 - [John Custom Rules](https://www.openwall.com/john/doc/RULES.shtml){:target="_blank"}
 
 The following are the rules definitions to be used.

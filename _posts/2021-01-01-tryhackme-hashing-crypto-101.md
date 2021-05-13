@@ -38,7 +38,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 2 - What is hash function?
 
-Use these links as references.
+### References
 - [MD5 collission](https://www.mscs.dal.ca/~selinger/md5collision/){:target="_blank"}
 - [SHA1 collission](https://shattered.io/){:target="_blank"}
 
@@ -77,7 +77,7 @@ Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 4 - Recognising password hashes
 
-Use these links as references.
+### References
 - [Python HashID](https://pypi.org/project/hashID/){:target="_blank"}
 - [Hashcat hash examples](https://hashcat.net/wiki/doku.php?id=example_hashes){:target="_blank"}
 - [Hashing Passwords](https://blog.michael.franzl.name/2016/09/09/hashing-passwords-sha512-stronger-than-bcrypt-rounds/){:target="_blank"}
@@ -85,7 +85,7 @@ Use these links as references.
 
 ## Task 5 - Password Cracking
 
-Use these links as references.
+### References
 - [Hashnet hash examples](https://hashcat.net/wiki/doku.php?id=example_hashes){:target="_blank"}
 
 Use `firefox` to check the hash identifier and mode from [Hashcat](https://hashcat.net/wiki/doku.php?id=example_hashes){:target="_blank"}.

@@ -20,7 +20,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 5 - CTF
 
-Use these links as references.
+### References
 - [Curl Reference](https://catonmat.net/cookbooks/curl){:target="_blank"}
 - [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status){:target="_blank"}
 

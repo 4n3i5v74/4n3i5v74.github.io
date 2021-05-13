@@ -38,7 +38,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task3 - Why is Encryption important?
 
-Use these links as references.
+### References
 - [PCI DSS Standard](https://www.pcisecuritystandards.org/documents/PCI_DSS_for_Large_Organizations_v1.pdf){:target="_blank"}
 
 
@@ -51,13 +51,13 @@ Crypto algorithms use `Modulo operator - %` for calculations. The non-zero outpu
 
 * Task 5 - Types of Encryption
 
-Use these links as references.
+### References
 - [DES Standard](https://en.wikipedia.org/wiki/Data_Encryption_Standard){:target="_blank"}
 
 
 * Task 6 - Rivest Shamir Adleman
 
-Use these links as references.
+### References
 - [RSA CTF Tool](https://github.com/Ganapati/RsaCtfTool){:target="_blank"}
 - [RSA Tool](https://github.com/ius/rsatool){:target="_blank"}
 - [RSA Encryption](https://muirlandoracle.co.uk/2020/01/29/rsa-encryption/){:target="_blank"}
@@ -151,7 +151,7 @@ print( f'Decrypted message for "Hello" is "{dmsg}"\n' ){% endraw %}{% endcapture
 
 ## Task 7 - Establishing Keys Using Asymmetric Cryptography
 
-Use these links as references.
+### References
 - [How HTTPS works](https://robertheaton.com/2014/03/27/how-does-https-actually-work/){:target="_blank"}
 
 
@@ -185,13 +185,13 @@ Session completed{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 10 - Explaining Diffie Hellman Key Exchange
 
-Use these links as references.
+### References
 - [Diffie Hellman Algorithm working](https://www.youtube.com/watch?v=NmM9HA2MQGI){:target="_blank"}
 
 
 ## Task 11 - PGP, GPG and AES
 
-Use these links as references.
+### References
 - [GPG Wiki](https://gnupg.org/){:target="_blank"}
 - [GPG Usage](https://www.gnupg.org/gph/de/manual/r1023.html){:target="_blank"}
 - [GPG Working](https://www.youtube.com/watch?v=O4xNJsjtN6E){:target="_blank"}
@@ -227,6 +227,6 @@ Read the decoded file `message` to get the `flag`.
 
 * Task 12 - The Future - Quantum Computers and Encryption
 
-Use these links as references.
+### References
 - [Quantum Computing Reference](https://doi.org/10.6028/NIST.IR.8105){:target="_blank"}
 

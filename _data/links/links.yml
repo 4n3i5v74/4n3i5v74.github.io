@@ -55,6 +55,13 @@
 
 - category: Learning / Lab
   order: 100
+  suborder: 101
+  title: HackTheBox Writeups
+  description: HackTheBox Writeups
+  url: https://htb.hackproof.tech/
+
+- category: Learning / Lab
+  order: 100
   suborder: 110
   title: HackTheBox Academy
   description: HackTheBox Academy

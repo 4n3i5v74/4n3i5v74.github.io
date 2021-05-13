@@ -25,7 +25,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 This task is about using `nmap` to get web service info and using cookie manipulation to bypass login.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=BJF84oWHmok&ab_channel=JohnHammond){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [Cyberchef](https://gchq.github.io/CyberChef/){:target="_blank"}
@@ -88,7 +88,7 @@ Use `firefox` to login and send new manipulated cookie.
 This task is about using `gobuster` to brute-force upload directory and upload `php-reverse-shell` to gain shell access from web site.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=F_nTIX-q32k&){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/cheatsheet-gobuster/){:target="_blank"}
@@ -141,7 +141,7 @@ cat /var/www/flag.txt
 This task is about using `burpsuite` to brute-force payloads using commonly used usernames and passwords.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=cQq6xPCZFjg&){:target="_blank"}
 
 
@@ -161,7 +161,7 @@ Use `burpsuite` to manipulate login credentials.
 This task is about using `gobuster` to find hidden directory containing backups and using `wfuzz` to fuzz out page containing valid backup files.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=7GAFQdYCk5s){:target="_blank"}
 - [TryHackMe supporting wordlist](https://assets.tryhackme.com/additional/cmn-aoc2020/day-4/wordlist){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster){:target="_blank"}
@@ -273,7 +273,7 @@ The date `20201125` contains characters, and we can query using the date in `fir
 This page is about using `sql injection` payloads to bypass login and use `burpsuite` to save web page requests and use `sqlmap` to dump database contents using the web page requests.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=Kitx7cSNsuE){:target="_blank"}
 - [TryHackMe supporting room](https://tryhackme.com/room/sqlibasics){:target="_blank"}
 - [SQL Commands](https://www.codecademy.com/articles/sql-commands){:target="_blank"}
@@ -395,7 +395,7 @@ Table: users
 This task is about using `owasp zap` to perform automated scan to get valid queries for web site.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=cNYhpbUtkJw){:target="_blank"}
 - [OWASP Input validation Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Input_Validation_Cheat_Sheet.md){:target="_blank"}
 - [XSS Injection Reference](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection){:target="_blank"}
@@ -419,7 +419,7 @@ http://<ip>:5000/?q=</p><script>alert(1);</script><p>{% endraw %}{% endcapture %
 This task is about using `wireshark` to understand filter methods and get encrypted/unencrypted data from various protocols.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=yZTPMoYY2CA){:target="_blank"}
 
 
@@ -445,7 +445,7 @@ Unzip the file `unzip christmas.zip` to get the item mcskidy wished for.
 This task is about using `nmap` to discover ports and information about their services and using `nse` scripts.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=StmtQKoFiWg){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [Pentest standard](http://www.pentest-standard.org/index.php/Main_Page){:target="_blank"}
@@ -509,7 +509,7 @@ Nmap done: 1 IP address (1 host up) scanned in 81.87 seconds{% endraw %}{% endca
 This task is about using `ftp` to and uploading a reverse shell payload to gain privilege shell.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=i-jqFYTPEV4){:target="_blank"}
 - [Reverse Shell Cheat sheet](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#bash-tcp){:target="_blank"}
 
@@ -625,7 +625,7 @@ cat flag.txt
 This task is about using `enum4linux` to scan `samba` users and shares and using `smbclient` to exploit the share.
 
 
-Use these links as references.
+### References
 - [TryHackMe supporting material](https://www.youtube.com/watch?v=HscyCbModk4){:target="_blank"}
 - [Enum4Linux Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-enum4linux){:target="_blank"}
 

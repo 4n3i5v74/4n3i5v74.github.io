@@ -18,6 +18,15 @@ pin: false
 For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
+## Tools Used
+
+- Exiftool
+- [Wigle.net](https://wigle.net/){:target="_blank"}
+
+
+## Task 1 - OhsINT
+
+
 Download the image and read the embedded information in it.
 {% capture code %}{% raw %}exiftool /data/WindowsXP.jpg{% endraw %}{% endcapture %} {% include code.html code=code %}
 We see GPS coordinates, and user information from copyright.

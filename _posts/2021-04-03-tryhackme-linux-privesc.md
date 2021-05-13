@@ -22,13 +22,13 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 1 - Deploy the Vulnerable Debian VM
 
-Use these links as references.
+### References
 - [Linux Privilege Escalation Workshop](https://github.com/sagishahar/lpeworkshop){:target="_blank"}
 
 
 ## Task 2 - Service Exploits
 
-Use these links as references.
+### References
 - [MySQL UDF exploit](https://www.exploit-db.com/exploits/1518){:target="_blank"}
 - [MySQL UDF reference](https://github.com/mysqludf){:target="_blank"}
 
@@ -144,7 +144,7 @@ Switch to `root` user using password `testpwd` to validate.
 
 ## Task 6 - Sudo - Shell Escape Sequences
 
-Use these links as references.
+### References
 - [Gtfobins reference](https://gtfobins.github.io/){:target="_blank"}
 
 Check the sudo capabilities using `sudo -l`.
@@ -305,7 +305,7 @@ Make the file executable using `chmod +x /home/user/overwrite.sh` and execute it
 
 ## Task 10 - Cron Jobs - Wildcards
 
-Use these links as references.
+### References
 - [Gtfobins tar](https://gtfobins.github.io/gtfobins/tar/){:target="_blank"}
 
 From the previous `crontab` output, the file `/usr/local/bin/compress.sh` runs as user `root`, and can be exploited. Check the contents of the file.
@@ -338,7 +338,7 @@ bash: no job control in this shell{% endraw %}{% endcapture %} {% include code.h
 
 ## Task 11 - SUID / SGID Executables - Known Exploits
 
-Use these links as references.
+### References
 - [Exploitdb reference](https://www.exploit-db.com/){:target="_blank"}
 
 Find the files which are set with `suid` and `sgid` using `find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`. The output will be similar to
@@ -643,7 +643,7 @@ In the remote machine, execute the binary `/tmp/shell.elf` to spawn a `privilge 
 
 ## Task 20 - Kernel Exploits
 
-Use these links as references.
+### References
 - [Linux Exploit Suggester](https://github.com/InteliSecureLabs/Linux_Exploit_Suggester){:target="_blank"}
 
 
@@ -853,7 +853,7 @@ ptrace 0{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 21 - Privilege Escalation Scripts
 
-Use these links as references.
+### References
 - [LinEnum reference](https://github.com/rebootuser/LinEnum){:target="_blank"}
 - [Privilege Escalation Suite](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite){:target="_blank"}
 - [Linux Smart Enumeration](https://github.com/diego-treitos/linux-smart-enumeration){:target="_blank"}

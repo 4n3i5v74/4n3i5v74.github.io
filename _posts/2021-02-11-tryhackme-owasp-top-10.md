@@ -29,7 +29,7 @@ Injection is when user controlled input is interpreted as actual commands or par
 
 ## Task 4 - [Severity 1] OS Command injection
 
-Use these links as references.
+### References
 - [Reverse Shell Cheat sheet](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md){:target="_blank"}
 
 Command Injection occurs when server-side code (like PHP) in a web application makes a system call on the hosting machine.  It is a web vulnerability that allows an attacker to take advantage of that made system call to execute operating system commands on the server.
@@ -44,7 +44,7 @@ A simple `;nc -e /bin/bash` is enough to start a shell using command injection.
 This task shows how php shells can be used to inject commands using server-side system calls.
 
 
-Use these links as references.
+### References
 - [PHP Passthru](https://www.php.net/manual/en/function.passthru.php){:target="_blank"}
 
 
@@ -87,7 +87,7 @@ Re-registration of an existing user.
 This task uses `sqlite3` to dump database information and use `https://crackstation.net` online tool to crack `MD5` hash.
 
 
-Use these links as references.
+### References
 - [Crackstation](https://crackstation.net/){:target="_blank"}
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
@@ -138,7 +138,7 @@ Use `firefox` and the online tool `https://crackstation.net` to crack the `MD5` 
 
 ## Task 12 - [Severity 4] XML External Entity
 
-Use these links as references.
+### References
 - [Convert XML to HTML encoded data](https://www.convertstring.com/EncodeDecode/HtmlEncode){:target="_blank"}
 
 
@@ -236,7 +236,7 @@ Copy the contents of payload output to new file. Change the permission of the fi
 
 ## Task 17 - [Severity 5] Broken Access Control
 
-Use these links as references.
+### References
 - [OWASP Access Control Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A5-Broken_Access_Control){:target="_blank"}
 
 Broken Access Control is a scenario when regular user can access protected pages.
@@ -258,7 +258,7 @@ Use `firefox` to load the url `http://<ip>` using username `noot` and password `
 
 ## Task 19 - [Severity 6] Security Misconfiguration
 
-Use these links as references.
+### References
 - [OWASP Secure Headers](https://owasp.org/www-project-secure-headers/){:target="_blank"}
 - [OWASP Security Misconfiguration Severity](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration){:target="_blank"}
 
@@ -315,7 +315,7 @@ From the `inspect page` section and `storage` tab, rename the `usertype` value f
 
 ## Task 26 - [Severity 8] Insecure Deserislization - Code Execution
 
-Use these links as references.
+### References
 - [RCE - Python Pickle](https://gist.github.com/CMNatic/af5c19a8d77b4f5d8171340b9c560fc3){:target="_blank"}
 
 

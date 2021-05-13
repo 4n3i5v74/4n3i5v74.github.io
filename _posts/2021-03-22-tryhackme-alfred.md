@@ -20,9 +20,24 @@ This room contains detailed info about jenkins exploitation and windows privileg
 For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}.
 
 
+## Tools Used
+
+### Enumeration
+
+- NMAP
+
+### Exploitation
+
+- Netcat
+- [Invoke-PowerShellTcp](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1){:target="_blank"}
+- Msfvenom
+- Msfconsole
+
+
 ## Task 1 - Initial Access
 
-Use these links as references.
+### References
+- [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 - [invoke-powershelltcp reference](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1){:target="_blank"}
 
 
@@ -150,7 +165,7 @@ meterpreter >{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 ## Task 3 - Privilege Escalation
 
-Use these links as references.
+### References
 - [Windows access token reference](https://docs.microsoft.com/en-us/windows/win32/secauthz/access-tokens){:target="_blank"}
 - [Abusing Token Privileges For LPE](https://www.exploit-db.com/papers/42556){:target="_blank"}
 

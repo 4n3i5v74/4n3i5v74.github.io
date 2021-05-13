@@ -22,7 +22,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 8 - Hands-On Lab
 
-Use these links as references.
+### References
 - [PowerView Source](https://github.com/PowerShellMafia/PowerSploit/){:target="_blank"}
 - [SharpHound Source](https://github.com/BloodHoundAD/BloodHound){:target="_blank"}
 - [PowerView Usage](https://github.com/PowerShellMafia/PowerSploit/){:target="_blank"}

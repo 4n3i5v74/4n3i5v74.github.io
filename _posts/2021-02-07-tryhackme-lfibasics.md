@@ -24,7 +24,7 @@ For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/g
 
 ## Task 1 - Local File Inclusion
 
-Use these links as references.
+### References
 - [What is LFI](https://dzone.com/articles/what-is-local-file-inclusion-lfi){:target="_blank"}
 
 
@@ -114,7 +114,7 @@ lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endraw %}{% endcapture %} {% includ
 
 ## Task 2 - LFI using Directory Traversal
 
-Use these links as references.
+### References
 - [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal){:target="_blank"}
 
 
@@ -182,7 +182,7 @@ lfi:x:1000:1000:THM,,,:/home/lfi:/bin/bash{% endraw %}{% endcapture %} {% includ
 
 ## Task 3 - Remote Code Execution and Log Poisoning using LFI
 
-Use these links as references.
+### References
 - [Log Injection](https://owasp.org/www-community/attacks/Log_Injection){:target="_blank"}
 - [File Inclusion Payload](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion){:target="_blank"}
 
@@ -203,7 +203,7 @@ Local file to be used: /var/log/apache2/access.log<br><br>
 
 ### Log poison using BurpSuite
 
-Use these links as references.
+### References
 - [Burpsuite Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-burpsuite){:target="_blank"}
 
 

@@ -20,9 +20,22 @@ This room is about performing recon and web attacks.
 For complete tryhackme path, refer the [link](https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/){:target="_blank"}
 
 
+## Tools Used
+
+### Enumeration
+
+- NMAP
+- Gobuster
+- Burpsuite
+
+### Exploitation
+
+- [PHP Reverse Shell Payload](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php){:target="_blank"}
+
+
 ## Task 2 - Reconnaisance
 
-Use these links as references.
+### References
 - [NMAP Reference](https://4n3i5v74.github.io/posts/cheatsheet-nmap/){:target="_blank"}
 
 
@@ -32,7 +45,7 @@ Using `nmap` as below, all info can be gathered for the task.
 
 ## Task 3 - Locating directories using Gobuster
 
-Use these links as references.
+### References
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster){:target="_blank"}
 - [Gobuster Reference](https://4n3i5v74.github.io/posts/cheatsheet-gobuster/){:target="_blank"}
 - [Wordlist Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#wordlists---rockyou){:target="_blank"}
@@ -47,7 +60,7 @@ Use either `curl` or browser to load the pages from `gobuster` result and see if
 
 ## Task 4 - Compromise the webserver
 
-Use these links as references.
+### References
 - [Burpsuite Reference](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-burpsuite){:target="_blank"}
 
 

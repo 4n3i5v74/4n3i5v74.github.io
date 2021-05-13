@@ -24,7 +24,7 @@ An online reverse shell generator can be found at this [link](https://www.revshe
 
 ## Task 2 - Tools
 
-Use these links as references.
+### References
 - [Payload All the Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md){:target="_blank"}
 - [Reverse shell CheatSheet](https://web.archive.org/web/20200901140719/http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet){:target="_blank"}
 - [SecLists Wordlists](https://github.com/danielmiessler/SecLists){:target="_blank"}
@@ -48,7 +48,7 @@ Bind shells are when the code executed on the target is used to start a listener
 
 ## Task 5 - Shell Stabilisation
 
-Use these links as references.
+### References
 - [SOCAT linux binary without dependencies](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true){:target="_blank"}
 - [SOCAT windows binary without dependencies](https://sourceforge.net/projects/unix-utils/files/socat/){:target="_blank"}
 
@@ -121,7 +121,7 @@ For windows targets, use command like below.
 
 ## Task 6 - Socat
 
-Use these links as references.
+### References
 - [SOCAT linux binary without dependencies](https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true){:target="_blank"}
 - [SOCAT windows binary without dependencies](https://sourceforge.net/projects/unix-utils/files/socat/){:target="_blank"}
 
@@ -188,7 +188,7 @@ An example syntax for connecting to 10.10.10.5 back to listener is as below.
 
 ## Task 8 - Common Shell Payloads
 
-Use these links as references.
+### References
 - [Named pipes](https://www.linuxjournal.com/article/2156){:target="_blank"}
 - [PayloadAllTheThings Repo](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md){:target="_blank"}
 
@@ -287,7 +287,7 @@ Once listener receives the connection, a session will be opened. Use `sessions` 
 
 ## Task 11 - WebShells
 
-Use these links as references.
+### References
 - [PHP reverse shell](https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php){:target="_blank"}
 
 
@@ -302,7 +302,7 @@ An example for powershell webshell is as below.
 
 ## Task 12 - Next Steps
 
-Use these links as references.
+### References
 - [Dirty COW (CVE-2016-5195) Privilege Escalation](https://dirtycow.ninja/){:target="_blank"}
 
 
