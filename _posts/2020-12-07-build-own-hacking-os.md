@@ -288,6 +288,11 @@ There will also be a manual database connect command. This will not be necessary
 Check the status of database connection from `msfconsole` using `db_status`.
 
 
+### Install Searchsploit
+
+cd ~ ; git clone https://github.com/offensive-security/exploitdb.git /data/tools/exploitdb ; ln -s /data/tools/exploitdb/searchsploit /usr/local/bin/searchsploit
+
+
 ### Install Gobuster
 
 #### Installing using GO
