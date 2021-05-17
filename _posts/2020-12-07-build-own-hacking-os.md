@@ -364,6 +364,11 @@ To install in windows, download the binary from [here](https://github.com/openwa
 {% capture code %}{% raw %}git clone https://github.com/SecureAuthCorp/impacket.git /data/tools/impacket ; pip3 install -r /data/tools/impacket/requirements.txt{% endraw %}{% endcapture %} {% include code.html code=code %}
 
 
+### Install radare2
+
+{% capture code %}{% raw %}git clone https://github.com/radareorg/radare2.git /data/tools/radare2 ; cd /data/tools/radare2 ; sys/install.sh ; cd ~{% endraw %}{% endcapture %} {% include code.html code=code %}
+
+
 ### Install enum4linux
 
 {% capture code %}{% raw %}git clone https://github.com/portcullislabs/enum4linux /data/tools/enum4linux{% endraw %}{% endcapture %} {% include code.html code=code %}

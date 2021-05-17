@@ -172,6 +172,7 @@ Use `firefox` and load url `http://<ip>`. Right click on the page and use `View 
 ### References
 - [Rejetto HFS](http://www.rejetto.com/hfs/){:target="_blank"}
 - [Rejetto HFS exploit](https://www.exploit-db.com/exploits/34926){:target="_blank"}
+- [Searchsploit ref](https://4n3i5v74.github.io/posts/build-own-hacking-os/#install-searchsploit){:target="_blank"}
 
 
 Use `firefox` to load the url `http://<ip>:8080` to get any info on the website source. The link to `HttpFileServer 2.3` directs to the [Rejetto HFS](http://www.rejetto.com/hfs/){:target="_blank"}

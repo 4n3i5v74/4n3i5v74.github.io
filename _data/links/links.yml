@@ -307,6 +307,34 @@
 
 - category: Tech / Blog
   order: 600
+  suborder: 30
+  title: OSCP Prep 11
+  description: Hacking methodologies
+  url: https://book.hacktricks.xyz/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 31
+  title: OSCP Prep 12
+  description: OSCP notes
+  url: https://oscpnotes.infosecsanyam.in/
+
+- category: Tech / Blog
+  order: 600
+  suborder: 32
+  title: OSCP Prep 13
+  description: Pentest notes
+  url: https://github.com/wwong99/pentest-notes
+
+- category: Tech / Blog
+  order: 600
+  suborder: 33
+  title: OSCP Prep 14
+  description: Hacking methodologies
+  url: https://scund00r.com/
+
+- category: Tech / Blog
+  order: 600
   suborder: 50
   title: Security Certifications
   description: Daniel Meissler - Security Certification
@@ -459,6 +487,20 @@
   description: ATP encounters of third kind
   url: https://igor-blue.github.io/2021/03/24/apt1.html
 
+- category: Tech / Blog
+  order: 600
+  suborder: 700
+  title: NetSec Buffer Overflow
+  description: NetSec - Simple Buffer Overflow
+  url: https://netsec.ws/?p=180
+
+- category: Tech / Blog
+  order: 600
+  suborder: 730
+  title: A journey to Radare 2
+  description: A journey to Radare 2
+  url: https://www.megabeets.net/a-journey-into-radare-2-part-1/
+
 - category: Youtube Channels
   order: 700
   suborder: 10
@@ -563,6 +605,13 @@
   title: Hack eXPlorer
   description: Hack eXPlorer
   url: https://www.youtube.com/channel/UCAoLhcLjjYAiiu1itqL3pIw
+
+- category: Youtube Channels
+  order: 700
+  suborder: 300
+  title: TCM Buffer Overflow
+  description: TCM Buffer Overflow
+  url: https://www.youtube.com/playlist?list=PLLKT__MCUeix3O0DPbmuaRuR_4Hxo4m3G
 
 - category: Network
   order: 900
@@ -822,6 +871,13 @@
   title: CyberChef
   description: Encoding, Compression, Forensics, HTTP
   url: https://gchq.github.io/CyberChef/
+
+- category: Tools
+  order: 1200
+  suborder: 455
+  title: IppSec exploit finder
+  description: IppSec exploit finder
+  url: https://ippsec.rocks/?#
 
 - category: Tools
   order: 1200
